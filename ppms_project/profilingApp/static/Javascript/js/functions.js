@@ -15,7 +15,7 @@ function closeNav() {
 function openOffcanvas() {
     openNav();
     document.getElementById("myCanvasNav").style.width = "100%";
-    document.getElementById("myCanvasNav").style.opacity = "0.8";  
+    document.getElementById("myCanvasNav").style.opacity = "0.95";  
     document.getElementById("mySidenav").style.zIndex = 5;
     document.getElementById('navButton').onclick = closeOffcanvas;
     document.body.style.overflowY="hidden";
