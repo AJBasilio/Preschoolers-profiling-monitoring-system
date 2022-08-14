@@ -14,27 +14,29 @@
 <body>
 <!-- Header -->
 <div class="site-header" id="header">
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark index__navbar scrolled" id="header">
-    <div class="container-fluid">
-      <div>
-        <span style="font-size:20px;cursor:pointer; color:#2c5f2dff; margin-left:10px;" id="navButton" onclick="openOffcanvas()"><i class="fa fa-fw fa-bars"></i></span>
-        <a href="#" class="name" style="text-decoration: none;">
-            <img class="navbar-icon" style="margin-left:15px;" src="../static/Media/avatar.png" alt="dasma-logo">
-            <span id="hidetitle" class="brand__name" style="color:#2c5f2dff;">City of Dasmariñas - Preschooler Profiling and Monitoring</span>
-        </a>
-      </div>
-      <div class="dropdown">
-        <button class="btn dropdown-toggle" type="button" id= "Headerddb" data-bs-toggle="dropdown" style="margin-right:15px; color:#ffe77aff"><i class="fa fa-fw fa-user"></i>Admin</button>
-        <ul class="dropdown-menu" id="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Log Out</a></li>
-        </ul>
-      </div>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark index__navbar scrolled" id="header">
+      <div class="container-fluid">
+        <div>
+              <img class="navbar-icon" style="margin-left:15px;" src="../static/Media/avatar.png" alt="dasma-logo">
+              <span id="hidetitle" class="brand__name" style="color:#2c5f2dff;">City of Dasmariñas - Preschooler Profiling and Monitoring</span>
+          </a>
+        </div>
+        <div class="buttons">
+          <span class="brand__name" style="color:#2c5f2dff;"></i>Welcome Guardian | </span>
+          <a id="navbutton" href="/ppms_project/profilingApp/templates/Admin Validate BHW.html" ><i class="fa fa-fw fa-arrow-right"></i>Logout </a>
+        </div>
+        
+        <!-- <div class="dropdown">
+          <button class="btn dropdown-toggle" type="button" id= "Headerddb" data-bs-toggle="dropdown" style="margin-right:15px; color:#ffe77aff"><i class="fa fa-fw fa-user"></i>Admin</button>
+          <ul class="dropdown-menu" id="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Log Out</a></li>
+          </ul>
+        </div> -->
+    </div>
+    </nav>
   </div>
-  </nav>
-</div>
-
 <!-- Side Nav -->
-<div id="mySidenav" class="sidenav">
+<!-- <div id="mySidenav" class="sidenav">
   <ul class="list-unstyled ps-0">
       <div class="buttons">
           <a id="home" href="/ppms_project/profilingApp/templates/Admin Home.html"><i class="fa fa-fw fa-home"></i>Home</a>
@@ -44,13 +46,27 @@
   </ul>
 </div>
 <div id="myCanvasNav" onclick="closeOffcanvas()"></div>
-  
+   -->
 <!-- Dashboard -->
     <div id="grid" class="container-fluid" style="padding:7%; margin-top:83px;">
-      <div class="container-grid">
-          <h2 style="text-align:left;">Overall Data</h2>
-          <hr>
-          <br>
+      <div class="container-fluid">
+        <div class="row"> 
+        <div class="col">
+            <h2 style="text-align:left;">My Preschoolers</h2>
+        </div>
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    <button class="btn float-end" type="button" id= "parentHomeButton"><i class="fa fa-fw fa-id-card"></i>Register New Preschooler</button>
+                </div>
+                <div class="col">
+                    <button class="btn float-end" type="button" id= "parentHomeButton"><i class="fa fa-fw fa-bullhorn"></i>Announcements / Updates</button>
+                </div>
+            </div>
+        </div>
+        </div>
+        <hr>
+        <br>
           <!-- MAIN CARDS STARTS HERE -->
           <div class="row">
               <div class="col-xl-3 col-md-4">
