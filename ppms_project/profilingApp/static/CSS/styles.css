@@ -15,7 +15,6 @@
   border-bottom: 1px #d4d4d4 solid;
 }
 .navbar{
-  background-color:rgb(255, 255, 255);
   transition: 0.5s ease-in-out;
 }
 .navbar-icon {
@@ -190,19 +189,17 @@ i {
   transition: 0.5s ease-in-out;
 }
 
-#header{
-  background-color: rgba(0, 255, 85, 0.205);
-}
 #grid{
   background-color: rgba(253, 253, 253, 0.952);
   position: relative;
-    width: auto;
-    margin: auto;
+    padding: 60px;
+    width: 100%;
+    margin-top: 60px;
+
 }
 /* Side Navigation */
 
 #mySidenav {
-    background-color: rgba(0, 255, 85, 0.205);
     height: 100%;
     width: 0px;
     line-height: 55px;
@@ -210,6 +207,7 @@ i {
     z-index: 1;
     top: 83px;
     overflow-x: hidden;
+    box-shadow: 0 5px 40px rgb(0 0 0 / 20%);
 }
 
 .sidenav .buttons a{
@@ -244,6 +242,12 @@ i {
     }
 }
 
+/* Cards */
+.card-header{
+  font-size: 13px;
+  font-family: 'Poppins';
+  background-color: rgba(233, 249, 230)!important; 
+}
 /* Login Form */
 html {
     width: 100%;
@@ -473,10 +477,10 @@ html {
 
   /* Footer */
   #footer{
-    background-color: rgba(230, 230, 230, 0.952);
+    background-color: rgb(233, 249, 230);
     position: relative;
     width: auto;
-    margin: auto;
+    margin: 10px auto;
   }
   
 .row {
