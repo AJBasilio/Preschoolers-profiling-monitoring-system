@@ -5,16 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" href="../static/CSS/styles.css">
+    <link rel="stylesheet" href="../static/CSS/font-awesome/css/all.min.css">
+    <link rel="stylesheet" href="../static/CSS/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <title>Document</title>
+
 </head>
 <body>
+  <div id="bodygradient">
+    <br>  
 <!-- Header -->
 <div class="site-header">
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark index__navbar scrolled">
       <div class="nav-container">
           <a href="#" class="name" style="text-decoration: none;">
               <img class="navbar-icon" src="../static/Media/avatar.png" alt="dasma-logo">
-              <span id="hidetitle" class="brand__name ml-3 mr-3">City of Dasmariñas - Preschooler Profiling and Monitoring</span>
+              <span id="hidetitle" class="brand__name ml-3 mr-3">City of Dasmariñas - Preschooler Profiling and Monitoring System</span>
           </a>
       </div>
   </nav>
@@ -54,29 +63,42 @@
       <div class="form-content">
         <form>
           <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" required="required"/>
+            <button type="button" data-toggle="modal" data-target="#myModal" id="regButton" style="margin-top: 10%;">I AM AN ADMIN</button>
+          </div>
+          <!-- Registration Modal Admin -->
+            <div id="myModal" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+            
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>Some text in the modal.</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          <div class="form-group">
+            <button type="button" data-toggle="modal" data-target="#myModal" id="regButton">I AM A HEALTH WORKER</button>
           </div>
           <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required="required"/>
+            <button type="button" data-toggle="modal" data-target="#myModal" id="regButton" style="margin-bottom: 20%;">I AM A PARENT</button>
           </div>
-          <div class="form-group">
-            <label for="cpassword">Confirm Password</label>
-            <input type="password" id="cpassword" name="cpassword" required="required"/>
-          </div>
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" required="required"/>
-          </div>
-          <div class="form-group">
-            <button type="submit">Register</button>
-          </div>
+          <br><br>
         </form>
       </div>
     </div>
 </div>
-  
+<br>
+</div>
+
     <!-- Footer -->
 <div class="site-footer">
   <div class="container">

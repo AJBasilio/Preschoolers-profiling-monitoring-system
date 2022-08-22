@@ -9,6 +9,9 @@
   z-index: 1030;
 }
 
+#bodygradient{
+  background-image: linear-gradient(to bottom right, rgb(182, 253, 141), rgb(255, 255, 255));
+}
 .fixed-top.scrolled {
   background-color: #fff !important;
   transition: background-color 200ms linear;
@@ -146,6 +149,27 @@ i {
   background-color: rgb(33, 146, 71);
   color: #FFFF;
   transition: 0.4s;
+}
+
+/* Registration Buttons */
+
+#regButton{
+  
+  background-color: rgb(255, 255, 255);
+  color: rgb(33, 146, 71);
+  font-size: large;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  margin:2px;
+}
+
+#regButton:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  background-image:  linear-gradient(to bottom right, rgb(176, 253, 141), rgb(255, 255, 255));
+  color: rgb(7, 66, 27);
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
 }
 /* Parent Home Button Styling */
 
