@@ -79,6 +79,9 @@ a{
     color: rgb(255, 255, 255);
 }
 
+#homeBody{
+  background-image: linear-gradient(to top, rgba(230, 250, 202, 0.884), rgb(255, 255, 255));
+}
 /* Header hide title when minimized */
 
 @media screen and (max-width: 1000px) {
