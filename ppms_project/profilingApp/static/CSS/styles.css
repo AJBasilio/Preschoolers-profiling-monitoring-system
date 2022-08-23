@@ -9,9 +9,6 @@
   z-index: 1030;
 }
 
-#bodygradient{
-  background-image: linear-gradient(to bottom right, rgb(182, 253, 141), rgb(255, 255, 255));
-}
 .fixed-top.scrolled {
   background-color: #fff !important;
   transition: background-color 200ms linear;
@@ -96,6 +93,11 @@ a{
   }
 } 
 
+@media screen and (max-width: 590px) {
+  #hideHomeTitle {
+    display: none;
+  }
+} 
 /* Header Dropdown Button */
 
 #navbutton{
@@ -149,27 +151,6 @@ i {
   background-color: rgb(33, 146, 71);
   color: #FFFF;
   transition: 0.4s;
-}
-
-/* Registration Buttons */
-
-#regButton{
-  
-  background-color: rgb(255, 255, 255);
-  color: rgb(33, 146, 71);
-  font-size: large;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  margin:2px;
-}
-
-#regButton:hover {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  background-image:  linear-gradient(to bottom right, rgb(176, 253, 141), rgb(255, 255, 255));
-  color: rgb(7, 66, 27);
-  -webkit-transform: scale(1.05);
-  transform: scale(1.05);
 }
 /* Parent Home Button Styling */
 
@@ -344,7 +325,7 @@ html {
     transform: translate(0, -25%) scale(1);
     opacity: 1;
   }
-  .form-group {
+  .form-group{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -353,7 +334,7 @@ html {
   .form-group:last-child {
     margin: 0;
   }
-  .form-group label {
+  .form-group label ,.input-group label{
     display: block;
     margin: 0 0 10px;
     color: rgba(0, 0, 0, 0.6);
@@ -363,16 +344,34 @@ html {
     text-transform: uppercase;
     letter-spacing: 0.2em;
   }
-  .two .form-group label {
+  .two .form-group label ,.input-group label{
     color: #FFFFFF;
   }
-  .form-group input {
+  #userTypeSelect{
+    color: #FFFFFF;
+    border-radius:6px;
+  }
+
+  .input-group select option{
+    background: rgba(0, 0, 0, 0.1);
+    color: rgba(0, 0, 0, 0.6);
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 500;
+    line-height: inherit;
+  }
+ 
+  ::placeholder{
+    color:rgba(255, 255, 255, 0.253);
+  }
+
+  .form-group input ,.input-group select{
     outline: none;
     display: block;
     background: rgba(0, 0, 0, 0.1);
     width: 100%;
     border: 0;
-    border-radius: 4px;
+    border-radius: 6px;
     box-sizing: border-box;
     padding: 12px 20px;
     color: rgba(0, 0, 0, 0.6);
@@ -382,16 +381,16 @@ html {
     line-height: inherit;
     transition: 0.3s ease;
   }
-  .form-group input:focus {
+  .form-group input:focus ,.input-group:focus{
     color: rgba(0, 0, 0, 0.8);
   }
   .two .form-group input {
     color: #FFFFFF;
   }
-  .two .form-group input:focus {
+  .two .form-group input:focus  {
     color: #FFFFFF;
   }
-  .form-group button {
+  .form-group button ,.input-group button{
     outline: none;
     background: rgb(33, 146, 71);
     width: 100%;
@@ -406,7 +405,7 @@ html {
     text-transform: uppercase;
     cursor: pointer;
   }
-  .two .form-group button {
+  .two .form-group button{
     background: #FFFFFF;
     color: rgb(33, 146, 71);
   }
