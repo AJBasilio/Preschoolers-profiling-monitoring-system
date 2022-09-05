@@ -58,43 +58,46 @@
         <h1>Register Account</h1>
       </div>
       <div class="form-content">
-        <form>
+        <form method="POST">
+          {% csrf_token %}
           <div class="input-group mb-3">
             <label for="userTypeSelect">User Type</label>
-            <select class="custom-select" id="userTypeSelect">
-              <option selected >Choose User Type</option>
-              <option value="1">Barangay Health Worker</option>
-              <option value="2">Parent</option>
-            </select>
+            {{ form.user_type }}
             <br>
           </div>
           <div class="form-group">
             <div class="row">
               <div class="col">
                 <label for="firstname">First Name</label>
-            <input type="text" id="firstname" name="firstname" placeholder="First Name" required="required"/>
+            <!-- <input type="text" id="firstname" name="firstname" placeholder="First Name" required="required"/> -->
+            {{ form.first_name }}
               </div>
               <div class="col">
                 <label for="lastname">Last Name</label>
-            <input type="text" id="lastname" name="lastname" placeholder="Last Name" required="required"/>
+            <!-- <input type="text" id="lastname" name="lastname" placeholder="Last Name" required="required"/> -->
+            {{ form.last_name }}
               </div>
             </div>
           </div>
           <div class="form-group">
             <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="Enter Your Email Address" required="required"/>
+            <!-- <input type="email" id="email" name="email" placeholder="Enter Your Email Address" required="required"/> -->
+            {{ form.email }}
           </div>
           <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" id="password"  aria-describedby="passwordHelpBlock" placeholder="Enter Your Password"name="password" required="required"/>
+            <!-- <input type="password" id="password"  aria-describedby="passwordHelpBlock" placeholder="Enter Your Password"name="password" required="required"/> -->
+            {{ form.password1 }}
             <!-- <small id="passwordHelpBlock"> Must be 8-20 Characters.</small> -->
           </div>
           <div class="form-group">
             <label for="cpassword">Confirm Password</label>
-            <input type="password" id="cpassword" name="cpassword" placeholder="Confirm Your Password" required="required"/>
+            <!-- <input type="password" id="cpassword" name="cpassword" placeholder="Confirm Your Password" required="required"/> -->
+            {{ form.password2 }}
           </div>
+          {{form.errors}}
           <div class="form-group">
-            <button type="submit">Register</button>
+            <button type="submit" name="register">Register</button>
           </div>
         </form>
       </div>
