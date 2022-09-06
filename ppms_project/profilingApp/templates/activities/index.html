@@ -1,5 +1,26 @@
+<form>
+    <input type="text" name="text" id="txt">
+    <button type="submit">Submit</button>
+</form>
+
 <form method="POST">
     {% csrf_token %}
-    {{ form }}
+    {{ form.user_type.label }}
+    {{ form.user_type}}
+
+    {{ form.first_name.label}}
+    {{ form.first_name }}
+
+    {{ form.last_name.label }}
+    {{ form.last_name }}
+
+    {{ form.email.label }}
+    {{ form.email }}
+
+    {{ form.password1.label }}
+    {{ form.password1 }}
+
+    {{ form.password2.label }}
+    {{ form.password2 }}
     <button type="submit">Submit</button>
 </form>

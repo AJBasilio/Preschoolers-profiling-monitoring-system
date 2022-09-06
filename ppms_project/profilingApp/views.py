@@ -9,6 +9,7 @@ def index(request):
 def registration(request):
     form = CustomUserCreationForm()
     print("Working Form")
+
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         print("Form Submitted")
@@ -16,4 +17,4 @@ def registration(request):
             form.save()
 
     context = {'form' : form}
-    return render(request, 'activities/Initial.html', context)
+    return render(request, 'activities/index.html', context)
