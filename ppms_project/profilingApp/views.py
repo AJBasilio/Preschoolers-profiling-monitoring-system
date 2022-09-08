@@ -15,6 +15,6 @@ def registration(request):
         print("Form Submitted")
         if form.is_valid():
             form.save()
-
+            return redirect('registration')
     context = {'form' : form}
     return render(request, 'activities/index.html', context)
