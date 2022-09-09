@@ -6,6 +6,9 @@ from django.forms.widgets import PasswordInput
 from django.contrib.auth.forms import UserCreationForm
 
 class CustomUserCreationForm(UserCreationForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['email'].widget.attrs.update({'autofocus':False})
     """
     A Custom form for creating new users.
     """
