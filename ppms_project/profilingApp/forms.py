@@ -1,9 +1,11 @@
 from dataclasses import fields
+import imp
 from django import forms
 from django.forms import ModelForm
 from django.contrib.auth import get_user_model
 from django.forms.widgets import PasswordInput
 from django.contrib.auth.forms import UserCreationForm
+from .models import BarangayHealthWorker
 
 class CustomUserCreationForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
@@ -34,5 +36,10 @@ class CustomUserCreationForm(UserCreationForm):
         user.last_name = self.cleaned_data.get('last_name')
         user.email = self.cleaned_data.get('email')
         user.save()
+
+        if self.cleaned_data.get('user_type') == 'BHW':
+            bhw = BarangayHealthWorker.objects.create(user=user)
+            bhw.save()
+
 
         return user

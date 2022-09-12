@@ -1,5 +1,7 @@
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
+from django.db.models import Model
+from django.db.models.deletion import CASCADE
 from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
@@ -48,3 +50,14 @@ class CustomUser(AbstractUser):
     REQUIRED_FIELDS = []
 
     objects = CustomUserManager()
+
+class BarangayHealthWorker(Model):
+    user = models.OneToOneField(CustomUser, on_delete=CASCADE, primary_key=True)
+    is_validated = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.user.first_name} {self.user.last_name}"
+        
+
+class Parents(Model):
+    pass

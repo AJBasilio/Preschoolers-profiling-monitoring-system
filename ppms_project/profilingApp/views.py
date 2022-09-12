@@ -1,9 +1,12 @@
+from ast import dump
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import CustomUserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .decorators import *
+from .models import BarangayHealthWorker
+from json import dumps
 # Create your views here.
 
 def index(request):
@@ -23,9 +26,8 @@ def login_registration(request):
         else:
             user_email = request.POST.get('email')
             password = request.POST.get('password')
-            print(user_email, password)
+
             user = authenticate(request, email=user_email, password=password)
-            print(user.user_type)
 
             if user is not None and user.user_type == 'P/G':
                 login(request, user)
@@ -52,7 +54,16 @@ def parent_home(request):
 # ===== ADMIN =====
 @login_required(login_url='login_registration')
 def admin_home(request):
-    return render(request, 'activities/Admin Home.html')
+    validated_status = BarangayHealthWorker.objects.filter(is_validated=True).count()
+    invalidated_status = BarangayHealthWorker.objects.filter(is_validated=False).count()
+
+    count_list = [validated_status, invalidated_status]
+    data_json = dumps(count_list)
+
+    context = {'validated_count' : validated_status,
+                'invalidated_count' : invalidated_status,
+                'count_data' : data_json}
+    return render(request, 'activities/Admin Home.html', context)
 
 # ===== BHW =====
 @login_required(login_url='login_registration')
