@@ -6,6 +6,7 @@ from django.contrib.auth import get_user_model
 from django.forms.widgets import PasswordInput
 from django.contrib.auth.forms import UserCreationForm
 from .models import BarangayHealthWorker
+from django.core.mail import send_mail
 
 class CustomUserCreationForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
@@ -41,5 +42,15 @@ class CustomUserCreationForm(UserCreationForm):
             bhw = BarangayHealthWorker.objects.create(user=user)
             bhw.save()
 
+        send_mail('Registration Successful',
+            f"""Congratulations you are now registered. Please double check your registration.\n
+        Here's your username: {user}
+        You are: {user.user_type}
+        Name: {user.first_name} {user.last_name}
+        Email: {user.email}""",
+            
+            'admission.system123@gmail.com',
+            [f'{user.email}'],
+            fail_silently=False)
 
         return user
