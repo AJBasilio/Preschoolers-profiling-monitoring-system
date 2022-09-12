@@ -36,6 +36,7 @@ class CustomUserManager(BaseUserManager):
 
 class CustomUser(AbstractUser):
     USER_TYPE = [('Choose User Type', 'Choose User Type'),
+                 ('Admin', 'Administrator'),
                  ('BHW', 'Barangay Health Worker'),
                  ('P/G', 'Parent/Guardian')]
 

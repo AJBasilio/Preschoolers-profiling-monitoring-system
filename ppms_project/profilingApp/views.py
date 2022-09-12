@@ -32,6 +32,9 @@ def login_registration(request):
                 return redirect('parent_home')
             elif user is not None and user.user_type == 'BHW':
                 login(request, user)
+                return redirect('bhw_home')
+            elif user is not None and user.user_type == 'Admin':
+                login(request, user)
                 return redirect('admin_home')
 
     context = {'form' : form}
@@ -41,10 +44,17 @@ def logout_user(request):
     logout(request)
     return redirect('login_registration')
 
+# ===== PARENT =====
 @login_required(login_url='login_registration')
 def parent_home(request):
     return render(request, 'activities/Parent Home.html')
 
+# ===== ADMIN =====
 @login_required(login_url='login_registration')
 def admin_home(request):
     return render(request, 'activities/Admin Home.html')
+
+# ===== BHW =====
+@login_required(login_url='login_registration')
+def bhw_home(request):
+    return render(request, 'activities/BHW Home.html')
