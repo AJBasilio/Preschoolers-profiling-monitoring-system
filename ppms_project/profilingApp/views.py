@@ -5,7 +5,7 @@ from .forms import CustomUserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .decorators import *
-from .models import BarangayHealthWorker
+from .models import *
 from json import dumps
 # Create your views here.
 
@@ -56,13 +56,18 @@ def parent_home(request):
 def admin_home(request):
     validated_status = BarangayHealthWorker.objects.filter(is_validated=True).count()
     invalidated_status = BarangayHealthWorker.objects.filter(is_validated=False).count()
+    parent_count = Parents.objects.all().count()
+    preschooler_count = Preschoolers.objects.all().count()
 
-    count_list = [validated_status, invalidated_status]
+    count_list = [validated_status, invalidated_status, parent_count, preschooler_count]
     data_json = dumps(count_list)
 
     context = {'validated_count' : validated_status,
                 'invalidated_count' : invalidated_status,
+                'parent_count' : parent_count,
+                'preschooler_count' : preschooler_count,
                 'count_data' : data_json}
+                
     return render(request, 'activities/Admin Home.html', context)
 
 # ===== BHW =====

@@ -57,7 +57,13 @@ class BarangayHealthWorker(Model):
 
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name}"
-        
 
 class Parents(Model):
-    pass
+    user = models.OneToOneField(CustomUser, on_delete=CASCADE, primary_key=True)
+
+    def __str__(self):
+        return f"{self.user.first_name} {self.user.last_name}"
+
+class Preschoolers(Model):
+    parent = models.ForeignKey(Parents, on_delete=CASCADE)
+

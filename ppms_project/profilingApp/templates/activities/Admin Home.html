@@ -73,7 +73,7 @@
                   <div class="card text-dark bg-light mb-4">
                       <div class="card-header"><i class="fas fa-user"></i>Number of Parents</div>
                       <div class="card-body">
-                          <h5 class="card-title">200</h5>
+                          <h5 class="card-title">{{ parent_count }}</h5>
                       </div>
                   </div>
               </div>
@@ -81,7 +81,7 @@
                   <div class="card text-dark bg-light mb-4">
                       <div class="card-header"><i class="fas fa-user-circle"></i>Number of Preschoolers</div>
                       <div class="card-body">
-                          <h5 class="card-title">200</h5>
+                          <h5 class="card-title">{{ preschooler_count }}</h5>
                       </div>
                   </div>
               </div>
@@ -175,7 +175,7 @@
     var myPieChart = new Chart(ctx, {
     type: 'pie',
     data: {
-        labels: ["Validated", "Invalidated"],
+        labels: ["Validated", "Invalidated", "Parents", "Preschoolers"],
         datasets: [{
         data: data_count,
         backgroundColor: ['#dc3545', '#ffc107', '#28a745'],
