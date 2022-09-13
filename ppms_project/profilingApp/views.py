@@ -70,7 +70,16 @@ def admin_home(request):
                 
     return render(request, 'activities/Admin Home.html', context)
 
+def bhw_validation(request):
+    return render(request, 'activities/Admin Validate BHW.html')
+
 # ===== BHW =====
 @login_required(login_url='login_registration')
 def bhw_home(request):
     return render(request, 'activities/BHW Home.html')
+
+def preschooler_profile(request):
+    return render(request, 'activities/BHW Preschooler Profile.html')
+
+def immunization_schedule(request):
+    return render(request, 'activities/BHW Immunization Schedule.html')

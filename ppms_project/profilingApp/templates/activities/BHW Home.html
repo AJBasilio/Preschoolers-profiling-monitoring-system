@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{% static '/CSS/css/bootstrap.min.css' %}">
     <script src="{% static '/Javascript/js/jquery.min.js' %}"></script>
 
-    <title>Document</title>
+    <title>Home</title>
 </head>
 <body>
 <!-- Header -->
@@ -37,9 +37,9 @@
 <div id="mySidenav" class="sidenav">
   <ul class="list-unstyled ps-0">
     <div class="buttons">
-        <a id="home" href="/ppms_project/profilingApp/templates/BHW Home.html"><i class="fa fa-fw fa-home"></i>Home</a>
-        <a href="/ppms_project/profilingApp/templates/BHW Preschooler Profile.html"><i class="fa fa-fw fa-id-card"></i>Preschooler Profile</a>
-        <a href="/ppms_project/profilingApp/templates/BHW Immunization Schedule.html"><i class="fa fa-fw fa-shield-virus"></i>Immunization Schedule</a>
+        <a id="home" href="{% url 'bhw_home' %}"><i class="fa fa-fw fa-home"></i>Home</a>
+        <a href="{% url 'preschooler_profile' %}"><i class="fa fa-fw fa-id-card"></i>Preschooler Profile</a>
+        <a href="{% url 'immunization_schedule' %}"><i class="fa fa-fw fa-shield-virus"></i>Immunization Schedule</a>
     </div>
       </div>
       <br>

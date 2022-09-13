@@ -37,8 +37,8 @@
 <div id="mySidenav" class="sidenav">
   <ul class="list-unstyled ps-0">
       <div class="buttons">
-          <a id="home" href="/ppms_project/profilingApp/templates/Admin Home.html"><i class="fa fa-fw fa-home"></i>Home</a>
-          <a href="/ppms_project/profilingApp/templates/Admin Validate BHW.html"><i class="fa fa-fw fa-user-nurse"></i>Validate BHW</a>
+          <a id="home" href="{% url 'admin_home' %}"><i class="fa fa-fw fa-home"></i>Home</a>
+          <a href="{% url 'bhw_validation' %}"><i class="fa fa-fw fa-user-nurse"></i>Validate BHW</a>
       </div>
       <br>
   </ul>

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{% static '/CSS/css/bootstrap.min.css' %}">
     <script src="{% static '/Javascript/js/jquery.min.js' %}"></script>
 
-    <title>Document</title>
+    <title>Validation</title>
 </head>
 <body>
 <!-- Header -->
@@ -23,9 +23,9 @@
       </div>
       <div class="buttons">
         <span id="hideUserLabel":class="brand__name" style="color:#2c5f2dff;"></i>Welcome Admin | </span>
-        <a id="navbutton" href="/ppms_project/profilingApp/templates/Admin Home.html" ><i class="fa fa-fw fa-home"></i>Home </a>
-        <a id="navbutton" href="/ppms_project/profilingApp/templates/Admin Validate BHW.html" ><i class="fa fa-fw fa-user-nurse"></i>Validate BHW </a>
-        <a id="navbutton" href="/ppms_project/profilingApp/templates/Admin Validate BHW.html" ><i class="fa fa-fw fa-arrow-right"></i>Logout </a>
+        <a id="navbutton" href="{% url 'admin_home' %}" ><i class="fa fa-fw fa-home"></i>Home </a>
+        <a id="navbutton" href="{% url 'bhw_validation' %}" ><i class="fa fa-fw fa-user-nurse"></i>Validate BHW </a>
+        <a id="navbutton" href="{% url 'logout' %}" ><i class="fa fa-fw fa-arrow-right"></i>Logout </a>
       </div>
       
       <!-- <div class="dropdown">
