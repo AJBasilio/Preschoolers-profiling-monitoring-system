@@ -79,7 +79,8 @@ def bhw_home(request):
     return render(request, 'activities/BHW Home.html')
 
 def preschooler_profile(request):
-    return render(request, 'activities/BHW Preschooler Profile.html')
+    context = {}
+    return render(request, 'activities/BHW Preschooler Profile.html', context)
 
 def immunization_schedule(request):
     return render(request, 'activities/BHW Immunization Schedule.html')
