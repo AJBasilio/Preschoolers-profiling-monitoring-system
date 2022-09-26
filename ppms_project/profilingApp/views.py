@@ -30,12 +30,22 @@ def login_registration(request):
             user = authenticate(request, email=user_email, password=password)
 
             if user is not None and user.user_type == 'P/G':
+
                 login(request, user)
                 return redirect('parent_home')
+
             elif user is not None and user.user_type == 'BHW':
-                login(request, user)
-                return redirect('bhw_home')
+
+                bhw_validation_status = BarangayHealthWorker.objects.get(user=user)
+                if bhw_validation_status.is_validated:
+                    login(request, user)
+                    return redirect('bhw_home')
+                else:
+                    # Error message pop-up
+                    return HttpResponse('Your account is not yet validated.')
+
             elif user is not None and user.user_type == 'Admin':
+                
                 login(request, user)
                 return redirect('admin_home')
 
