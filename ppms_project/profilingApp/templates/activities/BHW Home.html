@@ -1,4 +1,5 @@
-<html lang="en">{% load static %}
+{% load static %}
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,29 +10,29 @@
     <link rel="stylesheet" href="{% static '/CSS/css/bootstrap.min.css' %}">
     <script src="{% static '/Javascript/js/jquery.min.js' %}"></script>
 
-    <title>Home</title>
+    <title>BHW | PPMS</title>
 </head>
 <body>
 <!-- Header -->
 <div class="site-header" id="header">
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark index__navbar scrolled" id="header">
-    <div class="container-fluid">
-      <div>
-        <span style="font-size:20px;cursor:pointer; color:#2c5f2dff; margin-left:10px;" id="navButton" onclick="openOffcanvas()"><i class="fa fa-fw fa-bars"></i></span>
-        <a href="#" class="name" style="text-decoration: none;">
-            <img class="navbar-icon" style="margin-left:15px;" src="../static/Media/avatar.png" alt="dasma-logo">
-            <span id="hidetitle" class="brand__name" style="color:#2c5f2dff;">City of Dasmariñas - Preschooler Profiling and Monitoring</span>
-        </a>
-      </div>
-      <div class="dropdown">
-        <button class="btn dropdown-toggle" type="button" id= "Headerddb" data-bs-toggle="dropdown" style="margin-right:15px; color:#ffe77aff"><i class="fa fa-fw fa-user"></i>BHW</button>
-        <ul class="dropdown-menu" id="dropdown-menu">
-            <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
-        </ul>
-      </div>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark index__navbar scrolled border-bottom" id="header">
+      <div class="container-fluid">
+        <div>
+          <span style="font-size:20px;cursor:pointer; color:#2c5f2dff; margin-left:10px;" id="navButton" onclick="openOffcanvas()"><i class="fa fa-fw fa-bars"></i></span>
+          <a href="#" class="name" style="text-decoration: none;">
+              <img class="navbar-icon" style="margin-left:15px;" src="../static/Media/avatar.png" alt="dasma-logo">
+              <span id="hidetitle" class="brand__name" style="color:#2c5f2dff;">City of Dasmariñas - Preschooler Profiling and Monitoring</span>
+          </a>
+        </div>
+        <div class="dropdown">
+          <button class="btn dropdown-toggle" type="button" id= "Headerddb" data-bs-toggle="dropdown" style="margin-right:15px; color:#ffe77aff"><i class="fa fa-fw fa-user"></i>BHW</button>
+          <ul class="dropdown-menu" id="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
+          </ul>
+        </div>
+    </div>
+    </nav>
   </div>
-  </nav>
-</div>
 
 <!-- Side Nav -->
 <div id="mySidenav" class="sidenav">
@@ -46,8 +47,8 @@
   </ul>
 </div>
 <div id="myCanvasNav" onclick="closeOffcanvas()"></div>
-  
 <!-- Dashboard -->
+{% block dashboard %}
     <div id="grid" class="container-fluid" style="padding:7%; margin-top:83px;">
       <div class="container-grid">
           <h2 style="text-align:left;">Overall BMI Status of Preschooler</h2>
@@ -104,9 +105,11 @@
                   </div>
               </main>
           </div>
+          
       </div>
   </div>
 <!-- Form-->
+{% endblock %}
 
     <!-- Footer -->
 <div class="site-footer" id="footer">
