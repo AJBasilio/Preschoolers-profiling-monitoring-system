@@ -22,37 +22,22 @@
         <br>
     </div>
     </div>
-        <!-- MAIN CARDS STARTS HERE -->
-        <div class="row">
-            <div class="col-xl-3 col-md-4">
-                <div class="card text-dark bg-light mb-4">
-                    <div class="card-header" style="background-color:rgba(0, 255, 85, 0.205)"><i class="fas fa-check" style="color: green; position:relative; margin-right:10px;"></i>Total No. of Validated BHW</div>
-                    <div class="card-body">
-                        <h5 class="card-title">200</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-4">
-                <div class="card text-dark bg-light mb-4">
-                    <div class="card-header" style="background-color:rgba(0, 255, 85, 0.205)"><i class="fas fa-spinner" style="color:orange; position:relative; margin-right:10px;"></i>Total No. of Non-Validated BHW</div>
-                    <div class="card-body">
-                        <h5 class="card-title">200</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-4">
-                <div class="card text-dark bg-light mb-4">
-                    <div class="card-header" style="background-color:rgba(0, 255, 85, 0.205)"><i class="fas fa-user"></i>Total No. of Parents</div>
-                    <div class="card-body">
-                        <h5 class="card-title">200</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-4">
-                <div class="card text-dark bg-light mb-4">
-                    <div class="card-header" style="background-color:rgba(0, 255, 85, 0.205)"><i class="fas fa-user-circle"></i>Total Number of Preschoolers</div>
-                    <div class="card-body">
-                        <h5 class="card-title">200</h5>
+        <!-- DataTables -->
+        <div class="container text-black">
+            <div class="row">
+                <div class="col">
+                    <div class="table-responsive">
+                        <table class="table table-sm" id="table_applicants">
+                            <thead>
+                                <tr>
+                                    <th scope="col">No.</th>
+                                    <th scope="col">Name of BHW </th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Barangay Designation</th>
+                                    <th scope="col" class="nosort text-center">Action</th>
+                                </tr>
+                            </thead>
+                        </table>
                     </div>
                 </div>
             </div>

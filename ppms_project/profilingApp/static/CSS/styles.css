@@ -161,7 +161,7 @@ i {
   
   padding:5%;
   background-color: rgb(44, 95, 44);
-  color: #ffe77aff;
+  color: #FFFF;
   font-size: small;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   -webkit-transition-duration: 0.3s;
@@ -186,7 +186,7 @@ i {
   padding:5%;
   margin: 3px;
   background-color: rgb(44, 95, 44);
-  color: #ffe77aff;
+  color: #FFFF;
   font-size: small;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   -webkit-transition-duration: 0.3s;
@@ -502,7 +502,7 @@ html {
 
   /* Footer */
   #footer{
-    background-color: rgb(233, 249, 230);
+    background-color: #4DC37E;
     position: relative;
     width: auto;
     margin: 10px auto;
@@ -543,7 +543,7 @@ h2 {
 }
 
 .site-footer a {
-  color: #6f42c1;
+  color: #188045;
   text-decoration: none;
   background-color: transparent;
   font-weight: 500;
