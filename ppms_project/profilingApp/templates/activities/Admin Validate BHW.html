@@ -4,55 +4,86 @@
 <!-- Dashboard -->
 <div id="grid" class="container-fluid" style="padding:7%; margin-top:83px;">
     <div class="container-grid">
-    <div class="container">
-    <div class="row"> 
-        <div class="col">
-            <h3 style="text-align:left;">Validate Barangay Health Workers</h3>
-        </div>
-        <div class="col">
-            <form class="form-inline">
-                <div class="input-group">
-                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+        <div class="container">
+            <div class="row"> 
+                <div class="col">
+                    <h3 style="text-align:left;">Validate New Barangay Health Workers</h3>
                 </div>
-            </form>
-        </div>
-    </div>
+            </div>
         <hr>
         <br>
+        </div>
     </div>
-    </div>
-        <!-- DataTables -->
-        <div class="container text-black">
-            <div class="row">
-                <div class="col">
-                    <div class="table-responsive">
-                        <table class="table table-sm" id="table_applicants">
-                            <thead>
-                                <tr>
-                                    <th scope="col">No.</th>
-                                    <th scope="col">Name of BHW </th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Barangay Designation</th>
-                                    <th scope="col" class="nosort text-center">Action</th>
-                                </tr>
-                            </thead>
+<!-- DataTables -->
+    <div class="container text-black">
+        <div class="row">
+            <div class="col">
+                <div class="table-responsive">
+                    <table class="table table-sm" id="table_validation">
+                        <thead>
+                            <tr>
+                                <th scope="col">No.</th>
+                                <th scope="col">Name of BHW </th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Barangay Designation</th>
+                                <th scope="col" class="nosort text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Edinburgh</td>
+                                <td>61</td>
+                                <td>2011-04-25</td>
+                                <td style="text-align: center;">
+                                    <div>
+                                        <a href=""><button type="button" style="background-color: #188045; color: white;" class="btn">Update</button></a>
+                                        <a href=""><button type="button" style="background-color: #188045; color: white;" class="btn">Delete</button></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Tokyo</td>
+                                <td>63</td>
+                                <td>2011-07-25</td>
+                                <td style="text-align: center;">
+                                    <div>
+                                        <a href=""><button type="button" style="background-color: #188045; color: white;" class="btn">Update</button></a>
+                                        <a href=""><button type="button" style="background-color: #188045; color: white;" class="btn">Delete</button></a>
+                                    </div>
+                                </td>
+                            </tr>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-        <hr>
+    <hr>
     <br>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col">
-                <button class="btn float-end" type="button" id= "parentHomeButton"><i class="fa fa-fw fa-user-shield"></i>Validate Account</button>
-            </div>
-            <div class="col">
-                <button class="btn" type="button" id= "parentHomeButton"><i class="fa fa-fw fa-user-slash"></i>Delete Profile</button>
-            </div>
-        </div>
-    </div>
+    
+    <script src="{% static '/Javascript/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+        
+    <script>
+        var t = $('#table_validation').DataTable({
+            dom: 'Blfrtip',
+            info: 'true',
+            aoColumnDefs: [{
+                'bSortable': false,
+                'aTargets': ['nosort'],
+                'orderable': false,
+                'targets': [0, 4],
+            }],
+            order: [[1, 'asc']],
+            });
+            t.on('order.dt search.dt', function () {
+            let i = 1;
+            t.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+                this.data(i++);
+            });}).draw();
+    </script>
+
 </div>
 {% endblock %}
