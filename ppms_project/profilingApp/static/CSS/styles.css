@@ -502,7 +502,6 @@ html {
 
   /* Footer */
   #footer{
-    background-color: #4DC37E;
     position: relative;
     width: auto;
     margin: 10px auto;
@@ -516,6 +515,21 @@ html {
   flex-wrap: wrap;
   margin-right: 15px;
   margin-left: 15px;
+}
+
+.icon-wrapper .icon-wrapper-bg {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 3;
+  opacity: .2;
+}
+
+.icon-wrapper i {
+  margin: 0 auto;
+  font-size: 1.7rem;
+  position: relative;
+  z-index: 5;
 }
 
 h2 {
