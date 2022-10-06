@@ -32,10 +32,10 @@
                         <tbody>
                             {% for bhw in bhws %}
                             <tr>
-                                <td>1</td>
+                                <td></td>
                                 <td>{{ bhw.user.first_name }} {{ bhw.user.last_name }}</td>
                                 <td>{{ bhw.user.email }}</td>
-                                <td>To be follow address</td>
+                                <td>{{ bhw.bhw_barangay }}</td>
                                 <td style="text-align: center;">
                                     <div>
                                         <a href=""><button type="button" style="background-color: #188045; color: white;" class="btn">Update</button></a>

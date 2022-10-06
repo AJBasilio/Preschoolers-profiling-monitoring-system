@@ -18,6 +18,15 @@ class CustomUserCreationForm(UserCreationForm):
     USER_TYPE = [('Choose User Type', 'Choose User Type'),
                  ('BHW', 'Barangay Health Worker'),
                  ('P/G', 'Parent/Guardian')]
+                 
+    BARANGAYS = [('Select Barangay', 'Select Barangay'),
+                 ('Burol', 'Burol'),
+                 ('Burol I', 'Burol I'),
+                 ('Burol II', 'Burol II'),
+                 ('Burol III', 'Burol III'),
+                 ('Datu Esmael', 'Datu Esmael'),
+                 ('Emmanuel Begado I', 'Emmanuel Begado I'),
+                 ('Emmanuel Begado II', 'Emmanuel Begado II'),]
     
     user_type = forms.CharField(label="User Type:", widget=forms.Select(choices=USER_TYPE, attrs={'class' : 'custom-select', 'id' : 'userTypeSelect'}))
     first_name = forms.CharField(required=True, widget=forms.TextInput(attrs={'type': 'text', 'placeholder': 'First Name', 'id' : 'firstname'}))
@@ -25,6 +34,7 @@ class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True, widget=forms.TextInput(attrs={'name' : 'email', 'type' : 'email', 'id' : 'email', 'placeholder': 'Enter your email address'}))
     password1 = forms.CharField(widget=PasswordInput(attrs={'type' : 'password', 'id' : 'password', 'aria-describeby' : 'passwordHelpBlock', 'placeholder':'Enter your Password'}))
     password2 = forms.CharField(widget=PasswordInput(attrs={'type' : 'password', 'id' : 'cpassword', 'placeholder':'Confirm Your Password'}))
+    barangay = forms.CharField(label="Barangay:", widget=forms.Select(choices=BARANGAYS, attrs={'class' : 'fstdropdown-select', 'id' : 'brgy'}))
     
     class Meta:
         model = get_user_model()
@@ -40,6 +50,7 @@ class CustomUserCreationForm(UserCreationForm):
 
         if self.cleaned_data.get('user_type') == 'BHW':
             bhw = BarangayHealthWorker.objects.create(user=user)
+            bhw.bhw_barangay = self.cleaned_data.get('barangay')
             bhw.save()
 
         send_mail('Registration Successful',

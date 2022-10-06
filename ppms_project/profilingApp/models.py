@@ -1,3 +1,4 @@
+from ftplib import MAXLINE
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 from django.db.models import Model
@@ -52,18 +53,28 @@ class CustomUser(AbstractUser):
     objects = CustomUserManager()
 
 class BarangayHealthWorker(Model):
+    BARANGAYS = [('Select Barangay', 'Select Barangay'),
+                 ('Burol', 'Burol'),
+                 ('Burol I', 'Burol I'),
+                 ('Burol II', 'Burol II'),
+                 ('Burol III', 'Burol III'),
+                 ('Datu Esmael', 'Datu Esmael'),
+                 ('Emmanuel Begado I', 'Emmanuel Begado I'),
+                 ('Emmanuel Begado II', 'Emmanuel Begado II'),]
+
     user = models.OneToOneField(CustomUser, on_delete=CASCADE, primary_key=True)
     is_validated = models.BooleanField(default=False)
+    bhw_barangay = models.CharField(max_length=100, choices=BARANGAYS, default='Select Barangay')
 
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name}"
 
-class Parents(Model):
+class Parent(Model):
     user = models.OneToOneField(CustomUser, on_delete=CASCADE, primary_key=True)
 
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name}"
 
-class Preschoolers(Model):
-    parent = models.ForeignKey(Parents, on_delete=CASCADE)
+class Preschooler(Model):
+    parent = models.ForeignKey(Parent, on_delete=CASCADE)
 

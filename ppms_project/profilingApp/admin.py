@@ -27,5 +27,5 @@ class CustomUserAdmin(UserAdmin):
 # Register your models here.
 admin.site.register(get_user_model(), CustomUserAdmin)
 admin.site.register(BarangayHealthWorker)
-admin.site.register(Parents)
-admin.site.register(Preschoolers)
+admin.site.register(Parent)
+admin.site.register(Preschooler)

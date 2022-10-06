@@ -66,8 +66,8 @@ def parent_home(request):
 def admin_home(request):
     validated_status = BarangayHealthWorker.objects.filter(is_validated=True).count()
     invalidated_status = BarangayHealthWorker.objects.filter(is_validated=False).count()
-    parent_count = Parents.objects.all().count()
-    preschooler_count = Preschoolers.objects.all().count()
+    parent_count = Parent.objects.all().count()
+    preschooler_count = Preschooler.objects.all().count()
 
     count_list = [validated_status, invalidated_status, parent_count, preschooler_count]
     data_json = dumps(count_list)
