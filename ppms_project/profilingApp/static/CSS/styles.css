@@ -504,6 +504,7 @@ html {
   #footer{
     position: relative;
     width: auto;
+    background-color: #FFFFFF;
     margin: 10px auto;
   }
   
