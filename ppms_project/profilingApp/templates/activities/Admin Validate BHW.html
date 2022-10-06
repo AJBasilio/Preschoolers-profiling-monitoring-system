@@ -30,11 +30,12 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {% for bhw in bhws %}
                             <tr>
                                 <td>1</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>2011-04-25</td>
+                                <td>{{ bhw.user.first_name }} {{ bhw.user.last_name }}</td>
+                                <td>{{ bhw.user.email }}</td>
+                                <td>To be follow address</td>
                                 <td style="text-align: center;">
                                     <div>
                                         <a href=""><button type="button" style="background-color: #188045; color: white;" class="btn">Update</button></a>
@@ -42,7 +43,8 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
+                            {% endfor %}
+                            <!-- <tr>
                                 <td>2</td>
                                 <td>Tokyo</td>
                                 <td>63</td>
@@ -52,7 +54,7 @@
                                         <a href=""><button type="button" style="background-color: #188045; color: white;" class="btn">Update</button></a>
                                         <a href=""><button type="button" style="background-color: #188045; color: white;" class="btn">Delete</button></a>
                                     </div>
-                                </td>
+                                </td> -->
                             </tr>
                         </table>
                     </div>

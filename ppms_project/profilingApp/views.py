@@ -81,7 +81,10 @@ def admin_home(request):
     return render(request, 'activities/Admin Home.html', context)
 
 def bhw_validation(request):
-    return render(request, 'activities/Admin Validate BHW.html')
+    bhw = BarangayHealthWorker.objects.all()
+
+    context = {'bhws' : bhw}
+    return render(request, 'activities/Admin Validate BHW.html', context)
 
 # ===== BHW =====
 @login_required(login_url='login_registration')
