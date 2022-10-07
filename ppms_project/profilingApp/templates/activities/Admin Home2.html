@@ -1,0 +1,170 @@
+{% extends 'activities/Admin Home.html' %} <!-- header and footer of page linked from admin home html file -->
+{% load static %}
+{% block dashboard %}
+<!-- Dashboard -->
+<div id="grid" class="container-fluid" style="padding:7%; margin-top:0px;">
+    <div class="container">
+        <div class="container">
+            <div class="row"> 
+                <div class="col-5">
+                    <h3 style="text-align:left;"> Preschooler Dashboard</h3>
+                </div>
+                <div class="col-5"></div>
+                <br>
+                <div class="col">
+                    <div class="card text-right" style="width: 10rem;">
+                        <div class="dropdown">
+                            <h6 class="text-uppercase text-muted dropdown-header">Barangay</h6>
+                            <button class="btn dropdown-toggle" type="button"  data-bs-toggle="dropdown"><i class="fa fa-home" aria-hidden="true"></i>All</button>
+                            <ul class="dropdown-menu" id="dropdown-menu">
+                                <li><a class="dropdown-item" href="">San andress</a></li>
+                                <li><a class="dropdown-item" href="">San Nicolas</a></li>
+                                <li><a class="dropdown-item" href="">Salitran</a></li>
+                                <li><a class="dropdown-item" href="">San Mateo</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                <hr>
+                </div>
+            </div>
+            
+            <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Normal</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">0</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Wasted</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">0</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Severly Wasted</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">0</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Overweight</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">0</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Obese</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">0</p>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <br>
+            <div>
+                <div class="card">
+                    <div class="card-header">
+                        Record
+                    </div>
+
+                    <div class="card-body">
+                        <canvas id="myLine" width="100%" height="50"></canvas>
+                    </div>
+                    <div class="card-footer small text-muted">
+                        Updated yesterday at 11:59 PM
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Set new default font family and font color to mimic Bootstrap's default styling
+    Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+    Chart.defaults.global.defaultFontColor = '#292b2c';
+
+    // Pie Chart Example
+    var ctx = document.getElementById("myLine");
+    var myLine = new Chart(ctx, {
+    type: 'line',
+    data:{
+        labels: ["January", "February", "March", "April","May", "June", "July", "August","September", "October", "November", "December"],
+        datasets: [
+        {
+            label: 'Normal',
+            data: [1, 2, 3, 4, 5, 6, 7,5,2,7,2],
+            fill: false,
+            borderColor: 'rgb(0, 165, 79)',
+            tension: 0.1,
+            borderWidth: 1,
+        },
+        {
+            label: 'Wasted',
+            data: [2, 4, 6, 8, 10, 12, 14,2,5,1,5],
+            fill: false,
+            borderColor: 'rgb(255, 241, 2)',
+            tension: 0.1,
+            borderWidth: 1,
+
+        },
+        {
+            label: 'Severly Wasted',
+            data: [3, 6, 9, 12, 15, 18, 21,12,5,8,8,4],
+            fill: false,
+            borderColor: 'rgb(238, 29, 35)',
+            tension: 0.1,
+            borderWidth: 1,
+
+        },
+        {
+            label: 'Overweight',
+            data: [4, 8, 12, 16, 20, 24, 28,6,3,8,12,2,5],
+            fill: false,
+            borderColor: 'rgb(242, 98, 33)',
+            tension: 0.1,
+            borderWidth: 1,
+        },
+        {label: 'Obese',
+            data: [5, 10, 15, 20, 25, 30, 35,12,16,23,7],
+            fill: false,
+            borderColor: 'rgb(0,0,0)',
+            tension: 0.1,
+            borderWidth: 1,
+        }]
+        },
+    Option: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            x: {
+                beginAtZero: true
+             }   
+            }
+        },
+    });
+
+</script>
+{% endblock %}

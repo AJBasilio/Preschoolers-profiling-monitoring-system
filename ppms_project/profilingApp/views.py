@@ -86,6 +86,9 @@ def bhw_validation(request):
     context = {'bhws' : bhw}
     return render(request, 'activities/Admin Validate BHW.html', context)
 
+def admin_home2(request):
+    return render(request, 'activities/Admin Home2.html')
+
 # ===== BHW =====
 @login_required(login_url='login_registration')
 def bhw_home(request):

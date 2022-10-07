@@ -11,6 +11,7 @@ urlpatterns = [
 
     # Admin
     path('ahome', views.admin_home, name='admin_home'),
+    path('ahome2', views.admin_home2, name='admin_home2'),
     path('validation', views.bhw_validation, name='bhw_validation'),
 
     # Barangay Health Worker
