@@ -13,6 +13,9 @@ urlpatterns = [
     path('ahome', views.admin_home, name='admin_home'),
     path('ahome2', views.admin_home2, name='admin_home2'),
     path('validation', views.bhw_validation, name='bhw_validation'),
+    path('Unvalidated Profile', views.Unvalidated_Profile, name='Unvalidated Profile'),
+
+
 
     # Barangay Health Worker
     path('bhome', views.bhw_home, name='bhw_home'),

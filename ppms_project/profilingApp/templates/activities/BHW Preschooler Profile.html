@@ -1,7 +1,7 @@
 {% extends 'activities/BHW Home.html' %} <!-- header and footer of page linked from bhw home html file -->
 {% load static %}
 {% block dashboard %}
-<div id="grid" class="container-fluid" style="padding:7%; margin-top:83px;">
+<div id="grid" class="container-fluid" style="padding:7%; margin-top:0px;">
     <div class="container-grid">
         <div class="row"> 
             <div class="col">
@@ -9,20 +9,17 @@
             </div>
         </div>
     <hr>
-    <br>
-    </div>
+</div>
     
 <!-- DataTables -->
 <div class="container text-black">
     <div class="row">
         <div class="col">
             <div class="table-responsive">
-                <table class="table table-sm" id="table_applicants">
+                <table class="table table-sm" id="table_preschoolers">
                     <thead>
                         <tr>
                             <th scope="col">No.</th>
-                            <th scope="col">Barangay</th>
-                            <th scope="col">Guardian Name</th>
                             <th scope="col">Child Name</th>
                             <th scope="col">Date of Birth</th>
                             <th scope="col">Date Measured</th>
@@ -49,12 +46,9 @@
                             <td>1</td>
                             <td>1</td>
                             <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
                             <td style="text-align: center;">
                                 <div>
-                                    <a href=""><button type="button" style="background-color: #188045; color: white;" class="btn">Update</button></a>
-                                    <a href=""><button type="button" style="background-color: #188045; color: white;" class="btn">View History</button></a>
+                                    <a href=""><button type="button" style="background-color: #188045; color: white;" class="btn">View Profile</button></a>
                                     <a href=""><button type="button" style="background-color: #188045; color: white;" class="btn">Delete</button></a>
                                 </div>
                             </td>
@@ -71,46 +65,28 @@
                             <td>1</td>
                             <td>1</td>
                             <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
                             <td style="text-align: center;">
                                 <div>
-                                    <a href=""><button type="button" style="background-color: #188045; color: white;" class="btn">Update</button></a>
-                                    <a href=""><button type="button" style="background-color: #188045; color: white;" class="btn">View History</button></a>
+                                    <a href=""><button type="button" style="background-color: #188045; color: white;" class="btn">View Profile</button></a>
                                     <a href=""><button type="button" style="background-color: #188045; color: white;" class="btn">Delete</button></a>
                                 </div>
                             </td>
                         </tr>
-                    </table>
-                </div>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
+</div>
 <hr>
 <br>
-    
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col sm-4">
-                <button class="btn" type="button" id= "validateBhwButton"><i class="fa fa-fw fa-user-slash"></i>Delete Profile</button>
-            </div>
-            <div class="col sm-4">
-                <button class="btn" type="button" id= "validateBhwButton"><i class="fa fa-fw fa-user-clock"></i>Update Profile</button>
-            </div>
-            <div class="col sm-4">
-                <button class="btn" type="button" id= "validateBhwButton"><i class="fa fa-fw fa-chart-line"></i>View History</button>
-            </div>
-        </div>
-    </div>
-    </div>
-
     <script src="{% static '/Javascript/js/bootstrap.bundle.min.js' %}"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
         
     <script>
-        var t = $('#table_applicants').DataTable({
-            dom: 'Bfrtip',
+        var t = $('#table_preschoolers').DataTable({
+            dom: 'Blfrtip',
             info: 'true',
             aoColumnDefs: [{
                 'bSortable': false,

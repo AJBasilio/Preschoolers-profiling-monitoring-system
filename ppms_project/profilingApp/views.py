@@ -89,6 +89,9 @@ def bhw_validation(request):
 def admin_home2(request):
     return render(request, 'activities/Admin Home2.html')
 
+def Unvalidated_Profile(request):
+    return render(request, 'activities/Unvalidated Profile.html')
+
 # ===== BHW =====
 @login_required(login_url='login_registration')
 def bhw_home(request):

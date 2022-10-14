@@ -2,9 +2,9 @@
 {% load static %}
 {% block dashboard %}
 <!-- Dashboard -->
-<div id="grid" class="container-fluid" style="padding:7%; margin-top:83px;">
+<div id="grid" class="container-fluid" style="padding:7%; margin-top:0px;">
     <div class="container-grid">
-        <div class="container">
+        <div class="">
             <div class="row"> 
                 <div class="col">
                     <h3 style="text-align:left;">Validate New Barangay Health Workers</h3>
@@ -15,55 +15,45 @@
         </div>
     </div>
 <!-- DataTables -->
-    <div class="container text-black">
-        <div class="row">
-            <div class="col">
-                <div class="table-responsive">
-                    <table class="table table-sm" id="table_validation">
-                        <thead>
-                            <tr>
-                                <th scope="col">No.</th>
-                                <th scope="col">Name of BHW </th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Barangay Designation</th>
-                                <th scope="col" class="nosort text-center">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for bhw in bhws %}
-                            <tr>
-                                <td></td>
-                                <td>{{ bhw.user.first_name }} {{ bhw.user.last_name }}</td>
-                                <td>{{ bhw.user.email }}</td>
-                                <td>{{ bhw.bhw_barangay }}</td>
-                                <td style="text-align: center;">
-                                    <div>
-                                        <a href=""><button type="button" style="background-color: #188045; color: white;" class="btn">Update</button></a>
-                                        <a href=""><button type="button" style="background-color: #188045; color: white;" class="btn">Delete</button></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                            <!-- <tr>
-                                <td>2</td>
-                                <td>Tokyo</td>
-                                <td>63</td>
-                                <td>2011-07-25</td>
-                                <td style="text-align: center;">
-                                    <div>
-                                        <a href=""><button type="button" style="background-color: #188045; color: white;" class="btn">Update</button></a>
-                                        <a href=""><button type="button" style="background-color: #188045; color: white;" class="btn">Delete</button></a>
-                                    </div>
-                                </td> -->
-                            </tr>
-                        </table>
-                    </div>
-                </div>
+<div class="container text-black">
+    <div class="row">
+        <div class="col">
+            <div class="table-responsive">
+                <table class="table table-sm" id="table_validation">
+                    <thead>
+                        <tr>
+                            <th scope="col">No.</th>
+                            <th scope="col">Name of BHW </th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Barangay Designation</th>
+                            <th scope="col" class="nosort text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for bhw in bhws %}
+                        <tr>
+                            <td></td>
+                            <td>{{ bhw.user.first_name }} {{ bhw.user.last_name }}</td>
+                            <td>{{ bhw.user.email }}</td>
+                            <td>{{ bhw.bhw_barangay }}</td>
+                            <td style="text-align: center;">
+                                <div>
+                                    <a href="{% url 'Unvalidated Profile' %}"><button type="button" style="background-color: #188045; color: white;" class="btn">Update</button></a>
+                                    <a href=""><button type="button" style="background-color: #188045; color: white;" class="btn">Delete</button></a>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
+    </div>
+</div>
     <hr>
     <br>
-    
+
     <script src="{% static '/Javascript/js/bootstrap.bundle.min.js' %}"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
