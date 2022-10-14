@@ -33,12 +33,12 @@
                         {% for bhw in bhws %}
                         <tr>
                             <td></td>
-                            <td>{{ bhw.user.first_name }} {{ bhw.user.last_name }}</td>
+                            <td>{{ bhw.user.first_name }} {{ bhw.user.last_name }} </td>
                             <td>{{ bhw.user.email }}</td>
                             <td>{{ bhw.bhw_barangay }}</td>
                             <td style="text-align: center;">
                                 <div>
-                                    <a href="{% url 'Unvalidated Profile' %}"><button type="button" style="background-color: #188045; color: white;" class="btn">Update</button></a>
+                                    <a href="{% url 'unvalidated_profile' bhw.user.id %}"><button type="button" style="background-color: #188045; color: white;" class="btn">Validate</button></a>
                                     <a href=""><button type="button" style="background-color: #188045; color: white;" class="btn">Delete</button></a>
                                 </div>
                             </td>

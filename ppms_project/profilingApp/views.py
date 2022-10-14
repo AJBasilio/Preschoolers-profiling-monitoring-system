@@ -1,7 +1,7 @@
 from ast import dump
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .forms import CustomUserCreationForm
+from .forms import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .decorators import *
@@ -89,8 +89,19 @@ def bhw_validation(request):
 def admin_home2(request):
     return render(request, 'activities/Admin Home2.html')
 
-def Unvalidated_Profile(request):
-    return render(request, 'activities/Unvalidated Profile.html')
+def unvalidated_profile(request, pk):
+    unvalidate_bhw = BarangayHealthWorker.objects.get(user_id=pk)
+    form = Validate_BHW(instance=unvalidate_bhw)
+    
+    if request.method == 'POST':
+        form = Validate_BHW(request.POST, instance=unvalidate_bhw)
+        if form.is_valid():
+            form.save()
+            return redirect('bhw_validation')
+
+    context = {'unva_bhw' : unvalidate_bhw,
+               'form' : form}
+    return render(request, 'activities/Unvalidated Profile.html', context)
 
 # ===== BHW =====
 @login_required(login_url='login_registration')

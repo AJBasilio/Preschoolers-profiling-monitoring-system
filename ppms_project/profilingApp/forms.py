@@ -65,3 +65,9 @@ class CustomUserCreationForm(UserCreationForm):
             fail_silently=False)
 
         return user
+
+class Validate_BHW(ModelForm):
+    class Meta:
+        model = BarangayHealthWorker
+        fields = ['is_validated']
+        widgets = {'is_validated' : forms.CheckboxInput(attrs={'class' : 'form-check-input', 'type' : 'checkbox'})}
