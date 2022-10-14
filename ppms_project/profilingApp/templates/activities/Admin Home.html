@@ -16,10 +16,11 @@
     <link rel="stylesheet" href="{% static '/CSS/styles.css' %}">
     <link rel="stylesheet" href="{% static '/CSS/font-awesome/css/all.min.css' %}">
     <link rel="stylesheet" href="{% static '/CSS/css/bootstrap.min.css' %}">
-    <script src="{% static '/Javascript/js/jquery.min.js' %}"></script>
     <script src="{% static '/Javascript/js/Chart.min.js' %}" crossorigin="anonymous"></script>
+    <link rel="icon" href="{% static '/Media/Dasmalogo.png' %}" type="image/y-icon">
 
-    <title>Administration Home</title>
+
+    <title>City of Dasmariñas</title>
 </head>
 <body>
 <!-- Header -->
@@ -48,7 +49,7 @@
   <ul class="list-unstyled ps-0">
       <div class="buttons">
           <a id="home" href="{% url 'admin_home' %}"><i class="fa fa-fw fa-home"></i>Home</a>
-          <a href="{% url 'admin_home2' %}"><i class="fa fa-fw fa-user-nurse"></i>Home2</a>
+          <a href="{% url 'admin_home2' %}"><i class="fa fa-fw fa-id-card"></i>Preschooler Status</a>
           <a href="{% url 'bhw_validation' %}"><i class="fa fa-fw fa-user-nurse"></i>Validate BHW</a>
       </div>
       <br>

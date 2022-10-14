@@ -2,7 +2,7 @@
 {% load static %}
 {% block dashboard %}
 <!-- Dashboard -->
-<div id="grid" class="container-fluid" style="padding:7%; margin-top:0px;">
+<div id="grid" class="container-fluid" style="padding:7%; margin: top 65px;">
     <div class="container-grid">
         <div class="">
             <div class="row"> 
@@ -39,7 +39,6 @@
                             <td style="text-align: center;">
                                 <div>
                                     <a href="{% url 'unvalidated_profile' bhw.user.id %}"><button type="button" style="background-color: #188045; color: white;" class="btn">Validate</button></a>
-                                    <a href=""><button type="button" style="background-color: #188045; color: white;" class="btn">Delete</button></a>
                                 </div>
                             </td>
                         </tr>
