@@ -39,6 +39,7 @@
                             <td style="text-align: center;">
                                 <div>
                                     <a href="{% url 'unvalidated_profile' bhw.user.id %}"><button type="button" style="background-color: #188045; color: white;" class="btn">Validate</button></a>
+                                    <a href="{% url 'delete_profile' bhw.user.id %}"><button type="button" style="background-color: red; color: white;" class="btn">Remove</button></a>
                                 </div>
                             </td>
                         </tr>
