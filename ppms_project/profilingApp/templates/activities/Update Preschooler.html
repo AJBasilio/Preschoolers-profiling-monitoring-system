@@ -1,0 +1,107 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="{% static '/CSS/styles.css' %}">
+    <link rel="stylesheet" href="{% static '/CSS/font-awesome/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static '/CSS/css/bootstrap.min.css' %}">
+    <link rel="icon" href="{% static '/Media/logo.svg' %}" type="image/x-icon">
+    <script src="{% static '/Javascript/js/jquery.min.js' %}"></script>
+    <link rel="icon" href="{% static '/Media/Dasmalogo.png' %}" type="image/y-icon">
+
+    <title>City of Dasmariñas</title>
+    <!-- Header -->
+    <div class="site-header" id="header">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark index__navbar scrolled border-bottom" id="header">
+            <div class="container-fluid">
+                <div>
+                    <a href="#" class="name" style="text-decoration: none;">
+                        <img class="navbar-icon" style="margin-left:15px;" src="{% static '/Media/avatar.png' %}" alt="dasma-logo">
+                        <span id="hidetitle" class="brand__name" style="color:#2c5f2dff;">City of Dasmariñas</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</head>
+
+<body>
+    <!-- Dashboard -->
+    <div id="grid" class="container-fluid">
+        <div class="container-grid" style="padding: 5%;">
+
+            <!-- Spacing --> <br><br><br><br>
+            <h4 class="d-flex fas fa-clipboard-check justify-content-center">Validate</h4>
+            <hr style="background-color: white;">
+            <form action="" method="POST">
+                <h5 class="modal-title" style="text-align:center;" id="modalLabel">Are you sure you want to validate <strong></strong>?</h5><br>
+
+                <div class="d-flex justify-content-center">
+                    <input class="btn btn-primary px-3" type="submit" name="Confirm" value="Validate" style="margin-right: 2%; background-color: rgb(44, 95, 34);">
+                    <a href=""><button type="button" style="background-color: #EF3A25; color: white;" class="btn">Cancel</button></a>
+                </div>
+            </form>
+        </div>
+    </div>
+         
+    </div>
+    <!-- Footer -->
+    <div class="site-footer" id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <h2 class="footer-heading mb-4">About</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+                        Modi cumque tenetur inventore veniam, hic vel ipsa necessitatibus 
+                        ducimus architecto fugiat!
+                    </p>
+                    <div class="my-5">
+                        <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
+                        <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
+                        <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
+                        <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <h2 class="footer-heading mb-4">Quick Links</h2>
+                            <ul class="list-unstyled">
+                            <li><a href="#">FAQs</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-4">
+                            <h2 class="footer-heading mb-4">Helpful Link</h2>
+                            <ul class="list-unstyled">
+                            <li><a href="#">Healthcare Professional</a></li>
+                            <li><a href="#">LGU Facilities</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-4">
+                            <h2 class="footer-heading mb-4">Resources</h2>
+                            <ul class="list-unstyled">
+                            <li><a href="#">NNC Website</a></li>
+                            <li><a href="#">DOH Website</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-12">
+                    <div class="border-top pt-5">
+                        <p class="copyright"><small>
+                        Copyright ©<script>document.write(new Date().getFullYear());</script> All rights reserved <i class="icon-heart text-danger" aria-hidden="true"></i>
+                        </small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+    
