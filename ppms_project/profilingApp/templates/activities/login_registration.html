@@ -109,13 +109,21 @@
                         
                         <div class="form-group">
                             <div class="row">
-                                <div class="col">
+                                <div class="col-6">
                                     <label for="">First Name</label>
                                     {{ form.first_name }}
                                 </div>
-                                <div class="col">
+                                <div class="col-6">
+                                    <label for="">Middle Name</label>
+                                    {{ form.middle_name }}
+                                </div>
+                                <div class="col-6" style="margin-top: 3%;">
                                     <label for="">Last Name</label>
                                     {{ form.last_name }}
+                                </div>
+                                <div class="col-6"style="margin-top: 3%;">
+                                    <label for="">Suffix</label>
+                                    {{ form.suffix_name }}
                                 </div>
                             </div>
                         </div>

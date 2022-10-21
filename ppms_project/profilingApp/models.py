@@ -1,3 +1,4 @@
+from email.policy import default
 from ftplib import MAXLINE
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
@@ -46,6 +47,8 @@ class CustomUser(AbstractUser):
     username = None
     email = models.EmailField(_('email address'), unique=True)
     user_type = models.CharField(max_length=100, choices=USER_TYPE, default='Choose User Type')
+    middle_name = models.CharField(max_length=100, null=True)
+    suffix_name = models.CharField(max_length=100, default='N/A')
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -70,7 +73,17 @@ class BarangayHealthWorker(Model):
         return f"{self.user.first_name} {self.user.last_name}"
 
 class Parent(Model):
+    BARANGAYS = [('Select Barangay', 'Select Barangay'),
+                 ('Burol', 'Burol'),
+                 ('Burol I', 'Burol I'),
+                 ('Burol II', 'Burol II'),
+                 ('Burol III', 'Burol III'),
+                 ('Datu Esmael', 'Datu Esmael'),
+                 ('Emmanuel Begado I', 'Emmanuel Begado I'),
+                 ('Emmanuel Begado II', 'Emmanuel Begado II'),]
+
     user = models.OneToOneField(CustomUser, on_delete=CASCADE, primary_key=True)
+    barangay = models.CharField(max_length=100, choices=BARANGAYS, default='Select Barangay')
 
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name}"
@@ -82,4 +95,7 @@ class Preschooler(Model):
     middle_name = models.CharField(max_length=100)
     suffix_name = models.CharField(max_length=100)
     birthday = models.DateField(null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.first_name} {self.middle_name} {self.last_name}"
 

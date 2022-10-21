@@ -31,7 +31,9 @@ class CustomUserCreationForm(UserCreationForm):
     
     user_type = forms.CharField(label="User Type:", widget=forms.Select(choices=USER_TYPE, attrs={'class' : 'custom-select', 'id' : 'userTypeSelect'}))
     first_name = forms.CharField(required=True, widget=forms.TextInput(attrs={'type': 'text', 'placeholder': 'First Name', 'id' : 'firstname'}))
+    middle_name = forms.CharField(required=True, widget=forms.TextInput(attrs={'type': 'text', 'placeholder': 'Middle Name', 'id' : 'middlename'}))
     last_name = forms.CharField(required=True, widget=forms.TextInput(attrs={'type': 'text', 'placeholder': 'Last Name', 'id' : 'lastname'}))
+    suffix_name = forms.CharField(required=True, widget=forms.TextInput(attrs={'type': 'text', 'placeholder': 'Suffix', 'id' : 'suffixname'}))
     email = forms.EmailField(required=True, widget=forms.TextInput(attrs={'name' : 'email', 'type' : 'email', 'id' : 'email', 'placeholder': 'Enter your email address'}))
     password1 = forms.CharField(widget=PasswordInput(attrs={'type' : 'password', 'id' : 'password', 'aria-describeby' : 'passwordHelpBlock', 'placeholder':'Enter your Password'}))
     password2 = forms.CharField(widget=PasswordInput(attrs={'type' : 'password', 'id' : 'cpassword', 'placeholder':'Confirm Your Password'}))
@@ -45,7 +47,9 @@ class CustomUserCreationForm(UserCreationForm):
         user = super().save(commit=False)
         user.user_type = self.cleaned_data.get('user_type')
         user.first_name = self.cleaned_data.get('first_name')
+        user.middle_name = self.cleaned_data.get('middle_name')
         user.last_name = self.cleaned_data.get('last_name')
+        user.suffix_name = self.cleaned_data.get('suffix_name')
         user.email = self.cleaned_data.get('email')
         user.save()
 
@@ -53,6 +57,11 @@ class CustomUserCreationForm(UserCreationForm):
             bhw = BarangayHealthWorker.objects.create(user=user)
             bhw.bhw_barangay = self.cleaned_data.get('barangay')
             bhw.save()
+        
+        if self.cleaned_data.get('user_type') == 'P/G':
+            png = Parent.objects.create(user=user)
+            png.barangay = self.cleaned_data.get('barangay')
+            png.save()
 
         send_mail('Registration Successful',
             f"""Congratulations you are now registered. Please double check your registration.\n

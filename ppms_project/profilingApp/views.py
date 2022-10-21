@@ -68,10 +68,8 @@ def logout_user(request):
 # ================================== PARENTS/GUARDIANS ==================================
 @login_required(login_url='login_registration')
 def parent_home(request):
-    preschooler = Preschooler.objects.all()
     parent_user = Parent.objects.get(user_id=request.user.id)
-
-    form = RegisterPreschooler()
+    preschooler = Preschooler.objects.filter(parent=parent_user)
 
     if request.method == 'POST':
         parent = parent_user
@@ -90,8 +88,7 @@ def parent_home(request):
                                         )
         return redirect('parent_home')
 
-    context = {'form' : form,
-               'preschoolers' : preschooler}
+    context = {'preschoolers' : preschooler}
     return render(request, 'activities/Parent Home.html', context)
 
 # ================================== ADMIN ==================================
