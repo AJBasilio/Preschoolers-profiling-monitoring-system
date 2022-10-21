@@ -23,12 +23,6 @@
                         <span id="hidetitle" class="brand__name" style="color:#2c5f2dff;">City of Dasmariñas</span>
                     </a>
                 </div>
-                <div class="dropdown">
-                    <button class="btn dropdown-toggle" type="button" id= "Headerddb" data-bs-toggle="dropdown" style="margin-right:15px"> <i class="fa fa-fw fa-user"></i>Admin</button>
-                    <ul class="dropdown-menu" id="dropdown-menu">
-                        <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
-                    </ul>
-                </div>
             </div>
         </nav>
     </div>
@@ -40,14 +34,14 @@
         <div class="container-grid" style="padding: 5%;">
 
             <!-- Spacing --> <br><br><br><br>
-            <h4 class="d-flex fas fa-clipboard-check justify-content-center"> Delete Confirmation</h4>
+            <h4 class="d-flex fas fa-clipboard-check justify-content-center"> Remove Confirmation</h4>
             <hr style="background-color: white;">
             <form action="{% url 'delete_profile' bhw.user.id %}" method="POST">
                 {% csrf_token %}
                 <h5 class="modal-title" style="text-align:center;" id="modalLabel">Are you sure you want to delete <strong>{{ bhw.user.first_name }} {{ bhw.user.last_name }}</strong>?</h5><br>
 
                 <div class="d-flex justify-content-center">
-                    <input class="btn btn-primary px-3" type="submit" name="Confirm" value="Confirm" style="margin-right: 2%;">
+                    <input class="btn btn-primary px-3" type="submit" name="Confirm" value="Confirm" style="margin-right: 2%; background-color: rgb(44, 95, 34);">
                     <a href="{% url 'bhw_validation' %}"><button type="button" style="background-color: #EF3A25; color: white;" class="btn">Cancel</button></a>
                 </div>
             </form>
