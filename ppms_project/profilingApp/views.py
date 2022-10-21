@@ -2,6 +2,7 @@ from ast import dump
 from multiprocessing import context
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.contrib import messages
 from .forms import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -22,8 +23,12 @@ def login_registration(request):
             form = CustomUserCreationForm(request.POST)
             
             if form.is_valid():
+                messages.success(request, 'Your account is successfully created.')
                 form.save()
-                return redirect('login_registration')
+            else:
+                error_string = ''.join([''.join(x for x in l) for l in list(form.errors.values())])
+                messages.error(request, str(error_string))
+          
         else:
             user_email = request.POST.get('email')
             password = request.POST.get('password')
@@ -43,12 +48,15 @@ def login_registration(request):
                     return redirect('bhw_home')
                 else:
                     # Error message pop-up
-                    return HttpResponse('Your account is not yet validated.')
+                    messages.warning(request, 'Please wait for the validation.')
 
             elif user is not None and user.user_type == 'Admin':
                 
                 login(request, user)
                 return redirect('admin_home')
+            
+            else:
+                messages.error(request, 'Login Failed')
 
     context = {'form' : form}
     return render(request, 'activities/login_registration.html', context)

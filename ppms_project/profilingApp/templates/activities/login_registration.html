@@ -203,4 +203,64 @@
 </body>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="{% static '/Javascript/testscript.js' %}"></script>
+
+<script src="{% static '/Javascript/js/jquery-3.2.1.slim.min.js' %}"></script>
+<script src="{% static '/Javascript/js/popper.min.js' %}"></script>
+<script src="{% static '/Javascript/js/bootstrap.min.js' %}"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+{% if messages %}
+    {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+            <script>
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Your account is not yet validated',
+                    text: '{{message}}',
+                    confirmButtonText: "Ok",
+                    confirmButtonColor: '#EF3A25',
+                }).then(function() {
+                    window.location = "{% url 'login_registration' %}";
+                });
+            </script>
+        {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR  %}
+            <script>
+                Swal.fire({
+                    icon: 'error',
+                    title: '{{message}}',
+                    text: 'Your Email or Password is incorrect',
+                    confirmButtonText: "Ok",
+                    confirmButtonColor: '#EF3A25',
+                }).then(function() {
+                    window.location = "{% url 'login_registration' %}";
+                });
+            </script>
+        {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS  %}
+            <script>
+                Swal.fire({
+                    icon: 'success',
+                    title: '{{message}}',
+                    text: 'Account successfully created.',
+                    confirmButtonText: "Ok",
+                    confirmButtonColor: '#EF3A25',
+                }).then(function() {
+                    window.location = "{% url 'login_registration' %}";
+                });
+            </script>
+        {% elif message.level == DEFAULT_MESSAGE_LEVELS.DEBUG %}
+            <script>
+                Swal.fire({
+                    icon: 'warning',
+                    title: '{{message}}',
+                    text: 'Registration Failed.',
+                    confirmButtonText: "Ok",
+                    confirmButtonColor: '#EF3A25',
+                }).then(function() {
+                    window.location = "{% url 'login_registration' %}";
+                });
+            </script>
+        {% endif %}
+    {% endfor %}
+{% endif %}
 </html>
