@@ -65,10 +65,34 @@ def logout_user(request):
     logout(request)
     return redirect('login_registration')
 
-# ================================== PARENT ==================================
+# ================================== PARENTS/GUARDIANS ==================================
 @login_required(login_url='login_registration')
 def parent_home(request):
-    return render(request, 'activities/Parent Home.html')
+    preschooler = Preschooler.objects.all()
+    parent_user = Parent.objects.get(user_id=request.user.id)
+
+    form = RegisterPreschooler()
+
+    if request.method == 'POST':
+        parent = parent_user
+        first_name = request.POST.get('first_name')
+        middle_name = request.POST.get('middle_name')
+        last_name = request.POST.get('last_name')
+        suffix_name = request.POST.get('suffix_name')
+        birthday = request.POST.get('birthday')
+
+        psa = Preschooler.objects.create(parent=parent,
+                                        first_name=first_name,
+                                        middle_name=middle_name,
+                                        last_name=last_name,
+                                        suffix_name=suffix_name,
+                                        birthday=birthday
+                                        )
+        return redirect('parent_home')
+
+    context = {'form' : form,
+               'preschoolers' : preschooler}
+    return render(request, 'activities/Parent Home.html', context)
 
 # ================================== ADMIN ==================================
 @login_required(login_url='login_registration')

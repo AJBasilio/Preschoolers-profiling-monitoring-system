@@ -77,4 +77,9 @@ class Parent(Model):
 
 class Preschooler(Model):
     parent = models.ForeignKey(Parent, on_delete=CASCADE)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    middle_name = models.CharField(max_length=100)
+    suffix_name = models.CharField(max_length=100)
+    birthday = models.DateField(null=True, blank=True)
 

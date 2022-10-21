@@ -34,7 +34,7 @@
                     </a>
                 </div>
                 <div class="dropdown">
-                    <button class="btn dropdown-toggle" type="button" id= "Headerddb" data-bs-toggle="dropdown" style="margin-right:15px"> <i class="fa fa-fw fa-user"></i>Admin</button>
+                    <button class="btn dropdown-toggle" type="button" id= "Headerddb" data-bs-toggle="dropdown" style="margin-right:15px"> <i class="fa fa-fw fa-user"></i>Parent</button>
                     <ul class="dropdown-menu" id="dropdown-menu">
                         <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
                     </ul>
@@ -74,17 +74,26 @@
                             </div>
                             <div class="modal-body mx-4">
                                 <form method="POST">
+                                    {% csrf_token %}
                                     <div class="md-form">
                                         <label id="user-lbl" data-error="wrong" data-success="right">First Name: </label>
+                                        <input class="form-control" type="text" name="first_name" id="first_name">
                                     </div>
                                     <div class="md-form">
-                                        <label id="user-lbl" data-error="wrong" data-success="right">Surname:</label>
+                                        <label id="user-lbl" data-error="wrong" data-success="right">Middle name:</label>
+                                        <input class="form-control" type="text" name="middle_name" id="middle_name">
+                                    </div>
+                                    <div class="md-form">
+                                        <label id="user-lbl" data-error="wrong" data-success="right">Last name:</label>
+                                        <input class="form-control" type="text" name="last_name" id="last_name">
                                     </div>
                                     <div class="md-form">
                                         <label id="user-lbl" data-error="wrong" data-success="right">Suffix:</label>
+                                        <input class="form-control" type="text" name="suffix_name" id="suffix_name">
                                     </div>
                                     <div class="md-form">
                                         <label id="user-lbl" data-error="wrong" data-success="right">Birthdate:</label>
+                                        <input class="form-control" type="date" name="birthday" id="birthday">
                                     </div>
                                     <div class="modal-footer" style="justify-content:center">
                                         <button type="submit" class="btn btn-primary" style="background-color: #188045;">Enroll</button>
@@ -97,25 +106,28 @@
                 </div>
                 <div class="table-responsive">
                     <table class="table table-sm" id="preschoolers_table">
+                        
                         <thead>
                             <tr>
-                                <th scope="col">No</th>
+                                <th scope="col">No.</th>
                                 <th scope="col">First Name</th>
+                                <th scope="col">Middle Name</th>
                                 <th scope="col">Last Name</th>
                                 <th scope="col">Suffix</th>
-                                <th scope="col">Age</th>
+                                <!-- <th scope="col">Age</th> -->
                                 <th scope="col">Birthdate</th>
                                 <th scope="col" class="nosort text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
+                            {% for preschooler in preschoolers %}
                             <tr>
                                 <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{{ preschooler.first_name }}</td>
+                                <td>{{ preschooler.middle_name }}</td>
+                                <td>{{ preschooler.last_name }}</td>
+                                <td>{{ preschooler.suffix_name }}</td>
+                                <td>{{ preschooler.birthday }}</td>
                                 <td style="text-align: center;">
                                     <div>
                                         <a href=""><button type="button" style="background-color: #188045; color: white;" class="btn">View Profile</button></a>
@@ -124,6 +136,7 @@
                             </tr>
                             </tr>
                         </tbody>
+                        {% endfor %}
                     </table>
                 </div>
             </div>
