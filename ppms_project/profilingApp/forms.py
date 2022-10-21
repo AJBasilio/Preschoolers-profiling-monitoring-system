@@ -81,6 +81,13 @@ class Validate_BHW(ModelForm):
         model = BarangayHealthWorker
         fields = ['is_validated']
         widgets = {'is_validated' : forms.CheckboxInput(attrs={'class' : 'form-check-input', 'type' : 'checkbox'})}
+    
+    def save(self):
+        user = super().save(commit=False)
+        user.is_validated = True
+        user.save()
+        
+        return user
 
 class RegisterPreschooler(ModelForm):
     class Meta:

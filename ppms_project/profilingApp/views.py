@@ -129,7 +129,7 @@ def unvalidated_profile(request, pk):
             form.save()
             return redirect('bhw_validation')
 
-    context = {'unva_bhw' : unvalidate_bhw,
+    context = {'bhw' : unvalidate_bhw,
                'form' : form}
     return render(request, 'activities/Unvalidated Profile.html', context)
 
@@ -138,7 +138,7 @@ def delete_profile(request, pk):
     user_bhw = CustomUser.objects.get(id=pk)
 
     if request.method == 'POST':
-        delete_bhw.delete()
+
         user_bhw.delete()
         
         return redirect('bhw_validation')
