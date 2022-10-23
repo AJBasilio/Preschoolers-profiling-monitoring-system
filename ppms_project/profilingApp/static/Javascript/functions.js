@@ -28,3 +28,4 @@ function closeOffcanvas() {
     document.getElementById('navButton').onclick = openOffcanvas;
     document.body.style.overflowY="visible";
 }
+

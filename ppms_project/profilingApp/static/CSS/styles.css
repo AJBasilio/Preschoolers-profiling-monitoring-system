@@ -11,6 +11,7 @@
 
 .fixed-top.scrolled {
   background-color: #fff !important;
+  background-image: none;
   transition: background-color 200ms linear;
 
 }
@@ -31,6 +32,14 @@ img {
     box-sizing: border-box;
     font-family: 'Poppins',
     sans-serif;
+}
+
+li, a, button{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color:#188045;
+  text-decoration: none;
 }
 
 li{
@@ -79,6 +88,17 @@ a{
     color: rgb(255, 255, 255);
 }
 
+#navLinks li a{
+  color:rgb(56, 56, 56); 
+  border-color: #188045;
+}
+
+#navLinks li a:hover{
+  color: rgb(40, 167, 69);
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
 #homeBody{
   background-image: linear-gradient(to top, rgba(230, 250, 202, 0.884), rgb(255, 255, 255));
 }
@@ -117,30 +137,6 @@ a{
   
 }
 
-#Headerddb {
-  padding:5%;
-  background-color: rgb(44, 95, 44);
-  color: white;
-  border: none;
-  font-size: medium;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  overflow: hidden;
-}
-
-#Headerddb,
-i {
-  margin-right: 5px;
-}
-
-#Headerddb:hover {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  background-color: rgb(33, 146, 71);
-  -webkit-transform: scale(1.05);
-  transform: scale(1.05);
-}
-
 #dropdown-menu li a {
   margin-bottom: 3px;
   text-align: left;
@@ -155,6 +151,7 @@ i {
   color: #FFFF;
   transition: 0.4s;
 }
+
 /* Parent Home Button Styling */
 
 #parentHomeButton{
@@ -205,6 +202,12 @@ i {
     margin-top: 60px;
 
 }
+/* Header Navigation Bar  */
+#myNavbar:hover{
+  color:#188045
+
+}
+
 /* Side Navigation */
 
 #mySidenav {
