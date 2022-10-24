@@ -130,52 +130,26 @@
                                             <th scope="col" class="text-center">Middle Name</th>
                                             <th scope="col" class="text-center">Last Name</th>
                                             <th scope="col" class="text-center">Suffix</th>
-                                            <th scope="col" class="text-center">User Type</th>
+                                            <th scope="col" class="text-center">Barangay</th>
+                                            <th scope="col" class="text-center">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {% for bhw in bhws %}
                                         <tr>
                                             <td class="text-center"></td>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">1</td>
+                                            <td class="text-center">{{ bhw.user.first_name }}</td>
+                                            <td class="text-center">{{ bhw.user.middle_name }}</td>
+                                            <td class="text-center">{{ bhw.user.last_name }}</td>
+                                            <td class="text-center">{{ bhw.user.suffix_name }}</td>
+                                            <td class="text-center">{{ bhw.bhw_barangay}}</td>
+                                            {% if bhw.is_validated is True %}
+                                                <td class="text-center" style="color: green;">Validated</td>
+                                            {% else %}
+                                                <td class="text-center" style="color: orangered;">Unvalidated</td>
+                                            {% endif %}
                                         </tr>
-                                        <tr>
-                                            <td class="text-center"></td>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">1</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center"></td>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">1</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center"></td>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">1</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center"></td>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">1</td>
-                                        </tr>
-
-                                        
+                                        {% endfor %}                                        
                                     </tbody>
                                 </table>
                             </div>

@@ -1,10 +1,10 @@
-from email.policy import default
-from ftplib import MAXLINE
+import imp
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 from django.db.models import Model
 from django.db.models.deletion import CASCADE
 from django.utils.translation import gettext_lazy as _
+from datetime import date
 
 # Create your models here.
 class CustomUserManager(BaseUserManager):
@@ -95,7 +95,15 @@ class Preschooler(Model):
     middle_name = models.CharField(max_length=100)
     suffix_name = models.CharField(max_length=100)
     birthday = models.DateField(null=True, blank=True)
+    height = models.FloatField(null=True)
+    weight = models.FloatField(null=True)
 
     def __str__(self):
         return f"{self.first_name} {self.middle_name} {self.last_name}"
+
+    def age_years(self):
+        return int(date.today().year - self.birthday.year)
+    
+    def age_months(self):
+        return int((date.today().year - self.birthday.year) * 12)
 

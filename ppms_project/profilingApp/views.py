@@ -89,6 +89,7 @@ def parent_home(request):
 # ================================== ADMIN ==================================
 @login_required(login_url='login_registration')
 def admin_home(request):
+    all_bhw = BarangayHealthWorker.objects.all()
     validated_status = BarangayHealthWorker.objects.filter(is_validated=True).count()
     invalidated_status = BarangayHealthWorker.objects.filter(is_validated=False).count()
     parent_count = Parent.objects.all().count()
@@ -97,16 +98,17 @@ def admin_home(request):
     count_list = [validated_status, invalidated_status, parent_count, preschooler_count]
     data_json = dumps(count_list)
 
-    context = {'validated_count' : validated_status,
+    context = { 'bhws' : all_bhw,
+                'validated_count' : validated_status,
                 'invalidated_count' : invalidated_status,
                 'parent_count' : parent_count,
                 'preschooler_count' : preschooler_count,
-                'count_data' : data_json}
+                'count_data' : data_json }
                 
     return render(request, 'activities/Admin Home.html', context)
 
 def bhw_validation(request):
-    bhw = BarangayHealthWorker.objects.all()
+    bhw = BarangayHealthWorker.objects.filter(is_validated=False)
 
     context = {'bhws' : bhw}
     return render(request, 'activities/Admin Validate BHW.html', context)
