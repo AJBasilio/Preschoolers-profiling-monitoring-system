@@ -56,65 +56,99 @@
 <div id="myCanvasNav" onclick="closeOffcanvas()"></div>
 <!-- Dashboard -->
 {% block dashboard %}
-    <div id="grid" class="container-fluid" style="padding:7%; margin-top:83px;">
-      <div class="container-grid">
-          <h2 style="text-align:left;">Overall BMI Status of Preschooler</h2>
-          <hr>
-          <br>
-          <!-- MAIN CARDS STARTS HERE -->
-          <div class="row">
-              <div class="col-xl-3 col-md-4">
-                  <div class="card text-dark bg-light mb-4">
-                      <div class="card-header" style="background-color:rgba(0, 255, 85, 0.205)"><i class="fas fa-check" style="color: green; position:relative; margin-right:10px;"></i>Total No. of Validated BHW</div>
-                      <div class="card-body">
-                          <h5 class="card-title">200</h5>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-xl-3 col-md-4">
-                  <div class="card text-dark bg-light mb-4">
-                      <div class="card-header" style="background-color:rgba(0, 255, 85, 0.205)"><i class="fas fa-spinner" style="color:orange; position:relative; margin-right:10px;"></i>Total No. of Non-Validated BHW</div>
-                      <div class="card-body">
-                          <h5 class="card-title">200</h5>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-xl-3 col-md-4">
-                  <div class="card text-dark bg-light mb-4">
-                      <div class="card-header" style="background-color:rgba(0, 255, 85, 0.205)"><i class="fas fa-user"></i>Total No. of Parents</div>
-                      <div class="card-body">
-                          <h5 class="card-title">200</h5>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-xl-3 col-md-4">
-                  <div class="card text-dark bg-light mb-4">
-                      <div class="card-header" style="background-color:rgba(0, 255, 85, 0.205)"><i class="fas fa-user-circle"></i>Total Number of Preschoolers</div>
-                      <div class="card-body">
-                          <h5 class="card-title">200</h5>
-                      </div>
-                  </div>
-              </div>
+    <!-- Dashboard -->
+<div id="grid" class="container-fluid" style="padding:0%; margin-top:50px;">
+    <div class="container">
+        <div class="container">
+            <div class="row justify-content-between"> 
+                <div class="col-5">
+                    <h3 style="text-align:left;">Dashboard</h3>
+                </div>
+                <div class="col-5"></div>
+                <br>
+                <div class="col">
+                    <div class="card text-right" style="width: 10rem;">
+                        <div class="dropdown text-center" >
+                            <h6 class="text-uppercase text-muted dropdown-header">Barangay</h6>
+                            <h5 class="fa fa-home"> San Mateo</h5>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+                <div class="col">
+                <div class="card shadow-lg bg-white rounded">
+                        <div class="card-header">
+                            <h5 class="card-title">Normal</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-lg bg-white rounded">
+                        <div class="card-header">
+                            <h5 class="card-title">Wasted</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-lg bg-white rounded">
+                        <div class="card-header">
+                            <h5 class="card-title">Severly Wasted</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-lg bg-white rounded">
+                        <div class="card-header">
+                            <h5 class="card-title">Overweight</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-lg bg-white rounded">
+                        <div class="card-header">
+                            <h5 class="card-title">Obese</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">0</p>
+                        </div>
+                    </div>
+                </div>
+        </div>
+            <br>
+            <div>
+                <div class="card shadow-lg p-3 bg-white rounded">
+                    <div class="card-header">
+                        Record
+                    </div>
 
-              <main>
-                  <div class="container-fluid px-4">
-                      <div class="card text-dark mb-4">
-                          <div class="card-header" style="background-color:rgba(0, 255, 85, 0.205)">
-                              <i class="fas fa-chart-pie me-1"></i> Pie Chart 
-                          </div>
-                          <div class="row g-0">
-                              <div class="col-md-12">
-                                  <canvas id="myPieChart" width="100%" height="40"></canvas>
-                              </div>
-                          </div>
-                          <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                      </div>
-                  </div>
-              </main>
-          </div>
-          
-      </div>
-  </div>
+                    <div class="card-body">
+                        <canvas id="myBar" width="100%" height="50"></canvas>
+                    </div>
+                    <div class="card-footer small text-muted">
+                        Updated yesterday at 11:59 PM
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Form-->
 {% endblock %}
 
@@ -173,6 +207,56 @@
       </div>
   </div>
 </div>
+<script>
+    // Set new default font family and font color to mimic Bootstrap's default styling
+    Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+    Chart.defaults.global.defaultFontColor = '#292b2c';
+    
+    
+
+    // Pie Chart Example
+    var ctx = document.getElementById("myBar");
+    var myBar = new Chart(ctx, {
+    type: 'bar',
+    options: {
+        legend: {
+            display: false
+        }
+    },
+    data:{
+        labels: ["Normal", "Wasted", "Severly Wasted","Overweight","Obese"],
+        datasets: [{
+                label: 'Normal',
+                data: [65, 59, 80, 81, 56, 55, 40],
+                backgroundColor: [
+                'rgb(0, 165, 79)',
+                'rgb(255, 241, 2)',
+                'rgb(238, 29, 35)',
+                'rgb(242, 98, 33)',
+                'rgb(0,0,0, 0.2)',
+                ],
+                borderColor: [
+                'rgb(0, 165, 79)',
+                'rgb(255, 241, 2)',
+                'rgb(238, 29, 35)',
+                'rgb(242, 98, 33)',
+                'rgb(0,0,0,)',,
+                ],
+                borderWidth: 1
+            }
+            ]},
+    Option: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                beginAtZero: true
+             }   
+            },
+        },
+    });
+
+</script>
 <script src="{% static '/Javascript/js/functions.js' %}"></script>
 <script src="{% static '/Javascript/js/bootstrap.bundle.min.js' %}"></script>
 </body>

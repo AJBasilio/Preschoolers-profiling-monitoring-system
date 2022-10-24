@@ -146,16 +146,16 @@ def delete_profile(request, pk):
 def bhw_home(request):
     return render(request, 'activities/BHW Home.html')
 
-def view_preschooler(request):
-    return render(request, 'activities/Preschooler Profile.html')
-
-def update_preschooler(request):
-    return render(request, 'activities/Update Preschooler.html')
-
+def preschooler_dashboard(request):
+    return render(request, 'activities/BHW Preschooler Dashboard.html')
 
 def preschooler_profile(request):
     context = {}
-    return render(request, 'activities/BHW Preschooler Profile.html', context)
+    return render(request, 'activities/Preschooler Profile.html', context)
+    
+# ================================== MODAL UPDATE ==================================
+def update_preschooler(request):
+    return render(request, 'activities/Preschooler Profile.html')
 
 def immunization_schedule(request):
     return render(request, 'activities/BHW Immunization Schedule.html')

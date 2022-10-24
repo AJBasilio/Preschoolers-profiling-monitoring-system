@@ -19,8 +19,7 @@ urlpatterns = [
 
     # Barangay Health Worker
     path('bhome', views.bhw_home, name='bhw_home'),
-    path('preschoolers', views.preschooler_profile, name='preschooler_profile'),
-    path('view_preschooler', views.view_preschooler, name='view_preschooler'),
+    path('preschooler_profile', views.preschooler_profile, name='preschooler_profile'),
     path('update_preschooler', views.update_preschooler, name='update_preschooler'),
     path('immunization', views.immunization_schedule, name='immunization_schedule'),
 ]

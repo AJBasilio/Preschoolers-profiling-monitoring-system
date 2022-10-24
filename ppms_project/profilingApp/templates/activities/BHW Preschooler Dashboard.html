@@ -1,0 +1,88 @@
+{% extends 'activities/BHW Home.html' %} <!-- header and footer of page linked from admin home html file -->
+{% load static %}
+{% block dashboard %}
+<!-- Dashboard -->
+<div id="grid" class="container-fluid" style="padding:7%; margin: top 65px;">
+    <div class="container-grid">
+        <div class="">
+            <div class="row"> 
+                <div class="col">
+                    <h3 style="text-align:left;">Preschooler's Nutritional Status</h3>
+                </div>
+            </div>
+        <hr>
+        <br>
+        </div>
+    </div>
+<!-- DataTables -->
+<div class="container text-black">
+    <div class="row">
+        <div class="col">
+            <div class="card shadow-lg p-3 bg-white rounded">
+
+                <div class="table-responsive">
+                    <table class="table table-hover table-cell-border" id="preschooler_bmi">
+                        <thead>
+                            <tr style="text-align: center;">
+                                <th scope="col">No.</th>
+                                <th scope="col">First Name</th>
+                                <th scope="col">Middle Name</th>
+                                <th scope="col">Last Name</th>
+                                <th scope="col">Suffix</th>
+                                <th scope="col">Birthdate</th>
+                                <th scope="col">Age in months</th>
+                                <th scope="col">WHFA STATUS</th>
+                                <th scope="col" class="nosort text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="text-align: center;">
+                                <td></td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>09123456789</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td style="text-align: center;">
+                                    <div>
+                                        <a href="{% url 'preschooler_profile' %}"><button type="button" style="background-color: #188045; color: white;" class="btn">View Profile</button></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <hr>
+    <br>
+
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+        
+    <script>
+        var t = $('#preschooler_bmi').DataTable({
+            dom: 'Blfrtip',
+            info: 'true',
+            aoColumnDefs: [{
+                'bSortable': false,
+                'aTargets': ['nosort'],
+                'orderable': false,
+                'targets': [0, 8],
+            }],
+            order: [[1, 'asc']],
+            });
+            t.on('order.dt search.dt', function () {
+            let i = 1;
+            t.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+                this.data(i++);
+            });}).draw();
+    </script>
+
+</div>
+{% endblock %}
