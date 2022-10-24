@@ -1,4 +1,5 @@
 from ast import dump
+from logging import CRITICAL
 from multiprocessing import context
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
@@ -26,22 +27,19 @@ def login_registration(request):
                 messages.success(request, 'Your account is successfully created.')
                 form.save()
             else:
+                CRITICAL = 50
                 error_string = ''.join([''.join(x for x in l) for l in list(form.errors.values())])
-                messages.error(request, str(error_string))
+                messages.add_message(request, CRITICAL, str(error_string))
           
         else:
             user_email = request.POST.get('email')
             password = request.POST.get('password')
 
             user = authenticate(request, email=user_email, password=password)
-
             if user is not None and user.user_type == 'P/G':
-
                 login(request, user)
                 return redirect('parent_home')
-
             elif user is not None and user.user_type == 'BHW':
-
                 bhw_validation_status = BarangayHealthWorker.objects.get(user=user)
                 if bhw_validation_status.is_validated:
                     login(request, user)
@@ -49,12 +47,9 @@ def login_registration(request):
                 else:
                     # Error message pop-up
                     messages.warning(request, 'Please wait for the validation.')
-
             elif user is not None and user.user_type == 'Admin':
-                
                 login(request, user)
                 return redirect('admin_home')
-            
             else:
                 messages.error(request, 'Login Failed')
 

@@ -142,6 +142,14 @@
                             <label for="">Confirm Password</label>
                             {{ form.password2 }}
                         </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                              I accept the terms.
+                            </label>
+                        </div>
+                        <br>
                 
                         <div class="form-group">
                             <button name="register_btn" type="submit">Register</button>
@@ -256,12 +264,12 @@
                     window.location = "{% url 'login_registration' %}";
                 });
             </script>
-        {% elif message.level == DEFAULT_MESSAGE_LEVELS.DEBUG %}
+        {% else %}
             <script>
                 Swal.fire({
                     icon: 'warning',
-                    title: '{{message}}',
-                    text: 'Registration Failed.',
+                    title: 'Registration Failed',
+                    text: '{{message}}',
                     confirmButtonText: "Ok",
                     confirmButtonColor: '#EF3A25',
                 }).then(function() {
