@@ -79,62 +79,128 @@
 <!-- Dashboard -->
 {% block dashboard%}
     <div id="grid" class="container-fluid" style="background-color: rgb(252, 252, 252);">
-      <div class="container-grid">
-          <h2 style="text-align:left;">Overall Data</h2>
-          <hr>
-          <br>
-          <!-- MAIN CARDS STARTS HERE -->
-          <div class="row">
-              <div class="col-xl-3 col-md-4">
-                  <div class="card text-dark bg-light mb-4">
-                      <div class="card-header"><i class="fas fa-lg fa-user-check" style="color: green; position:relative; margin-right:10px;"></i>Number of Validated BHW</div>
-                      <div class="card-body">
-                          <h5 class="card-title">{{ validated_count }}</h5>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-xl-3 col-md-4">
-                  <div class="card text-dark bg-light mb-4">
-                      <div class="card-header"><i class="fas fa-lg fa-user-slash" style="color:orange; position:relative; margin-right:10px;"></i>Number of Non-Validated BHW</div>
-                      <div class="card-body">
-                          <h5 class="card-title">{{ invalidated_count }}</h5>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-xl-3 col-md-4">
-                  <div class="card text-dark bg-light mb-4">
-                      <div class="card-header"><i class="fas fa-lg fa-user" style="color: rgb(0, 0, 0); position:relative; margin-right:10px;"></i>Number of Parents</div>
-                      <div class="card-body">
-                          <h5 class="card-title">{{ parent_count }}</h5>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-xl-3 col-md-4">
-                  <div class="card text-dark bg-light mb-4">
-                      <div class="card-header"><i class="fas fa-lg fa-baby" style="color: green; position:relative; margin-right:10px;"></i>Number of Preschoolers</div>
-                      <div class="card-body">
-                          <h5 class="card-title">{{ preschooler_count }}</h5>
-                      </div>
-                  </div>
-              </div>
+        <div class="container-grid">
+            <h2 style="text-align:left;">Overall Data</h2>
+            <hr>
+            <!-- MAIN CARDS STARTS HERE -->
+            <div class="row">
+                <div class="col-xl-3 col-md-4">
+                    <div class="card shadow-lg bg-white rounded">
+                        <div class="card-header"><i class="fas fa-lg fa-user-check" style="color: green; position:relative; margin-right:10px;"></i>Number of Validated BHW</div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ validated_count }}</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-4">
+                    <div class="card shadow-lg bg-white rounded">
+                        <div class="card-header"><i class="fas fa-lg fa-user-slash" style="color:orange; position:relative; margin-right:10px;"></i>Number of Non-Validated BHW</div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ invalidated_count }}</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-4">
+                    <div class="card shadow-lg bg-white rounded">
+                        <div class="card-header"><i class="fas fa-lg fa-user" style="color: rgb(0, 0, 0); position:relative; margin-right:10px;"></i>Number of Parents</div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ parent_count }}</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-4">
+                    <div class="card shadow-lg bg-white rounded">
+                        <div class="card-header"><i class="fas fa-lg fa-baby" style="color: green; position:relative; margin-right:10px;"></i>Number of Preschoolers</div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ preschooler_count }}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-cell-border" id="user_list">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="text-center">No.</th>
+                                            <th scope="col" class="text-center">First Name</th>
+                                            <th scope="col" class="text-center">Middle Name</th>
+                                            <th scope="col" class="text-center">Last Name</th>
+                                            <th scope="col" class="text-center">Suffix</th>
+                                            <th scope="col" class="text-center">User Type</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-center"></td>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">1</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center"></td>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">1</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center"></td>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">1</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center"></td>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">1</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center"></td>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">1</td>
+                                        </tr>
 
-              <main>
-                  <div class="container-fluid px-4">
-                      <div class="card text-dark bg-light mb-4">
-                          <div class="card-header">
-                              <i class="fas fa-chart-pie me-1"></i> Pie Chart 
-                          </div>
-                          <div class="row g-0">
-                              <div class="col-md-12">
-                                  <canvas id="myPieChart" width="100%" height="40"></canvas>
-                              </div>
-                          </div>
-                          <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                      </div>
-                  </div>
-              </main>
-          </div>
-      </div>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <main>
+                        <div class="container-fluid px-4">
+                            <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+                                <div class="card-header">
+                                    <i class="fas fa-chart-pie me-1"></i> Pie Chart 
+                                </div>
+                                <div class="row g-0 ">
+                                    <div class="col-md-12">
+                                        <canvas id="myPieChart" width="100%" height="40"></canvas>
+                                    </div>
+                                </div>
+                                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
   </div>
 {% endblock %}
 <!-- Form-->
@@ -154,6 +220,33 @@
 </div>
 <script src="{% static '/Javascript/js/functions.js' %}"></script>
 <script src="{% static '/Javascript/js/bootstrap.bundle.min.js' %}"></script>
+
+
+
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+        
+    <script>
+        var t = $('#user_list').DataTable({
+            info: 'true',
+            dom: 'rftip',
+            pageLength : 5,
+            aoColumnDefs: [{
+                'bSortable': false,
+                'aTargets': ['nosort'],
+                'orderable': false,
+                'targets': [0],
+            }],
+            order: [[1, 'asc']],
+            });
+            t.on('order.dt search.dt', function () {
+            let i = 1;
+            t.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+                this.data(i++);
+            });}).draw();
+    </script>
+
+<!--------------------- PIE GRAPH --------------------->
 <script>
     // Set new default font family and font color to mimic Bootstrap's default styling
     Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
@@ -163,7 +256,7 @@
     var data_count = JSON.parse('{{ count_data|escapejs }}')
     var ctx = document.getElementById("myPieChart");
     var myPieChart = new Chart(ctx, {
-    type: 'pie',
+    type: 'polarArea',
     data: {
         labels: ["Validated", "Invalidated", "Parent", "Preschooler"],
         datasets: [{

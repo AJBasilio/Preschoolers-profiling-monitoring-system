@@ -2,7 +2,7 @@
 {% load static %}
 {% block dashboard %}
 <!-- Dashboard -->
-<div id="grid" class="container-fluid" style="padding:7%; margin: top 65px;">
+<div id="grid" class="container-fluid" style="padding:3%; margin: top 65px;">
     <div class="container-grid">
         <div class="">
             <div class="row"> 
@@ -14,75 +14,74 @@
         <br>
         </div>
     </div>
-<!-- DataTables -->
-<div class="container text-black">
-    <div class="row">
-        <div class="col">
-            <div class="table-responsive">
-                <table class="table table-sm" id="table_validation">
-                    <thead>
-                        <tr>
-                            <th scope="col">No.</th>
-                            <th scope="col">First Name</th>
-                            <th scope="col">Middle Name</th>
-                            <th scope="col">Last Name</th>
-                            <th scope="col">Suffix</th>
-                            <th scope="col">Phone Number</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Barangay Designation</th>
-                            <th scope="col" class="nosort text-center">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for bhw in bhws %}
-                        <tr>
-                            <td></td>
-                            <td>{{ bhw.user.first_name }}</td>
-                            <td>{{ bhw.user.middle_name }}</td>
-                            <td>{{ bhw.user.last_name }}</td>
-                            <td>{{ bhw.user.suffix_name }}</td>
-                            <td>09123456789</td>
-                            <td>{{ bhw.user.email }}</td>
-                            <td>{{ bhw.bhw_barangay }}</td>
-                            <td style="text-align: center;">
-                                <div>
-                                    <a href="{% url 'unvalidated_profile' bhw.user.id %}"><button type="button" style="background-color: #188045; color: white;" class="btn">Validate</button></a>
-                                    <a href="{% url 'delete_profile' bhw.user.id %}"><button type="button" style="background-color: red; color: white;" class="btn">Remove</button></a>
-                                </div>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                        </tr>
-                    </tbody>
-                </table>
+    <!--------------------- DataTables --------------------->
+    <div class="text-black">
+        <div class="row">
+            <div class="col">
+                <div class="card shadow-lg p-3 bg-white rounded">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-cell-border" id="table_validation">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="text-center">No.</th>
+                                    <th scope="col" class="text-center">First Name</th>
+                                    <th scope="col" class="text-center">Middle Name</th>
+                                    <th scope="col" class="text-center">Last Name</th>
+                                    <th scope="col" class="text-center">Suffix</th>
+                                    <th scope="col" class="text-center">Phone Number</th>
+                                    <th scope="col" class="text-center">Email</th>
+                                    <th scope="col" class="text-center">Barangay Designation</th>
+                                    <th scope="col" class="nosort text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for bhw in bhws %}
+                                <tr>
+                                    <td class="text-center"></td>
+                                    <td class="text-center">{{ bhw.user.first_name }}</td>
+                                    <td class="text-center">{{ bhw.user.middle_name }}</td>
+                                    <td class="text-center">{{ bhw.user.last_name }}</td>
+                                    <td class="text-center">{{ bhw.user.suffix_name }}</td>
+                                    <td class="text-center">09123456789</td>
+                                    <td class="text-center">{{ bhw.user.email }}</td>
+                                    <td class="text-center">{{ bhw.bhw_barangay }}</td>
+                                    <td style="text-align: center;">
+                                        <div>
+                                            <a href="{% url 'unvalidated_profile' bhw.user.id %}"><button type="button" style="background-color: #188045; color: white;" class="btn">Validate</button></a>
+                                            <a href="{% url 'delete_profile' bhw.user.id %}"><button type="button" style="background-color: red; color: white;" class="btn">Remove</button></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-    <hr>
-    <br>
-
-    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
-        
-    <script>
-        var t = $('#table_validation').DataTable({
-            dom: 'Blfrtip',
-            info: 'true',
-            aoColumnDefs: [{
-                'bSortable': false,
-                'aTargets': ['nosort'],
-                'orderable': false,
-                'targets': [0, 8],
-            }],
-            order: [[1, 'asc']],
-            });
-            t.on('order.dt search.dt', function () {
-            let i = 1;
-            t.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
-                this.data(i++);
-            });}).draw();
-    </script>
+        <hr>
+        <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+            
+        <script>
+            var t = $('#table_validation').DataTable({
+                info: 'true',
+                aoColumnDefs: [{
+                    'bSortable': false,
+                    'aTargets': ['nosort'],
+                    'orderable': false,
+                    'targets': [0,8],
+                }],
+                order: [[1, 'asc']],
+                });
+                t.on('order.dt search.dt', function () {
+                let i = 1;
+                t.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+                    this.data(i++);
+                });}).draw();
+        </script>
 
 </div>
 {% endblock %}
