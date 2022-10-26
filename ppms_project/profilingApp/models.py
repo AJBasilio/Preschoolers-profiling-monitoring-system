@@ -49,6 +49,7 @@ class CustomUser(AbstractUser):
     user_type = models.CharField(max_length=100, choices=USER_TYPE, default='Choose User Type')
     middle_name = models.CharField(max_length=100, null=True)
     suffix_name = models.CharField(max_length=100, default='N/A')
+    phone_num = models.CharField(max_length=100, null=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []

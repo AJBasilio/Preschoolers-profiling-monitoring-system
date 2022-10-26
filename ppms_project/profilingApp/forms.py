@@ -38,10 +38,10 @@ class CustomUserCreationForm(UserCreationForm):
     password1 = forms.CharField(widget=PasswordInput(attrs={'type' : 'password', 'id' : 'password', 'aria-describeby' : 'passwordHelpBlock', 'placeholder':'Enter your Password'}))
     password2 = forms.CharField(widget=PasswordInput(attrs={'type' : 'password', 'id' : 'cpassword', 'placeholder':'Confirm Your Password'}))
     barangay = forms.CharField(label="Barangay:", widget=forms.Select(choices=BARANGAYS, attrs={'class' : 'fstdropdown-select', 'id' : 'brgy'}))
-    
+    phone_num = forms.CharField(required=True, widget=forms.TextInput(attrs={'type': 'text', 'placeholder': 'Phone Number', 'id' : 'phonenum'}))
     class Meta:
         model = get_user_model()
-        fields = ['user_type', 'first_name', 'last_name', 'email', 'password1', 'password2']
+        fields = ['user_type', 'first_name', 'last_name', 'email', 'phone_num', 'password1', 'password2']
     
     def save(self):
         user = super().save(commit=False)
@@ -51,6 +51,7 @@ class CustomUserCreationForm(UserCreationForm):
         user.last_name = self.cleaned_data.get('last_name')
         user.suffix_name = self.cleaned_data.get('suffix_name')
         user.email = self.cleaned_data.get('email')
+        user.phone_num = self.cleaned_data.get('phone_num')
         user.save()
 
         if self.cleaned_data.get('user_type') == 'BHW':
