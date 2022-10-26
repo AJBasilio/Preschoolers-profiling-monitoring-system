@@ -12,8 +12,10 @@ from .models import *
 from json import dumps
 # Create your views here.
 
+
 def index(request):
     return HttpResponse('Hello World')
+
 
 @unauthenticated_user
 def login_registration(request):
@@ -22,15 +24,17 @@ def login_registration(request):
     if request.method == 'POST':
         if 'register_btn' in request.POST:
             form = CustomUserCreationForm(request.POST)
-            
+
             if form.is_valid():
-                messages.success(request, 'Your account is successfully created.')
+                messages.success(
+                    request, 'Your account is successfully created.')
                 form.save()
             else:
                 CRITICAL = 50
-                error_string = ''.join([''.join(x for x in l) for l in list(form.errors.values())])
+                error_string = ''.join([''.join(x for x in l)
+                                       for l in list(form.errors.values())])
                 messages.add_message(request, CRITICAL, str(error_string))
-          
+
         else:
             user_email = request.POST.get('email')
             password = request.POST.get('password')
@@ -40,27 +44,32 @@ def login_registration(request):
                 login(request, user)
                 return redirect('parent_home')
             elif user is not None and user.user_type == 'BHW':
-                bhw_validation_status = BarangayHealthWorker.objects.get(user=user)
+                bhw_validation_status = BarangayHealthWorker.objects.get(
+                    user=user)
                 if bhw_validation_status.is_validated:
                     login(request, user)
                     return redirect('bhw_home')
                 else:
                     # Error message pop-up
-                    messages.warning(request, 'Please wait for the validation.')
+                    messages.warning(
+                        request, 'Please wait for the validation.')
             elif user is not None and user.user_type == 'Admin':
                 login(request, user)
                 return redirect('admin_home')
             else:
                 messages.error(request, 'Login Failed')
 
-    context = {'form' : form}
+    context = {'form': form}
     return render(request, 'activities/login_registration.html', context)
+
 
 def logout_user(request):
     logout(request)
     return redirect('login_registration')
 
 # ================================== PARENTS/GUARDIANS ==================================
+
+
 @login_required(login_url='login_registration')
 def parent_home(request):
     parent_user = Parent.objects.get(user_id=request.user.id)
@@ -75,60 +84,69 @@ def parent_home(request):
         birthday = request.POST.get('birthday')
 
         psa = Preschooler.objects.create(parent=parent,
-                                        first_name=first_name,
-                                        middle_name=middle_name,
-                                        last_name=last_name,
-                                        suffix_name=suffix_name,
-                                        birthday=birthday
-                                        )
+                                         first_name=first_name,
+                                         middle_name=middle_name,
+                                         last_name=last_name,
+                                         suffix_name=suffix_name,
+                                         birthday=birthday
+                                         )
         return redirect('parent_home')
 
-    context = {'preschoolers' : preschooler}
+    context = {'preschoolers': preschooler}
     return render(request, 'activities/Parent Home.html', context)
 
 # ================================== ADMIN ==================================
+
+
 @login_required(login_url='login_registration')
 def admin_home(request):
     all_bhw = BarangayHealthWorker.objects.all()
-    validated_status = BarangayHealthWorker.objects.filter(is_validated=True).count()
-    invalidated_status = BarangayHealthWorker.objects.filter(is_validated=False).count()
+    validated_status = BarangayHealthWorker.objects.filter(
+        is_validated=True).count()
+    invalidated_status = BarangayHealthWorker.objects.filter(
+        is_validated=False).count()
     parent_count = Parent.objects.all().count()
     preschooler_count = Preschooler.objects.all().count()
 
-    count_list = [validated_status, invalidated_status, parent_count, preschooler_count]
+    count_list = [validated_status, invalidated_status,
+                  parent_count, preschooler_count]
     data_json = dumps(count_list)
 
-    context = { 'bhws' : all_bhw,
-                'validated_count' : validated_status,
-                'invalidated_count' : invalidated_status,
-                'parent_count' : parent_count,
-                'preschooler_count' : preschooler_count,
-                'count_data' : data_json }
-                
+    context = {'bhws': all_bhw,
+               'validated_count': validated_status,
+               'invalidated_count': invalidated_status,
+               'parent_count': parent_count,
+               'preschooler_count': preschooler_count,
+               'count_data': data_json}
+
     return render(request, 'activities/Admin Home.html', context)
+
 
 def bhw_validation(request):
     bhw = BarangayHealthWorker.objects.filter(is_validated=False)
 
-    context = {'bhws' : bhw}
+    context = {'bhws': bhw}
     return render(request, 'activities/Admin Validate BHW.html', context)
+
 
 def admin_home2(request):
     return render(request, 'activities/Admin Home2.html')
 
+
 def unvalidated_profile(request, pk):
     unvalidate_bhw = BarangayHealthWorker.objects.get(user_id=pk)
     form = Validate_BHW(instance=unvalidate_bhw)
-    
+
     if request.method == 'POST':
         form = Validate_BHW(request.POST, instance=unvalidate_bhw)
         if form.is_valid():
             form.save()
             return redirect('bhw_validation')
 
-    context = {'bhw' : unvalidate_bhw,
-               'form' : form}
+    context = {'bhw': unvalidate_bhw,
+               'form': form}
     return render(request, 'activities/Unvalidated Profile.html', context)
+
 
 def delete_profile(request, pk):
     delete_bhw = BarangayHealthWorker.objects.get(user_id=pk)
@@ -137,27 +155,34 @@ def delete_profile(request, pk):
     if request.method == 'POST':
 
         user_bhw.delete()
-        
+
         return redirect('bhw_validation')
 
-    context = {'bhw' : delete_bhw}
+    context = {'bhw': delete_bhw}
     return render(request, 'activities/Admin Delete Confirmation.html', context)
 
 # ================================== BHW ==================================
+
+
 @login_required(login_url='login_registration')
 def bhw_home(request):
     return render(request, 'activities/BHW Home.html')
 
+
 def preschooler_dashboard(request):
     return render(request, 'activities/BHW Preschooler Dashboard.html')
+
 
 def preschooler_profile(request):
     context = {}
     return render(request, 'activities/Preschooler Profile.html', context)
-    
+
 # ================================== MODAL UPDATE ==================================
+
+
 def update_preschooler(request):
     return render(request, 'activities/Preschooler Profile.html')
+
 
 def immunization_schedule(request):
     return render(request, 'activities/BHW Immunization Schedule.html')

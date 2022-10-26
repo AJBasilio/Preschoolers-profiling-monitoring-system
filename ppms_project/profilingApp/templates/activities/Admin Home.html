@@ -37,37 +37,50 @@
                 <div id="navLinks">
                     <ul class="nav my-1 text-small">
                         <li>
-                            <a href="{% url 'admin_home' %}" class="nav-link">
-                            <i class="fa fa-lg fa-fw fa-home d-block bi mx-auto mb-1"></i>
-                            Home
+                            <a href="{% url 'admin_home' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,10" 
+                            title="Home">
+                            <i class="fa fa-2x fa-fw fa-home mx-auto"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="{% url 'admin_home2' %}" class="nav-link">
-                            <i class="fa fa-lg fa-fw fa-id-card d-block bi mx-auto mb-1"></i>
-                            Status
+                            <a href="{% url 'admin_home2' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,10"
+                            title="Preschooler Status">
+                            <i class="fa fa-2x fa-fw fa-id-card mx-auto"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="{% url 'bhw_validation' %}" class="nav-link">
-                            <i class="fa fa-lg fa-fw fa-user-nurse d-block bi mx-auto mb-1"></i>
-                            Validate
+                            <a href="{% url 'bhw_validation' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,10"
+                            title="Validate BHW" >
+                            <i class="fa fa-2x fa-fw fa-user-nurse mx-auto"></i>
                             </a>
                         </li>
                         <li>
-                            <div class="btn-group my-2" style="margin-left: 20%;">
-                                <a class="button text-decoration-none" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa fa-lg fa-fw fa-user d-block bi mx-auto mb-1 dropdown-toggle"></i>
-                                    Admin
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end " aria-labelledby="dropdownUser1">
+                            <a class="btn nav-link" id="dropdownUser1" data-bs-toggle="dropdown" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,10"
+                            title="User Settings" aria-expanded="false">
+                                <i class="fa fa-2x fa-fw fa-user-cog bi mx-auto"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end p-2" aria-labelledby="dropdownUser1">
+                                <div class="card-header ">
+                                    <i class="fa fa-fw fa-user bi mx-auto"></i>
+                                    Signed in as Admin
+                                </div>
+                                <div class="card">
                                     <li><a class="dropdown-item" href="{% url 'admin_home' %}"><i class="fa fa-fw fa-home mx-1"></i>Home</a></li>
                                     <li><a class="dropdown-item" href="{% url 'admin_home2' %}"><i class="fa fa-fw fa-id-card mx-1"></i>Preschooler Status</a></li>
                                     <li><a class="dropdown-item" href="{% url 'bhw_validation' %}"><i class="fa fa-fw fa-user-nurse mx-1"></i>Validate BHW</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-fw fa-sign-out-alt mx-1"></i>Sign out</a></li>
-                                </ul>
-                            </div>
+                                </div>
+                                <!-- Tooltip Script -->
+                                <script>
+                                    $(function () {
+                                       $('[data-toggle="tooltip"]').tooltip({'delay': { show: 400, hide: 100 }})})
+                                       $('[data-toggle="tooltip"]').on('shown.bs.tooltip', function () {
+                                       $('.tooltip').addClass('animated fade');
+                                   })
+                                 </script>
+                            </ul>
+                            
                         </li>
                     </ul>
                 </div>
@@ -167,6 +180,7 @@
             </div>
         </div>
   </div>
+
 {% endblock %}
 <!-- Form-->
 
@@ -230,6 +244,9 @@
         }],
     },
     });
+
+    
+        
 
 </script>
 </body>

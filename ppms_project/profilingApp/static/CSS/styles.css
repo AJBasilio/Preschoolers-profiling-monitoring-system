@@ -89,14 +89,18 @@ a{
 }
 
 #navLinks li a{
-  color:rgb(56, 56, 56); 
-  border-color: #188045;
+  color:rgb(18, 88, 4); 
 }
 
 #navLinks li a:hover{
   color: rgb(40, 167, 69);
   -webkit-transform: scale(1.05);
   transform: scale(1.05);
+}
+#navLinks li a:active{
+  color: rgb(40, 167, 69);
+  -webkit-transform: scale(.95);
+  transform: scale(.95);
 }
 
 #homeBody{
@@ -146,36 +150,36 @@ a{
 }
 
 #dropdown-menu li:hover a {
-  padding-left: 18px;
-  background-color: #188045;
-  color: #FFFF;
-  transition: 0.4s;
+  padding: 5%;
+  background-color: rgb(225 225 225);
+  color: #188045;
+  font-size: small;
 }
 
 /* Parent Home Button Styling */
 
 #parentHomeButton{
-  
-  padding:5%;
-  background-color: rgb(44, 95, 44);
-  color: #FFFF;
-  font-size: small;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  margin:2px;
-  width:auto;
+  background-color: rgba(231, 231, 231, 0);
+  border-radius: 25%;
 
+  color: #188045;
+  border: none;
+  margin:0px;
 
 }
 
 #parentHomeButton:hover {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  background-color: rgb(33, 146, 71);
   -webkit-transform: scale(1.05);
   transform: scale(1.05);
 }
-
+#parentHomeButton:active{
+  background-color: #f1f0f054;
+  -webkit-transform: scale(.95);
+  transform: scale(.95);
+}
+.dropdown-:active {
+  background-color: #fff;
+}
 /* BHW Preschooler Profile Buttons */
 
 #validateBhwButton{

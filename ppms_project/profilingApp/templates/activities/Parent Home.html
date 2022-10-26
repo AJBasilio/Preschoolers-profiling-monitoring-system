@@ -26,17 +26,25 @@
         <!-- Header -->
     <div class="site-header" id="header">
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark index__navbar scrolled border-bottom" id="header">
-            <div class="container-fluid">
+            <div class="container-fluid justify-content-between px-4 mx-4" >
                 <div>
                     <a href="#" class="name" style="text-decoration: none;">
                         <img class="navbar-icon" style="margin-left:15px;" src="{% static '/Media/avatar.png' %}" alt="dasma-logo">
-                        <span id="hidetitle" class="brand__name" style="color:#2c5f2dff;">City of Dasmariñas</span>
+                        <span class="brand__name" style="color:#2c5f2dff;">City of Dasmariñas</span>
                     </a>
                 </div>
-                <div class="dropdown">
-                    <button class="btn dropdown-toggle" type="button" id= "Headerddb" data-bs-toggle="dropdown" style="margin-right:15px"> <i class="fa fa-fw fa-user"></i>Parent</button>
-                    <ul class="dropdown-menu" id="dropdown-menu">
-                        <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
+                <div class="btn-group my-2 mx-3">
+                    <button class="button p-2" id="parentHomeButton" data-bs-toggle="dropdown" data-toggle="tooltip" data-placement="left"
+                    title="User Settings" aria-expanded="false">
+                        <i class="fa fa-2x fa-fw d-block fa-user-cog bi mx-auto"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="parentHomeButton">
+                        <div class="mx-4">
+                        <i class="fa fa-fw fa-user bi mx-auto"></i>
+                        <span>Parent</span>
+                        </div>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-fw fa-sign-out-alt mx-1"></i>Sign out</a></li>
                     </ul>
                 </div>
             </div>
@@ -225,6 +233,12 @@
             t.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
                 this.data(i++);
             });}).draw();
+
+        $(function () {
+        $('[data-toggle="tooltip"]').tooltip({'delay': { show: 300, hide: 100 }})})
+        $('[data-toggle="tooltip"]').on('shown.bs.tooltip', function () {
+        $('.tooltip').addClass('animated fade');
+    })
     </script>
 
     
