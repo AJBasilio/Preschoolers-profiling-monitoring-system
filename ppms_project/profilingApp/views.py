@@ -82,13 +82,15 @@ def parent_home(request):
         last_name = request.POST.get('last_name')
         suffix_name = request.POST.get('suffix_name')
         birthday = request.POST.get('birthday')
+        gender = request.POST.get('gender')
 
         psa = Preschooler.objects.create(parent=parent,
                                          first_name=first_name,
                                          middle_name=middle_name,
                                          last_name=last_name,
                                          suffix_name=suffix_name,
-                                         birthday=birthday
+                                         birthday=birthday,
+                                         gender=gender
                                          )
         return redirect('parent_home')
 
@@ -185,11 +187,25 @@ def bhw_home(request):
 
 
 def preschooler_dashboard(request):
-    return render(request, 'activities/BHW Preschooler Dashboard.html')
+    preschooler = Preschooler.objects.all()
+
+    context = {'preschoolers': preschooler}
+    return render(request, 'activities/BHW Preschooler Dashboard.html', context)
 
 
-def preschooler_profile(request):
-    context = {}
+def preschooler_profile(request, pk):
+    preschooler = Preschooler.objects.get(id=pk)
+    form = UpdatePreschooler(instance=preschooler)
+
+    if request.method == 'POST':
+        form = UpdatePreschooler(request.POST, instance=preschooler)
+        if form.is_valid():
+            form.save()
+
+            return redirect('preschooler_profile', preschooler.id)
+
+    context = {'preschooler' : preschooler,
+               'form' : form,}
     return render(request, 'activities/Preschooler Profile.html', context)
 
 # ================================== MODAL UPDATE ==================================

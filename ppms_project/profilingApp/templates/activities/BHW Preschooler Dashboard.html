@@ -22,7 +22,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{% url 'preschooler_profile' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
+                            <a href="{% url 'preschooler_dashboard' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
                             title="Preschooler Profile">
                             <i class="fa fa-fw fa-id-card " style="font-size: 24px;"></i>
                             </a>
@@ -95,22 +95,23 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {% for preschooler in preschoolers %}
                             <tr style="text-align: center;">
                                 <td></td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>09123456789</td>
-                                <td>1</td>
-                                <td>1</td>
+                                <td>{{ preschooler.first_name }}</td>
+                                <td>{{ preschooler.middle_name }}</td>
+                                <td>{{ preschooler.last_name }}</td>
+                                <td>{{ preschooler.suffix_name }}</td>
+                                <td>{{ preschooler.birthday }}</td>
+                                <td>{{ preschooler.age_months }}</td>
+                                <td>{{ preschooler.whfa }}</td>
                                 <td style="text-align: center;">
                                     <div>
-                                        <a href="{% url 'preschooler_profile' %}"><button type="button" style="background-color: #188045; color: white;" class="btn">View Profile</button></a>
+                                        <a href="{% url 'preschooler_profile' preschooler.id %}"><button type="button" style="background-color: #188045; color: white;" class="btn">View Profile</button></a>
                                     </div>
                                 </td>
                             </tr>
-                            </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
