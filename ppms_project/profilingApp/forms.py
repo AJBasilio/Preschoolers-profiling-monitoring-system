@@ -89,29 +89,4 @@ class Validate_BHW(ModelForm):
         user.save()
         
         return user
-
-class RegisterPreschooler(ModelForm):
-    class Meta:
-        model = Preschooler
-        fields = ['parent', 'first_name', 'middle_name', 'last_name', 'suffix_name', 'birthday']
-
-        widgets = {'first_name' : forms.TextInput(attrs={'class' : 'form-control', 'placeholder': 'Enter your first name'}),
-                   'middle_name' : forms.TextInput(attrs={'class' : 'form-control', 'placeholder': 'Enter your middle name'}),
-                   'last_name' : forms.TextInput(attrs={'class' : 'form-control', 'placeholder': 'Enter your last name'}),
-                   'suffix_name' : forms.TextInput(attrs={'class' : 'form-control', 'placeholder': 'Enter your suffix'}),
-                   'birthday' : forms.widgets.DateInput(attrs={'type': 'date', 'class' : 'form-control'})}
-    
-    # def save(self):
-    #     user = super().save(commit=False)
-    #     user.parent = self.cleaned_data.get('parent')
-    #     user.first_name = self.cleaned_data.get('first_name')
-    #     user.middle_name = self.cleaned_data.get('middle_name')
-    #     user.last_name = self.cleaned_data.get('last_name')
-    #     user.suffix_name = self.cleaned_data.get('suffix_name')
-    #     user.birthday = self.cleaned_data.get('birthday')
-    #     user.save()
-
-    #     print(user.parent)
-    #     return user
-
         

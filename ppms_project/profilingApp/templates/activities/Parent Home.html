@@ -155,7 +155,7 @@
                                 <td>{{ preschooler.birthday }}</td>
                                 <td style="text-align: center;">
                                     <div>
-                                        <a href="{% url 'parent_preschooler' %}"><button type="button" style="background-color: #188045; color: white;" class="btn">View Profile</button></a>
+                                        <a href="{% url 'parent_preschooler' preschooler.id %}"><button type="button" style="background-color: #188045; color: white;" class="btn">View Profile</button></a>
                                     </div>
                                 </td>
                             </tr>

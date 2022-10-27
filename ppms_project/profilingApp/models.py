@@ -1,10 +1,12 @@
-import imp
+from wsgiref.validate import validator
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 from django.db.models import Model
 from django.db.models.deletion import CASCADE
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.utils.translation import gettext_lazy as _
 from datetime import date
+from pygrowup import Calculator, helpers
 
 # Create your models here.
 class CustomUserManager(BaseUserManager):
@@ -90,14 +92,18 @@ class Parent(Model):
         return f"{self.user.first_name} {self.user.last_name}"
 
 class Preschooler(Model):
+    GENDER = [('Male', 'Male'),
+              ('Female', 'Female'),]
+
     parent = models.ForeignKey(Parent, on_delete=CASCADE)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     middle_name = models.CharField(max_length=100)
     suffix_name = models.CharField(max_length=100)
     birthday = models.DateField(null=True, blank=True)
-    height = models.FloatField(null=True)
-    weight = models.FloatField(null=True)
+    height = models.FloatField(null=True, validators=[MinValueValidator(45.0), MaxValueValidator(120.0)])
+    weight = models.FloatField(null=True, validators=[MinValueValidator(1.0), MaxValueValidator(28.0)])
+    gender = models.CharField(max_length=100, choices=GENDER, default='Gender: ')
 
     def __str__(self):
         return f"{self.first_name} {self.middle_name} {self.last_name}"
@@ -107,4 +113,31 @@ class Preschooler(Model):
     
     def age_months(self):
         return int((date.today().year - self.birthday.year) * 12)
+
+    def wfa(self):
+        calculator = Calculator(adjust_height_data=False, adjust_weight_scores=False,
+                       include_cdc=False, logger_name='pygrowup',
+                       log_level='INFO')
+        
+        age_months = int((date.today().year - self.birthday.year) * 12)
+
+        return float(calculator.wfa(self.weight, age_months, helpers.get_good_sex(str(self.gender))))
+
+    def hfa(self):
+        calculator = Calculator(adjust_height_data=False, adjust_weight_scores=False,
+                       include_cdc=False, logger_name='pygrowup',
+                       log_level='INFO')
+        
+        age_months = int((date.today().year - self.birthday.year) * 12)
+
+        return float(calculator.lhfa(self.weight, age_months, helpers.get_good_sex(str(self.gender))))
+
+    def whfa(self):
+        calculator = Calculator(adjust_height_data=False, adjust_weight_scores=False,
+                       include_cdc=False, logger_name='pygrowup',
+                       log_level='INFO')
+        
+        age_months = int((date.today().year - self.birthday.year) * 12)
+
+        return float(calculator.wfl(self.weight, age_months, helpers.get_good_sex(str(self.gender)), self.height))
 
