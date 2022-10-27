@@ -1,8 +1,67 @@
 {% extends 'activities/BHW Home.html' %} <!-- header and footer of page linked from admin home html file -->
 {% load static %}
 {% block dashboard %}
+<header>
+    <div class="site-header">
+    <nav class="navbar fixed-top index__navbar scrolled border-bottom" 
+    style=" padding-left:3%; padding-right:3%;">
+        <div class="flex-fill p-1 py-1">
+            <div class="d-flex align-items-center justify-content-between">
+                <div>
+                    <a href="#" class="name" style="text-decoration: none;">
+                        <img class="navbar-icon" src="{% static '/Media/avatar.png' %}" alt="dasma-logo">
+                        <span id="hidetitle" class="brand__name" style="color:rgb(3, 3, 3); margin-left:10px;">City of Dasmariñas</span>
+                    </a>
+                </div>
+                <div id="navLinks">
+                    <ul class="nav text-small">
+                        <li>
+                            <a href="{% url 'bhw_home' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7" 
+                            title="Barangay Health Worker Home">
+                            <i class="fa fa-fw fa-home" style="font-size: 24px;"></i>   
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'preschooler_profile' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
+                            title="Preschooler Profile">
+                            <i class="fa fa-fw fa-id-card " style="font-size: 24px;"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'immunization_schedule' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
+                            title="Immunization Schedule" >
+                            <i class="fa fa-fw fa-calendar-alt" style="font-size: 24px;"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="btn nav-link" id="dropdownUser1" data-bs-toggle="dropdown" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
+                            title="User Settings" aria-expanded="false">
+                                <i class="fa fa-fw fa-user-cog bi" style="font-size: 24px;"></i>
+                                
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end p-2" aria-labelledby="dropdownUser1">
+                                <div id="dropdown-menu">
+                                    <div>
+                                        <i class="fa fa-lg fa-fw fa-user bi mx-auto"></i>   
+                                        <span style="font-size: 15px;"> Barangay Health Worker </span>
+                                    </div>
+                                    <div>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-fw fa-sign-out-alt mx-1"></i>Sign out</a></li>
+                                    </div>
+                                </div>
+                            </ul>                    
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    </div>
+</header>
+
 <!-- Dashboard -->
-<div id="grid" class="container-fluid" style="padding:7%; margin: top 65px;">
+<div id="grid" class="container-fluid" style="margin-top: 60px;">
     <div class="container-grid">
         <div class="">
             <div class="row"> 
