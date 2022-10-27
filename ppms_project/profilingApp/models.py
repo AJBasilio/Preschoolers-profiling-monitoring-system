@@ -150,4 +150,26 @@ class Preschooler(Model):
             return float(calculator.wfl(self.weight, age_months, helpers.get_good_sex(str(self.gender)), self.height))
         except:
             pass
+    
+    def bmi_tag(self):
+        calculator = Calculator(adjust_height_data=False, adjust_weight_scores=False,
+                       include_cdc=False, logger_name='pygrowup',
+                       log_level='INFO')
+        
+        try:
+            age_months = int((date.today().year - self.birthday.year) * 12)
+
+            whfa_value = float(calculator.wfl(self.weight, age_months, helpers.get_good_sex(str(self.gender)), self.height))
+            if whfa_value > 2.0:
+                return 'ABOVE NORMAL'
+            elif whfa_value >= -2.0 and whfa_value <= 2.0:
+                return 'NORMAL'
+            elif whfa_value >= -3.0 and whfa_value < -2.0:
+                return 'BELOW NORMAL'
+            else:
+                return 'SEVERE'
+        except:
+            pass
+
+        
 
