@@ -2,8 +2,6 @@
 {% load static %}
 {% block dashboard %}
 
-
-<
 <!-- Dashboard -->
 <div id="grid" class="container-fluid" style="margin-top: 60px;">
     <div class="container-grid">
@@ -29,9 +27,15 @@
                                     <div class="col-sm">
                                         <p class="mb-0">Full Name</p>
                                     </div>
-                                    <div class="col-sm">
-                                        <p class="text-muted mb-0">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }} {{ preschooler.suffix_name }}</p>
-                                    </div>
+                                    {% if preschooler.suffix_name is None %}
+                                        <div class="col-sm">
+                                            <p class="text-muted mb-0">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }}</p>
+                                        </div>
+                                    {% else %}
+                                        <div class="col-sm">
+                                            <p class="text-muted mb-0">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }} {{ preschooler.suffix_name }}</p>
+                                        </div>
+                                    {% endif %}
                                 </div>
                                 <hr>
                                 <div class="row">

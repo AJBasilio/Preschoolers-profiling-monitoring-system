@@ -1,3 +1,4 @@
+from email.policy import default
 from wsgiref.validate import validator
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
@@ -50,7 +51,7 @@ class CustomUser(AbstractUser):
     email = models.EmailField(_('email address'), unique=True)
     user_type = models.CharField(max_length=100, choices=USER_TYPE, default='Choose User Type')
     middle_name = models.CharField(max_length=100, null=True)
-    suffix_name = models.CharField(max_length=100, default='N/A')
+    suffix_name = models.CharField(max_length=100, null=True, blank=True)
     phone_num = models.CharField(max_length=100, null=True)
 
     USERNAME_FIELD = 'email'
@@ -99,7 +100,7 @@ class Preschooler(Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     middle_name = models.CharField(max_length=100)
-    suffix_name = models.CharField(max_length=100)
+    suffix_name = models.CharField(max_length=100, null=True, blank=True)
     birthday = models.DateField(null=True, blank=True)
     height = models.FloatField(null=True, validators=[MinValueValidator(45.0), MaxValueValidator(120.0)])
     weight = models.FloatField(null=True, validators=[MinValueValidator(1.0), MaxValueValidator(28.0)])

@@ -111,7 +111,7 @@
                                     </div>
                                     <div class="md-form">
                                         <label id="user-lbl" data-error="wrong" data-success="right">Suffix:</label>
-                                        <input class="form-control" type="text" name="suffix_name" id="suffix_name">
+                                        <input class="form-control" type="text" placeholder="If Applicable" name="suffix_name" id="suffix_name">
                                     </div>
                                     <div class="md-form">
                                         <label id="user-lbl" data-error="wrong" data-success="right">Birthdate:</label>
@@ -156,7 +156,13 @@
                                 <td>{{ preschooler.first_name }}</td>
                                 <td>{{ preschooler.middle_name }}</td>
                                 <td>{{ preschooler.last_name }}</td>
-                                <td>{{ preschooler.suffix_name }}</td>
+                                {% if preschooler.suffix_name is None %}
+                                    <td>N/A</td>
+                                {% elif preschooler.suffix_name == '' %}
+                                    <td>N/A</td>
+                                {% else %}
+                                    <td>{{ preschooler.suffix_name }}</td>
+                                {% endif %}
                                 <td>{{ preschooler.age_years }}</td>
                                 <td>{{ preschooler.age_months }}</td>
                                 <td>{{ preschooler.birthday }}</td>

@@ -80,7 +80,10 @@ def parent_home(request):
         first_name = request.POST.get('first_name')
         middle_name = request.POST.get('middle_name')
         last_name = request.POST.get('last_name')
-        suffix_name = request.POST.get('suffix_name')
+        if request.POST.get('suffix_name') is None:
+            suffix_name = None
+        else:
+            suffix_name = request.POST.get('suffix_name')
         birthday = request.POST.get('birthday')
         gender = request.POST.get('gender')
 
@@ -183,7 +186,10 @@ def delete_profile(request, pk):
 
 @login_required(login_url='login_registration')
 def bhw_home(request):
-    return render(request, 'activities/BHW Home.html')
+    bhw_logged = BarangayHealthWorker.objects.get(user_id=request.user.id)
+
+    context = {'bhw' : bhw_logged}
+    return render(request, 'activities/BHW Home.html', context)
 
 
 def preschooler_dashboard(request):
