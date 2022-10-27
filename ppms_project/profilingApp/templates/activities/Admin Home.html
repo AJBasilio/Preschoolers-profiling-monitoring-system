@@ -22,6 +22,7 @@
 </head>
 <body>
 <!-- Header -->
+{% block dashboard%}
 <header>
     <div class="site-header">
     <nav class="navbar fixed-top index__navbar scrolled border-bottom" 
@@ -49,14 +50,20 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{% url 'bhw_validation' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
-                            title="Validate BHW" >
-                            <i class="fa fa-fw fa-user-nurse" style="font-size: 24px;"></i>
-                            <span class="position-absolute top-25 start-75 translate-middle badge rounded-pill bg-danger">
-                                75
-                                <span class="visually-hidden">unread messages</span>
-                            </span>
-                            </a>
+                            {% if invalidated_count > 0 %}
+                                <a href="{% url 'bhw_validation' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
+                                title="Validate BHW" >
+                                <i class="fa fa-fw fa-user-nurse" style="font-size: 24px;"></i>
+                                <span class="position-absolute top-25 start-75 translate-middle badge rounded-pill bg-danger">
+                                    {{ invalidated_count }}
+                                    <span class="visually-hidden">unread messages</span>
+                                </span></a>
+                            {% else %}
+                                <a href="{% url 'bhw_validation' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
+                                title="Validate BHW" >
+                                <i class="fa fa-fw fa-user-nurse" style="font-size: 24px;"></i>  
+                                </a>
+                            {% endif %}
                         </li>
                         <li>
                             <a class="btn nav-link" id="dropdownUser1" data-bs-toggle="dropdown" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
@@ -97,7 +104,6 @@
    })
  </script>
 <!-- Dashboard -->
-{% block dashboard%}
     <div id="grid" class="container-fluid">
         <div class="container-grid">
             <h2 style="text-align:left;">Overall Data</h2>
@@ -105,7 +111,7 @@
             <!-- MAIN CARDS STARTS HERE -->
             <div class="row">
                 <div class="col-xl-3 col-md-4">
-                    <div class="card shadow-lg bg-white rounded">
+                    <div class="card shadow-sm bg-white rounded">
                         <div class="card-header"><i class="fas fa-lg fa-user-check" style="color: green; position:relative; margin-right:10px;"></i>Number of Validated BHW</div>
                         <div class="card-body">
                             <h5 class="card-title">{{ validated_count }}</h5>
@@ -113,7 +119,7 @@
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-4">
-                    <div class="card shadow-lg bg-white rounded">
+                    <div class="card shadow-sm bg-white rounded">
                         <div class="card-header"><i class="fas fa-lg fa-user-slash" style="color:orange; position:relative; margin-right:10px;"></i>Number of Non-Validated BHW</div>
                         <div class="card-body">
                             <h5 class="card-title">{{ invalidated_count }}</h5>
@@ -121,7 +127,7 @@
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-4">
-                    <div class="card shadow-lg bg-white rounded">
+                    <div class="card shadow-sm bg-white rounded">
                         <div class="card-header"><i class="fas fa-lg fa-user" style="color: rgb(0, 0, 0); position:relative; margin-right:10px;"></i>Number of Parents</div>
                         <div class="card-body">
                             <h5 class="card-title">{{ parent_count }}</h5>
@@ -129,7 +135,7 @@
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-4">
-                    <div class="card shadow-lg bg-white rounded">
+                    <div class="card shadow-sm bg-white rounded">
                         <div class="card-header"><i class="fas fa-lg fa-baby" style="color: green; position:relative; margin-right:10px;"></i>Number of Preschoolers</div>
                         <div class="card-body">
                             <h5 class="card-title">{{ preschooler_count }}</h5>
@@ -139,8 +145,11 @@
             </div>
             <div class="row">
                 <div class="col-xl-8">
-                    <div class="card shadow-lg p-3 mb-5 bg-white rounded">
-                        <div class="card-body">
+                    <div class="card shadow-sm mb-5 bg-white rounded">
+                        <div class="card-header">
+                            <h4 style="Padding: 10px 40px 0px 0px;">Barangay Health Workers</h4>
+                        </div>
+                        <div class="card-body p-3 ">
                             <div class="table-responsive">
                                 <table class="table table-hover table-cell-border" id="user_list">
                                     <thead>
@@ -177,8 +186,9 @@
                     </div>
                 </div>
                 <div class="col-xl-4">
-                    <div class="card shadow-lg p-3 mb-5 bg-white rounded">  
-                        <div class="card-header"><i class="fas fa-lg fa-chart-pie" style="color:orange; position:relative; margin-right:10px;"></i>Chart</div>
+                    <div class="card shadow-sm mb-5 bg-white rounded">  
+                        <div class="card-header">
+                            <i class="fas fa-lg fa-chart-pie" style="color:orange; position:relative; margin-right:10px;"></i>Chart</div>
                         <div class="card-body">
                             <canvas class="chart-view" id="myPieChart" width="470%" height="470" style="display: block; box-sizing: border-box; height: 470px; width: 470px;"></canvas> 
                         </div>
@@ -196,7 +206,7 @@
   <div class="container">
       <div class="row text-center align-items-center">
               <div class="border-top p-4">
-                  <p class="copyright"><small>
+                  <p class="copyright" style=""><small>
                   Copyright ©<script>document.write(new Date().getFullYear());</script> All rights reserved <i class="icon-heart text-danger" aria-hidden="true"></i>
                   </small>
                   </p>

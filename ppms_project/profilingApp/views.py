@@ -124,13 +124,23 @@ def admin_home(request):
 
 def bhw_validation(request):
     bhw = BarangayHealthWorker.objects.filter(is_validated=False)
+    invalidated_status = BarangayHealthWorker.objects.filter(
+        is_validated=False).count()
+    context = {'bhws': bhw, 
+               'invalidated_count': invalidated_status,}
 
-    context = {'bhws': bhw}
     return render(request, 'activities/Admin Validate BHW.html', context)
 
 
 def admin_home2(request):
-    return render(request, 'activities/Admin Home2.html')
+    invalidated_status = BarangayHealthWorker.objects.filter(
+        is_validated=False).count()
+
+    context = {
+        'invalidated_count': invalidated_status,
+    }
+    return render(request, 'activities/Admin Home2.html', context)
+    
 
 
 def unvalidated_profile(request, pk):

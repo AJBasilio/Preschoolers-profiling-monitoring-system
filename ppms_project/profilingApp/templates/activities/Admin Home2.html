@@ -1,6 +1,89 @@
 {% extends 'activities/Admin Home.html' %} <!-- header and footer of page linked from admin home html file -->
 {% load static %}
 {% block dashboard %}
+
+<header>
+    <div class="site-header">
+    <nav class="navbar fixed-top index__navbar scrolled border-bottom" 
+    style=" padding-left:3%; padding-right:3%;">
+        <div class="flex-fill p-1 py-1">
+            <div class="d-flex align-items-center justify-content-between">
+                <div>
+                    <a href="#" class="name" style="text-decoration: none;">
+                        <img class="navbar-icon" src="{% static '/Media/avatar.png' %}" alt="dasma-logo">
+                        <span id="hidetitle" class="brand__name" style="color:rgb(3, 3, 3); margin-left:10px;">City of Dasmariñas</span>
+                    </a>
+                </div>
+                <div id="navLinks">
+                    <ul class="nav text-small">
+                        <li>
+                            <a href="{% url 'admin_home' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7" 
+                            title="Admin Home">
+                            <i class="fa fa-fw fa-home" style="font-size: 24px;"></i>   
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'admin_home2' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
+                            title="Preschooler Status">
+                            <i class="fa fa-fw fa-id-card " style="font-size: 24px;"></i>
+                            </a>
+                        </li>
+                        <li>
+                            {% if invalidated_count > 0 %}
+                                <a href="{% url 'bhw_validation' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
+                                title="Validate BHW" >
+                                <i class="fa fa-fw fa-user-nurse" style="font-size: 24px;"></i>
+                                <span class="position-absolute top-25 start-75 translate-middle badge rounded-pill bg-danger">
+                                    {{ invalidated_count }}
+                                    <span class="visually-hidden">unread messages</span>
+                                </span></a>
+                            {% else %}
+                                <a href="{% url 'bhw_validation' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
+                                title="Validate BHW" >
+                                <i class="fa fa-fw fa-user-nurse" style="font-size: 24px;"></i>  
+                                </a>
+                            {% endif %}
+                        </li>
+                        <li>
+                            <a class="btn nav-link" id="dropdownUser1" data-bs-toggle="dropdown" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
+                            title="User Settings" aria-expanded="false">
+                                <i class="fa fa-fw fa-user-cog bi" style="font-size: 24px;"></i>
+                                
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end p-2" aria-labelledby="dropdownUser1">
+                                <div id="dropdown-menu">
+                                    <div>
+                                        <i class="fa fa-lg fa-fw fa-user bi mx-auto"></i>   
+                                        <span style="font-size: 15px;"> Signed in as Admin </span>
+                                    </div>
+                                    <div>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="{% url 'admin_home' %}"><i class="fa fa-fw fa-home mx-1"></i>Home</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'admin_home2' %}"><i class="fa fa-fw fa-id-card mx-1"></i>Preschooler Status</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'bhw_validation' %}"><i class="fa fa-fw fa-user-nurse mx-1"></i>Validate BHW</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-fw fa-sign-out-alt mx-1"></i>Sign out</a></li>
+                                    </div>
+                                </div>
+                            </ul>                    
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    </div>
+</header>
+
+<!-- Tooltip Script -->
+<script>
+    $(function () {
+       $('[data-toggle="tooltip"]').tooltip({'delay': { show: 400, hide: 100 }})})
+       $('[data-toggle="tooltip"]').on('shown.bs.tooltip', function () {
+       $('.tooltip').addClass('animated fade');
+   })
+ </script>
+
 <!-- Dashboard -->
 <div id="grid" class="container-fluid">
     <div class="container">
@@ -31,7 +114,7 @@
         </div>
         <div class="row">
                 <div class="col">
-                <div class="card shadow-lg bg-white rounded">
+                <div class="card shadow-sm bg-white rounded">
                         <div class="card-header">
                             <h5 class="card-title">Normal</h5>
                         </div>
@@ -41,7 +124,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card shadow-lg bg-white rounded">
+                    <div class="card shadow-sm bg-white rounded">
                         <div class="card-header">
                             <h5 class="card-title">Wasted</h5>
                         </div>
@@ -51,7 +134,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card shadow-lg bg-white rounded">
+                    <div class="card shadow-sm bg-white rounded">
                         <div class="card-header">
                             <h5 class="card-title">Severly Wasted</h5>
                         </div>
@@ -61,7 +144,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card shadow-lg bg-white rounded">
+                    <div class="card shadow-sm bg-white rounded">
                         <div class="card-header">
                             <h5 class="card-title">Overweight</h5>
                         </div>
@@ -71,7 +154,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card shadow-lg bg-white rounded">
+                    <div class="card shadow-sm bg-white rounded">
                         <div class="card-header">
                             <h5 class="card-title">Obese</h5>
                         </div>
@@ -83,7 +166,7 @@
         </div>
             <br>
             <div>
-                <div class="card shadow-lg p-3 bg-white rounded">
+                <div class="card shadow-sm p-3 bg-white rounded">
                     <div class="card-header">
                         Record
                     </div>
