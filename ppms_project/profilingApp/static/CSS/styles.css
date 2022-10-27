@@ -2,25 +2,18 @@
 /* Header */
 
 .fixed-top {
-  position: fixed;
+  position: sticky;
   top: 0;
   right: 0;
   left: 0;
   z-index: 1030;
+  max-height: 85px;
+  background-color: white;
 }
 
-.fixed-top.scrolled {
-  background-color: #fff !important;
-  background-image: none;
-  transition: background-color 200ms linear;
-
-}
-.navbar{
-  transition: 0.5s ease-in-out;
-}
 .navbar-icon {
-    width: 45px;
-    max-width: 50px;
+    width: 40px;
+    max-width: 40px;
 }
 img {
     vertical-align: middle;
@@ -57,44 +50,22 @@ a{
     text-decoration: none;
 }
 
-.nav-container{
-    padding: 0 25px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 80px;
-}
+/* Navigation links/button styling */
 
-.nav-container .nav-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    display: flex;
-    gap: 50px;
-}
-.nav-container .nav-item a {
-    font-size: 18px;
-    font-weight: 500;
-    color: rgb(27, 27, 27);
-    padding: 0.6rem 1rem;
-    border-radius: 0.25rem;
-    text-shadow: 0 0 10px 0 black;
-
-}
-
-.nav-container .nav-item a:hover,
-.nav-container .nav-item .active {
-    background-color: rgb(40, 167, 69);
-    color: rgb(255, 255, 255);
-}
 
 #navLinks li a{
-  color:rgb(18, 88, 4); 
+  color:rgba(0, 19, 0, 0.87); 
+  padding: 13 13 13 13;
+  background-color: #ebebeb60;
+  border-radius: 50%;
+  margin-left: 15px;
+  position: relative;
 }
 
 #navLinks li a:hover{
   color: rgb(40, 167, 69);
   -webkit-transform: scale(1.05);
+  background-color: #e4e4e39f;
   transform: scale(1.05);
 }
 #navLinks li a:active{
@@ -127,33 +98,28 @@ a{
 } 
 /* Header Dropdown Button */
 
-#navbutton{
-  margin:2px;
-  color:#2c5f2dff;text-decoration:none;
+#dropdown-menu li a i{
+  padding:1px;
 }
-
-#navbutton:hover{
-  transform: scale(1.05);
-  color:rgb(87, 184, 8);
-  margin-left: 5px;
-  margin-right: 5px;
-  transition:1s;
-  
-}
-
 #dropdown-menu li a {
+  background-color: white;
+  border-radius: 0%;
+  padding: 5px;
+  color:black;
   margin-bottom: 3px;
-  text-align: left;
-  display: block;
-  box-sizing: border-box;
+  text-align: eft;
   transition: 0.5s;
+  margin-left: 1px;
 }
 
 #dropdown-menu li:hover a {
-  padding: 5%;
   background-color: rgb(225 225 225);
-  color: #188045;
+  color:black;
+  border-radius: 0%;
   font-size: small;
+  -webkit-transform: scale(1.0); 
+  background-color: #e4e4e39f;
+  transform: scale(1.0); 
 }
 
 /* Parent Home Button Styling */
@@ -177,9 +143,7 @@ a{
   -webkit-transform: scale(.95);
   transform: scale(.95);
 }
-.dropdown-:active {
-  background-color: #fff;
-}
+
 /* BHW Preschooler Profile Buttons */
 
 #validateBhwButton{
@@ -194,66 +158,17 @@ a{
   transition-duration: 0.3s;
 }
 /* Body transition */
-#grid,#footer,#mysidenav,#header{
+#grid,#footer,#header{
   transition: 0.5s ease-in-out;
 }
 
 #grid{
-  background-color: rgba(253, 253, 253, 0.952);
+  background-color:#F2F3F5;
   position: relative;
-    padding: 60px;
-    width: 100%;
-    margin-top: 60px;
-
-}
-/* Header Navigation Bar  */
-#myNavbar:hover{
-  color:#188045
-
-}
-
-/* Side Navigation */
-
-#mySidenav {
-    height: 100%;
-    width: 0px;
-    line-height: 55px;
-    position: fixed;
-    z-index: 1;
-    top: 83px;
-    overflow-x: hidden;
-}
-
-.sidenav .buttons a{
-    padding: 0px 0px 0px 15px;
-    text-align: left;
-    font-size: 1rem;
-    text-decoration: none;
-    color: rgba(0, 0, 0, 0.863);
-    display: block;
-    box-sizing: border-box;
-    border-bottom:1px ridge rgba(59, 57, 57, 0.027);
-    border-left:3px solid rgba(59, 57, 57, 0.199);
-}
-
-#home{
-    border-top:1px ridge rgba(59, 57, 57, 0.082);
-}
-
-.sidenav .buttons a:hover{
-    color: rgb(0, 0, 0);
-    transition:0.1s;
-    border-left:5px solid rgb(33, 146, 71);
-}
-
-
-@media screen and (max-height: 450px) {
-    .sidenav {
-        padding-top: 15px;
-    }
-    .sidenav a {
-        font-size: 18px;
-    }
+  padding: 3%;
+  width: 100%;
+  margin-top: 85px;
+  min-height: 800px;
 }
 
 /* Cards */
@@ -551,7 +466,7 @@ h2 {
 }
 @media (min-width: 768px){
 .site-footer {
-  padding: 8em 0;
+  padding: 4em 0;
 }}
 
 .site-footer{

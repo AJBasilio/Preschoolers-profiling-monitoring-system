@@ -34,16 +34,12 @@
                     </a>
                 </div>
                 <div class="btn-group my-2 mx-3">
-                    <button class="button p-2" id="parentHomeButton" data-bs-toggle="dropdown" data-toggle="tooltip" data-placement="left"
-                    title="User Settings" aria-expanded="false">
+                    <button class="button p-2" id="parentHomeButton" data-bs-toggle="dropdown" data-toggle="tooltip" data-placement="bottom"
+                    title="Settings" aria-expanded="false">
                         <i class="fa fa-2x fa-fw d-block fa-user-cog bi mx-auto"></i>
+                        <span class="badge badge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-light text-danger" style="position:absolute;">2</span>                   
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="parentHomeButton">
-                        <div class="mx-4">
-                        <i class="fa fa-fw fa-user bi mx-auto"></i>
-                        <span>Parent</span>
-                        </div>
-                        <li><hr class="dropdown-divider"></li>
+                    <ul class="dropdown-menu dropdown-menu-end " aria-labelledby="parentHomeButton">
                         <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-fw fa-sign-out-alt mx-1"></i>Sign out</a></li>
                     </ul>
                 </div>
@@ -235,10 +231,7 @@
             });}).draw();
 
         $(function () {
-        $('[data-toggle="tooltip"]').tooltip({'delay': { show: 300, hide: 100 }})})
-        $('[data-toggle="tooltip"]').on('shown.bs.tooltip', function () {
-        $('.tooltip').addClass('animated fade');
-    })
+        $('[data-toggle="tooltip"]').tooltip()})
     </script>
 
     

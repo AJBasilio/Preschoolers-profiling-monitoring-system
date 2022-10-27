@@ -24,10 +24,10 @@
 <!-- Header -->
 <header>
     <div class="site-header">
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark index__navbar scrolled border-bottom" 
-    style=" padding-left:5%; padding-right:5%;background-image: linear-gradient(to right, rgb(255, 255, 255), rgb(218, 255, 209));">
-        <div class="flex-fill p-4 py-1 text-dark">
-            <div class="d-flex flex-wrap align-items-center justify-content-between">
+    <nav class="navbar fixed-top index__navbar scrolled border-bottom" 
+    style=" padding-left:3%; padding-right:3%;">
+        <div class="flex-fill p-1 py-1">
+            <div class="d-flex align-items-center justify-content-between">
                 <div>
                     <a href="#" class="name" style="text-decoration: none;">
                         <img class="navbar-icon" src="{% static '/Media/avatar.png' %}" alt="dasma-logo">
@@ -35,52 +35,51 @@
                     </a>
                 </div>
                 <div id="navLinks">
-                    <ul class="nav my-1 text-small">
+                    <ul class="nav text-small">
                         <li>
-                            <a href="{% url 'admin_home' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,10" 
-                            title="Home">
-                            <i class="fa fa-2x fa-fw fa-home mx-auto"></i>
+                            <a href="{% url 'admin_home' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7" 
+                            title="Admin Home">
+                            <i class="fa fa-fw fa-home" style="font-size: 24px;"></i>   
                             </a>
                         </li>
                         <li>
-                            <a href="{% url 'admin_home2' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,10"
+                            <a href="{% url 'admin_home2' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
                             title="Preschooler Status">
-                            <i class="fa fa-2x fa-fw fa-id-card mx-auto"></i>
+                            <i class="fa fa-fw fa-id-card " style="font-size: 24px;"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="{% url 'bhw_validation' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,10"
+                            <a href="{% url 'bhw_validation' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
                             title="Validate BHW" >
-                            <i class="fa fa-2x fa-fw fa-user-nurse mx-auto"></i>
+                            <i class="fa fa-fw fa-user-nurse" style="font-size: 24px;"></i>
+                            <span class="position-absolute top-25 start-75 translate-middle badge rounded-pill bg-danger">
+                                75
+                                <span class="visually-hidden">unread messages</span>
+                            </span>
                             </a>
                         </li>
                         <li>
-                            <a class="btn nav-link" id="dropdownUser1" data-bs-toggle="dropdown" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,10"
+                            <a class="btn nav-link" id="dropdownUser1" data-bs-toggle="dropdown" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
                             title="User Settings" aria-expanded="false">
-                                <i class="fa fa-2x fa-fw fa-user-cog bi mx-auto"></i>
+                                <i class="fa fa-fw fa-user-cog bi" style="font-size: 24px;"></i>
+                                
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end p-2" aria-labelledby="dropdownUser1">
-                                <div class="card-header ">
-                                    <i class="fa fa-fw fa-user bi mx-auto"></i>
-                                    Signed in as Admin
+                                <div id="dropdown-menu">
+                                    <div>
+                                        <i class="fa fa-lg fa-fw fa-user bi mx-auto"></i>   
+                                        <span style="font-size: 15px;"> Signed in as Admin </span>
+                                    </div>
+                                    <div>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="{% url 'admin_home' %}"><i class="fa fa-fw fa-home mx-1"></i>Home</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'admin_home2' %}"><i class="fa fa-fw fa-id-card mx-1"></i>Preschooler Status</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'bhw_validation' %}"><i class="fa fa-fw fa-user-nurse mx-1"></i>Validate BHW</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-fw fa-sign-out-alt mx-1"></i>Sign out</a></li>
+                                    </div>
                                 </div>
-                                <div class="card">
-                                    <li><a class="dropdown-item" href="{% url 'admin_home' %}"><i class="fa fa-fw fa-home mx-1"></i>Home</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'admin_home2' %}"><i class="fa fa-fw fa-id-card mx-1"></i>Preschooler Status</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'bhw_validation' %}"><i class="fa fa-fw fa-user-nurse mx-1"></i>Validate BHW</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-fw fa-sign-out-alt mx-1"></i>Sign out</a></li>
-                                </div>
-                                <!-- Tooltip Script -->
-                                <script>
-                                    $(function () {
-                                       $('[data-toggle="tooltip"]').tooltip({'delay': { show: 400, hide: 100 }})})
-                                       $('[data-toggle="tooltip"]').on('shown.bs.tooltip', function () {
-                                       $('.tooltip').addClass('animated fade');
-                                   })
-                                 </script>
-                            </ul>
-                            
+                            </ul>                    
                         </li>
                     </ul>
                 </div>
@@ -89,9 +88,17 @@
     </nav>
     </div>
 </header>
+<!-- Tooltip Script -->
+<script>
+    $(function () {
+       $('[data-toggle="tooltip"]').tooltip({'delay': { show: 400, hide: 100 }})})
+       $('[data-toggle="tooltip"]').on('shown.bs.tooltip', function () {
+       $('.tooltip').addClass('animated fade');
+   })
+ </script>
 <!-- Dashboard -->
 {% block dashboard%}
-    <div id="grid" class="container-fluid" style="background-color: rgb(252, 252, 252);">
+    <div id="grid" class="container-fluid">
         <div class="container-grid">
             <h2 style="text-align:left;">Overall Data</h2>
             <hr>
@@ -185,10 +192,10 @@
 <!-- Form-->
 
     <!-- Footer -->
-<div class="site-footer" id="footer">
+<div class="footer">
   <div class="container">
-      <div class="row text-center">
-              <div class="border-top pt-5">
+      <div class="row text-center align-items-center">
+              <div class="border-top p-4">
                   <p class="copyright"><small>
                   Copyright ©<script>document.write(new Date().getFullYear());</script> All rights reserved <i class="icon-heart text-danger" aria-hidden="true"></i>
                   </small>
