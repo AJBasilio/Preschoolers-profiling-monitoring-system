@@ -112,36 +112,37 @@ a{
   margin-left: 1px;
 }
 
-#dropdown-menu li:hover a {
+#dropdown-menu li a:hover  {
   background-color: rgb(225 225 225);
   color:black;
   border-radius: 0%;
   font-size: small;
-  -webkit-transform: scale(1.0); 
   background-color: #e4e4e39f;
-  transform: scale(1.0); 
 }
 
 /* Parent Home Button Styling */
 
-#parentHomeButton{
-  background-color: rgba(231, 231, 231, 0);
-  border-radius: 25%;
-
-  color: #188045;
-  border: none;
-  margin:0px;
-
+#parentButton{
+  color:rgba(0, 19, 0, 0.87); 
+  padding: 13 13 13 13;
+  background-color: #ebebeb60;
+  border-radius: 50%;
+  margin-left: 15px;
+  position: relative;
 }
 
-#parentHomeButton:hover {
+#parentButton:hover{
+  color: rgb(40, 167, 69);
   -webkit-transform: scale(1.05);
+  background-color: #e4e4e39f;
   transform: scale(1.05);
 }
-#parentHomeButton:active{
-  background-color: #f1f0f054;
+
+#parentButton:active{
+  color: rgb(40, 167, 69);
   -webkit-transform: scale(.95);
   transform: scale(.95);
+
 }
 
 /* BHW Preschooler Profile Buttons */

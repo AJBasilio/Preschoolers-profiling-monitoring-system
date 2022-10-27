@@ -32,21 +32,44 @@
                     </a>
                 </div>
                 <div class="btn-group my-2 mx-3">
-                    <button class="button p-2" id="parentHomeButton" data-bs-toggle="dropdown" data-toggle="tooltip" data-placement="bottom"
-                    title="Settings" aria-expanded="false">
-                        <i class="fa fa-2x fa-fw d-block fa-user-cog bi mx-auto"></i>                 
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end " aria-labelledby="parentHomeButton">
-                        <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-fw fa-sign-out-alt mx-1"></i>Sign out</a></li>
-                    </ul>
+                    <li>
+                        <a class="btn nav-link" id="parentButton" data-bs-toggle="dropdown" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
+                        title="User Settings" aria-expanded="false">
+                            <i class="fa fa-fw fa-user-cog bi dropdown-toggle" style="font-size: 24px;"></i>
+                            
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end p-2" aria-labelledby="parentButton">
+                            <div id="dropdown-menu">
+                                <div>
+                                    <i class="fa fa-lg fa-fw fa-user bi" style="margin-left:5px;"></i>   
+                                    <span style="font-size: 15px;"> {{ user.first_name }} {{ user.last_name }} </span>
+                                </div>
+                                <div>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <p class="text-center">Signed in as a Parent</p>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-fw fa-sign-out-alt mx-1"></i>Sign out</a></li>
+                                </div>
+                            </div>
+                        </ul>                    
+                    </li>
                 </div>
             </div>
         </nav>
     </div>
 </head>
 
+<!-- Tooltip Script -->
+<script>
+    $(function () {
+       $('[data-toggle="tooltip"]').tooltip({'delay': { show: 400, hide: 100 }})})
+       $('[data-toggle="tooltip"]').on('shown.bs.tooltip', function () {
+       $('.tooltip').addClass('animated fade');
+   })
+ </script>
+
 <body>
-    <div id="grid" class="container-fluid" style="padding:7%; margin: top 65px;">
+    <div id="grid" class="container-fluid" style="padding:7%; margin-top:50px;">
         <div class="container-grid">
             <div class="">
                 <div class="row"> 
@@ -132,7 +155,7 @@
                                 <td>{{ preschooler.birthday }}</td>
                                 <td style="text-align: center;">
                                     <div>
-                                        <a href=""><button type="button" style="background-color: #188045; color: white;" class="btn">View Profile</button></a>
+                                        <a href="{% url 'parent_preschooler' %}"><button type="button" style="background-color: #188045; color: white;" class="btn">View Profile</button></a>
                                     </div>
                                 </td>
                             </tr>
@@ -144,63 +167,20 @@
             </div>
         </div>
     </div>
-        <hr>
-        <br>
+    </div>
     <!-- Footer -->
-    <div class="site-footer" id="footer">
+    <div class="footer">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-4">
-                    <h2 class="footer-heading mb-4">About</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                        Modi cumque tenetur inventore veniam, hic vel ipsa necessitatibus 
-                        ducimus architecto fugiat!
-                    </p>
-                    <div class="my-5">
-                        <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
-                        <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
-                        <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
-                        <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
-                    </div>
-                </div>
-                <div class="col-lg-8">
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <h2 class="footer-heading mb-4">Quick Links</h2>
-                            <ul class="list-unstyled">
-                            <li><a href="#">FAQs</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-4">
-                            <h2 class="footer-heading mb-4">Helpful Link</h2>
-                            <ul class="list-unstyled">
-                            <li><a href="#">Healthcare Professional</a></li>
-                            <li><a href="#">LGU Facilities</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-4">
-                            <h2 class="footer-heading mb-4">Resources</h2>
-                            <ul class="list-unstyled">
-                            <li><a href="#">NNC Website</a></li>
-                            <li><a href="#">DOH Website</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row text-center">
-                <div class="col-md-12">
-                    <div class="border-top pt-5">
+            <div class="row text-center align-items-center">
+                    <div class="border-top p-4">
                         <p class="copyright"><small>
                         Copyright ©<script>document.write(new Date().getFullYear());</script> All rights reserved <i class="icon-heart text-danger" aria-hidden="true"></i>
                         </small>
                         </p>
                     </div>
-                </div>
             </div>
         </div>
-    </div>
+      </div>
 </body>
 
 <script src="{% static '/Javascript/js/bootstrap.bundle.min.js' %}"></script>

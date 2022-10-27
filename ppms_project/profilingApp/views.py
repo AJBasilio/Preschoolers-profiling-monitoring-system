@@ -95,6 +95,9 @@ def parent_home(request):
     context = {'preschoolers': preschooler}
     return render(request, 'activities/Parent Home.html', context)
 
+def parent_preschooler(request):
+    context = {}
+    return render(request, 'activities/Parent - Preschooler Profile.html', context)
 # ================================== ADMIN ==================================
 
 

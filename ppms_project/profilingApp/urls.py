@@ -8,6 +8,7 @@ urlpatterns = [
 
     # Parent
     path('home', views.parent_home, name='parent_home'),
+    path('preschooler', views.parent_preschooler, name='parent_preschooler'),
 
     # Admin
     path('ahome', views.admin_home, name='admin_home'),
