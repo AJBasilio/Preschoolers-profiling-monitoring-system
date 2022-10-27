@@ -20,44 +20,79 @@
     <title>BHW | PPMS</title>
 </head>
 <body>
-<!-- Header -->
-<div class="site-header" id="header">
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark index__navbar scrolled border-bottom" id="header">
-      <div class="container-fluid">
-        <div>
-          <span style="font-size:20px;cursor:pointer; color:#2c5f2dff; margin-left:10px;" id="navButton" onclick="openOffcanvas()"><i class="fa fa-fw fa-bars"></i></span>
-          <a href="#" class="name" style="text-decoration: none;">
-              <img class="navbar-icon" style="margin-left:15px;" src="../static/Media/avatar.png" alt="dasma-logo">
-              <span id="hidetitle" class="brand__name" style="color:#2c5f2dff;">City of Dasmariñas - Preschooler Profiling and Monitoring</span>
-          </a>
-        </div>
-        <div class="dropdown">
-          <button class="btn dropdown-toggle" type="button" id= "Headerddb" data-bs-toggle="dropdown" style="margin-right:15px"><i class="fa fa-fw fa-user"></i>BHW</button>
-          <ul class="dropdown-menu" id="dropdown-menu">
-              <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
-          </ul>
-        </div>
-    </div>
-    </nav>
-  </div>
-
-<!-- Side Nav -->
-<div id="mySidenav" class="sidenav">
-  <ul class="list-unstyled ps-0">
-    <div class="buttons">
-        <a id="home" href="{% url 'bhw_home' %}"><i class="fa fa-fw fa-home"></i>Home</a>
-        <a href="{% url 'preschooler_profile' %}"><i class="fa fa-fw fa-id-card"></i>Preschooler Profile</a>
-        <a href="{% url 'immunization_schedule' %}"><i class="fa fa-fw fa-shield-virus"></i>Immunization Schedule</a>
-    </div>
-      </div>
-      <br>
-  </ul>
-</div>
-<div id="myCanvasNav" onclick="closeOffcanvas()"></div>
-<!-- Dashboard -->
 {% block dashboard %}
-    <!-- Dashboard -->
-<div id="grid" class="container-fluid" style="padding:0%; margin-top:50px;">
+<!-- Header -->
+<header>
+    <div class="site-header">
+    <nav class="navbar fixed-top index__navbar scrolled border-bottom" 
+    style=" padding-left:3%; padding-right:3%;">
+        <div class="flex-fill p-1 py-1">
+            <div class="d-flex align-items-center justify-content-between">
+                <div>
+                    <a href="#" class="name" style="text-decoration: none;">
+                        <img class="navbar-icon" src="{% static '/Media/avatar.png' %}" alt="dasma-logo">
+                        <span id="hidetitle" class="brand__name" style="color:rgb(3, 3, 3); margin-left:10px;">City of Dasmariñas</span>
+                    </a>
+                </div>
+                <div id="navLinks">
+                    <ul class="nav text-small">
+                        <li>
+                            <a href="{% url 'bhw_home' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7" 
+                            title="Barangay Health Worker Home">
+                            <i class="fa fa-fw fa-home" style="font-size: 24px;"></i>   
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'preschooler_profile' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
+                            title="Preschooler Profile">
+                            <i class="fa fa-fw fa-id-card " style="font-size: 24px;"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'immunization_schedule' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
+                            title="Immunization Schedule" >
+                            <i class="fa fa-fw fa-calendar-alt" style="font-size: 24px;"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="btn nav-link" id="dropdownUser1" data-bs-toggle="dropdown" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
+                            title="User Settings" aria-expanded="false">
+                                <i class="fa fa-fw fa-user-cog bi" style="font-size: 24px;"></i>
+                                
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end p-2" aria-labelledby="dropdownUser1">
+                                <div id="dropdown-menu">
+                                    <div>
+                                        <i class="fa fa-lg fa-fw fa-user bi mx-auto"></i>   
+                                        <span style="font-size: 15px;"> Barangay Health Worker </span>
+                                    </div>
+                                    <div>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-fw fa-sign-out-alt mx-1"></i>Sign out</a></li>
+                                    </div>
+                                </div>
+                            </ul>                    
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    </div>
+</header>
+
+ 
+<!-- Tooltip Script -->
+<script>
+    $(function () {
+       $('[data-toggle="tooltip"]').tooltip({'delay': { show: 400, hide: 100 }})})
+       $('[data-toggle="tooltip"]').on('shown.bs.tooltip', function () {
+       $('.tooltip').addClass('animated fade');
+   })
+ </script>
+
+<!-- Dashboard -->
+<div id="grid" class="container-fluid" style="margin-top:60px;">
     <div class="container">
         <div class="container">
             <div class="row justify-content-between"> 
@@ -80,7 +115,7 @@
         </div>
         <div class="row">
                 <div class="col">
-                <div class="card shadow-lg bg-white rounded">
+                <div class="card shadow-sm bg-white rounded">
                         <div class="card-header">
                             <h5 class="card-title">Normal</h5>
                         </div>
@@ -90,7 +125,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card shadow-lg bg-white rounded">
+                    <div class="card shadow-sm bg-white rounded">
                         <div class="card-header">
                             <h5 class="card-title">Wasted</h5>
                         </div>
@@ -100,7 +135,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card shadow-lg bg-white rounded">
+                    <div class="card shadow-sm bg-white rounded">
                         <div class="card-header">
                             <h5 class="card-title">Severly Wasted</h5>
                         </div>
@@ -110,7 +145,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card shadow-lg bg-white rounded">
+                    <div class="card shadow-sm bg-white rounded">
                         <div class="card-header">
                             <h5 class="card-title">Overweight</h5>
                         </div>
@@ -120,7 +155,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card shadow-lg bg-white rounded">
+                    <div class="card shadow-sm bg-white rounded">
                         <div class="card-header">
                             <h5 class="card-title">Obese</h5>
                         </div>
@@ -132,12 +167,12 @@
         </div>
             <br>
             <div>
-                <div class="card shadow-lg p-3 bg-white rounded">
+                <div class="card shadow-sm bg-white rounded">
                     <div class="card-header">
-                        Record
+                        <h5>Record</h5>
                     </div>
 
-                    <div class="card-body">
+                    <div class="card-body p-3">
                         <canvas id="myBar" width="100%" height="50"></canvas>
                     </div>
                     <div class="card-footer small text-muted">
@@ -152,61 +187,20 @@
 <!-- Form-->
 {% endblock %}
 
-    <!-- Footer -->
-<div class="site-footer" id="footer">
-  <div class="container">
-      <div class="row">
-          <div class="col-lg-4">
-              <h2 class="footer-heading mb-4">About</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                  Modi cumque tenetur inventore veniam, hic vel ipsa necessitatibus 
-                  ducimus architecto fugiat!
-              </p>
-              <div class="my-5">
-                  <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
-                  <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
-                  <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
-                  <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
-              </div>
-          </div>
-          <div class="col-lg-8">
-              <div class="row">
-                  <div class="col-lg-4">
-                      <h2 class="footer-heading mb-4">Quick Links</h2>
-                      <ul class="list-unstyled">
-                      <li><a href="#">FAQs</a></li>
-                      <li><a href="#">Contact Us</a></li>
-                      </ul>
-                  </div>
-                  <div class="col-lg-4">
-                      <h2 class="footer-heading mb-4">Helpful Link</h2>
-                      <ul class="list-unstyled">
-                      <li><a href="#">Healthcare Professional</a></li>
-                      <li><a href="#">LGU Facilities</a></li>
-                      </ul>
-                  </div>
-                  <div class="col-lg-4">
-                      <h2 class="footer-heading mb-4">Resources</h2>
-                      <ul class="list-unstyled">
-                      <li><a href="#">NNC Website</a></li>
-                      <li><a href="#">DOH Website</a></li>
-                      </ul>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div class="row text-center">
-          <div class="col-md-12">
-              <div class="border-top pt-5">
-                  <p class="copyright"><small>
-                  Copyright ©<script>document.write(new Date().getFullYear());</script> All rights reserved <i class="icon-heart text-danger" aria-hidden="true"></i>
-                  </small>
-                  </p>
-              </div>
-          </div>
-      </div>
-  </div>
+<!-- Footer -->
+<div class="footer">
+    <div class="container">
+        <div class="row text-center align-items-center">
+                <div class="border-top p-4">
+                    <p class="copyright" style=""><small>
+                    Copyright ©<script>document.write(new Date().getFullYear());</script> All rights reserved <i class="icon-heart text-danger" aria-hidden="true"></i>
+                    </small>
+                    </p>
+                </div>
+        </div>
+    </div>
 </div>
+
 <script>
     // Set new default font family and font color to mimic Bootstrap's default styling
     Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
