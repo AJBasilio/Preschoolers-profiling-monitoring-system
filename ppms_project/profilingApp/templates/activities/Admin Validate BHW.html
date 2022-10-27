@@ -29,7 +29,7 @@
                         </li>
                         <li>
                             {% if invalidated_count > 0 %}
-                                <a href="{% url 'bhw_validation' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
+                            <a href="{% url 'bhw_validation' %}" class="nav-link" style="color:rgb(27, 177, 92) !important;" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
                                 title="Validate BHW" >
                                 <i class="fa fa-fw fa-user-nurse" style="font-size: 24px;"></i>
                                 <span class="position-absolute top-25 start-75 translate-middle badge rounded-pill bg-danger">
@@ -37,7 +37,7 @@
                                     <span class="visually-hidden">unread messages</span>
                                 </span></a>
                             {% else %}
-                                <a href="{% url 'bhw_validation' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
+                            <a href="{% url 'bhw_validation' %}" class="nav-link" style="color:rgb(27, 177, 92) !important;" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
                                 title="Validate BHW" >
                                 <i class="fa fa-fw fa-user-nurse" style="font-size: 24px;"></i>  
                                 </a>
@@ -46,21 +46,18 @@
                         <li>
                             <a class="btn nav-link" id="dropdownUser1" data-bs-toggle="dropdown" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
                             title="User Settings" aria-expanded="false">
-                                <i class="fa fa-fw fa-user-cog bi" style="font-size: 24px;"></i>
+                            <i class="fa fa-fw fa-user-cog bi dropdown-toggle" style="font-size: 24px;"></i>
                                 
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end p-2" aria-labelledby="dropdownUser1">
                                 <div id="dropdown-menu">
                                     <div>
-                                        <i class="fa fa-lg fa-fw fa-user bi mx-auto"></i>   
-                                        <span style="font-size: 15px;"> Signed in as Admin </span>
+                                        <i class="fa fa-lg fa-fw fa-user bi" style="margin-left:5px;"></i>  
+                                        <span style="font-size: 15px;"> {{ user.first_name }} {{ user.last_name }} </span>
                                     </div>
                                     <div>
                                         <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item" href="{% url 'admin_home' %}"><i class="fa fa-fw fa-home mx-1"></i>Home</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'admin_home2' %}"><i class="fa fa-fw fa-id-card mx-1"></i>Preschooler Status</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'bhw_validation' %}"><i class="fa fa-fw fa-user-nurse mx-1"></i>Validate BHW</a></li>
-                                        <li><hr class="dropdown-divider"></li>
+                                        <p class="text-center p-3">Signed in as an Admin</p>
                                         <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-fw fa-sign-out-alt mx-1"></i>Sign out</a></li>
                                     </div>
                                 </div>

@@ -38,7 +38,7 @@
                 <div id="navLinks">
                     <ul class="nav text-small">
                         <li>
-                            <a href="{% url 'admin_home' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7" 
+                            <a href="{% url 'admin_home' %}" class="nav-link" style="color:rgb(27, 177, 92) !important;"data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"  
                             title="Admin Home">
                             <i class="fa fa-fw fa-home" style="font-size: 24px;"></i>   
                             </a>
@@ -68,21 +68,18 @@
                         <li>
                             <a class="btn nav-link" id="dropdownUser1" data-bs-toggle="dropdown" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
                             title="User Settings" aria-expanded="false">
-                                <i class="fa fa-fw fa-user-cog bi" style="font-size: 24px;"></i>
+                                <i class="fa fa-fw fa-user-cog bi dropdown-toggle" style="font-size: 24px;"></i>
                                 
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end p-2" aria-labelledby="dropdownUser1">
                                 <div id="dropdown-menu">
                                     <div>
-                                        <i class="fa fa-lg fa-fw fa-user bi mx-auto"></i>   
-                                        <span style="font-size: 15px;"> Signed in as Admin </span>
+                                        <i class="fa fa-lg fa-fw fa-user bi" style="margin-left:5px;"></i>   
+                                        <span style="font-size: 15px;"> {{ user.first_name }} {{ user.last_name }} </span>
                                     </div>
                                     <div>
                                         <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item" href="{% url 'admin_home' %}"><i class="fa fa-fw fa-home mx-1"></i>Home</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'admin_home2' %}"><i class="fa fa-fw fa-id-card mx-1"></i>Preschooler Status</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'bhw_validation' %}"><i class="fa fa-fw fa-user-nurse mx-1"></i>Validate BHW</a></li>
-                                        <li><hr class="dropdown-divider"></li>
+                                        <p class="text-center p-3">Signed in as an Admin</p>
                                         <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-fw fa-sign-out-alt mx-1"></i>Sign out</a></li>
                                     </div>
                                 </div>
@@ -95,6 +92,7 @@
     </nav>
     </div>
 </header>
+
 <!-- Tooltip Script -->
 <script>
     $(function () {
@@ -113,7 +111,7 @@
                 <div class="col-8">
                     <div class="row">
                         <div class="col-6">
-                            <div class="row-12 mb-4">
+                            <div class="row-12 mb-3">
                                 <div class="card shadow-sm bg-white rounded">
                                     <div class="card-header"><i class="fas fa-lg fa-user-check" style="color: green; position:relative; margin-right:10px;"></i>Number of Validated BHW</div>
                                     <div class="card-body">
@@ -123,7 +121,7 @@
                             </div>
                         </div>
                         <div class="col-6">
-                            <div class="row-12 mb-4">
+                            <div class="row-12 mb-3">
                                 <div class="card shadow-sm bg-white rounded">
                                     <div class="card-header"><i class="fas fa-lg fa-user" style="color: rgb(0, 0, 0); position:relative; margin-right:10px;"></i>Number of Parents</div>
                                     <div class="card-body">
@@ -133,7 +131,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class='row'>
+                    <div class='row mb-3'>
                         <div class="col-6">
                             <div class="card shadow-sm bg-white rounded">
                                 <div class="card-header"><i class="fas fa-lg fa-user-slash" style="color:orange; position:relative; margin-right:10px;"></i>Number of Non-Validated BHW</div>
@@ -153,7 +151,7 @@
                     </div>
                     <div class='row'>
                         <div class="col-xl-12">
-                            <div class="card shadow-sm mb-5 bg-white rounded">
+                            <div class="card shadow-sm mb-3 bg-white rounded">
                                 <div class="card-header">
                                     <h4 style="Padding: 10px 40px 0px 0px;">Barangay Health Workers</h4>
                                 </div>
@@ -197,13 +195,13 @@
                     </div>
                     
                 </div>
-                <div class="col-4">
-                    <div class="col-xl-12 mb-4">
-                        <div class="card shadow-sm bg-white rounded">  
+                <div class="col-4 h-100 ">
+                    <div class="col-xl-12 mb-3">
+                        <div class="card shadow-sm bg-white rounded" >  
                             <div class="card-header">
-                                <i class="fas fa-lg fa-chart-pie" style="color:orange; position:relative; margin-right:10px;"></i>Chart</div>
+                                <i class="fas fa-lg fa-chart-pie" style="color:orange; position:relative; margin-right:10px;"></i>Overview Chart</div>
                             <div class="card-body">
-                                <canvas class="chart-view" id="myPieChart" width="470%" height="470" style="display: block; box-sizing: border-box; height: 470px; width: 470px;"></canvas> 
+                                <canvas class="chart-view" id="myPieChart" width="470" height="550" style="display: block; box-sizing: border-box;"></canvas>  
                             </div>
                         </div>
                     </div>
