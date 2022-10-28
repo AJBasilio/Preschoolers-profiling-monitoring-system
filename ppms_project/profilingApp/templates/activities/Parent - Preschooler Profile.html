@@ -2,6 +2,42 @@
 {% load static %}
 {% block dashboard %}
 
+<header>
+    <div class="site-header">
+    <nav class="navbar fixed-top index__navbar scrolled border-bottom" 
+    style=" padding-left:3%; padding-right:3%;">
+        <div class="flex-fill p-1 py-1">
+            <div class="d-flex align-items-center justify-content-between">
+                <div>
+                    <a href="#" class="name" style="text-decoration: none;">
+                        <img class="navbar-icon" src="{% static '/Media/avatar.png' %}" alt="dasma-logo">
+                        <span id="hidetitle" class="brand__name" style="color:rgb(3, 3, 3); margin-left:10px;">City of Dasmariñas</span>
+                    </a>
+                </div>
+                <div id="navLinks">
+                    <ul class="nav text-small">
+                        <li>
+                            <a href="{% url 'parent_home' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7" 
+                            title="Go back to Parent Home">
+                            <i class="fa fa-lg fa-fw fa-chevron-circle-left" style="font-size: 24px;"></i>    
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    </div>
+</header>
+<!-- Tooltip Script -->
+<script>
+    $(function () {
+       $('[data-toggle="tooltip"]').tooltip({'delay': { show: 400, hide: 100 }})})
+       $('[data-toggle="tooltip"]').on('shown.bs.tooltip', function () {
+       $('.tooltip').addClass('animated fade');
+    })
+</script>
+
 <!-- Dashboard -->
 <div id="grid" class="container-fluid" style="margin-top: 60px;">
     <div class="container-grid">
@@ -69,15 +105,28 @@
                                     <div class="col-sm">
                                         <p class="mb-0">Weight:</p>
                                     </div>
+                                    {% if preschooler.weight is None%}
+                                    <div class="col-sm">
+                                        <p class="text-muted mb-0">{{ preschooler.weight }} </p>
+                                    </div>
+                                    {% else%}
                                     <div class="col-sm">
                                         <p class="text-muted mb-0">{{ preschooler.weight }} kg</p>
                                     </div>
+                                    {% endif %}
+
                                     <div class="col-sm">
                                         <p class="mb-0">Height:</p>
                                     </div>
+                                    {% if preschooler.height is None%}
+                                    <div class="col-sm">
+                                        <p class="text-muted mb-0">{{ preschooler.height }}</p>
+                                    </div>
+                                    {% else %}
                                     <div class="col-sm">
                                         <p class="text-muted mb-0">{{ preschooler.height }} cm</p>
                                     </div>
+                                    {% endif %}
                                 </div>
                                 <hr>
                             </div>
@@ -97,7 +146,11 @@
                                 <div class="card-header">
                                     <h6 class="card-title">WFA Status</h6>
                                 </div>
-                                {% if preschooler.wfa > 2.0 %}
+                                {% if preschooler.wfa is None%}
+                                    <div class="card-body">
+                                        <p class="card-text" >{{ preschooler.wfa }}</p>
+                                    </div>
+                                {% elif preschooler.wfa > 2.0 %}
                                     <div class="card-body">
                                         <p class="card-text" style="color: rgb(242, 98, 33);">{{ preschooler.wfa }}</p>
                                     </div>
@@ -120,7 +173,11 @@
                                     <h6 class="card-title">HFA Status</h6>
                                 </div>
                                 
-                                {% if preschooler.hfa > 2.0 %}
+                                {% if preschooler.hfa is None %}
+                                    <div class="card-body">
+                                        <p class="card-text">{{ preschooler.hfa }}</p>
+                                    </div>
+                                {% elif preschooler.hfa > 2.0 %}
                                     <div class="card-body">
                                         <p class="card-text" style="color: rgb(242, 98, 33);">{{ preschooler.hfa }}</p>
                                     </div>
@@ -142,7 +199,11 @@
                                 <div class="card-header">
                                     <h6 class="card-title">WHFA Status</h6>
                                 </div>
-                                {% if preschooler.whfa > 2.0 %}
+                                {% if preschooler.whfa is None %}
+                                    <div class="card-body">
+                                        <p class="card-text" >{{ preschooler.whfa }}</p>
+                                    </div>
+                                {% elif preschooler.whfa > 2.0 %}
                                     <div class="card-body">
                                         <p class="card-text" style="color: rgb(242, 98, 33);">{{ preschooler.whfa }}</p>
                                     </div>

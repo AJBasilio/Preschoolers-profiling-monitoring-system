@@ -36,7 +36,7 @@
        $('[data-toggle="tooltip"]').on('shown.bs.tooltip', function () {
        $('.tooltip').addClass('animated fade');
     })
-    </script>
+</script>
     
 
 <!-- Dashboard -->
@@ -76,6 +76,15 @@
                                 <hr>
                                 <div class="row">
                                     <div class="col-sm">
+                                        <p class="mb-0">Age</p>
+                                    </div>
+                                    <div class="col-sm">
+                                        <p class="text-muted mb-0">{{ preschooler.age_months }} Months</p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm">
                                         <p class="mb-0">Gender</p>
                                     </div>
                                     <div class="col-sm">
@@ -87,63 +96,124 @@
                                     <div class="col-sm">
                                         <p class="mb-0">Weight:</p>
                                     </div>
+                                    {% if preschooler.weight is None%}
+                                    <div class="col-sm">
+                                        <p class="text-muted mb-0">{{ preschooler.weight }} </p>
+                                    </div>
+                                    {% else%}
                                     <div class="col-sm">
                                         <p class="text-muted mb-0">{{ preschooler.weight }} kg</p>
                                     </div>
+                                    {% endif %}
+
                                     <div class="col-sm">
                                         <p class="mb-0">Height:</p>
                                     </div>
+                                    {% if preschooler.height is None%}
+                                    <div class="col-sm">
+                                        <p class="text-muted mb-0">{{ preschooler.height }}</p>
+                                    </div>
+                                    {% else %}
                                     <div class="col-sm">
                                         <p class="text-muted mb-0">{{ preschooler.height }} cm</p>
                                     </div>
+                                    {% endif %}
                                 </div>
                                 <hr>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <p class="mb-0">Date Measured</p>
-                                    </div>
-                                    <div class="col-sm">
-                                        <p class="text-muted mb-0">{{ preschooler.date_measured }}</p>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="col text-center">
+                    <div class="col text-center h-50">
                         <h6 class="text-center">Nutritional Status Legends:</h6>
                         <i class="fas fa-square" style="color: rgb(0, 165, 79);"> -Normal</i>
                         <i class="fas fa-square" style="color: rgb(255, 241, 2);"> -Wasted</i>
                         <i class="fas fa-square" style="color: rgb(238, 29, 35);"> -Severly Wasted</i>
-                        <i class="fas fa-square" style="color: rgb(242, 98, 33);"> -Overweight</i>
-                        <i class="fas fa-square" style="color: rgb(0,0,0);"> -Obese</i>
+                        <i class="fas fa-square" style="color: rgb(242, 98, 33);"> -Overweight/Obese</i>
+                        <!-- <i class="fas fa-square" style="color: rgb(0,0,0);"> -Obese</i> -->
                         <hr>
                         <div class="card-group">
                             <div class="card">
                                 <div class="card-header">
                                     <h6 class="card-title">WFA Status</h6>
                                 </div>
-                                <div class="card-body">
-                                    <p class="card-text">{{ preschooler.wfa }}</p>
-                                </div>
+                                {% if preschooler.wfa is None%}
+                                    <div class="card-body">
+                                        <p class="card-text" >{{ preschooler.wfa }}</p>
+                                    </div>
+                                {% elif preschooler.wfa > 2.0 %}
+                                    <div class="card-body">
+                                        <p class="card-text" style="color: rgb(242, 98, 33);">{{ preschooler.wfa }}</p>
+                                    </div>
+                                {% elif preschooler.wfa >= -2.0 and preschooler.wfa <= 2.0 %}
+                                    <div class="card-body">
+                                        <p class="card-text" style="color: rgb(0, 165, 79);">{{ preschooler.wfa }}</p>
+                                    </div>
+                                {% elif preschooler.wfa >= -3.0 and preschooler.wfa <= -2.0 %}
+                                    <div class="card-body">
+                                        <p class="card-text" style="color: rgb(255, 241, 2);">{{ preschooler.wfa }}</p>
+                                    </div>
+                                {% else %}
+                                    <div class="card-body">
+                                        <p class="card-text" style="color: rgb(242, 98, 33);">{{ preschooler.wfa }}</p>
+                                    </div>
+                                {% endif %}
                             </div>
                             <div class="card">
                                 <div class="card-header">
                                     <h6 class="card-title">HFA Status</h6>
                                 </div>
-                                <div class="card-body">
-                                    <p class="card-text">{{ preschooler.hfa }}</p>
-                                </div>
+                                
+                                {% if preschooler.hfa is None %}
+                                    <div class="card-body">
+                                        <p class="card-text">{{ preschooler.hfa }}</p>
+                                    </div>
+                                {% elif preschooler.hfa > 2.0 %}
+                                    <div class="card-body">
+                                        <p class="card-text" style="color: rgb(242, 98, 33);">{{ preschooler.hfa }}</p>
+                                    </div>
+                                {% elif preschooler.hfa >= -2.0 and preschooler.hfa <= 2.0 %}
+                                    <div class="card-body">
+                                        <p class="card-text" style="color: rgb(0, 165, 79);">{{ preschooler.hfa }}</p>
+                                    </div>
+                                {% elif preschooler.hfa >= -3.0 and preschooler.hfa <= -2.0 %}
+                                    <div class="card-body">
+                                        <p class="card-text" style="color: rgb(255, 241, 2);">{{ preschooler.hfa }}</p>
+                                    </div>
+                                {% else %}
+                                    <div class="card-body">
+                                        <p class="card-text" style="color: rgb(242, 98, 33);">{{ preschooler.hfa }}</p>
+                                    </div>
+                                {% endif %}
                             </div>
                             <div class="card">
                                 <div class="card-header">
                                     <h6 class="card-title">WHFA Status</h6>
                                 </div>
-                                <div class="card-body">
-                                    <p class="card-text">{{ preschooler.whfa }}</p>
+                                {% if preschooler.whfa is None %}
+                                    <div class="card-body">
+                                        <p class="card-text" >{{ preschooler.whfa }}</p>
+                                    </div>
+                                {% elif preschooler.whfa > 2.0 %}
+                                    <div class="card-body">
+                                        <p class="card-text" style="color: rgb(242, 98, 33);">{{ preschooler.whfa }}</p>
+                                    </div>
+                                {% elif preschooler.whfa >= -2.0 and preschooler.whfa <= 2.0 %}
+                                    <div class="card-body">
+                                        <p class="card-text" style="color: rgb(0, 165, 79);">{{ preschooler.whfa }}</p>
+                                    </div>
+                                {% elif preschooler.whfa >= -3.0 and preschooler.whfa <= -2.0 %}
+                                    <div class="card-body">
+                                        <p class="card-text" style="color: rgb(255, 241, 2);">{{ preschooler.whfa }}</p>
+                                    </div>
+                                {% else %}
+                                    <div class="card-body">
+                                        <p class="card-text" style="color: rgb(242, 98, 33);">{{ preschooler.whfa }}</p>
+                                    </div>
+                                {% endif %}
                                 </div>
                             </div>
-                        </div>
+                            <br>
                             <br>
                             <br>
                             <br>
