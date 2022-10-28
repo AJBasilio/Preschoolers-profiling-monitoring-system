@@ -9,6 +9,7 @@
   z-index: 1030;
   max-height: 85px;
   background-color: white;
+  border-bottom: 3px;
 }
 
 .navbar-icon {
@@ -48,6 +49,29 @@ li{
 
 a{
     text-decoration: none;
+}
+
+
+/* Data table Styling */
+
+
+.page-item.active .page-link {
+  color: rgb(235, 233, 233) !important;
+  background-color: #929292 !important;
+  border-color:rgba(0, 0, 0, 0.356) !important;
+}
+
+table{
+  padding: 25px 5px 10px 5px;
+}
+thead{
+  border-color:  rgba(23, 128, 69, 0.514)!important;
+}
+
+th, td{
+  border-right: 1px solid !important;
+
+  border-color: rgba(23, 128, 69, 0.288)!important;
 }
 
 /* Navigation links/button styling */
@@ -166,7 +190,7 @@ a{
 }
 
 #grid{
-  background-color:#F2F3F5;
+  background-image: linear-gradient(to top, rgba(230, 250, 202, 0.884),rgba(228, 228, 227, 0.624));
   position: relative;
   padding: 3%;
   width: 100%;
@@ -177,9 +201,15 @@ a{
 /* Cards */
 .card-header{
   font-size: 13px;
-  font-family: 'Poppins';
-  background-color: rgba(233, 249, 230)!important; 
+  font-family: 'Poppins', sans-serif;;
+  background-color:rgb(27, 177, 92) !important;
+  color:white;
+  padding: 10px 15px 5px 10px !important;
+  text-align: center;
+
+
 }
+
 /* Login Form */
 html {
     width: 100%;
