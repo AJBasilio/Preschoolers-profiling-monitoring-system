@@ -1,6 +1,4 @@
-from ast import dump
-from logging import CRITICAL
-from multiprocessing import context
+from itertools import count
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
@@ -143,12 +141,35 @@ def bhw_validation(request):
 
 
 def admin_home2(request):
-    invalidated_status = BarangayHealthWorker.objects.filter(
-        is_validated=False).count()
+    preschooler_normal = []
+    preschooler_wasted = []
+    preschooler_severly = []
+    preschooler_over_obese = []
 
-    context = {
-        'invalidated_count': invalidated_status,
-    }
+    for obj in Preschooler.objects.all():
+        if obj.bmi_tag == 'NORMAL':
+            preschooler_normal.append(obj)
+        elif obj.bmi_tag == 'ABOVE NORMAL':
+            preschooler_over_obese.append(obj)
+        elif obj.bmi_tag == 'BELOW NORMAL':
+            preschooler_wasted.append(obj)
+        else:
+            preschooler_severly.append(obj)
+
+    normal_count = len(preschooler_normal)
+    wasted_count = len(preschooler_wasted)
+    severly_count = len(preschooler_severly)
+    overobese_count = len(preschooler_over_obese)
+
+    count_list = [normal_count, wasted_count, severly_count, overobese_count, overobese_count]
+    data_json = dumps(count_list)
+    
+    context = {'normal' : normal_count,
+               'wasted' : wasted_count,
+               'severly' : severly_count,
+               'overobese' : overobese_count,
+               'count_data' : data_json}
+
     return render(request, 'activities/Admin Home2.html', context)
     
 

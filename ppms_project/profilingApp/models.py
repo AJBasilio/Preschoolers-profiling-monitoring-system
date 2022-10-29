@@ -151,6 +151,7 @@ class Preschooler(Model):
         except:
             pass
     
+    @property
     def bmi_tag(self):
         calculator = Calculator(adjust_height_data=False, adjust_weight_scores=False,
                        include_cdc=False, logger_name='pygrowup',
