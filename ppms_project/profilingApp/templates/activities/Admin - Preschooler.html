@@ -95,8 +95,8 @@
                     <div class="card text-right" style="width: 10rem;">
                         <div class="dropdown text-center" >
                             <h6 class="text-uppercase text-muted dropdown-header">Barangay</h6>
-                            <select class="form-select " aria-label="Default select example" >
-                                <option selected>All</option>
+                            <select class="form-select " aria-label="Default select example" onchange="javascript:handleNextView(this)">
+                                <option >All</option>
                                 <option value="1">San andress</option>
                                 <option value="2">San Nicolas</option>
                                 <option value="3">Salitran</option>
@@ -179,6 +179,12 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    function handleNextView(el){ 
+        window.location.assign( el.value ); /* redirect on select */
+    } 
+</script>
 
 <script>
     // Set new default font family and font color to mimic Bootstrap's default styling

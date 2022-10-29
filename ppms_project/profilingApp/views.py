@@ -140,7 +140,7 @@ def bhw_validation(request):
     return render(request, 'activities/Admin Validate BHW.html', context)
 
 
-def admin_home2(request):
+def admin_preschoolers(request):
     preschooler_normal = []
     preschooler_wasted = []
     preschooler_severly = []
@@ -170,9 +170,7 @@ def admin_home2(request):
                'overobese' : overobese_count,
                'count_data' : data_json}
 
-    return render(request, 'activities/Admin Home2.html', context)
-    
-
+    return render(request, 'activities/Admin - Preschooler.html', context)
 
 def unvalidated_profile(request, pk):
     unvalidate_bhw = BarangayHealthWorker.objects.get(user_id=pk)
