@@ -106,6 +106,7 @@ class Preschooler(Model):
     weight = models.FloatField(null=True, validators=[MinValueValidator(1.0), MaxValueValidator(28.0)])
     gender = models.CharField(max_length=100, choices=GENDER, null=True)
     date_measured = models.DateField(null=True, blank=True)
+    health_problem = models.CharField(max_length=500, null=True)
 
     def __str__(self):
         return f"{self.first_name} {self.middle_name} {self.last_name}"
@@ -172,5 +173,7 @@ class Preschooler(Model):
         except:
             pass
 
-        
-
+class Log(Model):
+    log_action = models.CharField(max_length=500, null=True)
+    logged_userid = models.IntegerField(null=True)
+    datetime_log = models.DateTimeField(null=True)
