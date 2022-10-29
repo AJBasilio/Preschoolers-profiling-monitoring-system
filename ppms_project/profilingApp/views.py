@@ -172,6 +172,43 @@ def admin_preschoolers(request):
 
     return render(request, 'activities/Admin - Preschooler.html', context)
 
+def admin_preschoolers_barangay(request, brgy):
+    parents = Parent.objects.filter(barangay=brgy)
+    preschoolers = Preschooler.objects.filter(parent__in=(parents))
+
+    preschooler_normal = []
+    preschooler_wasted = []
+    preschooler_severly = []
+    preschooler_over_obese = []
+
+    for p in preschoolers:
+        if p.bmi_tag == 'NORMAL':
+            preschooler_normal.append(p)
+        elif p.bmi_tag == 'ABOVE NORMAL':
+            preschooler_over_obese.append(p)
+        elif p.bmi_tag == 'BELOW NORMAL':
+            preschooler_wasted.append(p)
+        else:
+            preschooler_severly.append(p)
+    
+    normal_count = len(preschooler_normal)
+    wasted_count = len(preschooler_wasted)
+    severly_count = len(preschooler_severly)
+    overobese_count = len(preschooler_over_obese)
+
+    count_list = [normal_count, wasted_count, severly_count, overobese_count, overobese_count]
+    data_json = dumps(count_list)
+
+    context = {'brgy' : brgy,
+               'normal' : normal_count,
+               'wasted' : wasted_count,
+               'severly' : severly_count,
+               'overobese' : overobese_count,
+               'count_data' : data_json
+               }
+
+    return render(request, 'activities/Admin - Preschooler_barangay.html', context)
+
 def unvalidated_profile(request, pk):
     unvalidate_bhw = BarangayHealthWorker.objects.get(user_id=pk)
     form = Validate_BHW(instance=unvalidate_bhw)

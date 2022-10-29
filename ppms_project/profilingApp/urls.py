@@ -13,6 +13,7 @@ urlpatterns = [
     # Admin
     path('ahome', views.admin_home, name='admin_home'),
     path('apreschoolers', views.admin_preschoolers, name='admin_home2'),
+    path('apreschoolersbarangay/<str:brgy>/', views.admin_preschoolers_barangay, name='apreschoolersb'),
     path('validation', views.bhw_validation, name='bhw_validation'),
     path('validate_profile/<str:pk>/', views.unvalidated_profile, name='unvalidated_profile'),
     path('delete_profile/<str:pk>/', views.delete_profile, name='delete_profile'),

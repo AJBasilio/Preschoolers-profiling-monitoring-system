@@ -87,7 +87,7 @@
         <div class="container">
             <div class="row justify-content-between"> 
                 <div class="col-5">
-                    <h3 style="text-align:left;"> Preschooler Dashboard</h3>
+                    <h3 style="text-align:left;"> Preschooler Dashboard Barangay</h3>
                 </div>
                 <div class="col-5"></div>
                 <br>
@@ -96,6 +96,7 @@
                         <div class="dropdown text-center" >
                             <h6 class="text-uppercase text-muted dropdown-header">Barangay</h6>
                             <select class="form-select " aria-label="Default select example" onchange="javascript:handleNextView(this)">
+                                <option selected disabled >{{ brgy }}</option>
                                 <option value="{% url 'admin_home2' %}">All</option>
                                 <option value="{% url 'apreschoolersb' 'Burol' %}">Burol</option>
                                 <option value="{% url 'apreschoolersb' 'Burol I' %}">Burol I</option>
