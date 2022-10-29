@@ -121,7 +121,7 @@
                             <h5 class="card-title">Normal</h5>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">0</p>
+                            <p class="card-text">{{ normal }}</p>
                         </div>
                     </div>
                 </div>
@@ -131,7 +131,7 @@
                             <h5 class="card-title">Wasted</h5>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">0</p>
+                            <p class="card-text">{{ wasted }}</p>
                         </div>
                     </div>
                 </div>
@@ -141,7 +141,7 @@
                             <h5 class="card-title">Severly Wasted</h5>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">0</p>
+                            <p class="card-text">{{ severly }}</p>
                         </div>
                     </div>
                 </div>
@@ -151,7 +151,7 @@
                             <h5 class="card-title">Overweight</h5>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">0</p>
+                            <p class="card-text">{{ overobese }}</p>
                         </div>
                     </div>
                 </div>
@@ -161,7 +161,7 @@
                             <h5 class="card-title">Obese</h5>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">0</p>
+                            <p class="card-text">{{ overobese }}</p>
                         </div>
                     </div>
                 </div>
@@ -206,10 +206,9 @@
     // Set new default font family and font color to mimic Bootstrap's default styling
     Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
     Chart.defaults.global.defaultFontColor = '#292b2c';
-    
-    
 
     // Pie Chart Example
+    var data_count = JSON.parse('{{ count_data|escapejs }}')
     var ctx = document.getElementById("myBar");
     var myBar = new Chart(ctx, {
     type: 'bar',
@@ -222,7 +221,7 @@
         labels: ["Normal", "Wasted", "Severly Wasted","Overweight","Obese"],
         datasets: [{
                 label: 'Normal',
-                data: [65, 59, 80, 81, 56, 55, 40],
+                data: data_count,
                 backgroundColor: [
                 'rgb(0, 165, 79)',
                 'rgb(255, 241, 2)',
