@@ -52,13 +52,11 @@
                             <ul class="dropdown-menu dropdown-menu-end p-2" aria-labelledby="dropdownUser1">
                                 <div id="dropdown-menu">
                                     <div>
-                                        <i class="fa fa-lg fa-fw fa-user bi" style="margin-left:5px;"></i>   
-                                        <p class="text-center p-3">Signed in as an Admin</p>
+                                        <i class="fa fa-lg fa-fw fa-user bi" style="margin-left:5px;"></i>  
                                         <span style="font-size: 15px;"> {{ user.first_name }} {{ user.last_name }} </span>
                                     </div>
                                     <div>
                                         <li><hr class="dropdown-divider"></li>
-                                        <p class="text-center p-3">Signed in as an Admin</p>
                                         <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-fw fa-sign-out-alt mx-1"></i>Sign out</a></li>
                                     </div>
                                 </div>
@@ -85,13 +83,11 @@
 <div id="grid" class="container-fluid">
     <div class="container">
         <div class="container">
-            <div class="row justify-content-between"> 
-                <div class="col-5">
-                    <h3 style="text-align:left;"> Preschooler Dashboard Barangay</h3>
+            <div class="row"> 
+                <div class="col-sm-8 mb-3 d-flex justify-content-sm-start justify-content-center">
+                    <h3>{{ brgy }} Preschooler Status Overview</h3>
                 </div>
-                <div class="col-5"></div>
-                <br>
-                <div class="col">
+                <div class="col-sm-4  mb-3 d-flex justify-content-sm-end justify-content-center">
                     <div class="card text-right" style="width: 10rem;">
                         <div class="dropdown text-center" >
                             <h6 class="text-uppercase text-muted dropdown-header">Barangay</h6>
@@ -113,9 +109,9 @@
                 <hr>
             </div>
         </div>
-        <div class="row">
-                <div class="col">
-                <div class="card shadow-sm bg-white rounded">
+            <div class="row d-flex align-items-stretch">
+                <div class="col-md mb-2">
+                <div class="card shadow-sm bg-white rounded h-100">
                         <div class="card-header">
                             <h6 class="card-title">Normal</h6>
                         </div>
@@ -124,8 +120,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card shadow-sm bg-white rounded">
+                <div class="col-md mb-2">
+                    <div class="card shadow-sm bg-white rounded h-100">
                         <div class="card-header">
                             <h6 class="card-title">Wasted</h6>
                         </div>
@@ -134,8 +130,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card shadow-sm bg-white rounded">
+                <div class="col-md mb-2">
+                    <div class="card shadow-sm bg-white rounded h-100 ">
                         <div class="card-header">
                             <h6 class="card-title">Severly Wasted</h6>
                         </div>
@@ -144,8 +140,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card shadow-sm bg-white rounded">
+                <div class="col-md mb-2">
+                    <div class="card shadow-sm bg-white rounded h-100 ">
                         <div class="card-header">
                             <h6 class="card-title">Overweight</h6>
                         </div>
@@ -154,8 +150,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card shadow-sm bg-white rounded">
+                <div class="col-md mb-2">
+                    <div class="card shadow-sm bg-white rounded h-100 ">
                         <div class="card-header">
                             <h6 class="card-title">Obese</h6>
                         </div>

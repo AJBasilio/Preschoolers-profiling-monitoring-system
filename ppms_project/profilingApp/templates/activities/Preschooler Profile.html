@@ -17,9 +17,10 @@
                 <div id="navLinks">
                     <ul class="nav text-small">
                         <li>
-                            <a href="{% url 'preschooler_dashboard' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7" 
+                            <a href="{% url 'preschooler_dashboard' %}"  style="border-radius: 13%;"class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7" 
                             title="Go back to Preschooler Dashboard">
                             <i class="fa fa-lg fa-fw fa-chevron-circle-left" style="font-size: 24px;"></i>    
+                            <span style="color:rgb(3, 3, 3);">Back</span>   
                             </a>
                         </li>
                     </ul>
@@ -40,7 +41,7 @@
     
 
 <!-- Dashboard -->
-<div id="grid" class="container-fluid" style="margin-top: 60px;">
+<div id="grid" class="container-fluid" style="margin-top: 85px;">
     <div class="container-grid">
         <div class="">
             <div class="row"> 
@@ -53,21 +54,73 @@
         <div>
             <section>
                 <div class="row">
-                    <div class="col">
+                    <div class="col-md-6 col-12 mb-4 mb-md-3">
                         <div class="card">
-                            <div class="card-body">
+                            <div class="card-header">
+                                <h4 class=" mx-1 my-1">Preschooler Details</h4>
+                            </div>
+
+                            <div class="card-body p-4 shadow-sm">
+                                <div class="row d-flex mb-4">
+                                    <div class="text-align: center; d-flex justify-content-end">
+                                        <button style="background-color: #188045; color: white;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#update"><span class="fa fa-calendar-alt"></span> Update Details</button>
+                                    </div>
+                                    <div class="modal fade" id="update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header text-center">
+                                                    <h5 class="modal-title fa fa-user-edit" id="exampleModalLabel"> Preschooler Update</h5>
+                                                    
+                                                </div>
+                                                <div class="modal-body mx-4">
+                                                    <form method="POST">
+                                                    <!-- <form method="POST" onsubmit="get_cred($('#type').val());"> -->
+                                                        {% csrf_token %}
+                                                        <div class="md-form">
+                                                            <label id="user-lbl" data-error="wrong" data-success="right">Height (cm): </label>
+                                                            {{ form.height }}
+                                                        </div>
+                                                        <div class="md-form">
+                                                            <label id="user-lbl" data-error="wrong" data-success="right">Weight (kg):</label>
+                                                            {{ form.weight }}
+                                                        </div>
+                                                        <div class="md-form">
+                                                            <label id="user-lbl" data-error="wrong" data-success="right">Date Measured:</label>
+                                                            {{ form.date_measured }}
+                                                        </div>
+                                                        <div class="md-form">
+                                                            <label id="user-lbl" data-error="wrong" data-success="right">Health Problem/s:</label>
+                                                            {{ form.health_problem }}
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="submit" class="btn " style="background-color: #188045; color: white;">Save</button>
+                                                            <button type="button" class="btn" style="background-color: #EF3A25; color: white;" data-bs-dismiss="modal" aria-label="Close"> Cancel</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
                                 <div class="row">
-                                    <div class="col-sm">
-                                        <p class="fw-bold mb-0">Full Name:</p>
+                                    <div class="col-sm justify-content-start justify-content-md-center">
+                                        <p class="mb-0">Full Name</p>
                                     </div>
-                                    <div class="col-sm">
-                                        <p class="text-muted mb-0">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }} {{ preschooler.suffix_name }}</p>
-                                    </div>
+                                    {% if preschooler.suffix_name is None %}
+                                        <div class="col-sm justify-content-start justify-content-md-center">
+                                            <p class="text-muted mb-0">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }}</p>
+                                        </div>
+                                    {% else %}
+                                        <div class="col-sm justify-content-start justify-content-md-center">
+                                            <p class="text-muted mb-0">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }} {{ preschooler.suffix_name }}</p>
+                                        </div>
+                                    {% endif %}
                                 </div>
                                 <hr>
                                 <div class="row">
-                                    <div class="col-sm">
-                                        <p class="fw-bold mb-0">Date of Birth:</p>
+                                    <div class="col-sm justify-content-start justify-content-md-center">
+                                        <p class="mb-0">Date of Birth</p>
                                     </div>
                                     <div class="col-sm">
                                         <p class="text-muted mb-0">{{ preschooler.birthday }}</p>
@@ -75,84 +128,89 @@
                                 </div>
                                 <hr>
                                 <div class="row">
-                                    <div class="col-sm">
-                                        <p class="fw-bold mb-0">Age:</p>
+                                    <div class="col-sm justify-content-start justify-content-md-center">
+                                        <p class="mb-0">Age</p>
                                     </div>
-                                    <div class="col-sm">
+                                    <div class="col-sm justify-content-start justify-content-md-center">
                                         <p class="text-muted mb-0">{{ preschooler.age_months }} Months</p>
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="row">
-                                    <div class="col-sm">
-                                        <p class="fw-bold mb-0">Gender:</p>
+                                    <div class="col-sm justify-content-start justify-content-md-center">
+                                        <p class="mb-0">Gender</p>
                                     </div>
-                                    <div class="col-sm">
+                                    <div class="col-sm justify-content-start justify-content-md-center">
                                         <p class="text-muted mb-0">{{ preschooler.gender }}</p>
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="row">
-                                    <div class="col-sm">
-                                        <p class="fw-bold mb-0">Weight:</p>
+                                    <div class="col-sm justify-content-start justify-content-md-center">
+                                        <p class="mb-0">Weight:</p>
                                     </div>
                                     {% if preschooler.weight is None%}
-                                    <div class="col-sm">
+                                    <div class="col-sm justify-content-start justify-content-md-center">
                                         <p class="text-muted mb-0">{{ preschooler.weight }} </p>
                                     </div>
                                     {% else%}
-                                    <div class="col-sm">
+                                    <div class="col-sm justify-content-start justify-content-md-center">
                                         <p class="text-muted mb-0">{{ preschooler.weight }} kg</p>
                                     </div>
                                     {% endif %}
 
-                                    <div class="col-sm">
-                                        <p class="fw-bold mb-0">Height:</p>
+                                    <div class="col-sm justify-content-start justify-content-md-center">
+                                        <p class="mb-0">Height:</p>
                                     </div>
                                     {% if preschooler.height is None%}
-                                    <div class="col-sm">
+                                    <div class="col-sm justify-content-start justify-content-md-center">
                                         <p class="text-muted mb-0">{{ preschooler.height }}</p>
                                     </div>
                                     {% else %}
-                                    <div class="col-sm">
+                                    <div class="col-sm justify-content-start justify-content-md-center">
                                         <p class="text-muted mb-0">{{ preschooler.height }} cm</p>
                                     </div>
                                     {% endif %}
                                 </div>
                                 <hr>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <p class="fw-bold mb-0">Date Measured:</p>
-                                    </div>
-                                    <div class="col-sm">
-                                        <p class="text-muted mb-0">{{ preschooler.date_measured }}</p>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <p class="fw-bold mb-0">Health Problem/s:</p>
-                                    </div>
-                                    <div class="col-sm">
-                                        <p class="text-muted mb-0">Mema</p>
-                                    </div>
-                                </div>
+                            </div>
+                            <div class="card-footer small text-muted">
+                                Last Updated : {{ preschooler.date_measured }} 
                             </div>
                         </div>
                     </div>
                     
-                    <div class="col text-center h-50">
-                        <h6 class="text-center">Nutritional Status Legends:</h6>
-                        <i class="fas fa-square" style="color: rgb(0, 165, 79);"> -Normal</i>
-                        <i class="fas fa-square" style="color: rgb(255, 241, 2);"> -Wasted</i>
-                        <i class="fas fa-square" style="color: rgb(238, 29, 35);"> -Severly Wasted</i>
-                        <i class="fas fa-square" style="color: rgb(242, 98, 33);"> -Overweight/Obese</i>
+                    <div class="col-md-6 col-12 text-center h-100 mb-3 ">
+                        
+                        <h5 class="text-start mx-3 mb-3">Nutritional Status Legends:</h5>
+                        <div class="col align-self-stretch h-100 mx-3">
+                            <div class="row-xxl d-flex justify-content-start ">
+                                <div class="col d-flex justify-content-start mb-2">
+                                    <i class="fas fa-2x fa-square" style="color: rgb(0, 165, 79);"></i>
+                                    <span class="mx-1"><h5>Normal</h6></span>
+                                </div>
+                                <div class="col d-flex justify-content-start mb-2">
+                                    <i class="fas fa-2x fa-square" style="color: rgb(255, 241, 2);"></i>
+                                    <span class="mx-1"><h5>Wasted</h5></span>
+                                </div>          
+                            </div>
+                            <div class="row-xxl d-flex justify-content-evenly">
+                                <div class="col d-flex justify-content-start mb-2" >
+                                    <i class="fas fa-2x fa-square" style="color: rgb(238, 29, 35);"></i>
+                                    <span class="mx-1"><h5>Severly Wasted</h5></span>
+                                </div>
+                                <div class="col d-flex justify-content-start mb-2" >
+                                    <i class="fas fa-2x fa-square" style="color: rgb(242, 98, 33);"></i>
+                                    <span class="mx-1"><h5>Overweight/Obese</h5></span>
+                                </div>
+                            </div>
+                        </div>
                         <!-- <i class="fas fa-square" style="color: rgb(0,0,0);"> -Obese</i> -->
                         <hr>
-                        <div class="card-group">
+                        <div class="card-group my-2 mx-3">
                             <div class="card">
                                 <div class="card-header">
-                                    <h6 class="card-title">WFA Status</h6>
+                                    <h5 class="card-title">WFA Status</h4>
                                 </div>
                                 {% if preschooler.wfa is None%}
                                     <div class="card-body">
@@ -178,7 +236,7 @@
                             </div>
                             <div class="card">
                                 <div class="card-header">
-                                    <h6 class="card-title">HFA Status</h6>
+                                    <h5 class="card-title">HFA Status</h3>
                                 </div>
                                 
                                 {% if preschooler.hfa is None %}
@@ -205,7 +263,7 @@
                             </div>
                             <div class="card">
                                 <div class="card-header">
-                                    <h6 class="card-title">WHFA Status</h6>
+                                    <h5 class="card-title">WHFA Status</h5>
                                 </div>
                                 {% if preschooler.whfa is None %}
                                     <div class="card-body">
@@ -230,64 +288,23 @@
                                 {% endif %}
                                 </div>
                             </div>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <div class="text-align: center;">
-                                <button style="background-color: #188045; color: white;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#update"><span class="fa fa-calendar-alt"></span> Update preschooler</button>
-                            </div>
-                            <div class="modal fade" id="update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header text-center">
-                                            <h5 class="modal-title fa fa-user-edit" id="exampleModalLabel"> Preschooler Update</h5>
-                                            
-                                        </div>
-                                        <div class="modal-body mx-4">
-                                            <form method="POST">
-                                            <!-- <form method="POST" onsubmit="get_cred($('#type').val());"> -->
-                                                {% csrf_token %}
-                                                <div class="md-form">
-                                                    <label id="user-lbl" data-error="wrong" data-success="right">Height (cm): </label>
-                                                    {{ form.height }}
-                                                </div>
-                                                <div class="md-form">
-                                                    <label id="user-lbl" data-error="wrong" data-success="right">Weight (kg):</label>
-                                                    {{ form.weight }}
-                                                </div>
-                                                <div class="md-form">
-                                                    <label id="user-lbl" data-error="wrong" data-success="right">Date Measured:</label>
-                                                    {{ form.date_measured }}
-                                                </div>
-                                                <div class="md-form">
-                                                    <label id="user-lbl" data-error="wrong" data-success="right">Health Problem/s:</label>
-                                                    {{ form.health_problem }}
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="submit" class="btn " style="background-color: #188045; color: white;">Save</button>
-                                                    <button type="button" class="btn" style="background-color: #EF3A25; color: white;" data-bs-dismiss="modal" aria-label="Close"> Cancel</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        </div>
                         </div>
                     </div>
                 </div>
-                <br>
                 <div class="row">
-                    <div class="card">
-                        <div class="card-header">
-                            Nutritional Status History
-                        </div>
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-header">
+                                Nutritional Status History
+                            </div>
 
-                        <div class="card-body">
-                            <canvas id="myChart" width="100%" height="30"></canvas>
-                        </div>
-                        <div class="card-footer small text-muted">
-                            Updated yesterday at 11:59 PM
+                            <div class="card-body">
+                                <canvas id="myChart" width="100%" height="30"></canvas>
+                            </div>
+                            <div class="card-footer small text-muted">
+                                Updated yesterday at 11:59 PM
+                            </div>
                         </div>
                     </div>
                 </div>

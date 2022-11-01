@@ -45,8 +45,12 @@
                         </li>
                         <li>
                             <a class="btn nav-link" id="dropdownUser1" data-bs-toggle="dropdown" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
-                            title="User Settings" aria-expanded="false">
-                            <i class="fa fa-fw fa-user-cog bi dropdown-toggle" style="font-size: 24px;"></i>
+                            title="User" aria-expanded="false">
+                            <i class="fa fa-fw fa-user-cog bi" style="font-size: 24px;"></i>
+                            <span class="position-absolute top-100 start-75 translate-middle badge rounded-pill text-dark" style="border-radius: 50%;">
+                                <i class="fa fa-lg fa-fw fa-caret-down bg-light" style="border-radius: 25%; margin-bottom: 15px;"></i>
+                            </span></a>
+                            
                                 
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end p-2" aria-labelledby="dropdownUser1">
@@ -57,7 +61,6 @@
                                     </div>
                                     <div>
                                         <li><hr class="dropdown-divider"></li>
-                                        <p class="text-center p-3">Signed in as an Admin</p>
                                         <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-fw fa-sign-out-alt mx-1"></i>Sign out</a></li>
                                     </div>
                                 </div>
@@ -100,7 +103,7 @@
                     <h3> Barangay Health Workers</h3>
 
                 </div>
-                <div class="card shadow-sm p-3 bg-white rounded">
+                <div class="card shadow-lg p-3 bg-white rounded" >
                     <div class="table-responsive">
                         <table class="table table-hover table-cell-border" id="table_validation">
                             <thead>
@@ -144,7 +147,7 @@
             </div>
         </div>
     </div>
-        <hr>
+
         <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
             

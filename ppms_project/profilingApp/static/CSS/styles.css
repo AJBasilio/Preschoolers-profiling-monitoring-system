@@ -207,7 +207,6 @@ th, td{
   padding: 10px 15px 5px 10px !important;
   text-align: center;
 
-
 }
 
 /* Login Form */
@@ -461,6 +460,7 @@ html {
     width: auto;
     background-color: #FFFFFF;
     margin: 10px auto;
+    
   }
   
 .row {
