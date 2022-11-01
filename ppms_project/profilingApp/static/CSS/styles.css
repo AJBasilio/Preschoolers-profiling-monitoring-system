@@ -66,12 +66,18 @@ table{
 }
 thead{
   border-color:  rgba(23, 128, 69, 0.514)!important;
+  background-color: #f0fdec;
+    text-align: left !important;
 }
 
 th, td{
   border-right: 1px solid !important;
-
+  padding: 12px 15px !important; 
   border-color: rgba(23, 128, 69, 0.288)!important;
+}
+
+tbody tr:nth-of-type(even) {
+  background-color: #edf7ea;
 }
 
 /* Navigation links/button styling */

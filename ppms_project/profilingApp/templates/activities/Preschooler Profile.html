@@ -61,48 +61,6 @@
                             </div>
 
                             <div class="card-body p-4 shadow-sm">
-                                <div class="row d-flex mb-4">
-                                    <div class="text-align: center; d-flex justify-content-end">
-                                        <button style="background-color: #188045; color: white;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#update"><span class="fa fa-calendar-alt"></span> Update Details</button>
-                                    </div>
-                                    <div class="modal fade" id="update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered modal-lg">
-                                            <div class="modal-content">
-                                                <div class="modal-header text-center">
-                                                    <h5 class="modal-title fa fa-user-edit" id="exampleModalLabel"> Preschooler Update</h5>
-                                                    
-                                                </div>
-                                                <div class="modal-body mx-4">
-                                                    <form method="POST">
-                                                    <!-- <form method="POST" onsubmit="get_cred($('#type').val());"> -->
-                                                        {% csrf_token %}
-                                                        <div class="md-form">
-                                                            <label id="user-lbl" data-error="wrong" data-success="right">Height (cm): </label>
-                                                            {{ form.height }}
-                                                        </div>
-                                                        <div class="md-form">
-                                                            <label id="user-lbl" data-error="wrong" data-success="right">Weight (kg):</label>
-                                                            {{ form.weight }}
-                                                        </div>
-                                                        <div class="md-form">
-                                                            <label id="user-lbl" data-error="wrong" data-success="right">Date Measured:</label>
-                                                            {{ form.date_measured }}
-                                                        </div>
-                                                        <div class="md-form">
-                                                            <label id="user-lbl" data-error="wrong" data-success="right">Health Problem/s:</label>
-                                                            {{ form.health_problem }}
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="submit" class="btn " style="background-color: #188045; color: white;">Save</button>
-                                                            <button type="button" class="btn" style="background-color: #EF3A25; color: white;" data-bs-dismiss="modal" aria-label="Close"> Cancel</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
                                 <div class="row">
                                     <div class="col-sm justify-content-start justify-content-md-center">
                                         <p class="mb-0">Full Name</p>
@@ -286,6 +244,49 @@
                                         <p class="card-text" style="color: rgb(242, 98, 33);">{{ preschooler.whfa }}</p>
                                     </div>
                                 {% endif %}
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <div class="text-align: center;">
+                                <button style="background-color: #188045; color: white;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#update"><span class="fa fa-calendar-alt"></span> Update preschooler</button>
+                            </div>
+                            <div class="modal fade" id="update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header text-center">
+                                            <h5 class="modal-title fa fa-user-edit" id="exampleModalLabel"> Preschooler Update</h5>
+                                            
+                                        </div>
+                                        <div class="modal-body mx-4">
+                                            <form method="POST">
+                                            <!-- <form method="POST" onsubmit="get_cred($('#type').val());"> -->
+                                                {% csrf_token %}
+                                                <div class="md-form">
+                                                    <label id="user-lbl" data-error="wrong" data-success="right">Height (cm): </label>
+                                                    {{ form.height }}
+                                                </div>
+                                                <div class="md-form">
+                                                    <label id="user-lbl" data-error="wrong" data-success="right">Weight (kg):</label>
+                                                    {{ form.weight }}
+                                                </div>
+                                                <div class="md-form">
+                                                    <label id="user-lbl" data-error="wrong" data-success="right">Date Measured:</label>
+                                                    {{ form.date_measured }}
+                                                </div>
+                                                <div class="md-form">
+                                                    <label id="user-lbl" data-error="wrong" data-success="right">Health Problem/s:</label>
+                                                    {{ form.health_problem }}
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn " style="background-color: #188045; color: white;">Save</button>
+                                                    <button type="button" class="btn" style="background-color: #EF3A25; color: white;" data-bs-dismiss="modal" aria-label="Close"> Cancel</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
