@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 from django.db.models import Model
 from django.db.models.deletion import CASCADE
+from simple_history.models import HistoricalRecords
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.utils.translation import gettext_lazy as _
 from datetime import date
@@ -53,6 +54,7 @@ class CustomUser(AbstractUser):
     middle_name = models.CharField(max_length=100, null=True)
     suffix_name = models.CharField(max_length=100, null=True, blank=True)
     phone_num = models.CharField(max_length=100, null=True)
+    history= HistoricalRecords()
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -88,6 +90,7 @@ class Parent(Model):
 
     user = models.OneToOneField(CustomUser, on_delete=CASCADE, primary_key=True)
     barangay = models.CharField(max_length=100, choices=BARANGAYS, default='Select Barangay')
+    
 
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name}"
@@ -107,6 +110,7 @@ class Preschooler(Model):
     gender = models.CharField(max_length=100, choices=GENDER, null=True)
     date_measured = models.DateField(null=True, blank=True)
     health_problem = models.CharField(max_length=500, null=True)
+    history= HistoricalRecords()
 
     def __str__(self):
         return f"{self.first_name} {self.middle_name} {self.last_name}"
@@ -177,3 +181,4 @@ class Log(Model):
     log_action = models.CharField(max_length=500, null=True)
     logged_userid = models.IntegerField(null=True)
     datetime_log = models.DateTimeField(null=True)
+    history= HistoricalRecords()
