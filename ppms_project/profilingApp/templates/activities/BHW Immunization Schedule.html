@@ -43,7 +43,7 @@
                                 <div id="dropdown-menu">
                                     <div>
                                         <i class="fa fa-lg fa-fw fa-user bi mx-auto"></i>   
-                                        <span style="font-size: 15px;"> Barangay Health Worker </span>
+                                        <span style="font-size: 15px;">{{ user.first_name }} {{ user.last_name }}</span>
                                     </div>
                                     <div>
                                         <li><hr class="dropdown-divider"></li>
@@ -59,93 +59,94 @@
     </nav>
     </div>
 </header>
+<!-- Tooltip Script -->
+<script>
+    $(function () {
+       $('[data-toggle="tooltip"]').tooltip({'delay': { show: 400, hide: 100 }})})
+       $('[data-toggle="tooltip"]').on('shown.bs.tooltip', function () {
+       $('.tooltip').addClass('animated fade');
+   })
+</script>
 
 <!-- Dashboard -->
-<div id="grid" class="container-fluid" style="margin-top: 85px;">
+<div id="grid" class="container-fluid" style="padding:3%; margin: top 65px;">
     <div class="container-grid">
-        <div class="row"> 
-            <div class="col-sm-6">
-                <h3 style="text-align:left;">Immunization Schedule</h3>
+        <div class="">
+            <div class="row"> 
+                <div class="col">
+                    <h3 style="text-align:left;">Immunization</h3>
+                </div>
             </div>
-            <div class="col-sm-6 ">
-                <form class="form-inline">
-                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                    <div>
-                        <button class="btn btn-outline-success float-end" style="margin-left: 30px;" type="submit">Add Schedule</button>
-                    </div>
-                </form>
-            </div>
-        </div>
         <hr>
         <br>
-
-<!-- MAIN CARDS STARTS HERE -->
+        </div>
+    </div>
+    <!--------------------- DataTables --------------------->
+    <div class="text-black">
         <div class="row">
-            <div class="col-xl-3 col-md-4">
-                <div class="card text-dark bg-light mb-4">
-                    <div class="card-header" style="background-color:rgba(0, 255, 85, 0.205)"><i class="fas fa-check" style="color: green; position:relative; margin-right:10px;"></i>Total No. of Validated BHW</div>
-                    <div class="card-body">
-                        <h5 class="card-title">200</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-4">
-                <div class="card text-dark bg-light mb-4">
-                    <div class="card-header" style="background-color:rgba(0, 255, 85, 0.205)"><i class="fas fa-spinner" style="color:orange; position:relative; margin-right:10px;"></i>Total No. of Non-Validated BHW</div>
-                    <div class="card-body">
-                        <h5 class="card-title">200</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-4">
-                <div class="card text-dark bg-light mb-4">
-                    <div class="card-header" style="background-color:rgba(0, 255, 85, 0.205)"><i class="fas fa-user"></i>Total No. of Parents</div>
-                    <div class="card-body">
-                        <h5 class="card-title">200</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-4">
-                <div class="card text-dark bg-light mb-4">
-                    <div class="card-header" style="background-color:rgba(0, 255, 85, 0.205)"><i class="fas fa-user-circle"></i>Total Number of Preschoolers</div>
-                    <div class="card-body">
-                        <h5 class="card-title">200</h5>
-                    </div>
-                </div>
-            </div>
+            <div class="col">
+                <div class="card-header">
+                    <h3> Preschoolers</h3>
 
-            <main>
-                <div class="container-fluid px-4">
-                    <div class="card text-dark mb-4">
-                        <div class="card-header" style="background-color:rgba(0, 255, 85, 0.205)">
-                            <i class="fas fa-chart-pie me-1"></i> Pie Chart 
-                        </div>
-                        <div class="row g-0">
-                            <div class="col-md-12">
-                                <canvas id="myPieChart" width="100%" height="40"></canvas>
-                            </div>
-                        </div>
-                        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                </div>
+                <div class="card shadow-lg p-3 bg-white rounded" >
+                    <div class="table-responsive">
+                        <table class="table table-hover table-cell-border" id="table_validation">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="text-center">No.</th>
+                                    <th scope="col" class="text-center">First Name</th>
+                                    <th scope="col" class="text-center">Middle Name</th>
+                                    <th scope="col" class="text-center">Last Name</th>
+                                    <th scope="col" class="text-center">Suffix</th>
+                                    <th scope="col" class="text-center">Age in months</th>
+                                    <th scope="col" class="text-center">Barangay Designation</th>
+                                    <th scope="col" class="nosort text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                <tr>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td style="text-align: center;">
+                                        
+                                    </td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
                     </div>
-                </div>
-            </main>
-        </div>
-        <hr>
-        <br>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col sm-4">
-                    <button class="btn" type="button" id= "validateBhwButton"><i class="fa fa-fw fa-user-slash"></i>Delete Profile</button>
-                </div>
-                <div class="col sm-4">
-                    <button class="btn" type="button" id= "validateBhwButton"><i class="fa fa-fw fa-user-clock"></i>Update Profile</button>
-                </div>
-                <div class="col sm-4">
-                    <button class="btn" type="button" id= "validateBhwButton"><i class="fa fa-fw fa-chart-line"></i>View History</button>
                 </div>
             </div>
         </div>
     </div>
+
+        <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+            
+        <script>
+            var t = $('#table_validation').DataTable({
+                info: 'true',
+                aoColumnDefs: [{
+                    'bSortable': false,
+                    'aTargets': ['nosort'],
+                    'orderable': false,
+                    'targets': [0,7],
+                }],
+                order: [[1, 'asc']],
+                });
+                t.on('order.dt search.dt', function () {
+                let i = 1;
+                t.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+                    this.data(i++);
+                });}).draw();
+        </script>
+
 </div>
 {% endblock %}
