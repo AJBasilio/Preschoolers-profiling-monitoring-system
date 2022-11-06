@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .decorators import *
 from .models import *
+from datetime import datetime, timedelta
 from json import dumps
 # Create your views here.
 
@@ -34,18 +35,25 @@ def login_registration(request):
                 messages.add_message(request, CRITICAL, str(error_string))
 
         else:
+            current_date =  datetime.now()
+            format_date =  current_date.strftime("%Y/%m/%d, %H:%M:%S")
             user_email = request.POST.get('email')
             password = request.POST.get('password')
 
             user = authenticate(request, email=user_email, password=password)
             if user is not None and user.user_type == 'P/G':
                 login(request, user)
+                Log.objects.create(log_action = 'Logged IN', logged_userid  = user.id, datetime_log = format_date
+                )
                 return redirect('parent_home')
+                
             elif user is not None and user.user_type == 'BHW':
                 bhw_validation_status = BarangayHealthWorker.objects.get(
                     user=user)
                 if bhw_validation_status.is_validated:
                     login(request, user)
+                    Log.objects.create(log_action = 'logged in', logged_userid  = user.id, datetime_log = format_date
+                )
                     return redirect('bhw_home')
                 else:
                     # Error message pop-up
@@ -53,6 +61,8 @@ def login_registration(request):
                         request, 'Please wait for the validation.')
             elif user is not None and user.user_type == 'Admin':
                 login(request, user)
+                Log.objects.create(log_action = 'logged in', logged_userid  = user.id, datetime_log = format_date
+                )
                 return redirect('admin_home')
             else:
                 messages.error(request, 'Login Failed')
@@ -62,6 +72,11 @@ def login_registration(request):
 
 
 def logout_user(request):
+    user= request.user
+    current_date =  datetime.now()
+    format_date =  current_date.strftime("%Y/%m/%d, %H:%M:%S")
+    Log.objects.create(log_action = 'Logged Out', logged_userid  = user.id, datetime_log = format_date
+                )
     logout(request)
     return redirect('login_registration')
 

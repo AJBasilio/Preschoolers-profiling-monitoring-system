@@ -180,5 +180,4 @@ class Preschooler(Model):
 class Log(Model):
     log_action = models.CharField(max_length=500, null=True)
     logged_userid = models.IntegerField(null=True)
-    datetime_log = models.DateTimeField(null=True)
-    history= HistoricalRecords()
+    datetime_log = models.CharField(max_length=500, null=True)
