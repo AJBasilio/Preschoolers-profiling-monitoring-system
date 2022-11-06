@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{% static '/CSS/css/bootstrap.min.css' %}">
     <script src="{% static '/Javascript/js/jquery.min.js' %}"></script>
     <script src="{% static '/Javascript/js/fstdropdown.js' %}"></script>
+    <script src="{% static '/Javascript/functions.js' %}"></script>
     <link rel="stylesheet" href="{% static '/CSS/css/fstdropdown.css' %}">
     <link rel="icon" href="{% static '/Media/Dasmalogo.png' %}" type="image/y-icon">
     <title>Preschoolers Profiling and Monitoring System</title>
@@ -50,7 +51,7 @@
                         </div>
                         <div class="form-group">
                             <label class="form-remember">
-                                <input type="checkbox">Remember Me
+                                <input type="checkbox" onclick="myFunction()">Show Password
                             </label><a class="form-recovery" href="">Forgot Password?</a>
                         </div>
                         <div class="form-group">
