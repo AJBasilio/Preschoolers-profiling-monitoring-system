@@ -116,17 +116,33 @@ class Preschooler(Model):
         return f"{self.first_name} {self.middle_name} {self.last_name}"
 
     def age_years(self):
-        return int(date.today().year - self.birthday.year)
+        today = date.today()
+        one_or_zero = ((today.month, today.day) < (self.birthday.month, self.birthday.day))
+
+        year_difference = today.year - self.birthday.year
+
+        return int(year_difference - one_or_zero)
     
     def age_months(self):
-        return int((date.today().year - self.birthday.year) * 12)
+        today = date.today()
+
+        date_diff = today - self.birthday
+
+        in_days = date_diff.days
+
+        return int((in_days) / (365 / 12))
 
     def wfa(self):
         calculator = Calculator(adjust_height_data=False, adjust_weight_scores=False,
                        include_cdc=False, logger_name='pygrowup',
                        log_level='INFO')
         try:
-            age_months = int((date.today().year - self.birthday.year) * 12)
+            today = date.today()
+
+            date_diff = today - self.birthday
+
+            in_days = date_diff.days
+            age_months = int((in_days) / (365 / 12))
 
             return float(calculator.wfa(self.weight, age_months, helpers.get_good_sex(str(self.gender))))
         except:
@@ -138,7 +154,12 @@ class Preschooler(Model):
                        log_level='INFO')
         
         try:
-            age_months = int((date.today().year - self.birthday.year) * 12)
+            today = date.today()
+
+            date_diff = today - self.birthday
+
+            in_days = date_diff.days
+            age_months = int((in_days) / (365 / 12))
 
             return float(calculator.lhfa(self.weight, age_months, helpers.get_good_sex(str(self.gender))))
         except:
@@ -150,7 +171,12 @@ class Preschooler(Model):
                        log_level='INFO')
         
         try:
-            age_months = int((date.today().year - self.birthday.year) * 12)
+            today = date.today()
+
+            date_diff = today - self.birthday
+
+            in_days = date_diff.days
+            age_months = int((in_days) / (365 / 12))
 
             return float(calculator.wfl(self.weight, age_months, helpers.get_good_sex(str(self.gender)), self.height))
         except:
@@ -163,7 +189,12 @@ class Preschooler(Model):
                        log_level='INFO')
         
         try:
-            age_months = int((date.today().year - self.birthday.year) * 12)
+            today = date.today()
+
+            date_diff = today - self.birthday
+
+            in_days = date_diff.days
+            age_months = int((in_days) / (365 / 12))
 
             whfa_value = float(calculator.wfl(self.weight, age_months, helpers.get_good_sex(str(self.gender)), self.height))
             if whfa_value > 2.0:
