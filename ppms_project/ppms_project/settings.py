@@ -84,6 +84,20 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#   'default': {
+#   'ENGINE': 'django.db.backends.mysql',
+#   'NAME': 'heroku_9a67aa552b22e4b',
+#   'USER': 'b83e44a316b416',
+#   'PASSWORD': "09466c8e",
+#   'HOST': "us-cdbr-east-06.cleardb.net",
+#   'PORT': "3306",
+#   'OPTIONS': {
+#       'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+#       }
+#    }
+#  }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators

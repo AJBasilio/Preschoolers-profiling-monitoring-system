@@ -109,7 +109,7 @@ class Preschooler(Model):
     weight = models.FloatField(null=True, validators=[MinValueValidator(1.0), MaxValueValidator(28.0)])
     gender = models.CharField(max_length=100, choices=GENDER, null=True)
     date_measured = models.DateField(null=True, blank=True)
-    health_problem = models.CharField(max_length=500, null=True)
+    health_problem = models.CharField(max_length=500, null=True, blank=True)
     history= HistoricalRecords()
 
     def __str__(self):

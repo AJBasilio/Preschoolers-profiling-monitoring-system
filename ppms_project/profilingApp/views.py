@@ -82,246 +82,309 @@ def logout_user(request):
 
 # ================================== PARENTS/GUARDIANS ==================================
 
-
 @login_required(login_url='login_registration')
 def parent_home(request):
-    parent_user = Parent.objects.get(user_id=request.user.id)
-    preschooler = Preschooler.objects.filter(parent=parent_user)
+    if request.user.is_authenticated and request.user.user_type == 'P/G':
+        parent_user = Parent.objects.get(user_id=request.user.id)
+        preschooler = Preschooler.objects.filter(parent=parent_user)
 
-    if request.method == 'POST':
-        parent = parent_user
-        first_name = request.POST.get('first_name')
-        middle_name = request.POST.get('middle_name')
-        last_name = request.POST.get('last_name')
-        if request.POST.get('suffix_name') is None:
-            suffix_name = None
-        else:
-            suffix_name = request.POST.get('suffix_name')
-        birthday = request.POST.get('birthday')
-        gender = request.POST.get('gender')
+        if request.method == 'POST':
+            parent = parent_user
+            first_name = request.POST.get('first_name')
+            middle_name = request.POST.get('middle_name')
+            last_name = request.POST.get('last_name')
+            if request.POST.get('suffix_name') is None:
+                suffix_name = None
+            else:
+                suffix_name = request.POST.get('suffix_name')
+            birthday = request.POST.get('birthday')
+            gender = request.POST.get('gender')
 
-        psa = Preschooler.objects.create(parent=parent,
-                                         first_name=first_name,
-                                         middle_name=middle_name,
-                                         last_name=last_name,
-                                         suffix_name=suffix_name,
-                                         birthday=birthday,
-                                         gender=gender
-                                         )
-        return redirect('parent_home')
+            psa = Preschooler.objects.create(parent=parent,
+                                            first_name=first_name,
+                                            middle_name=middle_name,
+                                            last_name=last_name,
+                                            suffix_name=suffix_name,
+                                            birthday=birthday,
+                                            gender=gender
+                                            )
+            return redirect('parent_home')
 
-    context = {'preschoolers': preschooler}
-    return render(request, 'activities/Parent Home.html', context)
+        context = {'preschoolers': preschooler}
+        return render(request, 'activities/Parent Home.html', context)
+    
+    elif request.user.is_authenticated and request.user.user_type == 'BHW':
+        return redirect('bhw_home')
+    elif request.user.is_authenticated and request.user.user_type == 'Admin':
+        return redirect('admin_home')
 
 def parent_preschooler(request, pk):
-    preschooler = Preschooler.objects.get(id=pk)
+    if request.user.is_authenticated and request.user.user_type == 'P/G':
+        preschooler = Preschooler.objects.get(id=pk)
 
-    context = {'preschooler' : preschooler}
-    return render(request, 'activities/Parent - Preschooler Profile.html', context)
+        context = {'preschooler' : preschooler}
+        return render(request, 'activities/Parent - Preschooler Profile.html', context)
+    elif request.user.is_authenticated and request.user.user_type == 'BHW':
+        return redirect('bhw_home')
+    elif request.user.is_authenticated and request.user.user_type == 'Admin':
+        return redirect('admin_home')
+
 # ================================== ADMIN ==================================
-
 
 @login_required(login_url='login_registration')
 def admin_home(request):
-    all_bhw = BarangayHealthWorker.objects.all()
-    validated_status = BarangayHealthWorker.objects.filter(
-        is_validated=True).count()
-    invalidated_status = BarangayHealthWorker.objects.filter(
-        is_validated=False).count()
-    parent_count = Parent.objects.all().count()
-    preschooler_count = Preschooler.objects.all().count()
+    if request.user.is_authenticated and request.user.user_type == 'Admin':
+        all_bhw = BarangayHealthWorker.objects.all()
+        validated_status = BarangayHealthWorker.objects.filter(
+            is_validated=True).count()
+        invalidated_status = BarangayHealthWorker.objects.filter(
+            is_validated=False).count()
+        parent_count = Parent.objects.all().count()
+        preschooler_count = Preschooler.objects.all().count()
 
-    count_list = [validated_status, invalidated_status,
-                  parent_count, preschooler_count]
-    data_json = dumps(count_list)
+        count_list = [validated_status, invalidated_status,
+                    parent_count, preschooler_count]
+        data_json = dumps(count_list)
 
-    context = {'bhws': all_bhw,
-               'validated_count': validated_status,
-               'invalidated_count': invalidated_status,
-               'parent_count': parent_count,
-               'preschooler_count': preschooler_count,
-               'count_data': data_json}
+        context = {'bhws': all_bhw,
+                'validated_count': validated_status,
+                'invalidated_count': invalidated_status,
+                'parent_count': parent_count,
+                'preschooler_count': preschooler_count,
+                'count_data': data_json}
 
-    return render(request, 'activities/Admin Home.html', context)
+        return render(request, 'activities/Admin Home.html', context)
+        
+    elif request.user.is_authenticated and request.user.user_type == 'BHW':
+        return redirect('bhw_home')
+    elif request.user.is_authenticated and request.user.user_type == 'P/G':
+        return redirect('parent_home')
 
 
 def bhw_validation(request):
-    bhw = BarangayHealthWorker.objects.filter(is_validated=False)
-    invalidated_status = BarangayHealthWorker.objects.filter(
-        is_validated=False).count()
-    context = {'bhws': bhw, 
-               'invalidated_count': invalidated_status,}
+    if request.user.is_authenticated and request.user.user_type == 'Admin':
+        bhw = BarangayHealthWorker.objects.filter(is_validated=False)
+        invalidated_status = BarangayHealthWorker.objects.filter(
+            is_validated=False).count()
+        context = {'bhws': bhw, 
+                'invalidated_count': invalidated_status,}
 
-    return render(request, 'activities/Admin Validate BHW.html', context)
+        return render(request, 'activities/Admin Validate BHW.html', context)
+    
+    elif request.user.is_authenticated and request.user.user_type == 'BHW':
+        return redirect('bhw_home')
+    elif request.user.is_authenticated and request.user.user_type == 'P/G':
+        return redirect('parent_home')
 
 
 def admin_preschoolers(request):
-    invalidated_status = BarangayHealthWorker.objects.filter(
-        is_validated=False).count()
+    if request.user.is_authenticated and request.user.user_type == 'Admin':
+        invalidated_status = BarangayHealthWorker.objects.filter(
+            is_validated=False).count()
 
-    preschooler_normal = []
-    preschooler_wasted = []
-    preschooler_severly = []
-    preschooler_over_obese = []
+        preschooler_normal = []
+        preschooler_wasted = []
+        preschooler_severly = []
+        preschooler_over_obese = []
 
-    for obj in Preschooler.objects.all():
-        if obj.bmi_tag == 'NORMAL':
-            preschooler_normal.append(obj)
-        elif obj.bmi_tag == 'ABOVE NORMAL':
-            preschooler_over_obese.append(obj)
-        elif obj.bmi_tag == 'BELOW NORMAL':
-            preschooler_wasted.append(obj)
-        else:
-            preschooler_severly.append(obj)
+        for obj in Preschooler.objects.all():
+            if obj.bmi_tag == 'NORMAL':
+                preschooler_normal.append(obj)
+            elif obj.bmi_tag == 'ABOVE NORMAL':
+                preschooler_over_obese.append(obj)
+            elif obj.bmi_tag == 'BELOW NORMAL':
+                preschooler_wasted.append(obj)
+            else:
+                preschooler_severly.append(obj)
 
-    normal_count = len(preschooler_normal)
-    wasted_count = len(preschooler_wasted)
-    severly_count = len(preschooler_severly)
-    overobese_count = len(preschooler_over_obese)
+        normal_count = len(preschooler_normal)
+        wasted_count = len(preschooler_wasted)
+        severly_count = len(preschooler_severly)
+        overobese_count = len(preschooler_over_obese)
 
-    count_list = [normal_count, wasted_count, severly_count, overobese_count, overobese_count]
-    data_json = dumps(count_list)
-    
-    context = {'invalidated_count': invalidated_status,
-               'normal' : normal_count,
-               'wasted' : wasted_count,
-               'severly' : severly_count,
-               'overobese' : overobese_count,
-               'count_data' : data_json}
+        count_list = [normal_count, wasted_count, severly_count, overobese_count, overobese_count]
+        data_json = dumps(count_list)
+        
+        context = {'invalidated_count': invalidated_status,
+                'normal' : normal_count,
+                'wasted' : wasted_count,
+                'severly' : severly_count,
+                'overobese' : overobese_count,
+                'count_data' : data_json}
 
-    return render(request, 'activities/Admin - Preschooler.html', context)
+        return render(request, 'activities/Admin - Preschooler.html', context)
+
+    elif request.user.is_authenticated and request.user.user_type == 'BHW':
+        return redirect('bhw_home')
+    elif request.user.is_authenticated and request.user.user_type == 'P/G':
+        return redirect('parent_home')
 
 def admin_preschoolers_barangay(request, brgy):
-    invalidated_status = BarangayHealthWorker.objects.filter(
-        is_validated=False).count()
+    if request.user.is_authenticated and request.user.user_type == 'Admin':
+        invalidated_status = BarangayHealthWorker.objects.filter(
+            is_validated=False).count()
 
-    parents = Parent.objects.filter(barangay=brgy)
-    preschoolers = Preschooler.objects.filter(parent__in=(parents))
+        parents = Parent.objects.filter(barangay=brgy)
+        preschoolers = Preschooler.objects.filter(parent__in=(parents))
 
-    preschooler_normal = []
-    preschooler_wasted = []
-    preschooler_severly = []
-    preschooler_over_obese = []
+        preschooler_normal = []
+        preschooler_wasted = []
+        preschooler_severly = []
+        preschooler_over_obese = []
 
-    for p in preschoolers:
-        if p.bmi_tag == 'NORMAL':
-            preschooler_normal.append(p)
-        elif p.bmi_tag == 'ABOVE NORMAL':
-            preschooler_over_obese.append(p)
-        elif p.bmi_tag == 'BELOW NORMAL':
-            preschooler_wasted.append(p)
-        else:
-            preschooler_severly.append(p)
+        for p in preschoolers:
+            if p.bmi_tag == 'NORMAL':
+                preschooler_normal.append(p)
+            elif p.bmi_tag == 'ABOVE NORMAL':
+                preschooler_over_obese.append(p)
+            elif p.bmi_tag == 'BELOW NORMAL':
+                preschooler_wasted.append(p)
+            else:
+                preschooler_severly.append(p)
+        
+        normal_count = len(preschooler_normal)
+        wasted_count = len(preschooler_wasted)
+        severly_count = len(preschooler_severly)
+        overobese_count = len(preschooler_over_obese)
+
+        count_list = [normal_count, wasted_count, severly_count, overobese_count, overobese_count]
+        data_json = dumps(count_list)
+
+        context = {'invalidated_count': invalidated_status,
+                'brgy' : brgy,
+                'normal' : normal_count,
+                'wasted' : wasted_count,
+                'severly' : severly_count,
+                'overobese' : overobese_count,
+                'count_data' : data_json
+                }
+
+        return render(request, 'activities/Admin - Preschooler_barangay.html', context)
     
-    normal_count = len(preschooler_normal)
-    wasted_count = len(preschooler_wasted)
-    severly_count = len(preschooler_severly)
-    overobese_count = len(preschooler_over_obese)
-
-    count_list = [normal_count, wasted_count, severly_count, overobese_count, overobese_count]
-    data_json = dumps(count_list)
-
-    context = {'invalidated_count': invalidated_status,
-               'brgy' : brgy,
-               'normal' : normal_count,
-               'wasted' : wasted_count,
-               'severly' : severly_count,
-               'overobese' : overobese_count,
-               'count_data' : data_json
-               }
-
-    return render(request, 'activities/Admin - Preschooler_barangay.html', context)
+    elif request.user.is_authenticated and request.user.user_type == 'BHW':
+        return redirect('bhw_home')
+    elif request.user.is_authenticated and request.user.user_type == 'P/G':
+        return redirect('parent_home')
 
 def unvalidated_profile(request, pk):
-    unvalidate_bhw = BarangayHealthWorker.objects.get(user_id=pk)
-    form = Validate_BHW(instance=unvalidate_bhw)
+    if request.user.is_authenticated and request.user.user_type == 'Admin':
+        unvalidate_bhw = BarangayHealthWorker.objects.get(user_id=pk)
+        form = Validate_BHW(instance=unvalidate_bhw)
 
-    if request.method == 'POST':
-        form = Validate_BHW(request.POST, instance=unvalidate_bhw)
-        if form.is_valid():
-            form.save()
-            return redirect('bhw_validation')
+        if request.method == 'POST':
+            form = Validate_BHW(request.POST, instance=unvalidate_bhw)
+            if form.is_valid():
+                form.save()
+                return redirect('bhw_validation')
 
-    context = {'bhw': unvalidate_bhw,
-               'form': form}
-    return render(request, 'activities/Unvalidated Profile.html', context)
+        context = {'bhw': unvalidate_bhw,
+                'form': form}
+        return render(request, 'activities/Unvalidated Profile.html', context)
+
+    elif request.user.is_authenticated and request.user.user_type == 'BHW':
+        return redirect('bhw_home')
+    elif request.user.is_authenticated and request.user.user_type == 'P/G':
+        return redirect('parent_home')
 
 
 def delete_profile(request, pk):
-    delete_bhw = BarangayHealthWorker.objects.get(user_id=pk)
-    user_bhw = CustomUser.objects.get(id=pk)
+    if request.user.is_authenticated and request.user.user_type == 'Admin':
+        delete_bhw = BarangayHealthWorker.objects.get(user_id=pk)
+        user_bhw = CustomUser.objects.get(id=pk)
 
-    if request.method == 'POST':
+        if request.method == 'POST':
 
-        user_bhw.delete()
+            user_bhw.delete()
 
-        return redirect('bhw_validation')
+            return redirect('bhw_validation')
 
-    context = {'bhw': delete_bhw}
-    return render(request, 'activities/Admin Delete Confirmation.html', context)
+        context = {'bhw': delete_bhw}
+        return render(request, 'activities/Admin Delete Confirmation.html', context)
+    
+    elif request.user.is_authenticated and request.user.user_type == 'BHW':
+        return redirect('bhw_home')
+    elif request.user.is_authenticated and request.user.user_type == 'P/G':
+        return redirect('parent_home')
 
 # ================================== BHW ==================================
 
 
 @login_required(login_url='login_registration')
 def bhw_home(request):
-    bhw_logged = BarangayHealthWorker.objects.get(user_id=request.user.id)
-    parents = Parent.objects.filter(barangay=bhw_logged.bhw_barangay)
-    preschoolers = Preschooler.objects.filter(parent__in=(parents))
+    if request.user.is_authenticated and request.user.user_type == 'BHW':
+        bhw_logged = BarangayHealthWorker.objects.get(user_id=request.user.id)
+        parents = Parent.objects.filter(barangay=bhw_logged.bhw_barangay)
+        preschoolers = Preschooler.objects.filter(parent__in=(parents))
 
-    preschooler_normal = []
-    preschooler_wasted = []
-    preschooler_severly = []
-    preschooler_over_obese = []
+        preschooler_normal = []
+        preschooler_wasted = []
+        preschooler_severly = []
+        preschooler_over_obese = []
 
-    for p in preschoolers:
-        if p.bmi_tag == 'NORMAL':
-            preschooler_normal.append(p)
-        elif p.bmi_tag == 'ABOVE NORMAL':
-            preschooler_over_obese.append(p)
-        elif p.bmi_tag == 'BELOW NORMAL':
-            preschooler_wasted.append(p)
-        else:
-            preschooler_severly.append(p)
+        for p in preschoolers:
+            if p.bmi_tag == 'NORMAL':
+                preschooler_normal.append(p)
+            elif p.bmi_tag == 'ABOVE NORMAL':
+                preschooler_over_obese.append(p)
+            elif p.bmi_tag == 'BELOW NORMAL':
+                preschooler_wasted.append(p)
+            else:
+                preschooler_severly.append(p)
+        
+        normal_count = len(preschooler_normal)
+        wasted_count = len(preschooler_wasted)
+        severly_count = len(preschooler_severly)
+        overobese_count = len(preschooler_over_obese)
+
+        count_list = [normal_count, wasted_count, severly_count, overobese_count, overobese_count]
+        data_json = dumps(count_list)
+
+        context = {'bhw' : bhw_logged,
+                'normal' : normal_count,
+                'wasted' : wasted_count,
+                'severly' : severly_count,
+                'overobese' : overobese_count,
+                'count_data' : data_json}
+        return render(request, 'activities/BHW Home.html', context)
     
-    normal_count = len(preschooler_normal)
-    wasted_count = len(preschooler_wasted)
-    severly_count = len(preschooler_severly)
-    overobese_count = len(preschooler_over_obese)
-
-    count_list = [normal_count, wasted_count, severly_count, overobese_count, overobese_count]
-    data_json = dumps(count_list)
-
-    context = {'bhw' : bhw_logged,
-               'normal' : normal_count,
-               'wasted' : wasted_count,
-               'severly' : severly_count,
-               'overobese' : overobese_count,
-               'count_data' : data_json}
-    return render(request, 'activities/BHW Home.html', context)
+    elif request.user.is_authenticated and request.user.user_type == 'Admin':
+        return redirect('admin_home')
+    elif request.user.is_authenticated and request.user.user_type == 'P/G':
+        return redirect('parent_home')
 
 
 def preschooler_dashboard(request):
-    preschooler = Preschooler.objects.all()
+    if request.user.is_authenticated and request.user.user_type == 'BHW':
+        preschooler = Preschooler.objects.all()
 
-    context = {'preschoolers': preschooler}
-    return render(request, 'activities/BHW Preschooler Dashboard.html', context)
+        context = {'preschoolers': preschooler}
+        return render(request, 'activities/BHW Preschooler Dashboard.html', context)
 
+    elif request.user.is_authenticated and request.user.user_type == 'Admin':
+        return redirect('admin_home')
+    elif request.user.is_authenticated and request.user.user_type == 'P/G':
+        return redirect('parent_home')
 
 def preschooler_profile(request, pk):
-    preschooler = Preschooler.objects.get(id=pk)
-    form = UpdatePreschooler(instance=preschooler)
+    if request.user.is_authenticated and request.user.user_type == 'BHW':
+        preschooler = Preschooler.objects.get(id=pk)
+        form = UpdatePreschooler(instance=preschooler)
 
-    if request.method == 'POST':
-        form = UpdatePreschooler(request.POST, instance=preschooler)
-        if form.is_valid():
-            form.save()
+        if request.method == 'POST':
+            form = UpdatePreschooler(request.POST, instance=preschooler)
+            if form.is_valid():
+                form.save()
 
-            return redirect('preschooler_profile', preschooler.id)
+                return redirect('preschooler_profile', preschooler.id)
 
-    context = {'preschooler' : preschooler,
-               'form' : form,}
-    return render(request, 'activities/Preschooler Profile.html', context)
+        context = {'preschooler' : preschooler,
+                'form' : form,}
+        return render(request, 'activities/Preschooler Profile.html', context)
+
+    elif request.user.is_authenticated and request.user.user_type == 'Admin':
+        return redirect('admin_home')
+    elif request.user.is_authenticated and request.user.user_type == 'P/G':
+        return redirect('parent_home')
 
 # ================================== MODAL UPDATE ==================================
 
