@@ -142,7 +142,7 @@
                                 <hr>
                                 <div class="" style="text-align: center !important; ">
                                     <button style="background-color: #188045; color: white;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#update"><span class="fa fa-user-edit"></span> Update preschooler</button>
-                                    <a href="{% url 'immunization_schedule' %}"><button style="background-color: #188045; color: white;" type="button" class="btn"><span class="fa fa-address-card"></span> Immunization Status</button></a>
+                                    <a href="{% url 'immunization_schedule' preschooler.id %}"><button style="background-color: #188045; color: white;" type="button" class="btn"><span class="fa fa-address-card"></span> Immunization Status</button></a>
                                 </div>
                                 <div class="modal fade" id="update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered modal-lg">

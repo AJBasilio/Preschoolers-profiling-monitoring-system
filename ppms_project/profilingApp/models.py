@@ -212,3 +212,19 @@ class Log(Model):
     log_action = models.CharField(max_length=500, null=True)
     logged_userid = models.IntegerField(null=True)
     datetime_log = models.CharField(max_length=500, null=True)
+
+class Vaccine(Model):
+    VACCINES = [('BCG', 'BCG'),
+                ('Hepatitis B', 'Hepatitis B'),
+                ('Oral Poliovirus Vaccine', 'Oral Poliovirus Vaccine'),
+                ('Pentavalent Vaccine', 'Pentavalent Vaccine'),
+                ('Measles Containing Vaccines', 'Measles Containing Vaccines'),
+                ('Tetanus Toxoid', 'Tetanus Toxoid'),
+                ('Inactivated Polio Vaccine', 'Inactivated Polio Vaccine'),
+                ('Vax8', 'Vax8'),]
+
+    vax_preschooler = models.ForeignKey(Preschooler, on_delete=CASCADE)
+    vax_name = models.CharField(max_length=500, choices=VACCINES)
+    vax_dose = models.IntegerField()
+    vax_date = models.DateField(null=True, blank=True)
+    vax_remarks = models.CharField(max_length=500, null=True, blank=True)

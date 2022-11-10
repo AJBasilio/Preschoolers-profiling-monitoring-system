@@ -73,24 +73,38 @@
                                         </div>
                                         <div class="modal-body mx-4">
                                             <form method="POST">
+                                                {% csrf_token %}
                                             <!-- <form method="POST" onsubmit="get_cred($('#type').val());"> -->
                                                 <div class="md-form">
                                                     <label id="user-lbl" data-error="wrong" data-success="right">Vaccine: </label>
+                                                    <select class="form-select" name="vax_name" aria-label="Default select example">
+                                                        <option value="BCG">BCG</option>
+                                                        <option value="Hepatitis B">Hepatitis B</option>
+                                                        <option value="Oral Poliovirus Vaccine">Oral Poliovirus Vaccine</option>
+                                                        <option value="Pentavalent Vaccine">Pentavalent Vaccine</option>
+                                                        <option value="Measles Containing Vaccines">Measles Containing Vaccines</option>
+                                                        <option value="Tetanus Toxoid">Tetanus Toxoid</option>
+                                                        <option value="Inactivated Polio Vaccine">Inactivated Polio Vaccine</option>
+                                                        <option value="Vax8">Vax8</option>
+                                                    </select>
                                                 </div>
-                                                <div class="md-form">
+                                                <!-- <div class="md-form">
                                                     <label id="user-lbl" data-error="wrong" data-success="right">Doses:</label>
-                                                </div>
-                                                <div class="md-form">
+                                                    <input class="form-control" type="number" name="dose" id="dose">
+                                                </div> -->
+                                                <!-- <div class="md-form">
                                                     <label id="user-lbl" data-error="wrong" data-success="right">Required Doses:</label>
-                                                </div>
+                                                </div> -->
                                                 <div class="md-form">
                                                     <label id="user-lbl" data-error="wrong" data-success="right">Immunization Date:</label>
+                                                    <input class="form-control" type="date" name="immune_date" id="immune_date">
                                                 </div>
                                                 <div class="md-form">
                                                     <label id="user-lbl" data-error="wrong" data-success="right">Remarks:</label>
+                                                    <textarea class="form-control" name="remarks" id="remarks" cols="30" rows="10"></textarea>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="submit" class="btn " style="background-color: #188045; color: white;">Save</button>
+                                                    <button type="submit" class="btn " style="background-color: #188045; color: white;">Add</button>
                                                     <button type="button" class="btn" style="background-color: #EF3A25; color: white;" data-bs-dismiss="modal" aria-label="Close"> Cancel</button>
                                                 </div>
                                             </form>
@@ -110,14 +124,16 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for vaccine in vaccines %}
                                 <tr>
                                     <td class="text-center"></td>
-                                    <td class="text-center"></td>
-                                    <td class="text-center"></td>
-                                    <td class="text-center"></td>
-                                    <td class="text-center"></td>
-                                    <td class="text-center"></td>
+                                    <td class="text-center">{{ vaccine.vax_name }}</td>
+                                    <td class="text-center">{{ vaccine.vax_dose }}</td>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">{{ vaccine.vax_date }}</td>
+                                    <td class="text-center">{{ vaccine.vax_remarks }}</td>
                                 </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>

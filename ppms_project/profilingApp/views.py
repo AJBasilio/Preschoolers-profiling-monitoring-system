@@ -393,5 +393,23 @@ def update_preschooler(request):
     return render(request, 'activities/Preschooler Profile.html')
 
 
-def immunization_schedule(request):
-    return render(request, 'activities/BHW Immunization Schedule.html')
+def immunization_schedule(request, pk):
+    preschooler = Preschooler.objects.get(id=pk)
+    vaccines = Vaccine.objects.filter(vax_preschooler=preschooler)
+    if request.method == 'POST':
+        preschooler_obj = preschooler
+        vaxname = request.POST.get('vax_name')
+        dose = 1
+        vaxdate = request.POST.get('immune_date')
+        vaxremark = request.POST.get('remarks')
+
+        vax_create = Vaccine.objects.create(vax_preschooler=preschooler_obj,
+                                            vax_name=vaxname,
+                                            vax_dose=dose,
+                                            vax_date=vaxdate,
+                                            vax_remarks=vaxremark)
+        
+        return redirect('immunization_schedule', pk=preschooler.id)
+
+    context = {'vaccines' : vaccines}
+    return render(request, 'activities/BHW Immunization Schedule.html', context)
