@@ -355,7 +355,9 @@ def bhw_home(request):
 
 def preschooler_dashboard(request):
     if request.user.is_authenticated and request.user.user_type == 'BHW':
-        preschooler = Preschooler.objects.all()
+        bhw_logged = BarangayHealthWorker.objects.get(user_id=request.user.id)
+        parents = Parent.objects.filter(barangay=bhw_logged.bhw_barangay)
+        preschooler = Preschooler.objects.filter(parent__in=(parents))
 
         context = {'preschoolers': preschooler}
         return render(request, 'activities/BHW Preschooler Dashboard.html', context)
@@ -399,7 +401,7 @@ def immunization_schedule(request, pk):
     if request.method == 'POST':
         preschooler_obj = preschooler
         vaxname = request.POST.get('vax_name')
-        dose = 1
+        dose = request.POST.get('dose')
         vaxdate = request.POST.get('immune_date')
         vaxremark = request.POST.get('remarks')
 
@@ -410,6 +412,7 @@ def immunization_schedule(request, pk):
                                             vax_remarks=vaxremark)
         
         return redirect('immunization_schedule', pk=preschooler.id)
-
+    # if 'BCG' in vaccines.
+    # print(vaccines)
     context = {'vaccines' : vaccines}
     return render(request, 'activities/BHW Immunization Schedule.html', context)

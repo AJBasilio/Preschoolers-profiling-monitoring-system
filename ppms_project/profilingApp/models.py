@@ -221,7 +221,7 @@ class Vaccine(Model):
                 ('Measles Containing Vaccines', 'Measles Containing Vaccines'),
                 ('Tetanus Toxoid', 'Tetanus Toxoid'),
                 ('Inactivated Polio Vaccine', 'Inactivated Polio Vaccine'),
-                ('Vax8', 'Vax8'),]
+                ('Measles Mumps - Rubella', 'Measles Mumps - Rubella'),]
 
     vax_preschooler = models.ForeignKey(Preschooler, on_delete=CASCADE)
     vax_name = models.CharField(max_length=500, choices=VACCINES)
