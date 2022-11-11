@@ -398,6 +398,9 @@ def update_preschooler(request):
 def immunization_schedule(request, pk):
     preschooler = Preschooler.objects.get(id=pk)
     vaccines = Vaccine.objects.filter(vax_preschooler=preschooler)
+    vax_list = vaccines.values_list('vax_name', flat=True)
+    dose_list = vaccines.values_list('vax_dose', flat=True)
+
     if request.method == 'POST':
         preschooler_obj = preschooler
         vaxname = request.POST.get('vax_name')
@@ -405,14 +408,16 @@ def immunization_schedule(request, pk):
         vaxdate = request.POST.get('immune_date')
         vaxremark = request.POST.get('remarks')
 
-        vax_create = Vaccine.objects.create(vax_preschooler=preschooler_obj,
+        vax_create = Vaccine.objects.update_or_create(vax_preschooler=preschooler_obj,
                                             vax_name=vaxname,
-                                            vax_dose=dose,
-                                            vax_date=vaxdate,
-                                            vax_remarks=vaxremark)
+                                            defaults={'vax_dose' : dose,
+                                                      'vax_date' : vaxdate,
+                                                      'vax_remarks' : vaxremark})
         
         return redirect('immunization_schedule', pk=preschooler.id)
-    # if 'BCG' in vaccines.
-    # print(vaccines)
-    context = {'vaccines' : vaccines}
+        
+    context = {'vaccines' : vaccines,
+               'vax_list' : vax_list,
+               'dose_list' : dose_list}
+
     return render(request, 'activities/BHW Immunization Schedule.html', context)

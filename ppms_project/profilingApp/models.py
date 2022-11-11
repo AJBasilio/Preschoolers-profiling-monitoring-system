@@ -228,3 +228,6 @@ class Vaccine(Model):
     vax_dose = models.IntegerField()
     vax_date = models.DateField(null=True, blank=True)
     vax_remarks = models.CharField(max_length=500, null=True, blank=True)
+
+    def __str__(self) -> str:
+        return f'{self.vax_preschooler} : {self.vax_name}'
