@@ -52,11 +52,11 @@
                         </div>
                         <div class="form-group">
                             <label for="">Password</label>
-                            <input type="password" id="password" name="password">
+                            <input type="password" id="password1" name="password">
                         </div>
                         <div class="form-group">
                             <label class="form-remember">
-                                <input type="checkbox" onclick="myFunction()">Show Password
+                                <input type="checkbox" onclick="showPassword()">Show Password
                             </label><a id="forgotPasswordButton" class="form-recovery" href="">Forgot Password?</a>
                         </div>
                         <div class="form-group">
@@ -119,19 +119,19 @@
                         <!-- Name -->
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-sm-6" style="margin-top: 3%;">
                                     <label for="">First Name</label>
                                     {{ form.first_name }}
                                 </div>
-                                <div class="col-6">
+                                <div class="col-sm-6" style="margin-top: 3%;">
                                     <label for="">Middle Name</label>
                                     {{ form.middle_name }}
                                 </div>
-                                <div class="col-6" style="margin-top: 3%;">
+                                <div class="col-sm-6" style="margin-top: 3%;">
                                     <label for="">Last Name</label>
                                     {{ form.last_name }}
                                 </div>
-                                <div class="col-6"style="margin-top: 3%;">
+                                <div class="col-sm-6"style="margin-top: 3%;">
                                     <label for="">Suffix</label>
                                     {{ form.suffix_name }}
                                 </div>
@@ -152,11 +152,21 @@
                             <label for="">Password</label>
                             {{ form.password1 }}
                         </div>
-                
+                        <div class="form-group">
+                            <label class="form-remember">
+                                <input type="checkbox" onclick="showPassword2()">Show Password
+                            </label>
+                        </div>
                         <div class="form-group">
                             <label for="">Confirm Password</label>
                             {{ form.password2 }}
                         </div>
+                        <div class="form-group">
+                            <label class="form-remember text-light">
+                                <input type="checkbox" onclick="showPassword3()">Show Password
+                            </label>
+                        </div>
+                        <hr>
                         <!-- EULA -->
                         <div class="form-check d-flex justify-content-start text-light align-items-center">
                             <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1" required>
@@ -165,7 +175,6 @@
                                 terms.
                             </a>
                         </div>
-                        <br>
                         <div class="form-group">
                             <button name="register_btn" type="submit">Register</button>
                         </div>
