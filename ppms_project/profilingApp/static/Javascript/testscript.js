@@ -5,6 +5,22 @@ $(function () {
   });
 });
 
+function openpaneltwo(e) {
+  
+      // e.preventDefault();
+      panelTwo = $('.form-panel.two')[0].scrollHeight;
+      $('.form-toggle').addClass('visible');
+      $('.form-panel.one').addClass('hidden');
+      $('.form-panel.two').addClass('active');
+      formHeight.style.Height="1100px";
+      formHeight.style.maxHeight="1100px";
+      $('.form').animate({
+        'height': panelTwo
+      }, 200);
+    };
+  
+
+
 $(document).ready(function() {
     var panelOne = $('.form-panel.one').height(),
       panelTwo = $('.form-panel.two')[0].scrollHeight;
@@ -27,7 +43,7 @@ $(document).ready(function() {
       $(this).removeClass('visible');
       $('.form-panel.one').removeClass('hidden');
       $('.form-panel.two').removeClass('active');
-      formHeight.style.minHeight="480px";
+      formHeight.style.minHeight="500px";
       formHeight.style.maxHeight="500px";
       $('.form').animate({
         'height': panelOne

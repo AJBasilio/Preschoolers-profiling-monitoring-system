@@ -57,10 +57,14 @@
                         <div class="form-group">
                             <label class="form-remember">
                                 <input type="checkbox" onclick="myFunction()">Show Password
-                            </label><a class="form-recovery" href="">Forgot Password?</a>
+                            </label><a id="forgotPasswordButton" class="form-recovery" href="">Forgot Password?</a>
                         </div>
                         <div class="form-group">
                             <button type="submit">Log In</button>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-center" >
+                            <p style="font-size:medium;">Not registered yet?</p><a id="createAccountButton"onclick="openpaneltwo(event)">Create Account</a>
                         </div>
                     </form>
                 </div>
@@ -154,11 +158,12 @@
                             {{ form.password2 }}
                         </div>
                         <!-- EULA -->
-                        <div class="form-check">
+                        <div class="form-check d-flex justify-content-start text-light align-items-center">
                             <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1" required>
-                            <button type="button" class="btn border-0" for="flexRadioDefault1" data-toggle="modal" data-target="#exampleModal">
-                                I accept the terms.
-                            </button>
+                            <p class="mt-3" style="margin-left:15px;font-size:medium;">I accept the</p>
+                            <a type="button" class="btn border-0 text-light p-0" style="text-decoration: underline; margin-left:5px;" for="flexRadioDefault1" data-toggle="modal" data-target="#exampleModal">
+                                terms.
+                            </a>
                         </div>
                         <br>
                         <div class="form-group">
@@ -174,15 +179,17 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Terms</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                        <button type="button" class="close p-2" style="border-radius: 25%; border:none; background-color: rgb(241, 241, 241);" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><i class="fas fa-2x fa-lg fa-times text-secondary"></i></span>
                         </button>
                     </div>
                     <div class="modal-body">
-                       
+                        <i class="fas fa-lg fa-asterisk text-secondary" style="margin-right:10px;"></i>I am accepting the TERMS and i do AGREE that all the data that i inputted will be used for this website's purpose and this website's purpose only. 
+                        <br>
+                        <i class="fas fa-lg fa-asterisk text-secondary" style="margin-right:10px;"></i>I am AWARE that the data i inputted must be the right information and nothing but the TRUTH.
                     </div>
                     <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary bg-danger" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
@@ -192,7 +199,7 @@
         <!-- Spacing -->
     </div>
     <!-- Footer -->
-    <div class="site-footer">
+    <div class="site-footer" style="background-color: rgba(244, 242, 242, 0.54);">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4">
@@ -200,7 +207,7 @@
                     <p>The NNC, as mandated by law, is the country's highest policy-making 
                         and coordinating body on nutrition.
                     </p>
-                    <div class="my-5">
+                    <div class="my-5 text-dark bg-secondary">
                         <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
                         <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
                         <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
@@ -226,8 +233,8 @@
                         <div class="col-lg-4">
                             <h2 class="footer-heading mb-4">Resources</h2>
                             <ul class="list-unstyled">
-                            <li><a href="#">NNC Website</a></li>
-                            <li><a href="#">DOH Website</a></li>
+                            <li><a href="https://www.nnc.gov.ph/" target="_blank"><img class="navbar-icon" style="margin-right:10px;" src="../static/Media/nncLogo.png" alt="dasma-logo"> NNC Website</a></li>
+                            <li><a href="https://doh.gov.ph/" target="_blank"><img class="navbar-icon" style="margin-right:10px;" src="../static/Media/dohLogo.png" alt="dasma-logo">DOH Website</a></li>
                             </ul>
                         </div>
                     </div>

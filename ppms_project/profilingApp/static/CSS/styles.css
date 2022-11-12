@@ -216,6 +216,7 @@ tbody tr:nth-of-type(even) {
 }
 
 /* Login Form */
+
 html {
     width: 100%;
     height: 100%;
@@ -250,6 +251,9 @@ html {
     box-sizing: border-box;
     margin: 100px auto 10px;
     overflow: hidden;
+    height: 500px;
+
+
 
   }
   .form-toggle {
@@ -463,6 +467,29 @@ html {
     color: #FFFFFF;
   }
 
+  /* Create Account Button */
+  #createAccountButton{
+    margin-left:10px; 
+    color:#188045;
+    text-decoration: underline;
+    border:none; 
+    background-color: none; 
+  }
+  #createAccountButton:hover{
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+    transition:0.3s;
+    color:#298c54;
+    cursor: pointer;
+  }
+  /* Forgot Password Button */
+  #forgotPasswordButton:hover{
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+    transition:0.3s;
+    color:#298c54;
+    cursor: pointer;
+  }
   /* Footer */
   #footer{
     position: relative;
