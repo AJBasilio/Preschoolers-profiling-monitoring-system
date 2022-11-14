@@ -12,7 +12,7 @@ function openpaneltwo(e) {
       $('.form-toggle').addClass('visible');
       $('.form-panel.one').addClass('hidden');
       $('.form-panel.two').addClass('active');
-      formHeight.style.Height="1100px";
+      formHeight.style.minHeight="1150px";
       formHeight.style.maxHeight="1100px";
       $('.form').animate({
         'height': panelTwo
@@ -31,8 +31,8 @@ $(document).ready(function() {
       $('.form-toggle').addClass('visible');
       $('.form-panel.one').addClass('hidden');
       $('.form-panel.two').addClass('active');
-      formHeight.style.Height="1100px";
-      formHeight.style.maxHeight="1100px";
+      formHeight.style.minHeight="1150px";
+      formHeight.style.maxHeight="2000px";
       $('.form').animate({
         'height': panelTwo
       }, 200);
