@@ -55,12 +55,11 @@
             <section>
                 <div class="row">
                     <div class="col-md-5 col-12 mb-4 mb-md-3">
-                        <div class="card">
+                        <div class="card d-flex align-items-stretch flex-column" style="min-height: 645px;">
                             <div class="card-header">
                                 <h4 class=" mx-1 my-1">Preschooler Details</h4>
                             </div>
-
-                            <div class="card-body p-4 shadow-sm">
+                            <div class="card-body p-4 shadow-sm align-items-center">
                                 <div class="row">
                                     <div class="col-sm justify-content-start justify-content-md-center">
                                         <p class="mb-0">Full Name</p>
@@ -140,9 +139,15 @@
                                     {% endif %}
                                 </div>
                                 <hr>
-                                <div class="" style="text-align: center !important; ">
-                                    <button style="background-color: #188045; color: white;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#update"><span class="fa fa-user-edit"></span> Update preschooler</button>
-                                    <a href="{% url 'immunization_schedule' preschooler.id %}"><button style="background-color: #188045; color: white;" type="button" class="btn"><span class="fa fa-address-card"></span> Immunization Status</button></a>
+                                <div class="container">
+                                    <div class="row d-flex flex-row justify-content-between align-items-center">
+                                        <div class="col-6  mb-3 d-flex justify-content-sm-start justify-content-center">
+                                            <button style="background-color: #188045; color: white;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#update"><span class="fa fa-user-edit"></span> Update preschooler</button>
+                                        </div>
+                                        <div class="col-6 mb-3 d-flex justify-content-sm-end justify-content-center">
+                                            <a href="{% url 'immunization_schedule' preschooler.id %}"><button style="background-color: #188045; color: white;" type="button" class="btn"><span class="fa fa-address-card"></span> Immunization Status</button></a>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="modal fade" id="update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered modal-lg">
