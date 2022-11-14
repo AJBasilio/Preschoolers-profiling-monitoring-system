@@ -82,63 +82,94 @@
             <br>
             </div>
         </div>
-    <!-- DataTables -->
+        <div class="d-flex justify-content-between">
+            <h4 style="Padding: 10px 40px 0px 0px;">My Preschoolers</h4>
+            <button style="margin-bottom: 15px; background-color: #188045;border-color:#188045;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSched"><span class="fa fa-calendar-alt"></span> Enroll Preschooler</button>
+            <div class="modal fade" id="addSched" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header" >
+                            <h5 class="modal-title fa fa-user-edit" id="exampleModalLabel">Enroll Preschooler</h5>
+                        </div>
+                        <div class="modal-body mx-4">
+                            <form method="POST">
+                                {% csrf_token %}
+                                <div class="md-form">
+                                    <label id="user-lbl" data-error="wrong" data-success="right">First Name: </label>
+                                    <input class="form-control" type="text" name="first_name" id="first_name">
+                                </div>
+                                <div class="md-form">
+                                    <label id="user-lbl" data-error="wrong" data-success="right">Middle name:</label>
+                                    <input class="form-control" type="text" name="middle_name" id="middle_name">
+                                </div>
+                                <div class="md-form">
+                                    <label id="user-lbl" data-error="wrong" data-success="right">Last name:</label>
+                                    <input class="form-control" type="text" name="last_name" id="last_name">
+                                </div>
+                                <div class="md-form">
+                                    <label id="user-lbl" data-error="wrong" data-success="right">Suffix:</label>
+                                    <input class="form-control" type="text" placeholder="If Applicable" name="suffix_name" id="suffix_name">
+                                </div>
+                                <div class="md-form">
+                                    <label id="user-lbl" data-error="wrong" data-success="right">Birthdate:</label>
+                                    <input class="form-control" type="date" name="birthday" id="birthday">
+                                </div>
+                                <div class="md-form">
+                                    <label id="user-lbl" data-error="wrong" data-success="right">Gender:</label>
+                                    <select name="gender" class="form-select" aria-label="Default select example">
+                                        <option value="Male" selected>Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </div>
+                                <div class="modal-footer" style="justify-content:center">
+                                    <button type="submit" class="btn btn-primary" style="background-color: #188045;border-color: #188045;">Enroll</button>
+                                    <button type="button" data-bs-dismiss="modal" style="background-color: red; color: white;" class="btn">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <style>
+            .hoverable {
+                transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+                cursor: pointer;
+            }
+            .hoverable:hover{
+                transform: scale(1.02);
+                box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+            }
+        </style>
+        {% for chunk in chunks %}
+            <div class="row">
+                {% for item in chunk %}
+                    <div class="col-md-{{ numberOfColumns }} mb-3">
+                        <a class="card hoverable text-decoration-none text-primary" href="{% url 'parent_preschooler' item.id %}">
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <!--- uploads/avatar_{{ item.id }} ----->
+                                    <img src="https://png.pngtree.com/png-vector/20190114/ourlarge/pngtree-vector-avatar-icon-png-image_313572.jpg" height="40px" width="40px">
+                                </div>
+                                <div>
+                                    <div class="text-center">{{ item.first_name }} {{ item.middle_name }} {{ item.last_name }} {{ preschooler.suffix_name }}</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    <!--
     <div class="container text-black">
             <div class="row">
                 <div class="col">
                     <div class="card shadow-lg bg-white rounded h-100">
                         <div class="card-header">
-                            <h4 style="Padding: 10px 40px 0px 0px;">My Preschoolers</h4>
+                            
                         </div>
                         <div class="card-body p-4">
-                        <div class="d-flex justify-content-sm-end justify-content-center" >
-                            <button style="margin-bottom: 15px; background-color: #188045;border-color:#188045;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSched"><span class="fa fa-calendar-alt"></span> Enroll Preschooler</button>
-                        </div>
-                        <div class="modal fade" id="addSched" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header" >
-                                        <h5 class="modal-title fa fa-user-edit" id="exampleModalLabel">Enroll Preschooler</h5>
-                                    </div>
-                                    <div class="modal-body mx-4">
-                                        <form method="POST">
-                                            {% csrf_token %}
-                                            <div class="md-form">
-                                                <label id="user-lbl" data-error="wrong" data-success="right">First Name: </label>
-                                                <input class="form-control" type="text" name="first_name" id="first_name">
-                                            </div>
-                                            <div class="md-form">
-                                                <label id="user-lbl" data-error="wrong" data-success="right">Middle name:</label>
-                                                <input class="form-control" type="text" name="middle_name" id="middle_name">
-                                            </div>
-                                            <div class="md-form">
-                                                <label id="user-lbl" data-error="wrong" data-success="right">Last name:</label>
-                                                <input class="form-control" type="text" name="last_name" id="last_name">
-                                            </div>
-                                            <div class="md-form">
-                                                <label id="user-lbl" data-error="wrong" data-success="right">Suffix:</label>
-                                                <input class="form-control" type="text" placeholder="If Applicable" name="suffix_name" id="suffix_name">
-                                            </div>
-                                            <div class="md-form">
-                                                <label id="user-lbl" data-error="wrong" data-success="right">Birthdate:</label>
-                                                <input class="form-control" type="date" name="birthday" id="birthday">
-                                            </div>
-                                            <div class="md-form">
-                                                <label id="user-lbl" data-error="wrong" data-success="right">Gender:</label>
-                                                <select name="gender" class="form-select" aria-label="Default select example">
-                                                    <option value="Male" selected>Male</option>
-                                                    <option value="Female">Female</option>
-                                                </select>
-                                            </div>
-                                            <div class="modal-footer" style="justify-content:center">
-                                                <button type="submit" class="btn btn-primary" style="background-color: #188045;border-color: #188045;">Enroll</button>
-                                                <button type="button" data-bs-dismiss="modal" style="background-color: red; color: white;" class="btn">Cancel</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
                         <div class="table-responsive">
                             <table class="table table-hover table-cell-border" id="preschoolers_table">
                                 
@@ -183,12 +214,13 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    --->
     <!-- Footer -->
     <div class="footer text-muted">
         <div class="container">

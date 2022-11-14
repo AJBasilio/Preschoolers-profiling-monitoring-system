@@ -110,7 +110,15 @@ def parent_home(request):
                                             )
             return redirect('parent_home')
 
-        context = {'preschoolers': preschooler}
+        numberOfColumns = 4
+        bootstrapColWidth = int(12 / numberOfColumns)
+        chunks = [preschooler[i:i+bootstrapColWidth] for i in range(0,len(preschooler),bootstrapColWidth)]
+
+        context = {
+            'chunks': chunks,
+            'numberOfColumns': numberOfColumns,
+            'bootstrapColWidth' : bootstrapColWidth
+        }
         return render(request, 'activities/Parent Home.html', context)
     
     elif request.user.is_authenticated and request.user.user_type == 'BHW':
