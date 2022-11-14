@@ -461,8 +461,8 @@ html {
       box-sizing: border-box;
       margin: 100px auto 10px;
       overflow: hidden;
-      height: 100%;
-      width: 100%;
+      height: 95%;
+      width: 95%;
       padding: 0%;
     }
     .form-toggle {
@@ -947,7 +947,13 @@ html {
     color:#298c54;
     cursor: pointer;
   }
-
+  /* EULA BUTTON */
+  #eulaButton{
+    margin-left:5px;
+  }
+  #eulaButton:hover{
+    text-decoration: underline; 
+  }
   /* Modal Close Button */
   #modalCloseButton{
     border-radius: 25%; 
@@ -998,14 +1004,14 @@ h2 {
   margin-inline-end: 0px;
   font-weight: bold;
 }
-@media (min-width: 768px){
+@media (max-width: 992px){
 .site-footer {
-  padding: 4em 0;
+  padding: 12em 0;
 }}
 
 .site-footer{
   display: flex;
-  padding: 4em 0;
+  padding: 5%;
 }
 
 .mb-4 {
