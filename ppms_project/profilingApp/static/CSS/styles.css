@@ -193,7 +193,7 @@ tbody tr:nth-of-type(even) {
 .card-header{
   font-size: 13px;
   font-family: 'Poppins', sans-serif;;
-  background-color:rgb(27, 177, 92) !important;
+  background-color:#1bb15c !important;
   color:white;
   padding: 10px 15px 5px 10px !important;
   text-align: center;
