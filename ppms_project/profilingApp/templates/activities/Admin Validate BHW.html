@@ -132,11 +132,26 @@
                                     <td class="text-center">{{ bhw.bhw_barangay }}</td>
                                     <td style="text-align: center;">
                                         <div>
-                                            <a href="{% url 'unvalidated_profile' bhw.user.id %}"><button type="button" style="background-color: #188045; color: #ffffff;" class="btn"  data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7" 
-                                                title="Validate"><i class="fa fa-lg fa-fw fa-user-check"></i></button></a>
-                                            <a href="{% url 'delete_profile' bhw.user.id %}"><button type="button" style="color: rgb(255, 0, 0);" class="btn"  data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7" 
-                                                title="Delete"><i class="fa fa-lg fa-fw fa-trash-alt"></i></button></a>
+                                            <button type="button" style="background-color: #188045; color: #ffffff;" class="btn" title="Validate" onclick="toggleModal('{% url 'unvalidated_profile' bhw.user.id %}', 'Are you sure you want to validate {{ bhw.user.first_name }} {{ bhw.user.last_name }}?')"><i class="fa fa-lg fa-fw fa-user-check"></i></button>
+                                            <button type="button" style="color: rgb(255, 0, 0);" class="btn" onclick="toggleModal('{% url 'delete_profile' bhw.user.id %}', 'Are you sure you want to delete {{ bhw.user.first_name }} {{ bhw.user.last_name }}?')" title="Delete"><i class="fa fa-lg fa-fw fa-trash-alt"></i></button>
                                         </div>
+                                        <script>
+                                            function toggleModal(redirect, message) {
+                                                $('#message').text(message);
+                                                $('#form').attr('action', redirect);
+                                                var myModal = new bootstrap.Modal(document.getElementById('validate'), {
+                                                    keyboard: false
+                                                });
+                                                myModal.toggle();
+                                            }
+                                            function cancelValidationModal() {
+                                                $('#bhwName').text('');
+                                                $('#form').attr('action', 'validation');
+                                                var myModalEl = document.getElementById('validate');
+                                                var modal = bootstrap.Modal.getInstance(myModalEl);
+                                                modal.hide();
+                                            }
+                                        </script>
                                     </td>
                                 </tr>
                                 {% endfor %}
@@ -147,7 +162,29 @@
             </div>
         </div>
     </div>
-
+    <div class="modal fade" id="validate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" >
+                    <h5 class="modal-title fa fa-user-edit d-flex  justify-content-center" id="exampleModalLabel"> VALIDATE</h5>
+                </div>
+                <div class="modal-body mx-4">
+                    <form action="validation" id="form" method="POST">
+                        {% csrf_token %}
+                        <div class="md-form">
+                            <h5 class="modal-body" style="text-align:center;" id="message"></h5><br>
+                        </div>
+                        <div class="modal-footer" style="justify-content:center">
+                            <div class="d-flex justify-content-center">
+                                <input class="btn btn-primary px-3" type="submit" name="Confirm" value="Validate" style="margin-right: 2%; background-color: rgb(44, 95, 34);">
+                                <button type="button" onclick="cancelValidationModal()" style="background-color: #EF3A25; color: white;" class="btn">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
         <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
             
