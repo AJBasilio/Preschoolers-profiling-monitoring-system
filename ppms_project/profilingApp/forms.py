@@ -64,16 +64,17 @@ class CustomUserCreationForm(UserCreationForm):
             png.barangay = self.cleaned_data.get('barangay')
             png.save()
 
-        send_mail('Registration Successful',
-            f"""Congratulations you are now registered. Please double check your registration.\n
-        Here's your username: {user}
-        You are: {user.user_type}
-        Name: {user.first_name} {user.last_name}
-        Email: {user.email}""",
+        # SEND EMAIL
+        # send_mail('Registration Successful',
+        #     f"""Congratulations you are now registered. Please double check your registration.\n
+        # Here's your username: {user}
+        # You are: {user.user_type}
+        # Name: {user.first_name} {user.last_name}
+        # Email: {user.email}""",
             
-            'admission.system123@gmail.com',
-            [f'{user.email}'],
-            fail_silently=False)
+        #     'admission.system123@gmail.com',
+        #     [f'{user.email}'],
+        #     fail_silently=False)
 
         return user
 
@@ -93,7 +94,7 @@ class Validate_BHW(ModelForm):
 class UpdatePreschooler(ModelForm):
     height = forms.FloatField(required=True, max_value=120.0, min_value=45.0, widget=forms.NumberInput(attrs={'class' : 'form-control', 'step': '0.01'}))
     weight = forms.FloatField(required=True, max_value=28.0, min_value=1.0, widget=forms.NumberInput(attrs={'class' : 'form-control', 'step': '0.01'}))
-    date_measured = forms.DateField(required=True, widget=forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}))
+    date_measured = forms.DateField(required=True, widget=forms.DateInput(attrs={'class': 'form-control', 'type': 'date', 'id' : "date_measured"}))
     health_problem = forms.CharField(widget=forms.Textarea(attrs={'class' : 'form-control', 'type': 'text', 'id' : 'health_problem'}))
 
     class Meta:

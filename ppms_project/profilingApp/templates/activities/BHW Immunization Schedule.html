@@ -166,16 +166,17 @@
                                                     <label id="user-lbl" data-error="wrong" data-success="right">Dose(s):</label>
                                                     <input required class="form-control" type="number" min="1" max="3" name="dose" id="dose">
                                                 </div>
-                                                <!-- <div class="md-form">
+                                                <div class="md-form">
                                                     <label id="user-lbl" data-error="wrong" data-success="right">Required Doses:</label>
-                                                </div> -->
+                                                    <label id="required_dose" for=""></label>
+                                                </div>
                                                 <div class="md-form">
                                                     <label id="user-lbl" data-error="wrong" data-success="right">Immunization Date:</label>
                                                     <input required class="form-control" type="date" name="immune_date" id="immune_date">
                                                 </div>
                                                 <div class="md-form">
                                                     <label id="user-lbl" data-error="wrong" data-success="right">Remarks:</label>
-                                                    <textarea class="form-control" name="remarks" id="remarks" cols="30" rows="10"></textarea>
+                                                    <input class="form-control" type="date" name="remarks" id="remarks">
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="submit" class="btn " style="background-color: #188045; color: white;">Add</button>
@@ -248,20 +249,25 @@
         var maxDate = year + '-' + month + '-' + day;
 
         $('#immune_date').attr('min', maxDate);
+        $('#remarks').attr('min', maxDate);
     });
 
     function changeNum (vax_name) {
         if (vax_name.value === "Oral Poliovirus Vaccine") {
             document.getElementById("dose").value = "{{ dose_list.2 }}";
+            document.getElementById("required_dose").textContent = 3;
 
         } else if (vax_name.value === "Pentavalent Vaccine") {
             document.getElementById("dose").value = "{{ dose_list.3 }}";
+            document.getElementById("required_dose").value = 3;
 
         } else if (vax_name.value === "Measles Containing Vaccines") {
             document.getElementById("dose").value = "{{ dose_list.4 }}";
+            document.getElementById("required_dose").textContent = 3;
             
         } else if (vax_name.value === "Inactivated Polio Vaccine" || vax_name.value === "Measles Mumps - Rubella") {
             document.getElementById("dose").value = 1;
+            document.getElementById("required_dose").value = 2;
         }
     };
 </script>
