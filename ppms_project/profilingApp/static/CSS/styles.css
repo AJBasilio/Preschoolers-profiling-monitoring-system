@@ -116,7 +116,36 @@ tbody tr:nth-of-type(even) {
   background-image: linear-gradient(to top, rgba(230, 250, 202, 0.884), rgb(255, 255, 255));
 }
 /* Header hide title when minimized */
+#toggle{
+  display: none;
+}
+@media screen and (min-width: 300px) {
+  label{
+    margin:0 40px 0 0; font-size: 26px; line-height: 70px; display: none;
+  }
+  #hamburger{
+    display: none;
+  }
+}
+@media screen and (max-width: 300px) {
+  label{display:none; cursor: pointer; width: 52px; float:right;}
+  #hamburger{
+    display:block; cursor: pointer; width: 52px; float:right;
 
+  }
+  #navlinks{display:none}
+  #navlinks li{
+    display:inline-block;
+  }
+  #navlinks li a{
+    display: block; border-bottom: solid 1px black; margin-bottom: 2px; opacity: 100%; position: relative;
+  }
+  #toggle:checked + .menu{
+    display:inline-block;
+    justify-content: start;
+    align-items: stretch;
+  }
+} 
 @media screen and (max-width: 1000px) {
   #hideTitle {
     display: none;
