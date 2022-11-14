@@ -58,17 +58,17 @@
                                 </span></a>
                                 
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-end p-2" aria-labelledby="dropdownUser1">
-                                <div id="dropdown-menu">
-                                    <div>
-                                        <i class="fa fa-lg fa-fw fa-user bi mx-auto"></i>   
-                                        <span style="font-size: 15px;">{{ bhw.user.first_name }} {{ bhw.user.last_name }}</span>
-                                    </div>
-                                    <div>
-                                        <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-fw fa-sign-out-alt mx-1"></i>Sign out</a></li>
-                                    </div>
+                            <ul class="dropdown-menu dropdown-menu-end p-2" style="margin-right:3%;" aria-labelledby="dropdownUser1">
+                                
+                                <div>
+                                    <i class="fa fa-lg fa-fw fa-user bi mx-auto"></i>   
+                                    <span style="font-size: 15px;">{{ bhw.user.first_name }} {{ bhw.user.last_name }}</span>
                                 </div>
+                                <div>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" style="background-color: rgba(255, 255, 255, 0); padding: 2px !important; margin-left:7px;" href="{% url 'logout' %}"><i class="fa fa-fw fa-sign-out-alt mx-1"></i>Sign out</a></li>
+                                </div>
+                                
                             </ul>                    
                         </li>
                     </ul>
