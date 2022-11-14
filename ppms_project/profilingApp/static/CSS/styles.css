@@ -119,33 +119,42 @@ tbody tr:nth-of-type(even) {
 #toggle{
   display: none;
 }
-@media screen and (min-width: 300px) {
-  label{
-    margin:0 40px 0 0; font-size: 26px; line-height: 70px; display: none;
-  }
-  #hamburger{
-    display: none;
-  }
-}
-@media screen and (max-width: 300px) {
-  label{display:none; cursor: pointer; width: 52px; float:right;}
+@media screen and (max-width: 357px) {
   #hamburger{
     display:block; cursor: pointer; width: 52px; float:right;
 
   }
+  .fixed-top{
+    max-height:auto ;
+  }
+  #grid{
+    margin-top:auto;
+  }
+    
   #navlinks{display:none}
   #navlinks li{
-    display:inline-block;
+    display:block;
   }
   #navlinks li a{
-    display: block; border-bottom: solid 1px black; margin-bottom: 2px; opacity: 100%; position: relative;
+    display: block; 
+    border-bottom: solid 1px black; 
+    margin-bottom: 2px; opacity: 100%; 
+    position: relative;
   }
   #toggle:checked + .menu{
-    display:inline-block;
+    display:block;
     justify-content: start;
     align-items: stretch;
+    transition: 0.5s;
   }
 } 
+
+@media screen and (min-width: 357px) {
+  #hamburger{
+    margin:0 40px 0 0; font-size: 26px; line-height: 70px; display: none;
+  }
+
+}
 @media screen and (max-width: 1000px) {
   #hideTitle {
     display: none;
@@ -164,6 +173,18 @@ tbody tr:nth-of-type(even) {
   }
 } 
 
+/* Parent Home Cards Styling */
+
+.hoverable {
+  transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+  cursor: pointer;
+}
+.hoverable:hover{
+  transform: scale(1.02);
+  box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+
+
 /* Parent Home Button Styling */
 
 #parentButton{
@@ -180,13 +201,6 @@ tbody tr:nth-of-type(even) {
   -webkit-transform: scale(1.05);
   background-color: #e4e4e39f;
   transform: scale(1.05);
-}
-
-#parentButton:active{
-  color: rgb(40, 167, 69);
-  -webkit-transform: scale(.95);
-  transform: scale(.95);
-
 }
 
 /* BHW Preschooler Profile Buttons */
