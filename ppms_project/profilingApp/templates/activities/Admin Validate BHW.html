@@ -170,12 +170,12 @@
                                     </td>
                                     <td>
                                         <div>
-                                        <button type="button" style="background-color: #188045; color: #ffffff;" class="btn" title="resetpass" onclick="toggleResetModal('Set new password for {{ bhw.user.first_name }} {{ bhw.user.last_name }}.')"><i class="fa fa-lg fa-fw fa-key"></i></button>
+                                        <a href="{% url 'set_pass' bhw.user.id %}"><button type="button" style="background-color: #188045; color: #ffffff;" class="btn" title="resetpass"><i class="fa fa-lg fa-fw fa-key"></i></button></a>
                                         </div>
                                         <script>
                                             function toggleResetModal(message) {
                                                 $('#resetmsg').text(message);
-                                                $('#form').attr('action', "{% url 'unvalidated_profile' bhw.user.id %}");
+                                                $('#form').attr('action', "{% url 'set_pass' bhw.user.id %}");
                                                 var myModal = new bootstrap.Modal(document.getElementById('resetpass'), {
                                                     keyboard: false
                                                 });
@@ -281,7 +281,11 @@
                             
                             <div class="md-form">
                                 <label id="user-lbl" data-error="wrong" data-success="right">New Password: </label>
-                                <input class="form-control" type="text" name="new_pass" id="new_pass">
+                                {{ form.new_password1 }}
+                            </div>
+                            <div class="md-form">
+                                <label id="user-lbl" data-error="wrong" data-success="right">Confirm New Password: </label>
+                                {{ form.new_password2 }}
                             </div>
                         </div>
                     </div>

@@ -18,6 +18,7 @@ urlpatterns = [
     path('validate_profile/<str:pk>/', views.unvalidated_profile, name='unvalidated_profile'),
     path('delete_profile/<str:pk>/', views.delete_profile, name='delete_profile'),
     path('admin_barangay', views.admin_barangay, name='admin_barangay'),
+    path('set_password/<str:pk>/', views.set_pass, name='set_pass'),
 
 
 

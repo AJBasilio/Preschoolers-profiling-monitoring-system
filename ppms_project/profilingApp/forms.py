@@ -5,7 +5,7 @@ from django import forms
 from django.forms import ModelForm
 from django.contrib.auth import get_user_model
 from django.forms.widgets import PasswordInput
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, SetPasswordForm
 from .models import *
 from django.core.mail import send_mail
 
@@ -100,3 +100,8 @@ class UpdatePreschooler(ModelForm):
     class Meta:
         model = Preschooler
         fields = ['height', 'weight', 'date_measured', 'health_problem']
+
+class BHWSetPasswordForm(SetPasswordForm):
+    class Meta:
+        model = get_user_model()
+        fields = ['new_password1', 'new_password2']

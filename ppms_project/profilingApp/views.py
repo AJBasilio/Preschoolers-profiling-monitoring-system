@@ -183,12 +183,14 @@ def admin_home(request):
 def bhw_validation(request):
     if request.user.is_authenticated and request.user.user_type == 'Admin':
         bhw = BarangayHealthWorker.objects.filter(is_validated=False)
+
         parent = Parent.objects.all()
         invalidated_status = BarangayHealthWorker.objects.filter(
             is_validated=False).count()
+
         context = {'bhws': bhw, 
                 'invalidated_count': invalidated_status,
-                'parents' : parent}
+                'parents' : parent,}
 
         return render(request, 'activities/Admin Validate BHW.html', context)
     
@@ -197,6 +199,26 @@ def bhw_validation(request):
     elif request.user.is_authenticated and request.user.user_type == 'P/G':
         return redirect('parent_home')
 
+def set_pass(request, pk):
+    if request.user.is_authenticated and request.user.user_type == 'Admin':
+        bhw = CustomUser.objects.get(id=pk)
+        form = BHWSetPasswordForm(bhw)
+        
+        if request.method == 'POST':
+            form = BHWSetPasswordForm(bhw, request.POST)
+            if form.is_valid():
+                form.save()
+
+                return redirect('bhw_validation')
+
+        context = {'form' : form}
+
+        return render(request, 'activities/Admin - Set Password.html', context)
+
+    elif request.user.is_authenticated and request.user.user_type == 'BHW':
+        return redirect('bhw_home')
+    elif request.user.is_authenticated and request.user.user_type == 'P/G':
+        return redirect('parent_home')
 
 def admin_preschoolers(request):
     if request.user.is_authenticated and request.user.user_type == 'Admin':
