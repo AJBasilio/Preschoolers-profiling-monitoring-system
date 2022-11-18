@@ -225,18 +225,19 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for parent in parents %}
                                 <tr>
                                     <td class="text-center"></td>
-                                    <td class="text-center"></td>
-                                    <td class="text-center"></td>
-                                    <td class="text-center"></td>
-                                    <td class="text-center"></td>
-                                    <td class="text-center"></td>
-                                    <td class="text-center"></td>
-                                    <td class="text-center"></td>
-                                    <td style="text-align: center;">
-                                    </td>
+                                    <td class="text-center">{{ parent.user.first_name }}</td>
+                                    <td class="text-center">{{ parent.user.middle_name }}</td>
+                                    <td class="text-center">{{ parent.user.last_name }}</td>
+                                    <td class="text-center">{{ parent.user.suffix_name }}</td>
+                                    <td class="text-center">{{ parent.user.phone_num }}</td>
+                                    <td class="text-center">{{ parent.user.email }}</td>
+                                    <td class="text-center">{{ parent.barangay }}</td>
+                                    <td style="text-align: center;"></td>
                                 </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>

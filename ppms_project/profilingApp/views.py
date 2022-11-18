@@ -183,10 +183,12 @@ def admin_home(request):
 def bhw_validation(request):
     if request.user.is_authenticated and request.user.user_type == 'Admin':
         bhw = BarangayHealthWorker.objects.filter(is_validated=False)
+        parent = Parent.objects.all()
         invalidated_status = BarangayHealthWorker.objects.filter(
             is_validated=False).count()
         context = {'bhws': bhw, 
-                'invalidated_count': invalidated_status,}
+                'invalidated_count': invalidated_status,
+                'parents' : parent}
 
         return render(request, 'activities/Admin Validate BHW.html', context)
     
