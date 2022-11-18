@@ -145,8 +145,11 @@
                                 <div class="text-center">
                                     <div class="row">
                                         <div class="col-4 d-flex justify-content-center align-items-center text-center">
-                                                <!--- uploads/avatar_{{ item.id }} ----->
-                                            <img class="rounded-circle"src="https://png.pngtree.com/png-vector/20190114/ourlarge/pngtree-vector-avatar-icon-png-image_313572.jpg" height="100%" width="100%">
+                                            {% if item.gender == 'Male' %}
+                                                <img class="rounded-circle"src="https://png.pngtree.com/png-vector/20190114/ourlarge/pngtree-vector-avatar-icon-png-image_313572.jpg" height="100%" width="100%">
+                                            {% elif item.gender == 'Female' %}
+                                                <img class="rounded-circle"src="https://cdn-icons-png.flaticon.com/512/186/186037.png?fbclid=IwAR1OPbyTuELnCON7Mtn4GDZzwEDeQYfe3udTNuHzzx-O_fhYQZCzvUPjSDQ" height="100%" width="100%">
+                                            {% endif %}
                                         </div>
                                         <div class="col-8 d-flex justify-content-start align-items-center text-start  text-body">
                                             <div>Name : {{ item.first_name }} {{ item.middle_name }} {{ item.last_name }} {{ preschooler.suffix_name }} 
