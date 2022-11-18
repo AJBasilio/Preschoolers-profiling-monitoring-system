@@ -75,6 +75,7 @@
     </nav>
     </div>
 </header>
+
 <!-- Tooltip Script -->
 <script>
     $(function () {
@@ -83,164 +84,129 @@
        $('.tooltip').addClass('animated fade');
    })
  </script>
+
 <!-- Dashboard -->
 <div id="grid" class="container-fluid">
     <div class="container-grid">
-        <h2 style="text-align:left;">Overall Data</h2>
+        <h2 style="text-align:left;">Overall  User Accounts</h2>
         <hr>
-        <!-- MAIN CARDS STARTS HERE -->
-        <div class="row d-flex align-items-stretch ">
-            <div class="col-xxl-8 col-lg-6 col-md-12 ">
-                <div class="row mb-3 align-items-stretch">
-                    <!-- BHW List Table Card  -->
-                    <div class='row d-flex align-items-stretch mb-2'>
-                    <div class="col-xl-12">
-                        <div class="card shadow-sm bg-white rounded h-100">
-                            <div class="card-header">
-                                <h4 style="Padding: 10px 40px 0px 0px;">Barangay Health Workers</h4>
-                            </div>
-                            <div class="card-body p-3 ">
-                                <div class="table-responsive">
-                                    <table class="table table-hover" style="border:none " id="user_list">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col" class="text-center">No.</th>
-                                                <th scope="col" class="text-center">First Name</th>
-                                                <th scope="col" class="text-center">Middle Name</th>
-                                                <th scope="col" class="text-center">Last Name</th>
-                                                <th scope="col" class="text-center">Suffix</th>
-                                                <th scope="col" class="text-center">Barangay</th>
-                                                <th scope="col" class="text-center">Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {% for bhw in bhws %}
-                                            <tr>
-                                                <td class="text-center"></td>
-                                                <td class="text-center">{{ bhw.user.first_name }}</td>
-                                                <td class="text-center">{{ bhw.user.middle_name }}</td>
-                                                <td class="text-center">{{ bhw.user.last_name }}</td>
-                                                <td class="text-center">{{ bhw.user.suffix_name }}</td>
-                                                <td class="text-center">{{ bhw.bhw_barangay}}</td>
-                                                {% if bhw.is_validated is True %}
-                                                    <td class="text-center" style="color: green;">Validated</td>
-                                                {% else %}
-                                                    <td class="text-center" style="color: orangered;">Unvalidated</td>
-                                                {% endif %}
-                                            </tr>
-                                            {% endfor %}                                        
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+        <div  class=" row d-flex mb-3 align-items-stretch">
+
+            <!-- BHW List Table Card  -->
+            <div class="col-xl-6 mb-xl-0 mb-sm-4">
+                <div class="card shadow-sm bg-white rounded h-100">
+                    <div class="card-header">
+                        <h4 style="Padding: 10px 40px 0px 0px;">Barangay Health Workers</h4>
+                    </div>
+                    <div class="card-body p-3 ">
+                        <div class="table-responsive">
+                            <table class="table table-hover" style="border:none " id="bhw_list">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="text-center">No.</th>
+                                        <th scope="col" class="text-center">First Name</th>
+                                        <th scope="col" class="text-center">Last Name</th>
+                                        <th scope="col" class="text-center">Barangay</th>
+                                        <th scope="col" class="text-center">Action</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                    </div>  
-                </div>
-                <div class="row mb-3 align-items-stretch">
-                    <!-- BHW List Table Card  -->
-                    <div class='row d-flex align-items-stretch mb-2'>
-                    <div class="col-xl-12">
-                        <div class="card shadow-sm bg-white rounded h-100">
-                            <div class="card-header">
-                                <h4 style="Padding: 10px 40px 0px 0px;">Barangay Health Workers</h4>
-                            </div>
-                            <div class="card-body p-3 ">
-                                <div class="table-responsive">
-                                    <table class="table table-hover" style="border:none " id="user_list">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col" class="text-center">No.</th>
-                                                <th scope="col" class="text-center">First Name</th>
-                                                <th scope="col" class="text-center">Middle Name</th>
-                                                <th scope="col" class="text-center">Last Name</th>
-                                                <th scope="col" class="text-center">Suffix</th>
-                                                <th scope="col" class="text-center">Barangay</th>
-                                                <th scope="col" class="text-center">Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {% for bhw in bhws %}
-                                            <tr>
-                                                <td class="text-center"></td>
-                                                <td class="text-center">{{ bhw.user.first_name }}</td>
-                                                <td class="text-center">{{ bhw.user.middle_name }}</td>
-                                                <td class="text-center">{{ bhw.user.last_name }}</td>
-                                                <td class="text-center">{{ bhw.user.suffix_name }}</td>
-                                                <td class="text-center">{{ bhw.bhw_barangay}}</td>
-                                                {% if bhw.is_validated is True %}
-                                                    <td class="text-center" style="color: green;">Validated</td>
-                                                {% else %}
-                                                    <td class="text-center" style="color: orangered;">Unvalidated</td>
-                                                {% endif %}
-                                            </tr>
-                                            {% endfor %}                                        
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>  
+                    </div>
                 </div>
             </div>
-            
-        </div>
+
+            <!-- Parent List Table Card  -->
+            <div class="col-xl-6 mb-xl-0 mb-sm-4">
+                <div class="card shadow-sm bg-white rounded h-100">
+                    <div class="card-header">
+                        <h4 style="Padding: 10px 40px 0px 0px;">Parents</h4>
+                    </div>
+                    <div class="card-body p-3 ">
+                        <div class="table-responsive">
+                            <table class="table table-hover" style="border:none " id="bhw_list">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="text-center">No.</th>
+                                        <th scope="col" class="text-center">First Name</th>
+                                        <th scope="col" class="text-center">Last Name</th>
+                                        <th scope="col" class="text-center">Barangay</th>
+                                        <th scope="col" class="text-center">Action</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  
     </div>
 </div>
-{% endblock %} 
-    </div>
-    <!-- Footer -->
-    <div class="site-footer" id="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4">
-                    <h2 class="footer-heading mb-4">About</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                        Modi cumque tenetur inventore veniam, hic vel ipsa necessitatibus 
-                        ducimus architecto fugiat!
-                    </p>
-                    <div class="my-5">
-                        <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
-                        <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
-                        <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
-                        <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
-                    </div>
-                </div>
-                <div class="col-lg-8">
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <h2 class="footer-heading mb-4">Quick Links</h2>
-                            <ul class="list-unstyled">
-                            <li><a href="#">FAQs</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-4">
-                            <h2 class="footer-heading mb-4">Helpful Link</h2>
-                            <ul class="list-unstyled">
-                            <li><a href="#">Healthcare Professional</a></li>
-                            <li><a href="#">LGU Facilities</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-4">
-                            <h2 class="footer-heading mb-4">Resources</h2>
-                            <ul class="list-unstyled">
-                            <li><a href="#">NNC Website</a></li>
-                            <li><a href="#">DOH Website</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row text-center">
-                <div class="col-md-12">
-                    <div class="border-top pt-5">
-                        <p class="copyright"><small>
-                        Copyright ©<script>document.write(new Date().getFullYear());</script> All rights reserved <i class="icon-heart text-danger" aria-hidden="true"></i>
-                        </small>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
+
+
+
+<script src="{% static '/Javascript/js/functions.js' %}"></script>
+<script src="{% static '/Javascript/js/bootstrap.bundle.min.js' %}"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+    var t = $('#bhw_list').DataTable({
+        info: 'true',
+        dom: 'rftip',
+        pageLength : 5,
+        aoColumnDefs: [{
+            'bSortable': false,
+            'aTargets': ['nosort'],
+            'orderable': false,
+            'targets': [0,5],
+        }],
+        order: [[1, 'asc']],
+        });
+        t.on('order.dt search.dt', function () {
+        let i = 1;
+        t.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+            this.data(i++);
+        });}).draw();
+</script>
+
+<script>
+    var t = $('#parent_list').DataTable({
+        info: 'true',
+        dom: 'rftip',
+        pageLength : 5,
+        aoColumnDefs: [{
+            'bSortable': false,
+            'aTargets': ['nosort'],
+            'orderable': false,
+            'targets': [0, 5],
+        }],
+        order: [[1, 'asc']],
+        });
+        t.on('order.dt search.dt', function () {
+        let i = 1;
+        t.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+            this.data(i++);
+        });}).draw();
+</script>
+{% endblock %}
