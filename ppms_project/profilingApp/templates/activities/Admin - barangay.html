@@ -23,40 +23,47 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{% url 'admin_barangay' %}" class="nav-link" style="color:rgb(27, 177, 92) !important;" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
-                            title="List of Barangay">
-                            <i class="fa fa-3x fa-fw fas fa-landmark " style="font-size: 24px;"></i>
-                            </a>
-                        </li>
-                        <li>
                             <a href="{% url 'admin_home2' %}" class="nav-link"  data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"                            title="Preschooler Status">
                             <i class="fa fa-fw fa-id-card " style="font-size: 24px;"></i>
                             </a>
                         </li>
                         <li>
+                            <a href="{% url 'admin_barangay' %}" class="nav-link" style="color:rgb(27, 177, 92) !important;" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
+                            title="BHW Validation">
+                            <i class="fa fa-3x fa-fw fas fa-landmark " style="font-size: 24px;"></i>
+                            </a>
+                        </li>
+                        <li>
                             {% if invalidated_count > 0 %}
-                            <a href="{% url 'bhw_validation' %}" class="nav-link" style="color:rgb(27, 177, 92) !important;" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
-                                title="User accounts" >
-                                <i class="fa fa-fw fa-users" style="font-size: 24px;"></i>
+                            <a href="{% url 'bhw_validation' %}" class="nav-link"  data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
+                                title="BHW Validation" >
+                                <i class="fa fa-fw fa-user-md" style="font-size: 24px;"></i>
                                 <span class="position-absolute top-25 start-75 translate-middle badge rounded-pill bg-danger">
                                     {{ invalidated_count }}
                                     <span class="visually-hidden">unread messages</span>
                                 </span></a>
                             {% else %}
-                            <a href="{% url 'bhw_validation' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
-                                title="User accounts" >
-                                <i class="fa fa-fw fa-users" style="font-size: 24px;"></i>  
+                            <a href="{% url 'bhw_validation' %}" class="nav-link"  data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
+                                title="BHW Validation" >
+                                <i class="fa fa-fw fa-user-md" style="font-size: 24px;"></i>  
                                 </a>
                             {% endif %}
                         </li>
                         <li>
+                            <a href="{% url 'admin_userAccounts' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
+                            title="User accounts">
+                            <i class="fa fa-3x fa-fw fas fa-users " style="font-size: 24px;"></i>
+                            </a>
+                        </li>
+                        <li>
                             <a class="btn nav-link" id="dropdownUser1" data-bs-toggle="dropdown" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
-                            title="User Settings" aria-expanded="false">
-                            
-                                <i class="fa fa-fw fa-user-cog bi dropdown-toggle" style="font-size: 24px;"></i>   
+                            title="User" aria-expanded="false">
+                            <i class="fa fa-fw fa-user-cog bi" style="font-size: 24px;"></i>
+                            <span class="position-absolute top-100 start-75 translate-middle badge rounded-pill text-dark" style="border-radius: 50%;">
+                                <i class="fa fa-lg fa-fw fa-caret-down bg-light" style="border-radius: 25%; margin-bottom: 15px;"></i>
+                            </span></a>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end p-2" style="margin-right:3%;" aria-labelledby="dropdownUser1">
-                               
                                 <div>
                                     <i class="fa fa-lg fa-fw fa-user bi" style="margin-left:5px;"></i>  
                                     <span style="font-size: 15px;"> {{ user.first_name }} {{ user.last_name }} </span>
@@ -65,9 +72,8 @@
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" style="background-color: rgba(255, 255, 255, 0); padding: 2px !important; margin-left:7px;" href="{% url 'logout' %}"><i class="fa fa-fw fa-sign-out-alt mx-1"></i>Sign out</a></li>
                                 </div>
-                               
                             </ul>                    
-                        </li>
+                        </li>                 
                     </ul>
                 </div>
             </div>
@@ -89,15 +95,16 @@
 <div id="grid" class="container-fluid" style="padding:3%; margin: top 65px;">
     <div class="container-grid">
         <div class="">
-            <div class="row"> 
-                <div class="col">
+            <div class="row d-flex justify-content-between"> 
+                <div class="col align-items-center d-flex justify-content-md-start justify-content-center mb-2">
                     <h3 style="text-align:left;">List of barangay</h3>
                 </div>
+                <div class="col-sm-6 d-flex align-items-center justify-content-md-end justify-content-center">
+                    <button style="margin-bottom: 0px; background-color: #188045;border-color:#188045; height: 50px;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addBrgy">
+                        <span class="fas fa-landmark"></span>  Add Barangay</button>
+                </div>
             </div>
-            <div class="col-sm-6  mb-3 d-flex justify-content-sm-end justify-content-center">
-                <button style="margin-bottom: 15px; background-color: #188045;border-color:#188045; height: 50px;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addBrgy">
-                    <span class="fa fa-calendar-alt"></span> Add Barangay</button>
-            </div>
+            
         <hr>
         <br>
         </div>
@@ -108,7 +115,6 @@
             <div class="col">
                 <div class="card-header">
                     <h3>Barangays</h3>
-                    
                 </div>
                 <div class="card shadow-lg p-3 bg-white rounded" >
                     <div class="table-responsive" >
@@ -169,30 +175,24 @@
         </div>
     </div>
 
-
-
-<script src="{% static '/Javascript/js/functions.js' %}"></script>
-<script src="{% static '/Javascript/js/bootstrap.bundle.min.js' %}"></script>
-<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
-
-<script>
-    var t = $('#table_barangay').DataTable({
-        info: 'true',
-        dom: 'rftip',
-        pageLength : 10,
-        aoColumnDefs: [{
-            'bSortable': false,
-            'aTargets': ['nosort'],
-            'orderable': false,
-            'targets': [],
-        }],
-        order: [[1, 'asc']],
-        });
-        t.on('order.dt search.dt', function () {
-        let i = 1;
-        t.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
-            this.data(i++);
-        });}).draw();
-</script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        var t = $('#table_barangay').DataTable({
+            info: 'true',
+            pageLength : 10,
+            aoColumnDefs: [{
+                'bSortable': false,
+                'aTargets': ['nosort'],
+                'orderable': false,
+                'targets': [],
+            }],
+            order: [[1, 'asc']],
+            });
+            t.on('order.dt search.dt', function () {
+            let i = 1;
+            t.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+                this.data(i++);
+            });}).draw();
+    </script>
 {% endblock %}

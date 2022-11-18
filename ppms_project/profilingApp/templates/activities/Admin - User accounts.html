@@ -22,32 +22,38 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{% url 'admin_barangay' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
-                            title="List of Barangay">
-                            <i class="fa fa-3x fa-fw fas fa-landmark " style="font-size: 24px;"></i>
-                            </a>
-                        </li>
-                        <li>
                             <a href="{% url 'admin_home2' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
                             title="Preschooler Status">
                             <i class="fa fa-fw fa-id-card " style="font-size: 24px;"></i>
                             </a>
                         </li>
                         <li>
+                            <a href="{% url 'admin_barangay' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
+                            title="List of Barangay">
+                            <i class="fa fa-3x fa-fw fas fa-landmark " style="font-size: 24px;"></i>
+                            </a>
+                        </li>
+                        <li>
                             {% if invalidated_count > 0 %}
-                            <a href="{% url 'bhw_validation' %}" class="nav-link" style="color:rgb(27, 177, 92) !important;" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
-                                title="User accounts" >
-                                <i class="fa fa-fw fa-users" style="font-size: 24px;"></i>
+                            <a href="{% url 'bhw_validation' %}" class="nav-link"  data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
+                                title="BHW Validation" >
+                                <i class="fa fa-fw fa-user-md" style="font-size: 24px;"></i>
                                 <span class="position-absolute top-25 start-75 translate-middle badge rounded-pill bg-danger">
                                     {{ invalidated_count }}
                                     <span class="visually-hidden">unread messages</span>
                                 </span></a>
                             {% else %}
-                            <a href="{% url 'bhw_validation' %}" class="nav-link" style="color:rgb(27, 177, 92) !important;" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
-                                title="User accounts" >
-                                <i class="fa fa-fw fa-users" style="font-size: 24px;"></i>  
+                            <a href="{% url 'bhw_validation' %}" class="nav-link"  data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
+                                title="BHW Validation" >
+                                <i class="fa fa-fw fa-user-md" style="font-size: 24px;"></i>  
                                 </a>
                             {% endif %}
+                        </li>
+                        <li>
+                            <a href="{% url 'admin_userAccounts' %}" class="nav-link" style="color:rgb(27, 177, 92) !important;" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
+                            title="User accounts">
+                            <i class="fa fa-3x fa-fw fas fa-users " style="font-size: 24px;"></i>
+                            </a>
                         </li>
                         <li>
                             <a class="btn nav-link" id="dropdownUser1" data-bs-toggle="dropdown" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
@@ -101,7 +107,7 @@
         <br>
         </div>
     </div>
-    <!--------------------- DataTables --------------------->
+    <!--------------------- DataTables for BHW --------------------->
     <div class="text-black">
         <div class="row">
             <div class="col">
@@ -111,7 +117,7 @@
                 </div>
                 <div class="card shadow-lg p-3 bg-white rounded" >
                     <div class="table-responsive" >
-                        <table class="table table-hover table-cell-border" id="table_validation" >
+                        <table class="table table-hover table-cell-border" id="BHWuser_table" >
                             <thead>
                                 <tr>
                                     <th scope="col" class="text-center">No.</th>
@@ -122,8 +128,7 @@
                                     <th scope="col" class="text-center">Phone Number</th>
                                     <th scope="col" class="text-center">Email</th>
                                     <th scope="col" class="text-center">Barangay Designation</th>
-                                    <th scope="col" class="nosort text-center">Validation</th>
-                                    <th scope="col" class="nosort text-center">Action</th>
+                                    <th scope="col" class=" text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -137,42 +142,11 @@
                                     <td class="text-center">{{ bhw.user.phone_num}}</td>
                                     <td class="text-center">{{ bhw.user.email }}</td>
                                     <td class="text-center">{{ bhw.bhw_barangay }}</td>
-                                    <td style="text-align: center;">
-                                        <div>
-                                            <button type="button" style="background-color: #188045; color: #ffffff;" class="btn" title="Validate" onclick="toggleValidateModal('Are you sure you want to validate {{ bhw.user.first_name }} {{ bhw.user.last_name }}?')"><i class="fa fa-lg fa-fw fa-user-check"></i></button>
-                                            <button type="button" style="color: rgb(255, 0, 0);" class="btn" onclick="toggleDeleteModal('Are you sure you want to delete {{ bhw.user.first_name }} {{ bhw.user.last_name }}?')" title="Delete"><i class="fa fa-lg fa-fw fa-trash-alt"></i></button>
-                                        </div>
-                                        <script>
-                                            function toggleValidateModal(message) {
-                                                $('#message').text(message);
-                                                $('#form').attr('action', "{% url 'unvalidated_profile' bhw.user.id %}");
-                                                var myModal = new bootstrap.Modal(document.getElementById('validate'), {
-                                                    keyboard: false
-                                                });
-                                                myModal.toggle();
-                                            }
-                                            function toggleDeleteModal(message) {
-                                                $('#message').text(message);
-                                                $('#form').attr('action', "{% url 'delete_profile' bhw.user.id %}");
-                                                var myModal = new bootstrap.Modal(document.getElementById('validate'), {
-                                                    keyboard: false
-                                                });
-                                                myModal.toggle();
-                                            }
-                                            function cancelValidationModal() {
-                                                $('#bhwName').text('');
-                                                $('#form').attr('action', 'validation');
-                                                var myModalEl = document.getElementById('validate');
-                                                var modal = bootstrap.Modal.getInstance(myModalEl);
-                                                modal.hide();
-                                            }
-                                        </script>
-                                    </td>
                                     <td>
-                                        <div>
-                                        <a href="{% url 'set_pass' bhw.user.id %}"><button type="button" style="background-color: #188045; color: #ffffff;" class="btn" title="resetpass"><i class="fa fa-lg fa-fw fa-key"></i></button></a>
+                                        <div class="text-center">
+                                        <a href="{% url 'set_pass' bhw.user.id %}"><button type="button" style="background-color: #188045; color: #ffffff;" class="btn" title="Reset password"><i class="fa fa-lg fa-fw fa-key"></i></button></a>
                                         </div>
-                                        <script>
+                                        <!-- <script>
                                             function toggleResetModal(message) {
                                                 $('#resetmsg').text(message);
                                                 $('#form').attr('action', "{% url 'set_pass' bhw.user.id %}");
@@ -188,7 +162,7 @@
                                                 var modal = bootstrap.Modal.getInstance(myModalEl);
                                                 modal.hide();
                                             }
-                                        </script>
+                                        </script> -->
                                     </td>
                                 </tr>
                                 {% endfor %}
@@ -199,8 +173,10 @@
             </div>
         </div>
     </div>
+    <br>
+    <hr>
 
-    <!--------------------- DataTables --------------------->
+    <!--------------------- DataTables for Parents --------------------->
     <div class="text-black pt-3">
         <div class="row">
             <div class="col">
@@ -210,7 +186,7 @@
                 </div>
                 <div class="card shadow-lg p-3 bg-white rounded" >
                     <div class="table-responsive" >
-                        <table class="table table-hover table-cell-border" id="table_parents" >
+                        <table class="table table-hover table-cell-border" id="parentUser_table" >
                             <thead>
                                 <tr>
                                     <th scope="col" class="text-center">No.</th>
@@ -235,7 +211,11 @@
                                     <td class="text-center">{{ parent.user.phone_num }}</td>
                                     <td class="text-center">{{ parent.user.email }}</td>
                                     <td class="text-center">{{ parent.barangay }}</td>
-                                    <td style="text-align: center;"></td>
+                                    <td style="text-align: center;">
+                                        <div class="text-center">
+                                            <a href="{% url 'set_pass' parent.user.id %}"><button type="button" style="background-color: #188045; color: #ffffff;" class="btn" title="Reset password"><i class="fa fa-lg fa-fw fa-key"></i></button></a>
+                                        </div>
+                                    </td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -245,7 +225,8 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="validate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    
+    <!-- <div class="modal fade" id="validate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header" >
@@ -267,8 +248,8 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="modal fade" id="resetpass" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    </div> -->
+    <!-- <div class="modal fade" id="resetpass" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <form action="resetpass" id="form" method="POST"></form>
                 <div class="modal-content">
@@ -298,18 +279,40 @@
                 </div>
             </form>
         </div>
-    </div>
+    </div> -->
         <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
             
         <script>
-            var t = $('#table_validation').DataTable({
+            var t = $('#BHWuser_table').DataTable({
                 info: 'true',
+                dom: 'rftip',
+                pageLength : 10,   
                 aoColumnDefs: [{
                     'bSortable': false,
                     'aTargets': ['nosort'],
                     'orderable': false,
-                    'targets': [0,8,9],
+                    'targets': [0,8],
+                }],
+                order: [[1, 'asc']],
+                });
+                t.on('order.dt search.dt', function () {
+                let i = 1;
+                t.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+                    this.data(i++);
+                });}).draw();
+        </script>
+
+        <script>
+            var t = $('#parentUser_table').DataTable({
+                info: 'true',
+                dom: 'rftip',
+                pageLength : 10,   
+                aoColumnDefs: [{
+                    'bSortable': false,
+                    'aTargets': ['nosort'],
+                    'orderable': false,
+                    'targets': [0,8],
                 }],
                 order: [[1, 'asc']],
                 });
