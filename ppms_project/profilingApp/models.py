@@ -7,7 +7,8 @@ from django.db.models.deletion import CASCADE
 from simple_history.models import HistoricalRecords
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.utils.translation import gettext_lazy as _
-from datetime import date
+from datetime import date, datetime
+from dateutil.relativedelta import relativedelta
 from pygrowup import Calculator, helpers
 
 # Create your models here.
@@ -95,6 +96,18 @@ class Parent(Model):
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name}"
 
+class PreschoolerManagerGreater(models.Manager):
+    def get_queryset(self):
+        greater_than_60_mon = datetime.today() - relativedelta(months=60)
+
+        return super().get_queryset().filter(birthday__gt=greater_than_60_mon)
+
+class PreschoolerManagerLess(models.Manager):
+    def get_queryset(self):
+        less_than_60_mon = datetime.today() - relativedelta(months=60)
+
+        return super().get_queryset().filter(birthday__lte=less_than_60_mon)
+
 class Preschooler(Model):
     GENDER = [('Male', 'Male'),
               ('Female', 'Female'),]
@@ -110,7 +123,16 @@ class Preschooler(Model):
     gender = models.CharField(max_length=100, choices=GENDER, null=True)
     date_measured = models.DateField(null=True, blank=True)
     health_problem = models.CharField(max_length=500, null=True, blank=True)
+    
+    # === Managers ===
     history= HistoricalRecords()
+    objects = models.Manager()
+
+    # less than 60 months old preschooler
+    gt_60_objects = PreschoolerManagerGreater()
+
+    # greater than or equal to 60 months old preschooler
+    lt_60_objects = PreschoolerManagerLess()
 
     def __str__(self):
         return f"{self.first_name} {self.middle_name} {self.last_name}"
