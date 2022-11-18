@@ -101,7 +101,19 @@
                                 {% endif %}
                                 <td>{{ preschooler.birthday }}</td>
                                 <td>{{ preschooler.age_months }}</td>
-                                <td>{{ preschooler.whfa }}</td>
+                                {% if preschooler.whfa is None %}
+                                    
+                                    <td> No Data Record </td>
+                                    
+                                {% elif preschooler.whfa > 2.0 %}
+                                    <td> Overweight/Obese ({{preschooler.whfa}})</td>
+                                {% elif preschooler.whfa >= -2.0 and preschooler.whfa <= 2.0 %}
+                                    <td> Normal ({{preschooler.whfa}})</td>
+                                {% elif preschooler.whfa >= -3.0 and preschooler.whfa <= -2.0 %}
+                                    <td> Wasted ({{preschooler.whfa}})</td>
+                                {% else %}
+                                    <td> Severely Wasted ({{preschooler.whfa}})</td>
+                                {% endif %}
                                 <td style="text-align: center;">
                                     <div>
                                         <a href="{% url 'preschooler_profile' preschooler.id %}"><button type="button" style="background-color: #188045; color: white;" class="btn">View Profile</button></a>

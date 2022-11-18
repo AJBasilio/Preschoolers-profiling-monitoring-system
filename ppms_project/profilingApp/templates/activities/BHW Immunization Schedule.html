@@ -64,12 +64,12 @@
                             <div class="d-flex justify-content-between">
                             {% if preschooler.suffix_name is None %}
                                         <div class="d-flex justify-content-start">
-                                            <p style="font-size:20px; font-weight:bold;margin-right: 10px;">Name:</p>
+                                            <p style="font-size:20px; font-weight:bold;margin-right: 10px;">Preschooler Name:</p>
                                             <p class="text-dark mb-0" style="font-size: 20px;">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }}</p>
                                         </div>
                                     {% else %}
                                         <div class="d-flex justify-content-start">
-                                            <p style="font-size:20px; font-weight:bold; margin-right:10px;">Name:</p>
+                                            <p style="font-size:20px; font-weight:bold; margin-right:10px;">Preschooler Name:</p>
                                             <p class="text-dark mb-0" style="font-size: 20px;">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }} {{ preschooler.suffix_name }}</p>
                                         </div>
                                     {% endif %}
