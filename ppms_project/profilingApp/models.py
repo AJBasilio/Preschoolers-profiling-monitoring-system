@@ -42,6 +42,11 @@ class CustomUserManager(BaseUserManager):
 
         return self._create_user(email, password, **extra_fields)
 
+class Barangay(Model):
+    brgy_name = models.CharField(max_length=500)
+
+    def __str__(self) -> str:
+        return f'{self.brgy_name}'
 
 class CustomUser(AbstractUser):
     USER_TYPE = [('Choose User Type', 'Choose User Type'),
@@ -74,7 +79,7 @@ class BarangayHealthWorker(Model):
 
     user = models.OneToOneField(CustomUser, on_delete=CASCADE, primary_key=True)
     is_validated = models.BooleanField(default=False)
-    bhw_barangay = models.CharField(max_length=100, choices=BARANGAYS, default='Select Barangay')
+    bhw_barangay = models.ForeignKey(Barangay, on_delete=CASCADE)
 
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name}"
@@ -90,7 +95,7 @@ class Parent(Model):
                  ('Emmanuel Begado II', 'Emmanuel Begado II'),]
 
     user = models.OneToOneField(CustomUser, on_delete=CASCADE, primary_key=True)
-    barangay = models.CharField(max_length=100, choices=BARANGAYS, default='Select Barangay')
+    barangay = models.ForeignKey(Barangay, on_delete=CASCADE)
     
 
     def __str__(self):
@@ -253,9 +258,3 @@ class Vaccine(Model):
 
     def __str__(self) -> str:
         return f'{self.vax_preschooler} : {self.vax_name}'
-
-class Barangay(Model):
-    brgy_name = models.CharField(max_length=500)
-
-    def __str__(self) -> str:
-        return f'{self.brgy_name}'
