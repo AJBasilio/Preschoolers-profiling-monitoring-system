@@ -37,7 +37,7 @@ class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True, widget=forms.TextInput(attrs={'name' : 'email', 'type' : 'email', 'id' : 'email', 'placeholder': 'Enter your email address'}))
     password1 = forms.CharField(widget=PasswordInput(attrs={'type' : 'password', 'id' : 'password', 'aria-describeby' : 'passwordHelpBlock', 'placeholder':'Enter your Password', 'data-toggle': 'password'}))
     password2 = forms.CharField(widget=PasswordInput(attrs={'type' : 'password', 'id' : 'cpassword', 'placeholder':'Confirm Your Password','data-toggle': 'password'}))
-    barangay = forms.CharField(label="Barangay:", widget=forms.Select(choices=BARANGAYS, attrs={'class' : 'fstdropdown-select', 'id' : 'brgy'}))
+    barangay = forms.ModelChoiceField(queryset=Barangay.objects.all(), widget=forms.Select(attrs={'class' : 'fstdropdown-select', 'id' : 'brgy'}))
     phone_num = forms.CharField(required=True, widget=forms.TextInput(attrs={'type': 'text', 'placeholder': 'Phone Number', 'id' : 'phonenum'}))
     class Meta:
         model = get_user_model()
@@ -55,13 +55,13 @@ class CustomUserCreationForm(UserCreationForm):
         user.save()
 
         if self.cleaned_data.get('user_type') == 'BHW':
-            bhw = BarangayHealthWorker.objects.create(user=user)
-            bhw.bhw_barangay = self.cleaned_data.get('barangay')
+            selected_brgy = Barangay.objects.get(brgy_name=self.cleaned_data.get('barangay'))
+            bhw = BarangayHealthWorker.objects.create(user=user, bhw_barangay=selected_brgy)
             bhw.save()
         
         if self.cleaned_data.get('user_type') == 'P/G':
-            png = Parent.objects.create(user=user)
-            png.barangay = self.cleaned_data.get('barangay')
+            selected_brgy = Barangay.objects.get(brgy_name=self.cleaned_data.get('barangay'))
+            png = Parent.objects.create(user=user, barangay=selected_brgy)
             png.save()
 
         # SEND EMAIL

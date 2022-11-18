@@ -68,15 +68,6 @@ class CustomUser(AbstractUser):
     objects = CustomUserManager()
 
 class BarangayHealthWorker(Model):
-    BARANGAYS = [('Select Barangay', 'Select Barangay'),
-                 ('Burol', 'Burol'),
-                 ('Burol I', 'Burol I'),
-                 ('Burol II', 'Burol II'),
-                 ('Burol III', 'Burol III'),
-                 ('Datu Esmael', 'Datu Esmael'),
-                 ('Emmanuel Begado I', 'Emmanuel Begado I'),
-                 ('Emmanuel Begado II', 'Emmanuel Begado II'),]
-
     user = models.OneToOneField(CustomUser, on_delete=CASCADE, primary_key=True)
     is_validated = models.BooleanField(default=False)
     bhw_barangay = models.ForeignKey(Barangay, on_delete=CASCADE)
@@ -85,15 +76,6 @@ class BarangayHealthWorker(Model):
         return f"{self.user.first_name} {self.user.last_name}"
 
 class Parent(Model):
-    BARANGAYS = [('Select Barangay', 'Select Barangay'),
-                 ('Burol', 'Burol'),
-                 ('Burol I', 'Burol I'),
-                 ('Burol II', 'Burol II'),
-                 ('Burol III', 'Burol III'),
-                 ('Datu Esmael', 'Datu Esmael'),
-                 ('Emmanuel Begado I', 'Emmanuel Begado I'),
-                 ('Emmanuel Begado II', 'Emmanuel Begado II'),]
-
     user = models.OneToOneField(CustomUser, on_delete=CASCADE, primary_key=True)
     barangay = models.ForeignKey(Barangay, on_delete=CASCADE)
     
