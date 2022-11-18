@@ -325,6 +325,29 @@ def delete_profile(request, pk):
     elif request.user.is_authenticated and request.user.user_type == 'P/G':
         return redirect('parent_home')
 
+def admin_users(request):
+    if request.user.is_authenticated and request.user.user_type == 'Admin':
+        all_bhw = BarangayHealthWorker.objects.all()
+        validated_status = BarangayHealthWorker.objects.filter(
+            is_validated=True).count()
+        invalidated_status = BarangayHealthWorker.objects.filter(
+            is_validated=False).count()
+        parent_count = Parent.objects.all().count()
+        preschooler_count = Preschooler.objects.all().count()
+
+        count_list = [validated_status, invalidated_status,
+                    parent_count, preschooler_count]
+        data_json = dumps(count_list)
+
+        context = {'bhws': all_bhw,
+                'validated_count': validated_status,
+                'invalidated_count': invalidated_status,
+                'parent_count': parent_count,
+                'preschooler_count': preschooler_count,
+                'count_data': data_json}
+    
+        return render(request, 'activities/Admin - Users.html', context)
+
 # ================================== BHW ==================================
 
 
@@ -437,6 +460,8 @@ def immunization_schedule(request, pk):
         
     context = {'vaccines' : vaccines,
                'vax_list' : vax_list,
-               'dose_list' : dose_list}
+               'dose_list' : dose_list,
+               'preschooler':preschooler}
+
 
     return render(request, 'activities/BHW Immunization Schedule.html', context)
