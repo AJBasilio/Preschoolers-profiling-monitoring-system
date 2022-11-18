@@ -123,7 +123,7 @@ class Preschooler(Model):
     gender = models.CharField(max_length=100, choices=GENDER, null=True)
     date_measured = models.DateField(null=True, blank=True)
     health_problem = models.CharField(max_length=500, null=True, blank=True)
-    
+
     # === Managers ===
     history= HistoricalRecords()
     objects = models.Manager()
@@ -253,3 +253,9 @@ class Vaccine(Model):
 
     def __str__(self) -> str:
         return f'{self.vax_preschooler} : {self.vax_name}'
+
+class Barangay(Model):
+    brgy_name = models.CharField(max_length=500)
+
+    def __str__(self) -> str:
+        return f'{self.brgy_name}'
