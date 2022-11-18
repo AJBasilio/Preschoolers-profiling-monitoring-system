@@ -43,7 +43,7 @@
                                     <span class="visually-hidden">unread messages</span>
                                 </span></a>
                             {% else %}
-                            <a href="{% url 'bhw_validation' %}" class="nav-link" style="color:rgb(27, 177, 92) !important;" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
+                            <a href="{% url 'bhw_validation' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
                                 title="User accounts" >
                                 <i class="fa fa-fw fa-users" style="font-size: 24px;"></i>  
                                 </a>
@@ -108,7 +108,7 @@
                 </div>
                 <div class="card shadow-lg p-3 bg-white rounded" >
                     <div class="table-responsive" >
-                        <table class="table table-hover table-cell-border" id="table_parents" >
+                        <table class="table table-hover table-cell-border" id="table_barangay" >
                             <thead>
                                 <tr>
                                     <th scope="col" class="text-center">No.</th>
@@ -118,12 +118,14 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for barangay in barangays %}
                                 <tr>
                                     <td class="text-center"></td>
-                                    <td class="text-center"></td>
+                                    <td class="text-center">{{ barangay.brgy_name }}</td>
                                     <td class="text-center"></td>
                                     <td class="text-center"></td>
                                 </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
@@ -140,35 +142,15 @@
 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
 
 <script>
-    var t = $('#bhw_list').DataTable({
+    var t = $('#table_barangay').DataTable({
         info: 'true',
         dom: 'rftip',
-        pageLength : 5,
+        pageLength : 10,
         aoColumnDefs: [{
             'bSortable': false,
             'aTargets': ['nosort'],
             'orderable': false,
             'targets': [],
-        }],
-        order: [[1, 'asc']],
-        });
-        t.on('order.dt search.dt', function () {
-        let i = 1;
-        t.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
-            this.data(i++);
-        });}).draw();
-</script>
-
-<script>
-    var t = $('#parent_list').DataTable({
-        info: 'true',
-        dom: 'rftip',
-        pageLength : 5,
-        aoColumnDefs: [{
-            'bSortable': false,
-            'aTargets': ['nosort'],
-            'orderable': false,
-            'targets': [0, 5],
         }],
         order: [[1, 'asc']],
         });
