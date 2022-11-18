@@ -23,31 +23,31 @@
                             </a>
                         </li>
                         <li>
+                            <a href="{% url 'admin_barangay' %}" class="nav-link" style="color:rgb(27, 177, 92) !important;" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
+                            title="List of Barangay">
+                            <i class="fa fa-3x fa-fw fas fa-landmark " style="font-size: 24px;"></i>
+                            </a>
+                        </li>
+                        <li>
                             <a href="{% url 'admin_home2' %}" class="nav-link"  data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"                            title="Preschooler Status">
                             <i class="fa fa-fw fa-id-card " style="font-size: 24px;"></i>
                             </a>
                         </li>
                         <li>
                             {% if invalidated_count > 0 %}
-                                <a href="{% url 'bhw_validation' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
-                                title="Validate BHW" >
-                                <i class="fa fa-fw fa-user-nurse" style="font-size: 24px;"></i>
+                            <a href="{% url 'bhw_validation' %}" class="nav-link" style="color:rgb(27, 177, 92) !important;" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
+                                title="User accounts" >
+                                <i class="fa fa-fw fa-users" style="font-size: 24px;"></i>
                                 <span class="position-absolute top-25 start-75 translate-middle badge rounded-pill bg-danger">
                                     {{ invalidated_count }}
                                     <span class="visually-hidden">unread messages</span>
                                 </span></a>
                             {% else %}
-                                <a href="{% url 'bhw_validation' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
-                                title="Validate BHW" >
-                                <i class="fa fa-fw fa-user-nurse" style="font-size: 24px;"></i>  
+                            <a href="{% url 'bhw_validation' %}" class="nav-link" style="color:rgb(27, 177, 92) !important;" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
+                                title="User accounts" >
+                                <i class="fa fa-fw fa-users" style="font-size: 24px;"></i>  
                                 </a>
                             {% endif %}
-                        </li>
-                        <li>
-                            <a href="{% url 'admin_users' %}" class="nav-link" style="color:rgb(27, 177, 92) !important;" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
-                            title="User Accounts">
-                            <i class="fa fa-3x fa-fw fas fa-users " style="font-size: 24px;"></i>
-                            </a>
                         </li>
                         <li>
                             <a class="btn nav-link" id="dropdownUser1" data-bs-toggle="dropdown" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
@@ -86,82 +86,51 @@
  </script>
 
 <!-- Dashboard -->
-<div id="grid" class="container-fluid">
+<div id="grid" class="container-fluid" style="padding:3%; margin: top 65px;">
     <div class="container-grid">
-        <h2 style="text-align:left;">Overall  User Accounts</h2>
+        <div class="">
+            <div class="row"> 
+                <div class="col">
+                    <h3 style="text-align:left;">List of barangay</h3>
+                </div>
+            </div>
         <hr>
-        <div  class=" row d-flex mb-3 align-items-stretch">
-
-            <!-- BHW List Table Card  -->
-            <div class="col-xl-6 mb-xl-0 mb-sm-4">
-                <div class="card shadow-sm bg-white rounded h-100">
-                    <div class="card-header">
-                        <h4 style="Padding: 10px 40px 0px 0px;">Barangay Health Workers</h4>
-                    </div>
-                    <div class="card-body p-3 ">
-                        <div class="table-responsive">
-                            <table class="table table-hover" style="border:none " id="bhw_list">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" class="text-center">No.</th>
-                                        <th scope="col" class="text-center">First Name</th>
-                                        <th scope="col" class="text-center">Last Name</th>
-                                        <th scope="col" class="text-center">Barangay</th>
-                                        <th scope="col" class="text-center">Action</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Parent List Table Card  -->
-            <div class="col-xl-6 mb-xl-0 mb-sm-4">
-                <div class="card shadow-sm bg-white rounded h-100">
-                    <div class="card-header">
-                        <h4 style="Padding: 10px 40px 0px 0px;">Parents</h4>
-                    </div>
-                    <div class="card-body p-3 ">
-                        <div class="table-responsive">
-                            <table class="table table-hover" style="border:none " id="bhw_list">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" class="text-center">No.</th>
-                                        <th scope="col" class="text-center">First Name</th>
-                                        <th scope="col" class="text-center">Last Name</th>
-                                        <th scope="col" class="text-center">Barangay</th>
-                                        <th scope="col" class="text-center">Action</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>  
+        <br>
+        </div>
     </div>
-</div>
+     <!--------------------- DataTables --------------------->
+     <div class="text-black pt-3">
+        <div class="row">
+            <div class="col">
+                <div class="card-header">
+                    <h3>Barangays</h3>
+
+                </div>
+                <div class="card shadow-lg p-3 bg-white rounded" >
+                    <div class="table-responsive" >
+                        <table class="table table-hover table-cell-border" id="table_parents" >
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="text-center">No.</th>
+                                    <th scope="col" class="text-center">Barangay Name</th>
+                                    <th scope="col" class="text-center">Phone Number</th>
+                                    <th scope="col" class="text-center">Barangay Address</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -179,7 +148,7 @@
             'bSortable': false,
             'aTargets': ['nosort'],
             'orderable': false,
-            'targets': [0,5],
+            'targets': [],
         }],
         order: [[1, 'asc']],
         });

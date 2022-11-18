@@ -17,7 +17,7 @@ urlpatterns = [
     path('validation', views.bhw_validation, name='bhw_validation'),
     path('validate_profile/<str:pk>/', views.unvalidated_profile, name='unvalidated_profile'),
     path('delete_profile/<str:pk>/', views.delete_profile, name='delete_profile'),
-    path('admin_users', views.admin_users, name='admin_users'),
+    path('admin_barangay', views.admin_barangay, name='admin_barangay'),
 
 
 

@@ -47,6 +47,12 @@
                             </a>
                         </li>
                         <li>
+                            <a href="{% url 'admin_barangay' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
+                            title="List of Barangay">
+                            <i class="fa fa-3x fa-fw fas fa-landmark " style="font-size: 24px;"></i>
+                            </a>
+                        </li>
+                        <li>
                             <a href="{% url 'admin_home2' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
                             title="Preschooler Status">
                             <i class="fa fa-3x fa-fw fa-id-card " style="font-size: 24px;"></i>
@@ -54,24 +60,19 @@
                         </li>
                         <li>
                             {% if invalidated_count > 0 %}
-                                <a href="{% url 'bhw_validation' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
-                                title="Validate BHW" >
-                                <i class="fa fa-fw fa-user-nurse" style="font-size: 24px;"></i>
+                            <a href="{% url 'bhw_validation' %}" class="nav-link" style="color:rgb(27, 177, 92) !important;" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
+                                title="User accounts" >
+                                <i class="fa fa-fw fa-users" style="font-size: 24px;"></i>
                                 <span class="position-absolute top-25 start-75 translate-middle badge rounded-pill bg-danger">
                                     {{ invalidated_count }}
+                                    <span class="visually-hidden">unread messages</span>
                                 </span></a>
                             {% else %}
-                                <a href="{% url 'bhw_validation' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
-                                title="Validate BHW" >
-                                <i class="fa fa-fw fa-user-nurse" style="font-size: 24px;"></i>  
+                            <a href="{% url 'bhw_validation' %}" class="nav-link" style="color:rgb(27, 177, 92) !important;" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
+                                title="User accounts" >
+                                <i class="fa fa-fw fa-users" style="font-size: 24px;"></i>  
                                 </a>
                             {% endif %}
-                        </li>
-                        <li>
-                            <a href="{% url 'admin_users' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
-                            title="User Accounts">
-                            <i class="fa fa-3x fa-fw fas fa-users " style="font-size: 24px;"></i>
-                            </a>
                         </li>
                         <li>
                             <a class="btn nav-link position-relative" id="dropdownUser1" data-bs-toggle="dropdown" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"

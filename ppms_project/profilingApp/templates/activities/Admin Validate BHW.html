@@ -22,6 +22,12 @@
                             </a>
                         </li>
                         <li>
+                            <a href="{% url 'admin_barangay' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
+                            title="List of Barangay">
+                            <i class="fa fa-3x fa-fw fas fa-landmark " style="font-size: 24px;"></i>
+                            </a>
+                        </li>
+                        <li>
                             <a href="{% url 'admin_home2' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
                             title="Preschooler Status">
                             <i class="fa fa-fw fa-id-card " style="font-size: 24px;"></i>
@@ -30,24 +36,18 @@
                         <li>
                             {% if invalidated_count > 0 %}
                             <a href="{% url 'bhw_validation' %}" class="nav-link" style="color:rgb(27, 177, 92) !important;" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
-                                title="Validate BHW" >
-                                <i class="fa fa-fw fa-user-nurse" style="font-size: 24px;"></i>
+                                title="User accounts" >
+                                <i class="fa fa-fw fa-users" style="font-size: 24px;"></i>
                                 <span class="position-absolute top-25 start-75 translate-middle badge rounded-pill bg-danger">
                                     {{ invalidated_count }}
                                     <span class="visually-hidden">unread messages</span>
                                 </span></a>
                             {% else %}
                             <a href="{% url 'bhw_validation' %}" class="nav-link" style="color:rgb(27, 177, 92) !important;" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
-                                title="Validate BHW" >
-                                <i class="fa fa-fw fa-user-nurse" style="font-size: 24px;"></i>  
+                                title="User accounts" >
+                                <i class="fa fa-fw fa-users" style="font-size: 24px;"></i>  
                                 </a>
                             {% endif %}
-                        </li>
-                        <li>
-                            <a href="{% url 'admin_users' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
-                            title="User Accounts">
-                            <i class="fa fa-3x fa-fw fas fa-users " style="font-size: 24px;"></i>
-                            </a>
                         </li>
                         <li>
                             <a class="btn nav-link" id="dropdownUser1" data-bs-toggle="dropdown" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
@@ -94,7 +94,7 @@
         <div class="">
             <div class="row"> 
                 <div class="col">
-                    <h3 style="text-align:left;">Validate</h3>
+                    <h3 style="text-align:left;">User Accounts</h3>
                 </div>
             </div>
         <hr>
@@ -111,7 +111,7 @@
                 </div>
                 <div class="card shadow-lg p-3 bg-white rounded" >
                     <div class="table-responsive" >
-                        <table class="table table-hover table-cell-border" id="table_validation" style="min-height: 400px;">
+                        <table class="table table-hover table-cell-border" id="table_validation" >
                             <thead>
                                 <tr>
                                     <th scope="col" class="text-center">No.</th>
@@ -122,6 +122,7 @@
                                     <th scope="col" class="text-center">Phone Number</th>
                                     <th scope="col" class="text-center">Email</th>
                                     <th scope="col" class="text-center">Barangay Designation</th>
+                                    <th scope="col" class="nosort text-center">Validation</th>
                                     <th scope="col" class="nosort text-center">Action</th>
                                 </tr>
                             </thead>
@@ -167,8 +168,75 @@
                                             }
                                         </script>
                                     </td>
+                                    <td>
+                                        <div>
+                                        <button type="button" style="background-color: #188045; color: #ffffff;" class="btn" title="resetpass" onclick="toggleResetModal('Set new password for {{ bhw.user.first_name }} {{ bhw.user.last_name }}.')"><i class="fa fa-lg fa-fw fa-key"></i></button>
+                                        </div>
+                                        <script>
+                                            function toggleResetModal(message) {
+                                                $('#resetmsg').text(message);
+                                                $('#form').attr('action', "{% url 'unvalidated_profile' bhw.user.id %}");
+                                                var myModal = new bootstrap.Modal(document.getElementById('resetpass'), {
+                                                    keyboard: false
+                                                });
+                                                myModal.toggle();
+                                            }
+                                            function cancelreset() {
+                                                $('#bhwName').text('');
+                                                $('#form').attr('action', 'resetpass');
+                                                var myModalEl = document.getElementById('resetpass');
+                                                var modal = bootstrap.Modal.getInstance(myModalEl);
+                                                modal.hide();
+                                            }
+                                        </script>
+                                    </td>
                                 </tr>
                                 {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--------------------- DataTables --------------------->
+    <div class="text-black pt-3">
+        <div class="row">
+            <div class="col">
+                <div class="card-header">
+                    <h3>Parents</h3>
+
+                </div>
+                <div class="card shadow-lg p-3 bg-white rounded" >
+                    <div class="table-responsive" >
+                        <table class="table table-hover table-cell-border" id="table_parents" >
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="text-center">No.</th>
+                                    <th scope="col" class="text-center">First Name</th>
+                                    <th scope="col" class="text-center">Middle Name</th>
+                                    <th scope="col" class="text-center">Last Name</th>
+                                    <th scope="col" class="text-center">Suffix</th>
+                                    <th scope="col" class="text-center">Phone Number</th>
+                                    <th scope="col" class="text-center">Email</th>
+                                    <th scope="col" class="text-center">Barangay Designation</th>
+                                    <th scope="col" class="nosort text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td style="text-align: center;">
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -180,7 +248,7 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header" >
-                    <h5 class="modal-title fa fa-user-edit d-flex  justify-content-center" id="exampleModalLabel"> VALIDATE</h5>
+                    <h5 class="modal-title fas fa-question-circle d-flex  justify-content-center" id="exampleModalLabel">  Confirmation</h5>
                 </div>
                 <div class="modal-body mx-4">
                     <form action="validation" id="form" method="POST">
@@ -199,6 +267,33 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="resetpass" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <form action="resetpass" id="form" method="POST"></form>
+                <div class="modal-content">
+                    <div class="modal-header d-flex align-items-center justify-content-center" >
+                        <h5 class=" p-0" id="resetmsg"></h5>
+                    </div>
+                    <div class="modal-body mx-4">
+                        {% csrf_token %}
+                        <div class="md-form">
+                            
+                            <div class="md-form">
+                                <label id="user-lbl" data-error="wrong" data-success="right">New Password: </label>
+                                <input class="form-control" type="text" name="new_pass" id="new_pass">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="justify-content:end">
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" onclick="cancelreset()" style="background-color: #EF3A25; color: white;" class="btn">Cancel</button>
+                            <input class="btn btn-primary px-3" type="submit" name="Confirm" value="Save Password" style="margin-left: 2%; background-color: rgb(44, 95, 34);">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
         <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
             
@@ -209,7 +304,7 @@
                     'bSortable': false,
                     'aTargets': ['nosort'],
                     'orderable': false,
-                    'targets': [0,8],
+                    'targets': [0,8,9],
                 }],
                 order: [[1, 'asc']],
                 });

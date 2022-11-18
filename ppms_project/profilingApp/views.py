@@ -325,7 +325,8 @@ def delete_profile(request, pk):
     elif request.user.is_authenticated and request.user.user_type == 'P/G':
         return redirect('parent_home')
 
-def admin_users(request):
+
+def admin_barangay(request):
     if request.user.is_authenticated and request.user.user_type == 'Admin':
         all_bhw = BarangayHealthWorker.objects.all()
         validated_status = BarangayHealthWorker.objects.filter(
@@ -346,7 +347,7 @@ def admin_users(request):
                 'preschooler_count': preschooler_count,
                 'count_data': data_json}
     
-        return render(request, 'activities/Admin - Users.html', context)
+        return render(request, 'activities/Admin - barangay.html', context)
 
 # ================================== BHW ==================================
 
