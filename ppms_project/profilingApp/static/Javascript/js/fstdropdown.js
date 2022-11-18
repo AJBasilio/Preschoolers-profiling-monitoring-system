@@ -27,7 +27,7 @@ function setFstDropdown() {
             var search = createFstElement("div", "fstsearch", dropdown, null);
             var e = { "keyup": getSearch, "paste": getSearch };
             if (opened == null || opened != "true") e["blur"] = openSelect;
-            createFstElement("input", "fstsearchinput", search, e).placeholder = placeholder != undefined ? placeholder : "";
+            createFstElement("input", "fstsearchinput", search, e).placeholder = placeholder != undefined ? placeholder : " ";
         }
         if (select.multiple) {
             var selectAll = createFstElement("button", "fstAll", dropdown, { "click": selectAllOptions });

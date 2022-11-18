@@ -150,16 +150,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md mb-2">
-                    <div class="card shadow-sm bg-white rounded h-100 ">
-                        <div class="card-header">
-                            <h4 class="card-title">Obese</h4>
-                        </div>
-                        <div class="card-body text-center">
-                            <p style="font-size: xx-large;" class="card-text">{{ overobese }}</p>
-                        </div>
-                    </div>
-                </div>
         </div>
             <br>
             <div>
@@ -213,7 +203,7 @@
         }
     },
     data:{
-        labels: ["Normal", "Wasted", "Severly Wasted","Overweight","Obese"],
+        labels: ["Normal", "Wasted", "Severly Wasted","Overweight"],
         datasets: [{
                 label: 'Normal',
                 data: data_count,
@@ -222,14 +212,13 @@
                 'rgb(255, 241, 2)',
                 'rgb(238, 29, 35)',
                 'rgb(242, 98, 33)',
-                'rgb(0,0,0, 0.2)',
                 ],
                 borderColor: [
                 'rgb(0, 165, 79)',
                 'rgb(255, 241, 2)',
                 'rgb(238, 29, 35)',
                 'rgb(242, 98, 33)',
-                'rgb(0,0,0,)',,
+                ,
                 ],
                 borderWidth: 1
             }

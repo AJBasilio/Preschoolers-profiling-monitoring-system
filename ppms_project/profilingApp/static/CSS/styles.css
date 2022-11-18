@@ -182,7 +182,6 @@ tbody tr:nth-of-type(even) {
 
 .hoverable {
   transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
-  cursor: pointer;
 }
 .hoverable:hover{
   transform: scale(1.02);
@@ -246,6 +245,8 @@ tbody tr:nth-of-type(even) {
   padding: 10px 15px 5px 10px !important;
   text-align: center;
 }
+/* Reg form styling */
+
 
 /* Login Form */
 
@@ -392,7 +393,7 @@ html {
       text-decoration: none;
     }
     .form-panel.one{
-      padding: 35px 60px 20px 35px;
+      padding: 35px 60px 20px 60px;
     }
     .form-panel.two.active{
       padding: 35px 60px 20px 35px;
@@ -875,7 +876,7 @@ html {
     text-decoration: none;
   }
   .form-panel {
-    padding: 60px calc(5% + 60px) 60px 60px;
+    padding: 60px 60px 60px 60px;
     box-sizing: border-box;
 
   }
