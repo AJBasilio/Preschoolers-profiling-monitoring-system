@@ -356,8 +356,18 @@ def admin_barangay(request):
             is_validated=False).count()
         barangays = Barangay.objects.all()
 
+        form = AddBarangay()
+        if request.method == 'POST':
+            form = AddBarangay(request.POST)
+            
+            if form.is_valid():
+                form.save()
+                
+                return redirect('admin_barangay')
+
         context = {'barangays' : barangays,
-                   'invalidated_count' : invalidated_status}
+                   'invalidated_count' : invalidated_status,
+                   'form' : form}
     
         return render(request, 'activities/Admin - barangay.html', context)
 

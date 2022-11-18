@@ -105,3 +105,11 @@ class BHWSetPasswordForm(SetPasswordForm):
     class Meta:
         model = get_user_model()
         fields = ['new_password1', 'new_password2']
+
+class AddBarangay(ModelForm):
+    class Meta:
+        model = Barangay
+        fields = ['brgy_name', 'brgy_phone', 'brgy_address']
+        widgets = {'brgy_name' : forms.TextInput(attrs={'class' : "form-control", 'type': 'text', 'id' : 'brgy_name'}),
+                   'brgy_phone' : forms.TextInput(attrs={'class' : "form-control", 'type': 'tel', 'id' : 'brgy_phone'}),
+                   'brgy_address' : forms.TextInput(attrs={'class' : "form-control", 'type': 'tel', 'id' : 'brgy_address'})}

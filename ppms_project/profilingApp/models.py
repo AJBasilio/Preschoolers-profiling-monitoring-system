@@ -44,6 +44,8 @@ class CustomUserManager(BaseUserManager):
 
 class Barangay(Model):
     brgy_name = models.CharField(max_length=500)
+    brgy_phone = models.CharField(max_length=100, null=True, blank=True)
+    brgy_address = models.CharField(max_length=500, null=True, blank=True)
 
     def __str__(self) -> str:
         return f'{self.brgy_name}'

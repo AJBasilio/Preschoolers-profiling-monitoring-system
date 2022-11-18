@@ -94,6 +94,10 @@
                     <h3 style="text-align:left;">List of barangay</h3>
                 </div>
             </div>
+            <div class="col-sm-6  mb-3 d-flex justify-content-sm-end justify-content-center">
+                <button style="margin-bottom: 15px; background-color: #188045;border-color:#188045; height: 50px;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addBrgy">
+                    <span class="fa fa-calendar-alt"></span> Add Barangay</button>
+            </div>
         <hr>
         <br>
         </div>
@@ -104,7 +108,7 @@
             <div class="col">
                 <div class="card-header">
                     <h3>Barangays</h3>
-
+                    
                 </div>
                 <div class="card shadow-lg p-3 bg-white rounded" >
                     <div class="table-responsive" >
@@ -114,7 +118,7 @@
                                     <th scope="col" class="text-center">No.</th>
                                     <th scope="col" class="text-center">Barangay Name</th>
                                     <th scope="col" class="text-center">Phone Number</th>
-                                    <th scope="col" class="text-center">Barangay Address</th>
+                                    <th scope="col" class="text-center">Barangay Hall Address</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -129,6 +133,37 @@
                             </tbody>
                         </table>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="addBrgy" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" >
+                    <h5 class="modal-title fa fa-user-edit" id="exampleModalLabel">Enroll Preschooler</h5>
+                </div>
+                <div class="modal-body mx-4">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="md-form">
+                            <label id="user-lbl" data-error="wrong" data-success="right">Barangay Name: </label>
+                            {{ form.brgy_name }}
+                        </div>
+                        <div class="md-form">
+                            <label id="user-lbl" data-error="wrong" data-success="right">Barangay Phone Number: </label>
+                            {{ form.brgy_phone }}
+                        </div>
+                        <div class="md-form">
+                            <label id="user-lbl" data-error="wrong" data-success="right">Barangay Hall Address: </label>
+                            {{ form.brgy_address }}
+                        </div>
+                        
+                        <div class="modal-footer" style="justify-content:center">
+                            <button type="submit" class="btn btn-primary" style="background-color: #188045;border-color: #188045;">Add</button>
+                            <button type="button" data-bs-dismiss="modal" style="background-color: red; color: white;" class="btn">Cancel</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
