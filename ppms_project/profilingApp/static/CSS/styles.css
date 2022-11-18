@@ -971,14 +971,6 @@ html {
     cursor: pointer;
     text-decoration: underline;
   }
-  /* Forgot Password Button */
-  #forgotPasswordButton:hover{
-    -webkit-transform: scale(1.05);
-    transform: scale(1.05);
-    transition:0.3s;
-    color:#298c54;
-    cursor: pointer;
-  }
   /* EULA BUTTON */
   #eulaButton{
     margin-left:5px;
