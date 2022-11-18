@@ -437,6 +437,8 @@ def immunization_schedule(request, pk):
         
     context = {'vaccines' : vaccines,
                'vax_list' : vax_list,
-               'dose_list' : dose_list}
+               'dose_list' : dose_list,
+               'preschooler':preschooler}
+
 
     return render(request, 'activities/BHW Immunization Schedule.html', context)

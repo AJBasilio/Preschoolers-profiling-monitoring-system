@@ -54,11 +54,17 @@ a{
 
 /* Data table Styling */
 
+
+.page-link {
+  color:#1bb15c !important;
+}
+
 .page-item.active .page-link {
   color: rgb(235, 233, 233) !important;
   background-color: #1bb15c !important;
   border-color:rgba(0, 0, 0, 0.356) !important;
 }
+
 table{
   border: 1px ridge !important;
   border-color:#003d1b7d !important;
@@ -645,7 +651,7 @@ html {
       z-index: 5;
       position: absolute;
       top: 0;
-      left: 95%;
+      left: 100%;
       background: rgb(33, 146, 71);
       width: 100%;
       min-height: 100%;
@@ -890,7 +896,7 @@ html {
     z-index: 5;
     position: absolute;
     top: 0;
-    left: 95%;
+    left: 100%;
     background: rgb(33, 146, 71);
     width: 100%;
     min-height: 100%;
