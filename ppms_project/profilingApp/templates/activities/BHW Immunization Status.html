@@ -63,20 +63,28 @@
                         <table class="table table-hover table-cell-border" id="table_validation">
                             <div class="d-flex justify-content-between">
                             {% if preschooler.suffix_name is None %}
-                                        <div class="d-flex justify-content-start">
-                                            <p style="font-size:20px; font-weight:bold;margin-right: 10px;">Preschooler Name:</p>
-                                            <p class="text-dark mb-0" style="font-size: 20px;">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }}</p>
-                                        </div>
-                                    {% else %}
-                                        <div class="d-flex justify-content-start">
-                                            <p style="font-size:20px; font-weight:bold; margin-right:10px;">Preschooler Name:</p>
-                                            <p class="text-dark mb-0" style="font-size: 20px;">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }} {{ preschooler.suffix_name }}</p>
-                                        </div>
-                                    {% endif %}
+                                <div class="d-flex justify-content-start">
+                                    <p style="font-size:20px; font-weight:bold;margin-right: 10px;">Preschooler Name:</p>
+                                    <p class="text-dark mb-0" style="font-size: 20px;">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }}</p>
+                                </div>
+                            {% else %}
+                                <div class="d-flex justify-content-start">
+                                    <p style="font-size:20px; font-weight:bold; margin-right:10px;">Preschooler Name:</p>
+                                    <p class="text-dark mb-0" style="font-size: 20px;">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }} {{ preschooler.suffix_name }}</p>
+                                </div>
+                            {% endif %}
                                 
                             <div class="" style="text-align: right !important; ">
                                 <button style="background-color: #188045; color: white;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#update"><span class="fas fa-calendar-edit"></span> Immunization Update</button>
                             </div>
+                            </div>
+                            <div class="" >
+                                <p style="font-size:20px; font-weight:bold; margin-right:10px; margin: 0;">Remaining Vaccine:</p>
+                                {% if 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and 'Measles Containing Vaccines' in vax_list and 'Tetanus Toxoid' in vax_list and 'Inactivated Polio Vaccine' in vax_list and 'Measles Mumps - Rubella' in vax_list and dose_list.7 == 2 %}
+                                    <p class="text-dark mb-0" style="font-size: 20px;">BCG, Hepatitis B, Oral Poliovirus Vaccine, Pentavalent Vaccine, Measles Containing Vaccines, Tetanus Toxoid, Inactivated Polio Vaccine and Measles Mumps - Rubella </p>
+                                {% else %}
+                                    <p class="text-dark mb-0" style="font-size: 20px;">BCG, Hepatitis B, Oral Poliovirus Vaccine, Pentavalent Vaccine, Measles Containing Vaccines, Tetanus Toxoid, Inactivated Polio Vaccine and Measles Mumps - Rubella </p> 
+                                {% endif %}
                             </div>
                             <div class="modal fade" id="update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-lg">

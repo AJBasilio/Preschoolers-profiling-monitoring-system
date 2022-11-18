@@ -225,6 +225,8 @@ def admin_preschoolers(request):
         invalidated_status = BarangayHealthWorker.objects.filter(
             is_validated=False).count()
 
+        barangays = Barangay.objects.all()
+
         preschooler_normal = []
         preschooler_wasted = []
         preschooler_severly = []
@@ -253,6 +255,7 @@ def admin_preschoolers(request):
                 'wasted' : wasted_count,
                 'severly' : severly_count,
                 'overobese' : overobese_count,
+                'barangays' : barangays,
                 'count_data' : data_json}
 
         return render(request, 'activities/Admin - Preschooler.html', context)
@@ -269,6 +272,9 @@ def admin_preschoolers_barangay(request, brgy):
 
         parents = Parent.objects.filter(barangay=brgy)
         preschoolers = Preschooler.objects.filter(parent__in=(parents))
+        
+        barangay = Barangay.objects.get(id=brgy)
+        barangays = Barangay.objects.all()
 
         preschooler_normal = []
         preschooler_wasted = []
@@ -294,11 +300,12 @@ def admin_preschoolers_barangay(request, brgy):
         data_json = dumps(count_list)
 
         context = {'invalidated_count': invalidated_status,
-                'brgy' : brgy,
+                'brgy' : barangay,
                 'normal' : normal_count,
                 'wasted' : wasted_count,
                 'severly' : severly_count,
                 'overobese' : overobese_count,
+                'barangays' : barangays,
                 'count_data' : data_json
                 }
 
@@ -510,4 +517,4 @@ def immunization_schedule(request, pk):
                'preschooler':preschooler}
 
 
-    return render(request, 'activities/BHW Immunization Schedule.html', context)
+    return render(request, 'activities/BHW Immunization Status.html', context)

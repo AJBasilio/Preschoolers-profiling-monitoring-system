@@ -172,7 +172,7 @@ class Preschooler(Model):
             in_days = date_diff.days
             age_months = int((in_days) / (365 / 12))
 
-            return float(calculator.lhfa(self.weight, age_months, helpers.get_good_sex(str(self.gender))))
+            return float(calculator.lhfa(self.height, age_months, helpers.get_good_sex(str(self.gender))))
         except:
             pass
 
@@ -189,7 +189,9 @@ class Preschooler(Model):
             in_days = date_diff.days
             age_months = int((in_days) / (365 / 12))
 
-            return float(calculator.wfl(self.weight, age_months, helpers.get_good_sex(str(self.gender)), self.height))
+            bmi = float(self.weight / ((self.height / 100) ** 2))
+
+            return float(calculator.bmifa(bmi, age_months, helpers.get_good_sex(str(self.gender)), self.height))
         except:
             pass
     
@@ -206,8 +208,11 @@ class Preschooler(Model):
 
             in_days = date_diff.days
             age_months = int((in_days) / (365 / 12))
+            
+            bmi = float(self.weight / ((self.height / 100) ** 2))
 
-            whfa_value = float(calculator.wfl(self.weight, age_months, helpers.get_good_sex(str(self.gender)), self.height))
+            whfa_value = float(calculator.bmifa(bmi, age_months, helpers.get_good_sex(str(self.gender)), self.height))
+
             if whfa_value > 2.0:
                 return 'ABOVE NORMAL'
             elif whfa_value >= -2.0 and whfa_value <= 2.0:

@@ -105,13 +105,9 @@
                             <select class="form-select " aria-label="Default select example" onchange="javascript:handleNextView(this)">
                                 <option selected disabled >{{ brgy }}</option>
                                 <option value="{% url 'admin_home2' %}">All</option>
-                                <option value="{% url 'apreschoolersb' 'Burol' %}">Burol</option>
-                                <option value="{% url 'apreschoolersb' 'Burol I' %}">Burol I</option>
-                                <option value="{% url 'apreschoolersb' 'Burol II' %}">Burol II</option>
-                                <option value="{% url 'apreschoolersb' 'Burol III' %}">Burol III</option>
-                                <option value="{% url 'apreschoolersb' 'Datu Esmael' %}">Datu Esmael</option>
-                                <option value="{% url 'apreschoolersb' 'Emmanuel Begado I' %}">Emmanuel Begado I</option>
-                                <option value="{% url 'apreschoolersb' 'Emmanuel Begado II' %}">Emmanuel Begado II</option>
+                                {% for barangay in barangays %}
+                                <option value="{% url 'apreschoolersb' barangay.id %}">{{ barangay.brgy_name }}</option>
+                                {% endfor %}
                             </select>
                         </div>
                     </div>

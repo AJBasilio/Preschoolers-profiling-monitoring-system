@@ -24,7 +24,7 @@ urlpatterns = [
 
 
     # Barangay Health Worker
-    path('bhome', views.bhw_home, name='bhw_home'),
+    path('bhwhome', views.bhw_home, name='bhw_home'),
     path('preschooler_dashboard', views.preschooler_dashboard, name='preschooler_dashboard'),
     path('preschooler_profile/<str:pk>/', views.preschooler_profile, name='preschooler_profile'),
     path('update_preschooler', views.update_preschooler, name='update_preschooler'),
