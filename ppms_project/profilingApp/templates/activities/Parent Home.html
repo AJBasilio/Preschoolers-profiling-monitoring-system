@@ -238,8 +238,7 @@
             </div>
         </div>
     </div>
-    --->       <div class="table-responsive">
-                            <table class="table table-hover table-cell-border" id="preschoolers_table">
+    --->       
                                 
                 
     <!-- Footer -->
@@ -259,23 +258,5 @@
 
 <script src="{% static '/Javascript/js/bootstrap.bundle.min.js' %}"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
-        
-    <script>
-        var t = $('#preschoolers_table').DataTable({
-            info: 'true',
-            aoColumnDefs: [{
-                'bSortable': false,
-                'aTargets': ['nosort'],
-                'orderable': false,
-                'targets': [0,8],
-            }],
-            order: [[1, 'asc']],
-            });
-            t.on('order.dt search.dt', function () {
-            let i = 1;
-            t.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
-                this.data(i++);
-            });}).draw();
-    </script>
+
 

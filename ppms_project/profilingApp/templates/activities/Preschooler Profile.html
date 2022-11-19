@@ -197,7 +197,34 @@
                     </div>
                     
                     <div class="col-md-7 col-12 text-center h-100 mb-3 ">
-                        
+                        <div class="d-flex justify-content-end">
+                            <button style="background-color: #188045; color: white;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#show_modal1"><span class="fas fa-user-chart"></span>Child Growth Standards</button>
+                        </div>
+                        <div class="modal fade" id="show_modal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-xl">
+                                <div class="modal-content">
+                                    <div class="modal-header text-center">
+                                        <h5 class="modal-title fa fa-user-edit" id="exampleModalLabel">WHO Child Growth Standards</h5>
+                                    </div>
+                                    <div class="modal-body p-0">
+                                        <div class="">
+                                            {% if preschooler.age_months <= 24 and preschooler.gender == 'Female' %}
+                                                <img class="img-fluid" alt="Responsive image" src="{% static '/Media/sft-bfa-girls-z-0-2-1.png' %}">
+                                            {% elif preschooler.age_months > 24 and preschooler.gender == 'Female' %}
+                                                <img class="img-fluid" alt="Responsive image" src="{% static '/Media/sft-bfa-girls-z-2-5.png' %}">
+                                            {% elif preschooler.age_months <= 24 and preschooler.gender == 'Male' %}
+                                                <img class="img-fluid" alt="Responsive image" src="{% static '/Media/sft-bfa-boys-z-0-2-1.png' %}">
+                                            {% elif preschooler.age_months > 24 and preschooler.gender == 'Male' %}
+                                                <img class="img-fluid" alt="Responsive image" src="{% static '/Media/sft-bfa-boys-z-2-5.png' %}">
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn" style="background-color: #EF3A25; color: white;" data-bs-dismiss="modal" aria-label="Close"> Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <h5 class="text-start mx-3 mb-3">Nutritional Status Legends:</h5>
                         <div class="col align-self-stretch h-100 mx-3">
                             <div class="row-xxl d-flex justify-content-start ">
@@ -278,7 +305,8 @@
                             </div>
                             <div class="card">
                                 <div class="card-header">
-                                    <h5 class="card-title">WHFA Status</h5>
+                                    <h4 class="card-title">WHFA Status</h4>
+                                    <h5 class="card-title">BMI=(kg/m<sup>2</sup>)</h5>
                                 </div>
                                 {% if preschooler.whfa is None %}
                                     <div class="card-body">
