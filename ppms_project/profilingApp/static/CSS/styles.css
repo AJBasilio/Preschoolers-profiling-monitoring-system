@@ -121,12 +121,15 @@ tbody tr:nth-of-type(even) {
   background-image: linear-gradient(to top, rgba(230, 250, 202, 0.884), rgb(255, 255, 255));
 }
 /* Header hide title when minimized */
+
 #toggle{
   display: none;
 }
-@media screen and (max-width: 357px) {
+@media screen and (max-width: 515px) {
   #hamburger{
-    display:block; cursor: pointer; width: 52px; float:right;
+    display:flex; cursor: pointer; width: 52px;
+    justify-content: end;
+    
 
   }
   .fixed-top{
@@ -147,17 +150,24 @@ tbody tr:nth-of-type(even) {
     position: relative;
   }
   #toggle:checked + .menu{
+    position: relative;
     display:block;
-    justify-content: start;
-    align-items: stretch;
+    justify-content: end;
+    align-items:end;
     transition: 0.5s;
+  }
+  #toggle:checked + .container-grid{
+    display:hide;
   }
 } 
 
-@media screen and (min-width: 357px) {
+@media screen and (min-width: 515px) {
+
   #hamburger{
     margin:0 40px 0 0; font-size: 26px; line-height: 70px; display: none;
   }
+
+  
 
 }
 @media screen and (max-width: 1000px) {
@@ -190,7 +200,7 @@ button.back-button {
   position: relative;
   display: block;
   margin: 0;
-  width: 3rem;
+  width: 2.75rem;
   height: 2.5rem;
   background: #1bb15c;
   border-radius: 1.625rem;
@@ -319,6 +329,26 @@ button.back-button {
 
 
 /* Login Form */
+.custom-shape-divider-top-1668817577 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1668817577 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 294px;
+    transform: rotateY(180deg);
+}
+
+.custom-shape-divider-top-1668817577 .shape-fill {
+    fill: #1BB15C;
+}
 
 html {
     width: 100%;
@@ -344,7 +374,7 @@ html {
     height: 100%;
   }
   /* Mobile size resolution styling for responsiveness*/
-  @media (max-width: 450px) {
+  @media (max-width: 520px) {
     .form-group .form-remember {
       font-size: 8px;
       font-weight: 400;
@@ -1100,12 +1130,12 @@ h2 {
 }
 @media (max-width: 992px){
 .site-footer {
-  padding: 12em 0;
+  padding: 16em 0;
 }}
 
 .site-footer{
   display: flex;
-  padding: 5%;
+  padding: 3% 5% 2%;
 }
 
 .mb-4 {

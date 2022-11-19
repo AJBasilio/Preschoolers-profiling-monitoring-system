@@ -147,6 +147,7 @@ def parent_preschooler(request, pk):
         return redirect('bhw_home')
     elif request.user.is_authenticated and request.user.user_type == 'Admin':
         return redirect('admin_home')
+        
 
 # ================================== ADMIN ==================================
 

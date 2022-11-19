@@ -16,10 +16,14 @@
                 <div id="navLinks">
                     <ul class="nav text-small">
                         <li>
-                            <a href="{% url 'preschooler_profile' preschooler.id %}"  style="border-radius: 13%;"class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7" 
+                            <a href="{% url 'preschooler_profile' preschooler.id %}"  style="border-radius: 13%;background-color: white;"class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7" 
                             title="Go back to Preschooler Profile">
-                            <i class="fa fa-lg fa-fw fa-chevron-circle-left" style="font-size: 24px;"></i>    
-                            <span style="color:rgb(3, 3, 3);">Back</span>   
+                            <button class="back-button bg-white">
+                                <span class="circle" aria-hidden="true">
+                                <span class="icon arrow"></span>
+                                </span>
+                                <span class="button-text d-flex align-items-center justify-content-center">Back</span>
+                              </button>  
                             </a>
                         </li>
                     </ul>
