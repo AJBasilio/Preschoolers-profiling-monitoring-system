@@ -272,7 +272,7 @@
                                     </div>
                                 {% else %}
                                     <div class="card-body">
-                                        <p class="card-text" style="color: rgb(242, 98, 33);">{{ preschooler.wfa }}</p>
+                                        <p class="card-text" style="color: rgb(238, 29, 35);">{{ preschooler.wfa }}</p>
                                     </div>
                                 {% endif %}
                             </div>
@@ -299,14 +299,13 @@
                                     </div>
                                 {% else %}
                                     <div class="card-body">
-                                        <p class="card-text" style="color: rgb(242, 98, 33);">{{ preschooler.hfa }}</p>
+                                        <p class="card-text" style="color: rgb(238, 29, 35);">{{ preschooler.hfa }}</p>
                                     </div>
                                 {% endif %}
                             </div>
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">WHFA Status</h4>
-                                    <h5 class="card-title">BMI=(kg/m<sup>2</sup>)</h5>
+                                    <h5 class="card-title">WHFA Status</h5>
                                 </div>
                                 {% if preschooler.whfa is None %}
                                     <div class="card-body">
@@ -326,7 +325,35 @@
                                     </div>
                                 {% else %}
                                     <div class="card-body">
-                                        <p class="card-text" style="color: rgb(242, 98, 33);">{{ preschooler.whfa }}</p>
+                                        <p class="card-text" style="color: rgb(238, 29, 35);">{{ preschooler.whfa }}</p>
+                                    </div>
+                                {% endif %}
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">BMI Status</h4>
+                                    <h5 class="card-title">BMI=(kg/m<sup>2</sup>)</h5>
+                                </div>
+                                {% if preschooler.bmifa is None %}
+                                    <div class="card-body">
+                                        <p class="card-text" >{{ preschooler.bmifa }}</p>
+                                    </div>
+                                {% elif preschooler.bmifa > 2.0 %}
+                                    <div class="card-body">
+                                        <p class="card-text" style="color: rgb(242, 98, 33);">{{ preschooler.bmifa }}</p>
+                                    </div>
+                                {% elif preschooler.bmifa >= -2.0 and preschooler.bmifa <= 2.0 %}
+                                    <div class="card-body">
+                                        <p class="card-text" style="color: rgb(0, 165, 79);">{{ preschooler.bmifa }}</p>
+                                    </div>
+                                {% elif preschooler.bmifa >= -3.0 and preschooler.bmifa <= -2.0 %}
+                                    <div class="card-body">
+                                        <p class="card-text" style="color: rgb(255, 241, 2);">{{ preschooler.bmifa }}</p>
+                                    </div>
+                                {% else %}
+                                    <div class="card-body">
+                                        <p class="card-text" style="color: rgb(238, 29, 35);">{{ preschooler.bmifa }}</p>
                                     </div>
                                 {% endif %}
                                 </div>

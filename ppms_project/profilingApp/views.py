@@ -202,16 +202,17 @@ def bhw_validation(request):
 
 def set_pass(request, pk):
     if request.user.is_authenticated and request.user.user_type == 'Admin':
-        bhw = CustomUser.objects.get(id=pk)
-        form = BHWSetPasswordForm(bhw)
+        user = CustomUser.objects.get(id=pk)
+        form = SetPasswordForm(user)
         
         if request.method == 'POST':
-            form = BHWSetPasswordForm(bhw, request.POST)
+            form = SetPasswordForm(user, request.POST)
             if form.is_valid():
                 form.save()
 
                 return redirect('bhw_validation')
 
+        print(user)
         context = {'form' : form}
 
         return render(request, 'activities/Admin - Set Password.html', context)
@@ -382,23 +383,10 @@ def admin_barangay(request):
 def admin_userAccounts(request):
     if request.user.is_authenticated and request.user.user_type == 'Admin':
         all_bhw = BarangayHealthWorker.objects.all()
-        validated_status = BarangayHealthWorker.objects.filter(
-            is_validated=True).count()
-        invalidated_status = BarangayHealthWorker.objects.filter(
-            is_validated=False).count()
-        parent_count = Parent.objects.all().count()
-        preschooler_count = Preschooler.objects.all().count()
-
-        count_list = [validated_status, invalidated_status,
-                    parent_count, preschooler_count]
-        data_json = dumps(count_list)
+        all_parents = Parent.objects.all()
 
         context = {'bhws': all_bhw,
-                'validated_count': validated_status,
-                'invalidated_count': invalidated_status,
-                'parent_count': parent_count,
-                'preschooler_count': preschooler_count,
-                'count_data': data_json}
+                   'parents' : all_parents}
     
         return render(request, 'activities/Admin - User accounts.html', context)
 

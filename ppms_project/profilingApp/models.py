@@ -176,7 +176,7 @@ class Preschooler(Model):
         except:
             pass
 
-    def whfa(self):
+    def bmifa(self):
         calculator = Calculator(adjust_height_data=False, adjust_weight_scores=False,
                        include_cdc=False, logger_name='pygrowup',
                        log_level='INFO')
@@ -192,6 +192,24 @@ class Preschooler(Model):
             bmi = float(self.weight / ((self.height / 100) ** 2))
 
             return float(calculator.bmifa(bmi, age_months, helpers.get_good_sex(str(self.gender)), self.height))
+        except:
+            pass
+
+    def whfa(self):
+        calculator = Calculator(adjust_height_data=False, adjust_weight_scores=False,
+                       include_cdc=False, logger_name='pygrowup',
+                       log_level='INFO')
+        
+        try:
+            today = date.today()
+
+            date_diff = today - self.birthday
+
+            in_days = date_diff.days
+            age_months = int((in_days) / (365 / 12))
+
+
+            return float(calculator.wfl(self.weight, age_months, helpers.get_good_sex(str(self.gender)), self.height))
         except:
             pass
     

@@ -101,7 +101,7 @@ class UpdatePreschooler(ModelForm):
         model = Preschooler
         fields = ['height', 'weight', 'date_measured', 'health_problem']
 
-class BHWSetPasswordForm(SetPasswordForm):
+class SetPasswordForm(SetPasswordForm):
     class Meta:
         model = get_user_model()
         fields = ['new_password1', 'new_password2']
