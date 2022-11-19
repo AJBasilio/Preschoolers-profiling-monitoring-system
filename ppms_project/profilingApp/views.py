@@ -213,7 +213,7 @@ def set_pass(request, pk):
                 return redirect('bhw_validation')
 
         print(user)
-        context = {'form' : form}
+        context = {'form' : form, 'user' :user}
 
         return render(request, 'activities/Admin - Set Password.html', context)
 
