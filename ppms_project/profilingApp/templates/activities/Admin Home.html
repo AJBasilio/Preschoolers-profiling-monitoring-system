@@ -29,14 +29,14 @@
     <nav class="navbar fixed-top index__navbar scrolled border-bottom" 
     style=" padding-left:3%; padding-right:3%;">
         <div class="flex-fill p-1 py-1">
-            <div class="d-flex align-items-center justify-content-between">
+            <div id="mobilenav" class="d-flex align-items-center justify-content-between">
                 <div>
                     <a href="#" class="name" style="text-decoration: none;">
                         <img class="navbar-icon" src="{% static '/Media/avatar.png' %}" alt="dasma-logo">
                         <span id="hidetitle" class="brand__name" style="color:rgb(0, 0, 0); margin-left:10px;">City of Dasmariñas</span>
                     </a>
                 </div>
-                <label id="hamburger"for="toggle"><i class="fa fa-fw fa-bars" style="font-size: 24px;"></i>   </i></label>
+                <label class="burger" id="hamburger"for="toggle"><i class="fa fa-fw fa-bars" style="font-size: 24px;"></i>   </i></label>
                 <input type="checkbox" id="toggle">
                 <div class="menu" id="navLinks">
                     <ul class="nav text-small">
@@ -76,7 +76,7 @@
                         </li>
                         <li>
                             <a href="{% url 'admin_userAccounts' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
-                            title="User accounts">
+                            title="User Accounts">
                             <i class="fa fa-3x fa-fw fas fa-users " style="font-size: 24px;"></i>
                             </a>
                         </li>
@@ -107,7 +107,6 @@
     </nav>
     </div>
 </header>
-    
 <!-- Tooltip Script -->
 <script>
     $(function () {

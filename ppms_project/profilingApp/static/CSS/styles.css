@@ -126,45 +126,54 @@ tbody tr:nth-of-type(even) {
   display: none;
 }
 @media screen and (max-width: 515px) {
+  
   #hamburger{
-    display:flex; cursor: pointer; width: 52px;
+    display:absolute !important; 
+    cursor: pointer; 
+    width: 52px;
     justify-content: end;
-    
-
+    margin-top: 20px;
   }
+
   .fixed-top{
     max-height:auto ;
   }
-  #grid{
-    margin-top:auto;
+  
+  #mobilenav{
+    align-items: start !important;
   }
-    
-  #navlinks{display:none}
-  #navlinks li{
-    display:block;
+
+  .menu{
+    display:none;
   }
+  
   #navlinks li a{
     display: block; 
+    justify-content: center;
     border-bottom: solid 1px black; 
-    margin-bottom: 2px; opacity: 100%; 
+    margin-bottom: 20px; opacity: 100%; 
     position: relative;
+    transition: 2s ease-in-out;
   }
   #toggle:checked + .menu{
-    position: relative;
+    position:sticky;
     display:block;
-    justify-content: end;
-    align-items:end;
-    transition: 0.5s;
+    justify-content: center;
+    align-items:flex-start;
+    transition: 2s ease-in-out;
+    min-height: 50vh;
+    max-width: 15vh;
+    background-color: white;
   }
-  #toggle:checked + .container-grid{
-    display:hide;
+  #toggle:checked + .burger{
+    justify-content: end !important;
   }
 } 
 
 @media screen and (min-width: 515px) {
 
   #hamburger{
-    margin:0 40px 0 0; font-size: 26px; line-height: 70px; display: none;
+    font-size: 26px; line-height: 70px; display: none;
   }
 
   
