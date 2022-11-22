@@ -125,7 +125,7 @@ tbody tr:nth-of-type(even) {
 #toggle{
   display: none;
 }
-@media screen and (max-width: 515px) {
+@media screen and (max-width: 464px) {
   
   #hamburger{
     display:absolute !important; 
@@ -170,7 +170,7 @@ tbody tr:nth-of-type(even) {
   }
 } 
 
-@media screen and (min-width: 515px) {
+@media screen and (min-width: 464px) {
 
   #hamburger{
     font-size: 26px; line-height: 70px; display: none;
@@ -187,6 +187,13 @@ tbody tr:nth-of-type(even) {
 
 @media screen and (max-width: 555px) {
   #hideUserLabel {
+    display: none;
+  }
+} 
+
+
+@media screen and (max-width: 515px) {
+  #adminIcon {
     display: none;
   }
 } 
