@@ -127,7 +127,61 @@
             </div>
         </div>
     </div>
+    <div class=" " style="margin-top:20px;">
+        <button type="button" style="background-color: #188045; color: white;" class="btn " data-bs-toggle="modal" data-bs-target="#modalArc"><h5 class="fa fa-archive"> Archive</h5></button>
+    </div>
+    <div class="modal fade" id="modalArc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header d-flex align-items-center justify-content-between">
+                    <div>
+                        <h5 class="modal-title fa fa-archive" id="exampleModalLabel"> Preschooler Archive</h5>
+                    </div>
+                    <div >
+                        <button type="button" class="btn" style="background-color: #EF3A25; color: white;" data-bs-dismiss="modal" aria-label="Close"> Close</button>
+                    </div>
+                </div>
+                <div class="modal-body p-0">
+                    <div class="table-responsive " style="margin:30px;">
+                        <table class="table table-hover table-cell-border" id="archive" >
+                            <thead>
+                                <tr style="text-align: center;">
+                                    <th scope="col">No.</th>
+                                    <th scope="col">First Name</th>
+                                    <th scope="col">Middle Name</th>
+                                    <th scope="col">Last Name</th>
+                                    <th scope="col">Suffix</th>
+                                    <th scope="col">Birthdate</th>
+                                    <th scope="col">Age in months</th>
+                                    <th scope="col">BMI STATUS</th>
+                                    <th scope="col" class="nosort text-center">Action</th>
+                                </tr>   
+                            </thead>
+                            <tbody>
+                                <tr style="text-align: center;">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer text-center ">
+                    <h5 class="text-muted">List of preschooler who have an age older that 60 months.</h5>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
@@ -136,6 +190,24 @@
         var t = $('#preschooler_bmi').DataTable({
             dom: 'Blfrtip',
             info: 'true',
+            aoColumnDefs: [{
+                'bSortable': false,
+                'aTargets': ['nosort'],
+                'orderable': false,
+                'targets': [0, 8],
+            }],
+            order: [[1, 'asc']],
+            });
+            t.on('order.dt search.dt', function () {
+            let i = 1;
+            t.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+                this.data(i++);
+            });}).draw();
+    </script>
+
+    <script>
+        var t = $('#archive').DataTable({
+            dom: 'frtip',
             aoColumnDefs: [{
                 'bSortable': false,
                 'aTargets': ['nosort'],
