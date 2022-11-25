@@ -151,6 +151,7 @@ def parent_preschooler(request, pk):
 
 def PG_pass(request, pk):
     if request.user.is_authenticated and request.user.user_type == 'P/G':
+        parent_logged = Parent.objects.get(user_id=request.user.id)
         user = CustomUser.objects.get(id=pk)
         form = SetPasswordForm(user)
         
@@ -163,7 +164,7 @@ def PG_pass(request, pk):
                 messages.error(request, 'New Password did not match. Please fill up the form correctly!')
 
         print(user)
-        context = {'form' : form, 'user' :user}
+        context = {'form' : form, 'user' :user, 'parent' : parent_logged}
 
         return render(request, 'activities/User Profile.html', context)
 
@@ -503,6 +504,7 @@ def preschooler_profile(request, pk):
 
 def new_pass(request, pk):
     if request.user.is_authenticated and request.user.user_type == 'BHW':
+        bhw_logged = BarangayHealthWorker.objects.get(user_id=request.user.id)
         user = CustomUser.objects.get(id=pk)
         form = SetPasswordForm(user)
         
@@ -515,7 +517,7 @@ def new_pass(request, pk):
                 messages.error(request, 'New Password did not match. Please fill up the form correctly!')
 
         print(user)
-        context = {'form' : form, 'user' :user}
+        context = {'form' : form, 'user' :user, 'bhw' : bhw_logged,}
 
         return render(request, 'activities/User Profile.html', context)
 

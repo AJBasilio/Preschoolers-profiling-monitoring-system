@@ -45,7 +45,11 @@
                             <p class="mb-0">Barangay</p>
                         </div>
                         <div class="col-sm">
-                            <p class="text-muted mb-0">{{ user.bhw_barangay }}</p>
+                            {% if user.user_type == 'BHW' %}
+                                <p class="text-muted mb-0">{{ bhw.bhw_barangay }}</p>
+                            {% else%}
+                                <p class="text-muted mb-0">{{ parent.barangay }}</p>
+                            {% endif %}
                         </div>
                     </div>
                     <hr>
