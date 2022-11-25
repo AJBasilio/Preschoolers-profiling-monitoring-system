@@ -85,13 +85,13 @@ class Parent(Model):
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name}"
 
-class PreschoolerManagerGreater(models.Manager):
+class PreschoolerManagerLess(models.Manager):
     def get_queryset(self):
         greater_than_60_mon = datetime.today() - relativedelta(months=60)
 
         return super().get_queryset().filter(birthday__gt=greater_than_60_mon)
 
-class PreschoolerManagerLess(models.Manager):
+class PreschoolerManagerGreater(models.Manager):
     def get_queryset(self):
         less_than_60_mon = datetime.today() - relativedelta(months=60)
 
@@ -118,10 +118,10 @@ class Preschooler(Model):
     objects = models.Manager()
 
     # less than 60 months old preschooler
-    gt_60_objects = PreschoolerManagerGreater()
+    lt_60_objects = PreschoolerManagerLess()
 
     # greater than or equal to 60 months old preschooler
-    lt_60_objects = PreschoolerManagerLess()
+    gte_60_objects = PreschoolerManagerGreater()
 
     def __str__(self):
         return f"{self.first_name} {self.middle_name} {self.last_name}"

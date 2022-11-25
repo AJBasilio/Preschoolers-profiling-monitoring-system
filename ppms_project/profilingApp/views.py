@@ -18,7 +18,8 @@ def index(request):
 
 @unauthenticated_user
 def login_registration(request):
-    print(Preschooler.lt_60_objects.all())
+    print(Preschooler.objects.all())
+    print(Preschooler.gte_60_objects.all())
     form = CustomUserCreationForm()
 
     if request.method == 'POST':
