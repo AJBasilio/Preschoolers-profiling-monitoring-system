@@ -209,8 +209,9 @@ def set_pass(request, pk):
             form = SetPasswordForm(user, request.POST)
             if form.is_valid():
                 form.save()
-
-                return redirect('bhw_validation')
+                messages.success(request, 'Password changed.')
+            else:
+                messages.error(request, 'New Password did not match. Please fill up the form correctly!')
 
         print(user)
         context = {'form' : form, 'user' :user}
@@ -385,7 +386,11 @@ def admin_userAccounts(request):
         all_bhw = BarangayHealthWorker.objects.all()
         all_parents = Parent.objects.all()
 
+        invalidated_status = BarangayHealthWorker.objects.filter(
+            is_validated=False).count()
+
         context = {'bhws': all_bhw,
+                    'invalidated_count': invalidated_status,
                    'parents' : all_parents}
     
         return render(request, 'activities/Admin - User accounts.html', context)
