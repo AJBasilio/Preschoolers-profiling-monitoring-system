@@ -148,6 +148,29 @@ def parent_preschooler(request, pk):
         return redirect('bhw_home')
     elif request.user.is_authenticated and request.user.user_type == 'Admin':
         return redirect('admin_home')
+
+def PG_pass(request, pk):
+    if request.user.is_authenticated and request.user.user_type == 'P/G':
+        user = CustomUser.objects.get(id=pk)
+        form = SetPasswordForm(user)
+        
+        if request.method == 'POST':
+            form = SetPasswordForm(user, request.POST)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Password changed.')
+            else:
+                messages.error(request, 'New Password did not match. Please fill up the form correctly!')
+
+        print(user)
+        context = {'form' : form, 'user' :user}
+
+        return render(request, 'activities/User Profile.html', context)
+
+    elif request.user.is_authenticated and request.user.user_type == 'Admin':
+        return redirect('admin_home')
+    elif request.user.is_authenticated and request.user.user_type == 'BHW':
+        return redirect('bhw_home')
         
 
 # ================================== ADMIN ==================================
@@ -472,6 +495,29 @@ def preschooler_profile(request, pk):
         context = {'preschooler' : preschooler,
                 'form' : form,}
         return render(request, 'activities/Preschooler Profile.html', context)
+
+    elif request.user.is_authenticated and request.user.user_type == 'Admin':
+        return redirect('admin_home')
+    elif request.user.is_authenticated and request.user.user_type == 'P/G':
+        return redirect('parent_home')
+
+def new_pass(request, pk):
+    if request.user.is_authenticated and request.user.user_type == 'BHW':
+        user = CustomUser.objects.get(id=pk)
+        form = SetPasswordForm(user)
+        
+        if request.method == 'POST':
+            form = SetPasswordForm(user, request.POST)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Password changed.')
+            else:
+                messages.error(request, 'New Password did not match. Please fill up the form correctly!')
+
+        print(user)
+        context = {'form' : form, 'user' :user}
+
+        return render(request, 'activities/User Profile.html', context)
 
     elif request.user.is_authenticated and request.user.user_type == 'Admin':
         return redirect('admin_home')

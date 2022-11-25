@@ -42,7 +42,7 @@
                             
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end p-2 bg-white" style="margin-right:3%;" aria-labelledby="parentButton">
-                            <a class="text-dark bg-white"style="text-decoration: none;"href="">
+                            <div class="text-dark bg-white"style="text-decoration: none;"href="">
                                 <div class="card">
                                     <div class="row d-block">
                                         <div class="d-flex justify-content-center my-2 rounded-circle">
@@ -53,10 +53,10 @@
                                          </div>
                                     </div>
                                 </div>
-                                <div class="card-footer d-flex align-items-center justify-content-center" style="height:30px;">
+                                <a class="card-footer d-flex align-items-center justify-content-center" style="height:30px;" href="{% url 'PG_pass' user.id %}">
                                     <p class="mt-3"style="font-size:15px;">View Profile</p>
-                                </div>
-                            </a>
+                                </a>
+                            </div>
                             
                             <div>
                                 <li><hr class="dropdown-divider"></li>
