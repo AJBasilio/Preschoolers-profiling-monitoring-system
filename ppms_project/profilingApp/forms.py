@@ -107,9 +107,10 @@ class SetPasswordForm(SetPasswordForm):
         fields = ['new_password1', 'new_password2']
 
 class AddBarangay(ModelForm):
+    brgy_name = forms.CharField(required=True, widget=forms.TextInput(attrs={'class' : "form-control", 'type': 'text', 'id' : 'brgy_name'}))
+    brgy_phone = forms.CharField(required=True, widget=forms.TextInput(attrs={'class' : "form-control", 'type': 'text', 'id' : 'brgy_phone'}))
+    brgy_address = forms.CharField(required=True, widget=forms.TextInput(attrs={'class' : "form-control", 'type': 'text', 'id' : 'brgy_address'}))
+    
     class Meta:
         model = Barangay
         fields = ['brgy_name', 'brgy_phone', 'brgy_address']
-        widgets = {'brgy_name' : forms.TextInput(attrs={'class' : "form-control", 'type': 'text', 'id' : 'brgy_name'}),
-                   'brgy_phone' : forms.TextInput(attrs={'class' : "form-control", 'type': 'tel', 'id' : 'brgy_phone'}),
-                   'brgy_address' : forms.TextInput(attrs={'class' : "form-control", 'type': 'tel', 'id' : 'brgy_address'})}
