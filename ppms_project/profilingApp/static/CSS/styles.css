@@ -135,10 +135,6 @@ tbody tr:nth-of-type(even) {
     margin-top: 20px;
   }
 
-  .fixed-top{
-    max-height:auto ;
-  }
-  
   #mobilenav{
     align-items: start !important;
   }
@@ -149,20 +145,18 @@ tbody tr:nth-of-type(even) {
   
   #navlinks li a{
     display: block; 
-    justify-content: center;
-    border-bottom: solid 1px black; 
+    justify-content: center;  
     margin-bottom: 20px; opacity: 100%; 
     position: relative;
-    transition: 2s ease-in-out;
   }
   #toggle:checked + .menu{
     position:sticky;
-    display:block;
+    display:block !important;
     justify-content: center;
     align-items:flex-start;
     transition: 2s ease-in-out;
     min-height: 50vh;
-    max-width: 15vh;
+    width: 100%;
     background-color: white;
   }
   #toggle:checked + .burger{
@@ -209,6 +203,7 @@ button.back-button {
   width: 8rem;
   height: auto;
   border:none;
+  background-color:#00000000 ;
  }
  
  button.back-button .circle {
@@ -218,7 +213,7 @@ button.back-button {
   margin: 0;
   width: 2.75rem;
   height: 2.5rem;
-  background: #1bb15c;
+  background: #188045;
   border-radius: 1.625rem;
  }
  
@@ -252,7 +247,6 @@ button.back-button {
  }
  
  button.back-button .button-text {
-  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
   position: absolute;
   top: 0;
   left: 0;
@@ -260,14 +254,13 @@ button.back-button {
   bottom: 0;
   padding: 0.75rem 0;
   margin: 0 0 0 1.85rem;
-  color: black;
   font-weight: 700;
   line-height: 1.6;
   text-align: center;
   text-transform: uppercase;
  }
  
- button:hover .circle {
+ button:hover > .circle {
   width: 100%;
  }
  
@@ -302,6 +295,8 @@ button.back-button {
   background-color: #e4e4e39f;
   transform: scale(1.05);
 }
+
+/* BHW Preschooler Profile Cards */
 
 /* BHW Preschooler Profile Buttons */
 
