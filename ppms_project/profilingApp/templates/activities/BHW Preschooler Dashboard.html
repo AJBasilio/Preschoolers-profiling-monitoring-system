@@ -154,22 +154,33 @@
                                     <th scope="col">Birthdate</th>
                                     <th scope="col">Age in months</th>
                                     <th scope="col">BMI STATUS</th>
-                                    <th scope="col" class="nosort text-center">Action</th>
                                 </tr>   
                             </thead>
                             <tbody>
+                                {% for preschooler in archive_preschoolers %}
                                 <tr style="text-align: center;">
                                     <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{ preschooler.first_name }}</td>
+                                    <td>{{ preschooler.middle_name }}</td>
+                                    <td>{{ preschooler.last_name }}</td>
+                                    <td>{{ preschooler.suffix_name }}</td>
+                                    <td>{{ preschooler.birthday }}</td>
+                                    <td>{{ preschooler.age_months }}</td>
+                                    {% if preschooler.bmifa is None %}
                                     
+                                        <td> No Data Record </td>
+                                        
+                                    {% elif preschooler.bmifa > 2.0 %}
+                                        <td style="color: rgb(242, 98, 33);"> Overweight/Obese ({{ preschooler.bmifa }})</td>
+                                    {% elif preschooler.bmifa >= -2.0 and preschooler.bmifa <= 2.0 %}
+                                        <td style="color: rgb(0, 165, 79);"> Normal ({{ preschooler.bmifa}})</td>
+                                    {% elif preschooler.bmifa >= -3.0 and preschooler.bmifa <= -2.0 %}
+                                        <td style="color: rgb(255, 241, 2);"> Wasted ({{ preschooler.bmifa }})</td>
+                                    {% else %}
+                                        <td style="color: rgb(238, 29, 35);"> Severely Wasted ({{preschooler.bmifa }})</td>
+                                    {% endif %}                                   
                                 </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>

@@ -471,9 +471,12 @@ def preschooler_dashboard(request):
     if request.user.is_authenticated and request.user.user_type == 'BHW':
         bhw_logged = BarangayHealthWorker.objects.get(user_id=request.user.id)
         parents = Parent.objects.filter(barangay=bhw_logged.bhw_barangay)
-        preschooler = Preschooler.objects.filter(parent__in=(parents))
+        preschooler = Preschooler.lt_60_objects.filter(parent__in=(parents))
+        preschooler_60months = Preschooler.gte_60_objects.filter(parent__in=(parents))
 
-        context = {'preschoolers': preschooler}
+        context = {'preschoolers': preschooler,
+                   'archive_preschoolers' : preschooler_60months}
+        
         return render(request, 'activities/BHW Preschooler Dashboard.html', context)
 
     elif request.user.is_authenticated and request.user.user_type == 'Admin':
