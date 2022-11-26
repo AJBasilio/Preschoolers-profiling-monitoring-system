@@ -155,7 +155,7 @@ tbody tr:nth-of-type(even) {
     justify-content: center;
     align-items:flex-start;
     transition: 2s ease-in-out;
-    min-height: 50vh;
+    max-height: 150px;
     width: 100%;
     background-color: white;
   }
@@ -189,6 +189,9 @@ tbody tr:nth-of-type(even) {
 @media screen and (max-width: 515px) {
   #adminIcon {
     display: none;
+  }
+  #navLinks{
+    justify-content: center;
   }
 } 
 

@@ -60,8 +60,8 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end p-2" style="margin-right:3%;" aria-labelledby="dropdownUser1">
                                 
-                                <div class="text-dark"style="text-decoration: none; background-color: rgba(255,255,255,0); padding: 0 !important;">
-                                    <div class="card">
+                                <div class="text-dark d-block justify-content-start p-2"style="text-decoration: none; background-color: rgba(255,255,255,0); padding: 0 !important;">
+                                    <div class="card p-3 d-flex align-items-center justify-content-center">
                                         <div class="row d-block">
                                             <div class="d-flex justify-content-center my-2">
                                                 <i class="fa fa-lg fa-fw fa-user bi" style="margin-left:5px ;"></i>  
@@ -71,7 +71,7 @@
                                              </div>
                                         </div>
                                     </div>
-                                    <a class="card-footer d-flex align-items-center justify-content-center" style="height:30px;" href="{% url 'new_pass' user.id %}">
+                                    <a class="card-footer d-flex align-items-center justify-content-center" style="height:30px; background-color:none !important; border-radius: 0px !important;margin:0px !important;" href="{% url 'new_pass' user.id %}">
                                         <p class="mt-3"style="font-size:15px;">View Profile</p>
                                     </a>
                                 </div>
@@ -187,8 +187,8 @@
 <!-- Footer -->
 <div class="footer text-muted">
     <div class="container">
-        <div class="row text-center align-items-center">
-                <div class="border-top p-4">
+        <div class="row text-center d-flex align-items-center">
+                <div class="border-top p-2 d-flex justify-content-center align-items-center">
                     <p class="copyright"><small>
                     Copyright ©<script>document.write(new Date().getFullYear());</script> All rights reserved <i class="icon-heart text-danger" aria-hidden="true"></i>
                     </small>

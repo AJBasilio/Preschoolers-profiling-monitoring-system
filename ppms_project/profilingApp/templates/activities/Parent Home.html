@@ -43,7 +43,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end p-2 bg-white" style="margin-right:3%;" aria-labelledby="parentButton">
                             <div class="text-dark bg-white"style="text-decoration: none;"href="">
-                                <div class="card">
+                                <div class="card p-3">
                                     <div class="row d-block">
                                         <div class="d-flex justify-content-center my-2 rounded-circle">
                                             <i class="fa fa-lg fa-fw fa-user bi" style="margin-left:5px;"></i>  
@@ -53,8 +53,8 @@
                                          </div>
                                     </div>
                                 </div>
-                                <a class="card-footer d-flex align-items-center justify-content-center" style="height:30px;" href="{% url 'PG_pass' user.id %}">
-                                    <p class="mt-3"style="font-size:15px;">View Profile</p>
+                                <a class="card-footer d-flex align-items-center justify-content-center text-dark" style="height:30px;" href="{% url 'PG_pass' user.id %}">
+                                    <p class="mt-3 text-dark"style="font-size:15px;">View Profile</p>
                                 </a>
                             </div>
                             
@@ -156,14 +156,14 @@
                             <div class="card-body d-flex flex-column align-items-stretch justify-content-center">
                                 <div class="text-center">
                                     <div class="row">
-                                        <div class="col-4 d-flex justify-content-center align-items-center text-center">
+                                        <div class="col-4 d-flex justify-content-center align-items-center text-center p-2">
                                             {% if item.gender == 'Male' %}
                                                 <img class="rounded-circle"src="https://png.pngtree.com/png-vector/20190114/ourlarge/pngtree-vector-avatar-icon-png-image_313572.jpg" height="100%" width="100%">
                                             {% elif item.gender == 'Female' %}
                                                 <img class="rounded-circle"src="https://cdn-icons-png.flaticon.com/512/186/186037.png?fbclid=IwAR1OPbyTuELnCON7Mtn4GDZzwEDeQYfe3udTNuHzzx-O_fhYQZCzvUPjSDQ" height="100%" width="100%">
                                             {% endif %}
                                         </div>
-                                        <div class="col-8 d-flex justify-content-start align-items-center text-start  text-body">
+                                        <div class="col-8 d-flex justify-content-center align-items-center text-start  text-body">
                                             <div>Name : {{ item.first_name }} {{ item.middle_name }} {{ item.last_name }} {{ preschooler.suffix_name }} 
                                                 <br> Age: {{item.age_months}} months
                                                 <br> Gender: {{ item.gender }}

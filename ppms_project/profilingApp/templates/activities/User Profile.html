@@ -16,11 +16,47 @@
     <!-- Header -->
 </head>
 
+<header>
+    <div class="site-header">
+    <nav class="navbar fixed-top index__navbar scrolled" 
+    style=" padding-left:3%; padding-right:3%; background-color: rgba(0, 0, 0, 0);">
+        <div class="flex-fill p-1 py-1">
+            <div class="d-flex align-items-center justify-content-end">
+                <div id="navLinks">
+                    <ul class="nav text-small">
+                        <li>
+                            <a href="{% url 'bhw_home' %}"  style="border-radius: 13%; background-color: rgba(255, 255, 255, 0);"class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7" 
+                            title="Go back to Home">
+                            <button class="back-button">
+                                <span class="circle" aria-hidden="true">
+                                <span class="icon arrow"></span>
+                                </span>
+                                <span class="button-text text-white d-flex align-items-center justify-content-center">Back</span>
+                              </button>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    </div>
+</header>
+
+<!-- Tooltip Script -->
+<script>
+    $(function () {
+       $('[data-toggle="tooltip"]').tooltip({'delay': { show: 400, hide: 100 }})})
+       $('[data-toggle="tooltip"]').on('shown.bs.tooltip', function () {
+       $('.tooltip').addClass('animated fade');
+   })
+ </script>
+ 
 <body class="mt-0 mb-0 d-flex align-items-stretch" style="background-color: black;">
     <!-- Dashboard -->
-    <div id="grid" class="container-fluid mt-0" >
+    <div id="grid" class="container-fluid mt-0">
         <div class="container-grid" style="padding: 0% 0% 0% 0%;">
-            <div class="card" style="margin-left:30%; margin-right:30%;">
+            <div class="card" style="margin-left:30%; margin-right:30%; margin-top: 65px;">
                 <div class="card-header">
                     <h4 class="d-flex justify-content-center"><i class="fas fa-clipboard-check mx-2"></i>User Profile</h4>
                 </div>
