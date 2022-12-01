@@ -120,7 +120,7 @@
                                     <td> No Data Record </td>
                                     
                                 {% elif preschooler.bmifa > 2.0 %}
-                                    <td style="color: rgb(242, 98, 33);"> Overweight/Obese ({{ preschooler.bmifa }})</td>
+                                    <td style="color: rgb(0, 0, 0); background-color: #f67f72; font-weight: 500;"> Overweight/Obese ({{ preschooler.bmifa }})</td>
                                 {% elif preschooler.bmifa >= -2.0 and preschooler.bmifa <= 2.0 %}
                                     <td style="color: rgb(0, 165, 79);"> Normal ({{ preschooler.bmifa}})</td>
                                 {% elif preschooler.bmifa >= -3.0 and preschooler.bmifa <= -2.0 %}
@@ -197,7 +197,7 @@
                     </div>
                 </div>
                 <div class="card-footer text-center ">
-                    <h5 class="text-muted">List of preschooler who have an age older that 60 months.</h5>
+                    <h5 class="text-muted h4">List of preschooler who have an age older that 60 months.</h5>
                 </div>
             </div>
         </div>
@@ -234,7 +234,7 @@
                 'bSortable': false,
                 'aTargets': ['nosort'],
                 'orderable': false,
-                'targets': [0, 8],
+                'targets': [0, 7],
             }],
             order: [[1, 'asc']],
             });

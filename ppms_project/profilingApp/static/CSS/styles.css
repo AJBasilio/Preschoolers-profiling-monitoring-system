@@ -59,6 +59,8 @@ a{
   color:#1bb15c !important;
 }
 
+
+
 .page-item.active .page-link {
   color: rgb(235, 233, 233) !important;
   background-color: #1bb15c !important;
@@ -118,7 +120,7 @@ tbody tr:nth-of-type(even) {
 }
 
 #homeBody{
-  background-image: linear-gradient(to top, rgba(230, 250, 202, 0.884), rgb(255, 255, 255));
+  background-color: linear-gradient(to top, rgba(230, 250, 202, 0.884), rgb(255, 255, 255));
 }
 /* Header hide title when minimized */
 
@@ -322,7 +324,7 @@ button.back-button {
 }
 
 #grid{
-  background-image: linear-gradient(to top, rgba(230, 250, 202, 0.884),rgba(228, 228, 227, 0.624));
+  background-color: rgb(240, 242, 245);
   position: relative;
   padding: 3%;
   width: 100%;
@@ -330,7 +332,8 @@ button.back-button {
   min-height: 800px;
 }
 
-/* Cards */
+/* Cards */ 
+
 .card-header{
   font-size: 13px;
   font-family: 'Poppins', sans-serif;;
