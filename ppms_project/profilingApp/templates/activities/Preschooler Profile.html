@@ -180,13 +180,14 @@
                                                         <label id="user-lbl" data-error="wrong" data-success="right">Health Problem/s:</label>
                                                         {{ form.health_problem }}
                                                     </div>
-                                                </form>
+                                                
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn" style="background-color: #EF3A25; color: white;" data-bs-dismiss="modal" aria-label="Close"> Cancel</button>
                                                 <button type="submit" class="btn " style="background-color: #188045; color: white;">Save</button>
                                                
                                             </div>
+                                        </form>
                                         </div>
                                     </div>
                                 </div>
@@ -524,7 +525,7 @@
                                                 {% elif preschooler.age_months > 24 and preschooler.gender == 'Male' %}
                                                     <img class="img-fluid" alt="Responsive image" src="{% static '/Media/sft-bfa-boys-z-2-5.png' %}">
                                                 {% endif %}
-                                            </di    v>
+                                            </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn" style="background-color: #EF3A25; color: white;" data-bs-dismiss="modal" aria-label="Close"> Close</button>
@@ -540,23 +541,6 @@
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    $(function(){
-        var dtToday = new Date();
-        
-        var month = dtToday.getMonth() + 1;
-        var day = dtToday.getDate();
-        var year = dtToday.getFullYear();
-        if(month < 10)
-            month = '0' + month.toString();
-        if(day < 10)
-            day = '0' + day.toString();
-        
-        var maxDate = year + '-' + month + '-' + day;
-
-        $('#date_measured').attr('min', maxDate);
-    });
-</script>
 
 
 {% endblock %}
