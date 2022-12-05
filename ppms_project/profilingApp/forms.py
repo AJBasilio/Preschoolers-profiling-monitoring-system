@@ -38,7 +38,7 @@ class CustomUserCreationForm(UserCreationForm):
     password1 = forms.CharField(widget=PasswordInput(attrs={'type' : 'password', 'id' : 'password', 'aria-describeby' : 'passwordHelpBlock', 'placeholder':'Enter your Password', 'data-toggle': 'password'}))
     password2 = forms.CharField(widget=PasswordInput(attrs={'type' : 'password', 'id' : 'cpassword', 'placeholder':'Confirm Your Password','data-toggle': 'password'}))
     barangay = forms.ModelChoiceField(queryset=Barangay.objects.all(), widget=forms.Select(attrs={'class' : 'fstdropdown-select', 'id' : 'brgy'}))
-    phone_num = forms.CharField(required=True, widget=forms.TextInput(attrs={'type': 'text', 'placeholder': 'Phone Number', 'id' : 'phonenum'}))
+    phone_num = forms.IntegerField(required=True, widget=forms.TextInput(attrs={'type': 'number', 'placeholder': 'Phone Number', 'id' : 'phonenum'}))
     class Meta:
         model = get_user_model()
         fields = ['user_type', 'first_name', 'last_name', 'email', 'phone_num', 'password1', 'password2']
