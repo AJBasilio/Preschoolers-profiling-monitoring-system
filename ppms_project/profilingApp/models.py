@@ -229,18 +229,50 @@ class Preschooler(Model):
             
             bmi = float(self.weight / ((self.height / 100) ** 2))
 
-            whfa_value = float(calculator.bmifa(bmi, age_months, helpers.get_good_sex(str(self.gender)), self.height))
+            bmifa_value = float(calculator.bmifa(bmi, age_months, helpers.get_good_sex(str(self.gender)), self.height))
 
-            if whfa_value > 2.0:
+            if bmifa_value > 2.0:
                 return 'ABOVE NORMAL'
-            elif whfa_value >= -2.0 and whfa_value <= 2.0:
+            elif bmifa_value >= -2.0 and bmifa_value <= 2.0:
                 return 'NORMAL'
-            elif whfa_value >= -3.0 and whfa_value < -2.0:
+            elif bmifa_value >= -3.0 and bmifa_value < -2.0:
                 return 'BELOW NORMAL'
             else:
                 return 'SEVERE'
         except:
             pass
+    
+    
+    @property
+    def whfa_tag(self):
+        calculator = Calculator(adjust_height_data=False, adjust_weight_scores=False,
+                       include_cdc=False, logger_name='pygrowup',
+                       log_level='INFO')
+        
+        try:
+            today = date.today()
+
+            date_diff = today - self.birthday
+
+            in_days = date_diff.days
+            age_months = int((in_days) / (365 / 12))
+            
+            whfa_value = float(calculator.wfl(self.weight, age_months, helpers.get_good_sex(str(self.gender)), self.height))
+
+            if whfa_value > 3.0:
+                return 'OBESE'
+            elif whfa_value > 2.0 and whfa_value <= 3.0:
+                return 'OVERWEIGHT'
+            elif whfa_value >= -2.0 and whfa_value <= 2.0:
+                return 'NORMAL'
+            elif whfa_value >= -3.0 and whfa_value < -2.0:
+                return 'UNDERWEIGHT'
+            else:
+                return 'SEVERE'
+        except:
+            pass
+    
+    
 
 class Log(Model):
     log_action = models.CharField(max_length=500, null=True)
