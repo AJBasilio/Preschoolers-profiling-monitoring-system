@@ -428,7 +428,7 @@ def bhw_home(request):
     if request.user.is_authenticated and request.user.user_type == 'BHW':
         bhw_logged = BarangayHealthWorker.objects.get(user_id=request.user.id)
         parents = Parent.objects.filter(barangay=bhw_logged.bhw_barangay)
-        preschoolers = Preschooler.objects.filter(parent__in=(parents))
+        preschoolers = Preschooler.lt_60_objects.filter(parent__in=(parents))
 
         preschooler_normal = []
         preschooler_wasted = []
