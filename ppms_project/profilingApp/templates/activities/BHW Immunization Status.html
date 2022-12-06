@@ -83,23 +83,26 @@
                             </div>
                             <div class="" >
                                 <p style="font-size:20px; font-weight:bold; margin-right:10px; margin: 0;">Remaining Vaccine:</p>
-                                {% if 'BCG' in vax_list %}
-                                    <p class="text-dark mb-0" style="font-size: 20px;">Hepatitis B, Oral Poliovirus Vaccine, Pentavalent Vaccine, Measles Containing Vaccines, Tetanus Toxoid, Inactivated Polio Vaccine and Measles Mumps - Rubella </p>
-                                {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list %}
-                                    <p class="text-dark mb-0" style="font-size: 20px;">Oral Poliovirus Vaccine, Pentavalent Vaccine, Measles Containing Vaccines, Tetanus Toxoid, Inactivated Polio Vaccine and Measles Mumps - Rubella </p>
-                                {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and dose_list.2 == 3 %}
-                                    <p class="text-dark mb-0" style="font-size: 20px;">Pentavalent Vaccine, Measles Containing Vaccines, Tetanus Toxoid, Inactivated Polio Vaccine and Measles Mumps - Rubella </p>
-                                {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and dose_list.3 == 3 %}
-                                    <p class="text-dark mb-0" style="font-size: 20px;">Measles Containing Vaccines, Tetanus Toxoid, Inactivated Polio Vaccine and Measles Mumps - Rubella </p>
-                                {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and 'Measles Containing Vaccines' in vax_list and dose_list.4 == 3 %}
-                                    <p class="text-dark mb-0" style="font-size: 20px;">Tetanus Toxoid, Inactivated Polio Vaccine and Measles Mumps - Rubella </p>
-                                {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and 'Measles Containing Vaccines' in vax_list and 'Tetanus Toxoid' in vax_list %}
-                                    <p class="text-dark mb-0" style="font-size: 20px;">Inactivated Polio Vaccine and Measles Mumps - Rubella </p>
+                                {% if 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and 'Measles Containing Vaccines' in vax_list and 'Tetanus Toxoid' in vax_list and 'Inactivated Polio Vaccine' in vax_list and 'Measles Mumps - Rubella' in vax_list and dose_list.7 == 2 %}
+                                    <p class="text-dark mb-0" style="font-size: 20px;"> No remaining vaccines.</p>
                                 {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and 'Measles Containing Vaccines' in vax_list and 'Tetanus Toxoid' in vax_list and 'Inactivated Polio Vaccine' in vax_list and dose_list.6 == 2 %}
                                     <p class="text-dark mb-0" style="font-size: 20px;">Measles Mumps - Rubella </p>
+                                {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and 'Measles Containing Vaccines' in vax_list and 'Tetanus Toxoid' in vax_list %}
+                                    <p class="text-dark mb-0" style="font-size: 20px;">Inactivated Polio Vaccine and Measles Mumps - Rubella </p>
+                                {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and 'Measles Containing Vaccines' in vax_list and dose_list.4 == 3 %}
+                                    <p class="text-dark mb-0" style="font-size: 20px;">Tetanus Toxoid, Inactivated Polio Vaccine, and Measles Mumps - Rubella </p>
+                                {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and dose_list.3 == 3 %}
+                                    <p class="text-dark mb-0" style="font-size: 20px;">Measles Containing Vaccines, Tetanus Toxoid, Inactivated Polio Vaccine, and Measles Mumps - Rubella </p>
+                                {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and dose_list.2 == 3 %}
+                                    <p class="text-dark mb-0" style="font-size: 20px;">Pentavalent Vaccine, Measles Containing Vaccines, Tetanus Toxoid, Inactivated Polio Vaccine, and Measles Mumps - Rubella </p>
+                                {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list %}
+                                    <p class="text-dark mb-0" style="font-size: 20px;">Oral Poliovirus Vaccine, Pentavalent Vaccine, Measles Containing Vaccines, Tetanus Toxoid, Inactivated Polio Vaccine, and Measles Mumps - Rubella </p>
+                                {% elif 'BCG' in vax_list %}
+                                    <p class="text-dark mb-0" style="font-size: 20px;">Hepatitis B, Oral Poliovirus Vaccine, Pentavalent Vaccine, Measles Containing Vaccines, Tetanus Toxoid, Inactivated Polio Vaccine, and Measles Mumps - Rubella </p>
                                 {% else %}
-                                    <p class="text-dark mb-0" style="font-size: 20px;">BCG, Hepatitis B, Oral Poliovirus Vaccine, Pentavalent Vaccine, Measles Containing Vaccines, Tetanus Toxoid, Inactivated Polio Vaccine and Measles Mumps - Rubella </p>
+                                    <p class="text-dark mb-0" style="font-size: 20px;">BCG, Hepatitis B, Oral Poliovirus Vaccine, Pentavalent Vaccine, Measles Containing Vaccines, Tetanus Toxoid, Inactivated Polio Vaccine, and Measles Mumps - Rubella </p>
                                 {% endif %}
+                                
                             </div>
                             <div class="modal fade" id="update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -215,12 +218,13 @@
                                                     <label id="user-lbl" data-error="wrong" data-success="right">Next Vaccine Date:</label>
                                                     <input class="form-control" type="date" name="remarks" id="remarks">
                                                 </div>
-                                            </form>
+                                            
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn" style="background-color: #EF3A25; color: white;" data-bs-dismiss="modal" aria-label="Close"> Cancel</button>
                                             <button type="submit" class="btn " style="background-color: #188045; color: white;">Add</button>
                                         </div>
+                                    </form>
                                     </div>
                                 </div>
                             </div>
