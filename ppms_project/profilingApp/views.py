@@ -275,7 +275,7 @@ def admin_preschoolers(request):
         severly_count = len(preschooler_severly)
         overobese_count = len(preschooler_over_obese)
 
-        count_list = [normal_count, wasted_count, severly_count, overobese_count, overobese_count]
+        count_list = [severly_count, wasted_count, normal_count, overobese_count, overobese_count]
         data_json = dumps(count_list)
         
         context = {'invalidated_count': invalidated_status,
@@ -450,13 +450,14 @@ def bhw_home(request):
         severly_count = len(preschooler_severly)
         overobese_count = len(preschooler_over_obese)
 
-        count_list = [normal_count, wasted_count, severly_count, overobese_count, overobese_count]
+        count_list = [severly_count, wasted_count,normal_count,overobese_count, overobese_count]
         data_json = dumps(count_list)
-
+        
         context = {'bhw' : bhw_logged,
-                'normal' : normal_count,
-                'wasted' : wasted_count,
                 'severly' : severly_count,
+                'wasted' : wasted_count,
+                'normal' : normal_count,
+                'overobese' : overobese_count,
                 'overobese' : overobese_count,
                 'count_data' : data_json}
         return render(request, 'activities/BHW Home.html', context)
