@@ -22,19 +22,19 @@
     <title>{{ unva_bhw.user.first_name }} {{ unva_bhw.user.last_name }}</title>
 </head>
         <!-- Header -->
-    <div class="site-header" id="header">
-        <nav class="navbar fixed-top navbar-expand-lg navbar-dark index__navbar scrolled border-bottom" id="header">
-            <div class="container-fluid justify-content-between px-4 mx-4" >
+    <div class="site-header">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark index__navbar scrolled border-bottom" style=" padding-left:3%; padding-right:3%;">
+            <div class="container-fluid justify-content-between mx-2" >
                 <div>
-                    <a href="#" class="name" style="text-decoration: none;">
+                    <a href="#" class="name" style="text-decoration: none; ">
                         <img class="navbar-icon" src="{% static '/Media/avatar.png' %}" alt="dasma-logo">
-                        <span id="hidetitle" class="brand__name" style="color:#2c5f2dff;margin-left:15px;">City of Dasmariñas - Preschooler Profiling and Monitoring System</span>
+                        <span id="hidetitle" class="brand__name" style="color:#2c5f2dff;margin-left:15px;">City of Dasmariñas</span>
                     </a>
                 </div>
                 <div class="btn-group my-2 mx-3">
                     <li>
-                        <a class="btn nav-link" id="parentButton" data-bs-toggle="dropdown" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
-                        title="User" aria-expanded="false">
+                        <a class="btn nav-link" id="parentButton" data-bs-toggle="dropdown" data-toggle="tooltip" data-bs-placement="left" data-bs-offset="0,7"
+                        title="User Settings" aria-expanded="false">
                             <i class="fa fa-fw fa-user-cog bi" style="font-size: 24px;"></i>
                             <span class="position-absolute top-100 start-75 translate-middle badge rounded-pill text-dark" style="border-radius: 50%;">
                                 <i class="fa fa-lg fa-fw fa-caret-down bg-light" style="border-radius: 25%; margin-bottom: 15px;"></i>
@@ -73,7 +73,7 @@
 <!-- Tooltip Script -->
 <script>
     $(function () {
-       $('[data-toggle="tooltip"]').tooltip({'delay': { show: 400, hide: 100 }})})
+       $('[data-toggle="tooltip"]').tooltip()})
        $('[data-toggle="tooltip"]').on('shown.bs.tooltip', function () {
        $('.tooltip').addClass('animated fade');
    })

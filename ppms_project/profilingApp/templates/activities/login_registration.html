@@ -35,7 +35,7 @@
     </style>
     
 </head>
-<body >
+<body style="background: radial-gradient(100vw, white, #1880455e);">
     <!-- Header -->
     <div class="site-header" >
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark index__navbar scrolled">
@@ -48,10 +48,10 @@
         </nav>
     </div>
     <!-- Form -->
-    <div class="container-fluid p-0" id="homeBody" >
+    <div class="container-fluid" id="homeBody" style="padding-top:85px;" >
         <div class="form shadow-lg" id="formHeight">
             <div class="form-toggle"></div>
-            <div class="form-panel one">
+            <div class="form-panel one d-flex justify-content-center flex-column">
                 <div class="form-header">
                     <h1>Login</h1>
                 </div>
@@ -74,8 +74,16 @@
                             <button type="submit">Log In</button>
                         </div>
                         <hr>
-                        <div class="d-flex justify-content-sm-between justify-content-md-center" >
-                            <p style="font-size:medium;">Not registered yet?</p><a id="createAccountButton"onclick="openpaneltwo(event)">Create Account</a>
+                        <div>
+                            <div class="row" style="padding:5px;">
+                                <div class="col-6 justify-content-sm-start text-sm-start text-center p-0">
+                                    <p style="font-size:medium;">Not registered?</p>
+                                </div>
+                                <div class="col-6 justify-content-sm-end text-sm-end text-center">
+                                    <a class="m-0" id="createAccountButton"onclick="openpaneltwo(event)">Create Account</a>
+                                </div>
+                            </div>
+                            
                         </div>
                     </form>
                 </div>
@@ -130,19 +138,19 @@
                         <!-- Name -->
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-sm-6" style="margin-top: 3%;">
+                                <div class="col-sm-6 mb-1" style="margin-top: 1%;">
                                     <label for="">First Name</label>
                                     {{ form.first_name }}
                                 </div>
-                                <div class="col-sm-6" style="margin-top: 3%;">
+                                <div class="col-sm-6 mb-1" style="margin-top: 1%;">
                                     <label for="">Middle Name</label>
                                     {{ form.middle_name }}
                                 </div>
-                                <div class="col-sm-6" style="margin-top: 3%;">
+                                <div class="col-sm-6 mb-1" style="margin-top: 1%;">
                                     <label for="">Last Name</label>
                                     {{ form.last_name }}
                                 </div>
-                                <div class="col-sm-6"style="margin-top: 3%;">
+                                <div class="col-sm-6 mb-1"style="margin-top: 1%;">
                                     <label for="">Suffix</label>
                                     {{ form.suffix_name }}
                                 </div>

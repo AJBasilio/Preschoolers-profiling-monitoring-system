@@ -117,9 +117,9 @@
                     <h3> Preschooler Status Overview</h3>
                 </div>
                 <div class="col-sm-6  mb-3 d-flex justify-content-sm-end justify-content-center">
-                    <div class="card text-right shadow-sm" style="width: 10rem;">
+                    <div class="text-right" style="width: 10rem;">
                         <div class="dropdown text-center" >
-                            <h6 class="text-uppercase text-muted dropdown-header">Barangay</h6>
+                            <h6 class="text-uppercase text-dark dropdown-header"><i class="fa fa-3x fa-fw fas fa-landmark " style="font-size: 15px; margin-right: 5px;"></i>Barangay</h6>
                             <select class="form-select " aria-label="Default select example" onchange="javascript:handleNextView(this)">
                                 <option value="{% url 'admin_home2' %}">All</option>
                                 {% for barangay in barangays %}

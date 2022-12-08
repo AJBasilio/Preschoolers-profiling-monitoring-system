@@ -293,7 +293,7 @@ def admin_preschoolers_barangay(request, brgy):
         severly_count = len(preschooler_severly)
         overobese_count = len(preschooler_over_obese)
 
-        count_list = [normal_count, wasted_count, severly_count, overobese_count, overobese_count]
+        count_list = [severly_count, wasted_count, normal_count, overobese_count, overobese_count]
         data_json = dumps(count_list)
 
         context = {'invalidated_count': invalidated_status,
