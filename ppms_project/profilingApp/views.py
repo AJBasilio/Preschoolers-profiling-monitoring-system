@@ -11,15 +11,8 @@ from datetime import datetime, timedelta
 from json import dumps
 # Create your views here.
 
-
-def index(request):
-    return HttpResponse('Hello World')
-
-
 @unauthenticated_user
 def login_registration(request):
-    print(Preschooler.objects.all())
-    print(Preschooler.gte_60_objects.all())
     form = CustomUserCreationForm()
 
     if request.method == 'POST':
@@ -148,30 +141,6 @@ def parent_preschooler(request, pk):
         return redirect('bhw_home')
     elif request.user.is_authenticated and request.user.user_type == 'Admin':
         return redirect('admin_home')
-
-def PG_pass(request, pk):
-    if request.user.is_authenticated and request.user.user_type == 'P/G':
-        parent_logged = Parent.objects.get(user_id=request.user.id)
-        user = CustomUser.objects.get(id=pk)
-        form = SetPasswordForm(user)
-        
-        if request.method == 'POST':
-            form = SetPasswordForm(user, request.POST)
-            if form.is_valid():
-                form.save()
-                messages.success(request, 'Password changed.')
-            else:
-                messages.error(request, 'New Password did not match. Please fill up the form correctly!')
-
-        print(user)
-        context = {'form' : form, 'user' :user, 'parent' : parent_logged}
-
-        return render(request, 'activities/User Profile.html', context)
-
-    elif request.user.is_authenticated and request.user.user_type == 'Admin':
-        return redirect('admin_home')
-    elif request.user.is_authenticated and request.user.user_type == 'BHW':
-        return redirect('bhw_home')
         
 
 # ================================== ADMIN ==================================
@@ -518,14 +487,15 @@ def preschooler_profile(request, pk):
     elif request.user.is_authenticated and request.user.user_type == 'P/G':
         return redirect('parent_home')
 
-def new_pass(request, pk):
-    if request.user.is_authenticated and request.user.user_type == 'BHW':
-        bhw_logged = BarangayHealthWorker.objects.get(user_id=request.user.id)
-        user = CustomUser.objects.get(id=pk)
-        form = SetPasswordForm(user)
-        
+def change_pass(request, pk):
+    user = CustomUser.objects.get(id=pk)
+
+    if user.user_type == 'P/G':
+        parent = Parent.objects.get(user_id=user)
+        form = ChangePasswordForm(user)
+    
         if request.method == 'POST':
-            form = SetPasswordForm(user, request.POST)
+            form = ChangePasswordForm(user, request.POST)
             if form.is_valid():
                 form.save()
                 messages.success(request, 'Password changed.')
@@ -533,14 +503,26 @@ def new_pass(request, pk):
                 messages.error(request, 'New Password did not match. Please fill up the form correctly!')
 
         print(user)
-        context = {'form' : form, 'user' :user, 'bhw' : bhw_logged,}
+        context = {'form' : form, 'user' :user, 'parent' : parent}
 
-        return render(request, 'activities/User Profile.html', context)
+        return render(request, 'activities/Change Password.html', context)
+    else:
+        bhw = BarangayHealthWorker.objects.get(user_id=user)
+        form = ChangePasswordForm(user)
+        
+        if request.method == 'POST':
+            form = ChangePasswordForm(user, request.POST)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Password changed.')
+            else:
+                messages.error(request, 'New Password did not match. Please fill up the form correctly!')
 
-    elif request.user.is_authenticated and request.user.user_type == 'Admin':
-        return redirect('admin_home')
-    elif request.user.is_authenticated and request.user.user_type == 'P/G':
-        return redirect('parent_home')
+        print(user)
+        context = {'form' : form, 'user' :user, 'bhw' : bhw}
+
+        return render(request, 'activities/Change Password.html', context)
+
 
 # ================================== MODAL UPDATE ==================================
 

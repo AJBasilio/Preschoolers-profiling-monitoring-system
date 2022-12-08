@@ -9,7 +9,7 @@ urlpatterns = [
     # Parent
     path('home', views.parent_home, name='parent_home'),
     path('preschooler/<str:pk>/', views.parent_preschooler, name='parent_preschooler'),
-    path('PG_password/<str:pk>/', views.PG_pass, name='PG_pass'),
+    path('PG_password/<str:pk>/', views.change_pass, name='PG_pass'),
 
     
 
@@ -32,6 +32,6 @@ urlpatterns = [
     path('preschooler_profile/<str:pk>/', views.preschooler_profile, name='preschooler_profile'),
     path('update_preschooler', views.update_preschooler, name='update_preschooler'),
     path('preschooler_profile/immunization/<str:pk>/', views.immunization_schedule, name='immunization_schedule'),
-    path('new_password/<str:pk>/', views.new_pass, name='new_pass'),
+    path('new_password/<str:pk>/', views.change_pass, name='new_pass'),
     
 ]

@@ -5,7 +5,7 @@ from django import forms
 from django.forms import ModelForm
 from django.contrib.auth import get_user_model
 from django.forms.widgets import PasswordInput
-from django.contrib.auth.forms import UserCreationForm, SetPasswordForm
+from django.contrib.auth.forms import UserCreationForm, SetPasswordForm, PasswordChangeForm
 from .models import *
 from django.core.mail import send_mail
 
@@ -105,6 +105,11 @@ class SetPasswordForm(SetPasswordForm):
     class Meta:
         model = get_user_model()
         fields = ['new_password1', 'new_password2']
+
+class ChangePasswordForm(PasswordChangeForm):
+    class Meta:
+        model = get_user_model()
+        fields = ['old_password', 'new_password1', 'new_password2']
 
 class AddBarangay(ModelForm):
     brgy_name = forms.CharField(required=True, widget=forms.TextInput(attrs={'class' : "form-control", 'type': 'text', 'id' : 'brgy_name'}))
