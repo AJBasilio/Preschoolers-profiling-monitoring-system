@@ -267,6 +267,9 @@ class Preschooler(Model):
         except:
             pass
     
+    def vaccine_count(self):
+        return Vaccine.objects.filter(vax_preschooler=self).count()
+    
     
 
 class Log(Model):

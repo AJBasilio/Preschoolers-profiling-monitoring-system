@@ -111,6 +111,7 @@
                                 <th scope="col">Birthdate</th>
                                 <th scope="col">Age in months</th>
                                 <th scope="col">BMI STATUS</th>
+                                <th scope="col">Vaccine status</th>
                                 <th scope="col" class="nosort text-center">Action</th>
                             </tr>   
                         </thead>
@@ -144,7 +145,14 @@
                                     <td style="background-color: rgb(255, 241, 2);"> Wasted ({{ preschooler.bmifa }})</td>
                                 {% else %}
                                     <td style="background-color: rgb(238, 29, 35);"> Severely Wasted ({{preschooler.bmifa }})</td>
-                                {% endif %}              
+                                {% endif %}
+                                
+                                {% if preschooler.vaccine_count == 8 %}
+                                    <td style="color: rgb(0, 165, 79);">Complete</td>
+                                {% else %}
+                                    <td>Incomplete</td>
+                                {% endif %}
+                                
                                 <td style="text-align: center;">
                                     <div>
                                         <a href="{% url 'preschooler_profile' preschooler.id %}"><button type="button" style="background-color: #188045; color: white;" class="btn">View Profile</button></a>
