@@ -92,8 +92,8 @@ def parent_home(request):
                 suffix_name = None
             else:
                 suffix_name = request.POST.get('suffix_name')
-            birthday = request.POST.get('birthday')
-            gender = request.POST.get('gender')
+                birthday = request.POST.get('birthday')
+                gender = request.POST.get('gender')
 
             psa = Preschooler.objects.create(parent=parent,
                                             first_name=first_name,

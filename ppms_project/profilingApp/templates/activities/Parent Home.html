@@ -166,6 +166,11 @@
                                             <div>Name : {{ item.first_name }} {{ item.middle_name }} {{ item.last_name }} {{ preschooler.suffix_name }} 
                                                 <br> Age: {{item.age_months}} months
                                                 <br> Gender: {{ item.gender }}
+                                                {% if item.vaccine_count == 8 %}
+                                                    <br> Vaccine: Complete
+                                                {% else %}
+                                                    <br> Vaccine: Incomplete
+                                                {% endif %}
                                             </div>
                                         </div>
                                     </div>
