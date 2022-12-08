@@ -56,7 +56,8 @@
                     <div class="row d-flex justify-content-center align-items-stretch">
                         <div class="mb-3 d-flex justify-content-md-end justify-content-center h-100">
                             <button style="background-color: #188045; color: white; max-height: 70px !important; height: 100%;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#update"><span class="fa fa-user-edit"></span> Update preschooler</button>
-                            <a href="{% url 'immunization_schedule' preschooler.id %}"><button style="background-color: #188045; color: white; margin-left:10px;" type="button" class="btn"><span class="fa fa-address-card"></span> Immunization Status</button></a>
+                            <button style="background-color: #188045; color: white; max-height: 70px !important; height: 100%; margin-left: 10px;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#history"><span class="fas fa-history"></span> Nutritional Status History</button>
+                            <a href="{% url 'immunization_schedule' preschooler.id %}"><button style="background-color: #188045; color: white; margin-left:10px; max-height: 70px !important;" type="button" class="btn"><span class="fa fa-address-card"></span> Immunization Status</button></a>
                         </div>
                     </div>
                 </div>
@@ -191,6 +192,80 @@
                                         </div>
                                     </div>
                                 </div>
+
+<!----- MODAL FOR UPDATE ---------->
+                                <div class="modal fade" id="history" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-xl">
+                                        <div class="modal-content">
+                                            <div class="modal-header d-flex align-items-center justify-content-between">
+                                                <div>
+                                                    <h5 class="modal-title fas fa-history" id="exampleModalLabel"> Nutritional Status History</h5>
+                                                </div>
+                                                <div >
+                                                    <button type="button" class="btn" style="background-color: #EF3A25; color: white;" data-bs-dismiss="modal" aria-label="Close"> Close</button>
+                                                </div>
+                                            </div>
+                                            <div class="modal-body p-0">
+                                                <div class="table-responsive " style="margin:30px;">
+                                                    <table class="table table-hover table-cell-border" id="NutStat_history" >
+                                                        <thead>
+                                                            <tr style="text-align: center;">
+                                                                <th scope="col">No.</th>
+                                                                <th scope="col">Date Measured</th>
+                                                                <th scope="col">Weight</th>
+                                                                <th scope="col">Height</th>
+                                                                <th scope="col">Weight for Age (WFA)</th>
+                                                                <th scope="col">Height for Age (HFA)</th>
+                                                                <th scope="col">Weight for Height for Age (WHFA)</th>
+                                                            </tr>   
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <!-- <tbody>
+                                                            {% for preschooler in archive_preschoolers %}
+                                                            <tr style="text-align: center;">
+                                                                <td></td>
+                                                                <td>{{ preschooler.first_name }}</td>
+                                                                <td>{{ preschooler.middle_name }}</td>
+                                                                <td>{{ preschooler.last_name }}</td>
+                                                                <td>{{ preschooler.suffix_name }}</td>
+                                                                <td>{{ preschooler.birthday }}</td>
+                                                                <td>{{ preschooler.age_months }}</td>
+                                                                {% if preschooler.bmifa is None %}
+                                                                
+                                                                    <td> No Data Record </td>
+                                                                {% elif preschooler.bmifa > 3.0%}
+                                                                    <td style="background-color: rgb(242, 98, 33);"> Obese ({{ preschooler.bmifa }})</td>
+                                                                {% elif preschooler.bmifa > 2.0 %}
+                                                                    <td style="background-color: rgb(242, 98, 33);"> Overweight ({{ preschooler.bmifa }})</td>
+                                                                {% elif preschooler.bmifa >= -2.0 and preschooler.bmifa <= 2.0 %}
+                                                                    <td style="background-color: rgb(0, 165, 79);"> Normal ({{ preschooler.bmifa}})</td>
+                                                                {% elif preschooler.bmifa >= -3.0 and preschooler.bmifa <= -2.0 %}
+                                                                    <td style="background-color: rgb(255, 241, 2);"> Wasted ({{ preschooler.bmifa }})</td>
+                                                                {% else %}
+                                                                    <td style="background-color: rgb(238, 29, 35);"> Severely Wasted ({{preschooler.bmifa }})</td>
+                                                                {% endif %}                                   
+                                                            </tr>
+                                                            {% endfor %}
+                                                        </tbody> -->
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer text-center ">
+                                                <h5 class="text-muted h4">Preschooler's nutritional status history</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="card-footer small text-muted">
                                 Last Measuring Date : {{ preschooler.date_measured }} 
@@ -266,7 +341,7 @@
                                     </div>
                                 </a>
                             </div>
-<!----- CARD FOR w ---------->
+<!----- CARD FOR WHFA ---------->
                             <div class="col-md-6 col-12 mb-3">
                                 <a class="card hoverable text-decoration-none p-0" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#modalWHFA">
                                     <div class="card-header">
@@ -544,7 +619,28 @@
         </div>
     </div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+    var t = $('#NutStat_history').DataTable({
+        dom: 'frtip',
+        aoColumnDefs: [{
+            'bSortable': false,
+            'aTargets': ['nosort'],
+            'orderable': false,
+            'targets': [0, 6],
+        }],
+        order: [[1, 'asc']],
+        });
+        t.on('order.dt search.dt', function () {
+        let i = 1;
+        t.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+            this.data(i++);
+        });}).draw();
+</script>
 
 
 {% endblock %}
