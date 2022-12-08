@@ -121,6 +121,7 @@ def parent_home(request):
             bootstrapColWidth = int(12 / numberOfColumns)
             chunks = [preschooler[i:i+bootstrapColWidth] for i in range(0,len(preschooler),bootstrapColWidth)]
             context = {
+                'parent' : parent_user,
                 'chunks': chunks,
                 'numberOfColumns': numberOfColumns,
                 'bootstrapColWidth' : bootstrapColWidth
@@ -463,7 +464,8 @@ def preschooler_dashboard(request):
         preschooler = Preschooler.lt_60_objects.filter(parent__in=(parents))
         preschooler_60months = Preschooler.gte_60_objects.filter(parent__in=(parents))
 
-        context = {'preschoolers': preschooler,
+        context = {'bhw' : bhw_logged,
+                   'preschoolers': preschooler,
                    'archive_preschoolers' : preschooler_60months}
         
         return render(request, 'activities/BHW Preschooler Dashboard.html', context)
