@@ -85,15 +85,45 @@
                                         </tr>   
                                     </thead>
                                     <tbody>
+                                        {% for h in history %}
                                         <tr>
                                             <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td>{{ h.date_measured }}</td>
+                                            <td>{{ h.weight }}</td>
+                                            <td>{{ h.height }}</td>
+                                            {% if h.wfa > 2.0 %}
+                                                <td style="background-color: rgb(242, 98, 33);"> Overweight ({{ h.wfa }})</td>
+                                            {% elif h.wfa >= -2.0 and h.wfa <= 2.0 %}
+                                                <td style="background-color: rgb(0, 165, 79);"> Normal ({{ h.wfa }})</td>
+                                            {% elif h.wfa >= -3.0 and h.wfa <= -2.0 %}
+                                                <td style="background-color: rgb(255, 241, 2);"> Underweight ({{ h.wfa }})</td>
+                                            {% else %}
+                                                <td style="background-color: rgb(238, 29, 35);"> Severely Underweight ({{ h.wfa }})</td>
+                                            {% endif %}
+
+                                            {% if h.hfa > 2.0 %}
+                                                <td style="background-color: rgb(242, 98, 33);"> Tall ({{ h.hfa }})</td>
+                                            {% elif h.hfa >= -2.0 and h.hfa <= 2.0 %}
+                                                <td style="background-color: rgb(0, 165, 79);"> Normal ({{ h.hfa }})</td>
+                                            {% elif h.hfa >= -3.0 and h.hfa <= -2.0 %}
+                                                <td style="background-color: rgb(255, 241, 2);"> Stunted ({{ h.hfa }})</td>
+                                            {% else %}
+                                                <td style="background-color: rgb(238, 29, 35);"> Severely Stunted ({{ h.hfa }})</td>
+                                            {% endif %}
+                                            
+                                            {% if h.whfa > 3.0 %}
+                                                <td style="background-color: rgb(242, 98, 33);"> Obese ({{ h.whfa }})</td>
+                                            {% elif h.whfa > 2.0 and h.whfa <= 3.0 %}
+                                                <td style="background-color: rgb(242, 98, 33);"> Overweight ({{ h.whfa }})</td>
+                                            {% elif h.whfa >= -2.0 and h.whfa <= 2.0 %}
+                                                <td style="background-color: rgb(0, 165, 79);"> Normal ({{ h.whfa }})</td>
+                                            {% elif h.whfa >= -3.0 and h.whfa <= -2.0 %}
+                                                <td style="background-color: rgb(255, 241, 2);"> Wasted ({{ h.whfa }})</td>
+                                            {% else %}
+                                                <td style="background-color: rgb(238, 29, 35);"> Severely Wasted ({{ h.whfa }})</td>
+                                            {% endif %}
                                         </tr>
+                                        {% endfor %}
                                     </tbody>
                                     <!-- <tbody>
                                         {% for preschooler in archive_preschoolers %}

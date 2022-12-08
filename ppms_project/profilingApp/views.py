@@ -134,9 +134,13 @@ def parent_home(request):
 def parent_preschooler(request, pk):
     if request.user.is_authenticated and request.user.user_type == 'P/G':
         preschooler = Preschooler.objects.get(id=pk)
+        preschooler_history = PreschoolerHistory.objects.filter(id_preschooler=preschooler)
 
-        context = {'preschooler' : preschooler}
+        context = {'preschooler' : preschooler,
+                   'history' : preschooler_history}
+
         return render(request, 'activities/Parent - Preschooler Profile.html', context)
+        
     elif request.user.is_authenticated and request.user.user_type == 'BHW':
         return redirect('bhw_home')
     elif request.user.is_authenticated and request.user.user_type == 'Admin':

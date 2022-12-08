@@ -238,9 +238,9 @@
 
                                                                 {% if h.hfa > 2.0 %}
                                                                     <td style="background-color: rgb(242, 98, 33);"> Tall ({{ h.hfa }})</td>
-                                                                {% elif h.wfa >= -2.0 and h.wfa <= 2.0 %}
+                                                                {% elif h.hfa >= -2.0 and h.hfa <= 2.0 %}
                                                                     <td style="background-color: rgb(0, 165, 79);"> Normal ({{ h.hfa }})</td>
-                                                                {% elif h.wfa >= -3.0 and h.wfa <= -2.0 %}
+                                                                {% elif h.hfa >= -3.0 and h.hfa <= -2.0 %}
                                                                     <td style="background-color: rgb(255, 241, 2);"> Stunted ({{ h.hfa }})</td>
                                                                 {% else %}
                                                                     <td style="background-color: rgb(238, 29, 35);"> Severely Stunted ({{ h.hfa }})</td>
