@@ -134,9 +134,13 @@ def parent_home(request):
 def parent_preschooler(request, pk):
     if request.user.is_authenticated and request.user.user_type == 'P/G':
         preschooler = Preschooler.objects.get(id=pk)
+        preschooler_history = PreschoolerHistory.objects.filter(id_preschooler=preschooler)
 
-        context = {'preschooler' : preschooler}
+        context = {'preschooler' : preschooler,
+                   'history' : preschooler_history}
+
         return render(request, 'activities/Parent - Preschooler Profile.html', context)
+        
     elif request.user.is_authenticated and request.user.user_type == 'BHW':
         return redirect('bhw_home')
     elif request.user.is_authenticated and request.user.user_type == 'Admin':
@@ -544,14 +548,19 @@ def immunization_schedule(request, pk):
         dose = request.POST.get('dose')
         vaxdate = request.POST.get('immune_date')
         vaxremark = request.POST.get('remarks')
-
-        vax_create = Vaccine.objects.update_or_create(vax_preschooler=preschooler_obj,
-                                            vax_name=vaxname,
-                                            defaults={'vax_dose' : dose,
-                                                      'vax_date' : vaxdate,
-                                                      'vax_remarks' : vaxremark})
         
-        return redirect('immunization_schedule', pk=preschooler.id)
+        if vaxname == '---':
+            messages.warning(request, 'Invalid Vaccine.')
+            return redirect('immunization_schedule', pk=preschooler.id)
+            
+        else:
+            vax_create = Vaccine.objects.update_or_create(vax_preschooler=preschooler_obj,
+                                                vax_name=vaxname,
+                                                defaults={'vax_dose' : dose,
+                                                        'vax_date' : vaxdate,
+                                                        'vax_remarks' : vaxremark})
+            
+            return redirect('immunization_schedule', pk=preschooler.id)
         
     context = {'vaccines' : vaccines,
                'vax_list' : vax_list,
