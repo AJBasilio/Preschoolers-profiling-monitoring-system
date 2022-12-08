@@ -544,14 +544,19 @@ def immunization_schedule(request, pk):
         dose = request.POST.get('dose')
         vaxdate = request.POST.get('immune_date')
         vaxremark = request.POST.get('remarks')
-
-        vax_create = Vaccine.objects.update_or_create(vax_preschooler=preschooler_obj,
-                                            vax_name=vaxname,
-                                            defaults={'vax_dose' : dose,
-                                                      'vax_date' : vaxdate,
-                                                      'vax_remarks' : vaxremark})
         
-        return redirect('immunization_schedule', pk=preschooler.id)
+        if vaxname == '---':
+            messages.warning(request, 'Invalid Vaccine.')
+            return redirect('immunization_schedule', pk=preschooler.id)
+            
+        else:
+            vax_create = Vaccine.objects.update_or_create(vax_preschooler=preschooler_obj,
+                                                vax_name=vaxname,
+                                                defaults={'vax_dose' : dose,
+                                                        'vax_date' : vaxdate,
+                                                        'vax_remarks' : vaxremark})
+            
+            return redirect('immunization_schedule', pk=preschooler.id)
         
     context = {'vaccines' : vaccines,
                'vax_list' : vax_list,
