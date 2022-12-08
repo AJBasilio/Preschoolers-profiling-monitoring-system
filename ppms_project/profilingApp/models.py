@@ -297,3 +297,60 @@ class Vaccine(Model):
 
     def __str__(self) -> str:
         return f'{self.vax_preschooler} : {self.vax_name}'
+
+class PreschoolerHistory(Model):
+    id_preschooler = models.ForeignKey(Preschooler, on_delete=CASCADE)
+    height = models.FloatField(null=True, validators=[MinValueValidator(45.0), MaxValueValidator(120.0)])
+    weight = models.FloatField(null=True, validators=[MinValueValidator(1.0), MaxValueValidator(28.0)])
+    date_measured = models.DateField(null=True, blank=True)
+
+    def wfa(self):
+        calculator = Calculator(adjust_height_data=False, adjust_weight_scores=False,
+                       include_cdc=False, logger_name='pygrowup',
+                       log_level='INFO')
+        try:
+            today = date.today()
+
+            date_diff = today - self.id_preschooler.birthday
+
+            in_days = date_diff.days
+            age_months = int((in_days) / (365 / 12))
+
+            return float(calculator.wfa(self.weight, age_months, helpers.get_good_sex(str(self.id_preschooler.gender))))
+        except:
+            pass
+    
+    def hfa(self):
+        calculator = Calculator(adjust_height_data=False, adjust_weight_scores=False,
+                       include_cdc=False, logger_name='pygrowup',
+                       log_level='INFO')
+        
+        try:
+            today = date.today()
+
+            date_diff = today - self.id_preschooler.birthday
+
+            in_days = date_diff.days
+            age_months = int((in_days) / (365 / 12))
+
+            return float(calculator.lhfa(self.height, age_months, helpers.get_good_sex(str(self.id_preschooler.gender))))
+        except:
+            pass
+    
+    def whfa(self):
+        calculator = Calculator(adjust_height_data=False, adjust_weight_scores=False,
+                       include_cdc=False, logger_name='pygrowup',
+                       log_level='INFO')
+        
+        try:
+            today = date.today()
+
+            date_diff = today - self.id_preschooler.birthday
+
+            in_days = date_diff.days
+            age_months = int((in_days) / (365 / 12))
+
+
+            return float(calculator.wfl(self.weight, age_months, helpers.get_good_sex(str(self.id_preschooler.gender)), self.height))
+        except:
+            pass

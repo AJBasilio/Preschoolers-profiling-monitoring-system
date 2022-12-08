@@ -489,16 +489,28 @@ def preschooler_profile(request, pk):
     if request.user.is_authenticated and request.user.user_type == 'BHW':
         preschooler = Preschooler.objects.get(id=pk)
         form = UpdatePreschooler(instance=preschooler)
+        preschooler_history = PreschoolerHistory.objects.filter(id_preschooler=preschooler)
 
         if request.method == 'POST':
             form = UpdatePreschooler(request.POST, instance=preschooler)
             if form.is_valid():
+                
+                p_history = PreschoolerHistory.objects.create(id_preschooler=preschooler,
+                                                              height=form.cleaned_data['height'],
+                                                              weight=form.cleaned_data['weight'],
+                                                              date_measured=form.cleaned_data['date_measured'])
+                
+                print(PreschoolerHistory.objects.filter(id_preschooler=preschooler).order_by('-id')[0].wfa())
+                print(PreschoolerHistory.objects.filter(id_preschooler=preschooler).order_by('-id')[0].hfa())
+                print(PreschoolerHistory.objects.filter(id_preschooler=preschooler).order_by('-id')[0].whfa())
                 form.save()
 
                 return redirect('preschooler_profile', preschooler.id)
 
         context = {'preschooler' : preschooler,
-                'form' : form,}
+                   'form' : form,
+                   'history' : preschooler_history}
+                   
         return render(request, 'activities/Preschooler Profile.html', context)
 
     elif request.user.is_authenticated and request.user.user_type == 'Admin':
