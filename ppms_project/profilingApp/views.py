@@ -538,6 +538,7 @@ def update_preschooler(request):
 
 
 def immunization_schedule(request, pk):
+    loggedin = request.user.user_type
     preschooler = Preschooler.objects.get(id=pk)
     vaccines = Vaccine.objects.filter(vax_preschooler=preschooler)
     vax_list = vaccines.values_list('vax_name', flat=True)
@@ -561,7 +562,8 @@ def immunization_schedule(request, pk):
     context = {'vaccines' : vaccines,
                'vax_list' : vax_list,
                'dose_list' : dose_list,
-               'preschooler':preschooler}
+               'preschooler':preschooler,
+               'loggedin': loggedin}
 
 
     return render(request, 'activities/BHW Immunization Status.html', context)

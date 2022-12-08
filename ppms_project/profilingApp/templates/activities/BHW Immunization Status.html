@@ -16,15 +16,27 @@
                 <div id="navLinks">
                     <ul class="nav text-small">
                         <li>
-                            <a href="{% url 'preschooler_profile' preschooler.id %}"  style="border-radius: 13%;background-color: white;"class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7" 
-                            title="Go back to Preschooler Profile">
-                            <button class="back-button bg-white">
-                                <span class="circle" aria-hidden="true">
-                                <span class="icon arrow"></span>
-                                </span>
-                                <span class="button-text d-flex align-items-center justify-content-center">Back</span>
-                              </button>  
-                            </a>
+                            {% if loggedin == 'BHW' %}
+                                <a href="{% url 'preschooler_profile' preschooler.id %}"  style="border-radius: 13%;background-color: white;"class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7" 
+                                title="Go back to Preschooler Profile">
+                                <button class="back-button bg-white">
+                                    <span class="circle" aria-hidden="true">
+                                    <span class="icon arrow"></span>
+                                    </span>
+                                    <span class="button-text d-flex align-items-center justify-content-center">Back</span>
+                                </button>  
+                                </a>
+                            {% else %}
+                                <a href="{% url 'parent_preschooler' preschooler.id %}"  style="border-radius: 13%;background-color: white;"class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7" 
+                                title="Go back to Preschooler Profile">
+                                <button class="back-button bg-white">
+                                    <span class="circle" aria-hidden="true">
+                                    <span class="icon arrow"></span>
+                                    </span>
+                                    <span class="button-text d-flex align-items-center justify-content-center">Back</span>
+                                </button>  
+                                </a>
+                            {% endif %}
                         </li>
                     </ul>
                 </div>
@@ -78,8 +90,13 @@
                             {% endif %}
                                 
                             <div class="" style="text-align: right !important; ">
-                                <button style="background-color: #188045; color: white;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#update"><span class="fas fa-calendar-edit"></span> Immunization Update</button>
-                            </div>
+                                {% if loggedin == 'BHW' %}
+                                    <button style="background-color: #188045; color: white;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#update"><span class="fas fa-calendar-edit"></span> Immunization Update</button>
+                                {% else %}
+                                    <div class="">
+                                    </div>
+                                {% endif %}
+                                </div>
                             </div>
                             <div class="" >
                                 <p style="font-size:20px; font-weight:bold; margin-right:10px; margin: 0;">Remaining Vaccine:</p>
