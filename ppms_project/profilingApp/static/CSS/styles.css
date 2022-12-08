@@ -12,6 +12,7 @@
   border-bottom: 3px;
 }
 
+
 .navbar-icon {
     width: 40px;
     max-width: 40px;
@@ -101,22 +102,22 @@ tbody tr:nth-of-type(even) {
 #navLinks li a{
   color:rgba(0, 19, 0, 0.87); 
   padding: 13 13 13 13;
-  background-color: #ebebeb60;
-  border-radius: 50%;
+  
   margin-left: 15px;
   position: relative;
 }
 
 #navLinks li a:hover{
   color: rgb(40, 167, 69);
-  -webkit-transform: scale(1.05);
-  background-color: #e4e4e39f;
-  transform: scale(1.05);
+  transition:0.2s;
 }
 #navLinks li a:active{
   color: rgb(40, 167, 69);
-  -webkit-transform: scale(.95);
-  transform: scale(.95);
+  transform: scale(.85);
+}
+
+#navText{
+  display:none;
 }
 
 #homeBody{
@@ -127,46 +128,67 @@ tbody tr:nth-of-type(even) {
 #toggle{
   display: none;
 }
-@media screen and (max-width: 464px) {
+@media screen and (max-width: 520px) {
   
+
+  #toggle{
+    position: absolute !important;
+  }
   #hamburger{
     display:absolute !important; 
     cursor: pointer; 
-    width: 52px;
     justify-content: end;
-    margin-top: 20px;
-  }
-
-  #mobilenav{
-    align-items: start !important;
-  }
-
-  .menu{
-    display:none;
+    align-items: center;
   }
   
-  #navlinks li a{
-    display: block; 
-    justify-content: center;  
-    margin-bottom: 20px; opacity: 100%; 
-    position: relative;
+  #navIcon{
+    display:none;
   }
-  #toggle:checked + .menu{
-    position:sticky;
-    display:block !important;
+
+  #navText{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 5px;
+  }
+
+  #mobileNav
+  {
+    display: flex;
+    align-items: start;
     justify-content: center;
-    align-items:flex-start;
-    transition: 2s ease-in-out;
-    max-height: 150px;
-    width: 100%;
-    background-color: white;
   }
-  #toggle:checked + .burger{
-    justify-content: end !important;
+  .menu{
+    display:none;
+    background-color: #188045f9;
+    top:0;
+    left:0;
+    position:fixed;
+    flex-direction: column;
+    justify-content: start;
+    align-items:center;
+    padding: 10vh;
+    margin-top: 12vh;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1000;
+  }
+
+  
+  #nav{
+    flex-direction: column;
+  }
+  /* Burger Toggle Clicked! */
+  #toggle:checked + .menu{
+    display:flex;
+  }
+
+  #toggle:checked #mobileNav{
+    flex-direction: column;
   }
 } 
 
-@media screen and (min-width: 464px) {
+@media screen and (min-width: 520px) {
 
   #hamburger{
     font-size: 26px; line-height: 70px; display: none;
@@ -187,15 +209,6 @@ tbody tr:nth-of-type(even) {
   }
 } 
 
-
-@media screen and (max-width: 515px) {
-  #adminIcon {
-    display: none;
-  }
-  #navLinks{
-    justify-content: center;
-  }
-} 
 
 @media screen and (max-width: 590px) {
   #hideHomeTitle {
