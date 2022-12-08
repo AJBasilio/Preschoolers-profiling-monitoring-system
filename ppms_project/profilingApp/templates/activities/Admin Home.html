@@ -18,12 +18,11 @@
     <script src="{% static '/Javascript/js/Chart.min.js' %}" crossorigin="anonymous"></script>
     <link rel="icon" href="{% static '/Media/Dasmalogo.png' %}" type="image/y-icon">
 
-    
-    <title>City of Dasmariñas</title>
+    {% block dashboard%}
+    <title>Home | PPMS </title>
 </head>
 <body>
 <!-- Header -->
-{% block dashboard%}
 <header>
     <div class="site-header">
     <nav class="navbar fixed-top index__navbar scrolled border-bottom" 
