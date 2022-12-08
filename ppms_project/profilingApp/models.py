@@ -148,9 +148,8 @@ class Preschooler(Model):
                        include_cdc=False, logger_name='pygrowup',
                        log_level='INFO')
         try:
-            today = date.today()
 
-            date_diff = today - self.birthday
+            date_diff = self.date_measured - self.birthday
 
             in_days = date_diff.days
             age_months = int((in_days) / (365 / 12))
@@ -165,9 +164,8 @@ class Preschooler(Model):
                        log_level='INFO')
         
         try:
-            today = date.today()
 
-            date_diff = today - self.birthday
+            date_diff = self.date_measured - self.birthday
 
             in_days = date_diff.days
             age_months = int((in_days) / (365 / 12))
@@ -182,9 +180,8 @@ class Preschooler(Model):
                        log_level='INFO')
         
         try:
-            today = date.today()
 
-            date_diff = today - self.birthday
+            date_diff = self.date_measured - self.birthday
 
             in_days = date_diff.days
             age_months = int((in_days) / (365 / 12))
@@ -201,9 +198,8 @@ class Preschooler(Model):
                        log_level='INFO')
         
         try:
-            today = date.today()
 
-            date_diff = today - self.birthday
+            date_diff = self.date_measured - self.birthday
 
             in_days = date_diff.days
             age_months = int((in_days) / (365 / 12))
@@ -222,7 +218,7 @@ class Preschooler(Model):
         try:
             today = date.today()
 
-            date_diff = today - self.birthday
+            date_diff = self.date_measured - self.birthday
 
             in_days = date_diff.days
             age_months = int((in_days) / (365 / 12))
@@ -250,9 +246,8 @@ class Preschooler(Model):
                        log_level='INFO')
         
         try:
-            today = date.today()
 
-            date_diff = today - self.birthday
+            date_diff = self.date_measured - self.birthday
 
             in_days = date_diff.days
             age_months = int((in_days) / (365 / 12))

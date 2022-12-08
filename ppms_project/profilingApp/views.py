@@ -231,31 +231,36 @@ def admin_preschoolers(request):
         preschooler_normal = []
         preschooler_wasted = []
         preschooler_severly = []
-        preschooler_over_obese = []
+        preschooler_overweight = []
+        preschooler_obese = []
 
-        for obj in Preschooler.objects.all():
-            if obj.bmi_tag == 'NORMAL':
+        for obj in Preschooler.lt_60_objects.all():
+            if obj.whfa_tag == 'OBESE':
+                preschooler_obese.append(obj)
+            elif obj.whfa_tag == 'OVERWEIGHT':
+                preschooler_overweight.append(obj)
+            elif obj.whfa_tag == 'NORMAL':
                 preschooler_normal.append(obj)
-            elif obj.bmi_tag == 'ABOVE NORMAL':
-                preschooler_over_obese.append(obj)
-            elif obj.bmi_tag == 'BELOW NORMAL':
+            elif obj.whfa_tag == 'UNDERWEIGHT':
                 preschooler_wasted.append(obj)
-            else:
+            elif obj.whfa_tag == 'SEVERE':
                 preschooler_severly.append(obj)
 
         normal_count = len(preschooler_normal)
         wasted_count = len(preschooler_wasted)
         severly_count = len(preschooler_severly)
-        overobese_count = len(preschooler_over_obese)
+        overweight_count = len(preschooler_overweight)
+        obese_count = len(preschooler_obese)
 
-        count_list = [severly_count, wasted_count, normal_count, overobese_count, overobese_count]
+        count_list = [severly_count, wasted_count, normal_count, overweight_count, obese_count]
         data_json = dumps(count_list)
         
         context = {'invalidated_count': invalidated_status,
                 'normal' : normal_count,
                 'wasted' : wasted_count,
                 'severly' : severly_count,
-                'overobese' : overobese_count,
+                'overweight' : overweight_count,
+                'obese' : obese_count,
                 'barangays' : barangays,
                 'count_data' : data_json}
 
@@ -272,7 +277,7 @@ def admin_preschoolers_barangay(request, brgy):
             is_validated=False).count()
 
         parents = Parent.objects.filter(barangay=brgy)
-        preschoolers = Preschooler.objects.filter(parent__in=(parents))
+        preschoolers = Preschooler.lt_60_objects.filter(parent__in=(parents))
         
         barangay = Barangay.objects.get(id=brgy)
         barangays = Barangay.objects.all()
@@ -280,24 +285,28 @@ def admin_preschoolers_barangay(request, brgy):
         preschooler_normal = []
         preschooler_wasted = []
         preschooler_severly = []
-        preschooler_over_obese = []
+        preschooler_overweight = []
+        preschooler_obese = []
 
         for p in preschoolers:
-            if p.bmi_tag == 'NORMAL':
+            if p.whfa_tag == 'OBESE':
+                preschooler_obese.append(p)
+            elif p.whfa_tag == 'OVERWEIGHT':
+                preschooler_overweight.append(p)
+            elif p.whfa_tag == 'NORMAL':
                 preschooler_normal.append(p)
-            elif p.bmi_tag == 'ABOVE NORMAL':
-                preschooler_over_obese.append(p)
-            elif p.bmi_tag == 'BELOW NORMAL':
+            elif p.whfa_tag == 'UNDERWEIGHT':
                 preschooler_wasted.append(p)
-            else:
+            elif p.whfa_tag == 'SEVERE':
                 preschooler_severly.append(p)
         
         normal_count = len(preschooler_normal)
         wasted_count = len(preschooler_wasted)
         severly_count = len(preschooler_severly)
-        overobese_count = len(preschooler_over_obese)
+        overweight_count = len(preschooler_overweight)
+        obese_count = len(preschooler_obese)
 
-        count_list = [severly_count, wasted_count, normal_count, overobese_count, overobese_count]
+        count_list = [severly_count, wasted_count, normal_count, overweight_count, obese_count]
         data_json = dumps(count_list)
 
         context = {'invalidated_count': invalidated_status,
@@ -305,7 +314,8 @@ def admin_preschoolers_barangay(request, brgy):
                 'normal' : normal_count,
                 'wasted' : wasted_count,
                 'severly' : severly_count,
-                'overobese' : overobese_count,
+                'overweight' : overweight_count,
+                'obese' : obese_count,
                 'barangays' : barangays,
                 'count_data' : data_json
                 }
@@ -406,32 +416,36 @@ def bhw_home(request):
         preschooler_normal = []
         preschooler_wasted = []
         preschooler_severly = []
-        preschooler_over_obese = []
+        preschooler_overweight = []
+        preschooler_obese = []
 
         for p in preschoolers:
-            if p.bmi_tag == 'NORMAL':
+            if p.whfa_tag == 'OBESE':
+                preschooler_obese.append(p)
+            elif p.whfa_tag == 'OVERWEIGHT':
+                preschooler_overweight.append(p)
+            elif p.whfa_tag == 'NORMAL':
                 preschooler_normal.append(p)
-            elif p.bmi_tag == 'ABOVE NORMAL':
-                preschooler_over_obese.append(p)
-            elif p.bmi_tag == 'BELOW NORMAL':
+            elif p.whfa_tag == 'UNDERWEIGHT':
                 preschooler_wasted.append(p)
-            else:
+            elif p.whfa_tag == 'SEVERE':
                 preschooler_severly.append(p)
         
         normal_count = len(preschooler_normal)
         wasted_count = len(preschooler_wasted)
         severly_count = len(preschooler_severly)
-        overobese_count = len(preschooler_over_obese)
+        overweight_count = len(preschooler_overweight)
+        obese_count = len(preschooler_obese)
 
-        count_list = [severly_count, wasted_count,normal_count,overobese_count, overobese_count]
+        count_list = [severly_count, wasted_count,normal_count,overweight_count, obese_count]
         data_json = dumps(count_list)
         
         context = {'bhw' : bhw_logged,
                 'severly' : severly_count,
                 'wasted' : wasted_count,
                 'normal' : normal_count,
-                'overobese' : overobese_count,
-                'overobese' : overobese_count,
+                'overweight' : overweight_count,
+                'obese' : obese_count,
                 'count_data' : data_json}
         return render(request, 'activities/BHW Home.html', context)
     
