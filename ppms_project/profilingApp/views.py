@@ -112,7 +112,8 @@ def parent_home(request):
             context = {
                 'chunks': chunks,
                 'numberOfColumns': numberOfColumns,
-                'bootstrapColWidth' : bootstrapColWidth
+                'bootstrapColWidth' : bootstrapColWidth,
+                'parent' : parent_user
             }
             return render(request, 'activities/Parent Home.html', context)
         else:
