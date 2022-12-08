@@ -17,9 +17,11 @@
     <link rel="stylesheet" href="{% static '/CSS/font-awesome/css/all.min.css' %}">
     <link rel="stylesheet" href="{% static '/CSS/css/bootstrap.min.css' %}">
 
-    <script src="{% static '/Javascript/js/Chart.min.js' %}" crossorigin="anonymous"></script>\
+    <script src="{% static '/Javascript/js/Chart.min.js' %}" crossorigin="anonymous"></script>
 
-    <title>{{ unva_bhw.user.first_name }} {{ unva_bhw.user.last_name }}</title>
+
+    {% block dashboard %}   
+    <title>{{ parent.user.first_name }} {{ parent.user.last_name }}</title>
 </head>
         <!-- Header -->
     <div class="site-header">
@@ -236,8 +238,7 @@
         </div>
     </div>
     --->       
-                                
-                
+    {% endblock %}
     <!-- Footer -->
     <div class="footer text-muted">
         <div class="container">
