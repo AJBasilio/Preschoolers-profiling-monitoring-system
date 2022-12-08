@@ -131,20 +131,20 @@
                                 {% endif %}
                                 <td>{{ preschooler.birthday }}</td>
                                 <td>{{ preschooler.age_months }}</td>
-                                {% if preschooler.bmifa is None %}
+                                {% if preschooler.whfa is None %}
                                     
                                     <td style="background-color: rgb(211, 211, 211);"> No Data Record </td>
                                     
-                                    {% elif preschooler.bmifa > 3.0%}
-                                    <td style="background-color: rgb(242, 98, 33);"> Obese ({{ preschooler.bmifa }})</td>
-                                {% elif preschooler.bmifa > 2.0 %}
-                                    <td style="background-color: rgb(242, 98, 33);"> Overweight ({{ preschooler.bmifa }})</td>
-                                {% elif preschooler.bmifa >= -2.0 and preschooler.bmifa <= 2.0 %}
-                                    <td style="background-color: rgb(0, 165, 79);"> Normal ({{ preschooler.bmifa}})</td>
-                                {% elif preschooler.bmifa >= -3.0 and preschooler.bmifa <= -2.0 %}
-                                    <td style="background-color: rgb(255, 241, 2);"> Wasted ({{ preschooler.bmifa }})</td>
+                                    {% elif preschooler.whfa > 3.0%}
+                                    <td style="background-color: rgb(242, 98, 33);"> Obese ({{ preschooler.whfa }})</td>
+                                {% elif preschooler.whfa > 2.0 %}
+                                    <td style="background-color: rgb(242, 98, 33);"> Overweight ({{ preschooler.whfa }})</td>
+                                {% elif preschooler.whfa >= -2.0 and preschooler.whfa <= 2.0 %}
+                                    <td style="background-color: rgb(0, 165, 79);"> Normal ({{ preschooler.whfa}})</td>
+                                {% elif preschooler.whfa >= -3.0 and preschooler.whfa <= -2.0 %}
+                                    <td style="background-color: rgb(255, 241, 2);"> Moderately Wasted ({{ preschooler.whfa }})</td>
                                 {% else %}
-                                    <td style="background-color: rgb(238, 29, 35);"> Severely Wasted ({{preschooler.bmifa }})</td>
+                                    <td style="background-color: rgb(238, 29, 35);"> Severely Wasted ({{preschooler.whfa }})</td>
                                 {% endif %}
                                 
                                 {% if preschooler.vaccine_count == 8 %}
@@ -202,19 +202,19 @@
                                     <td>{{ preschooler.suffix_name }}</td>
                                     <td>{{ preschooler.birthday }}</td>
                                     <td>{{ preschooler.age_months }}</td>
-                                    {% if preschooler.bmifa is None %}
+                                    {% if preschooler.whfa is None %}
                                     
                                         <td> No Data Record </td>
-                                    {% elif preschooler.bmifa > 3.0%}
-                                        <td style="background-color: rgb(242, 98, 33);"> Obese ({{ preschooler.bmifa }})</td>
-                                    {% elif preschooler.bmifa > 2.0 %}
-                                        <td style="background-color: rgb(242, 98, 33);"> Overweight ({{ preschooler.bmifa }})</td>
-                                    {% elif preschooler.bmifa >= -2.0 and preschooler.bmifa <= 2.0 %}
-                                        <td style="background-color: rgb(0, 165, 79);"> Normal ({{ preschooler.bmifa}})</td>
-                                    {% elif preschooler.bmifa >= -3.0 and preschooler.bmifa <= -2.0 %}
-                                        <td style="background-color: rgb(255, 241, 2);"> Wasted ({{ preschooler.bmifa }})</td>
+                                    {% elif preschooler.whfa > 3.0%}
+                                        <td style="background-color: rgb(242, 98, 33);"> Obese ({{ preschooler.whfa }})</td>
+                                    {% elif preschooler.whfa > 2.0 %}
+                                        <td style="background-color: rgb(242, 98, 33);"> Overweight ({{ preschooler.whfa }})</td>
+                                    {% elif preschooler.whfa >= -2.0 and preschooler.whfa <= 2.0 %}
+                                        <td style="background-color: rgb(0, 165, 79);"> Normal ({{ preschooler.whfa}})</td>
+                                    {% elif preschooler.whfa >= -3.0 and preschooler.whfa <= -2.0 %}
+                                        <td style="background-color: rgb(255, 241, 2);"> Moderately Wasted ({{ preschooler.whfa }})</td>
                                     {% else %}
-                                        <td style="background-color: rgb(238, 29, 35);"> Severely Wasted ({{preschooler.bmifa }})</td>
+                                        <td style="background-color: rgb(238, 29, 35);"> Severely Wasted ({{preschooler.whfa }})</td>
                                     {% endif %}                                   
                                 </tr>
                                 {% endfor %}
