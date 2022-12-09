@@ -137,7 +137,7 @@ class Preschooler(Model):
     def age_months(self):
         today = date.today()
 
-        date_diff = today - self.birthday
+        date_diff = self.date_measured - self.birthday
 
         in_days = date_diff.days
 
