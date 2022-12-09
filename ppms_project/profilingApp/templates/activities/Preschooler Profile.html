@@ -61,7 +61,7 @@
                         <div class="mb-3 d-flex justify-content-md-end justify-content-center align-items-stretch">
                             <button style="background-color: #188045; color: white;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#update"><span class="fa fa-user-edit"></span> Update preschooler</button>
                             <button style="background-color: #188045; color: white; margin-left: 10px;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#history"><span class="fas fa-history"></span> Nutritional Status History</button>
-                            <a href="{% url 'immunization_schedule' preschooler.id %}" style="background-color: #188045; color: white; margin-left:10px;" type="button" class="btn"><span class="fa fa-address-card"></span> Immunization Status</a>
+                            <a href="{% url 'immunization_schedule' preschooler.id %}" style="background-color: #188045; color: white; margin-left:10px; text-align: center;" type="button" class="btn"><span class="fa fa-address-card"></span> Immunization Status</a>
                         </div>
                     </div>
                 </div>
@@ -459,7 +459,7 @@
                                         </div>
                                     {% elif preschooler.bmifa > -2.0 and preschooler.bmifa <= -1.0 %}
                                         <div class="card-body p-3">
-                                            <p class="card-text  h5" style="color: rgb(255, 241, 2);"> Wasted ({{ preschooler.bmifa }})</p>
+                                            <p class="card-text  h5" style="color: rgb(255, 241, 2);">Moderately Wasted ({{ preschooler.bmifa }})</p>
                                         </div>
                                     {% else %}
                                         <div class="card-body p-3">
@@ -637,13 +637,13 @@
                                                         </div>
                                                         <div class="col-lg-6 col-12 d-flex justify-content-start  mb-2">
                                                             <i class="fas fa-2x fa-square" style="color: rgb(255, 241, 2);"></i>
-                                                            <span class="mx-3"><h5>Underweight</h5></span>
+                                                            <span class="mx-3"><h5>Moderately Wasted</h5></span>
                                                         </div>          
                                                         
                                                         
                                                         <div class="col-lg-6 col-12 d-flex justify-content-start mx-md-4  mb-2" >
                                                             <i class="fas fa-2x fa-square d-flex align-items-center" style="color: rgb(238, 29, 35);"></i>
-                                                            <span class="mx-3"><h5>Severely Underweight</h5></span>
+                                                            <span class="mx-3"><h5>Severely Wasted</h5></span>
                                                         </div>
                                                         <div class="col-lg-6 col-12 d-flex justify-content-start" >
                                                             <i class="fas fa-2x fa-square" style="color: rgb(242, 98, 33);"></i>
