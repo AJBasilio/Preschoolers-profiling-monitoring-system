@@ -136,12 +136,15 @@ class Preschooler(Model):
     
     def age_months(self):
         today = date.today()
+        try:
+            date_diff = today - self.birthday
 
-        date_diff = self.date_measured - self.birthday
+            in_days = date_diff.days
 
-        in_days = date_diff.days
-
-        return int((in_days) / (365 / 12))
+            return int((in_days) / (365 / 12)) 
+        
+        except: 
+             return 'Undefined' 
 
     def wfa(self):
         calculator = Calculator(adjust_height_data=False, adjust_weight_scores=False,

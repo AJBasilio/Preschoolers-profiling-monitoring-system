@@ -13,7 +13,6 @@
   filter: drop-shadow(0px 0.8px 2px rgba(0, 0, 0, 0.75));
 }
 
-
 .navbar-icon {
     width: 40px;
     max-width: 40px;
@@ -126,9 +125,6 @@ tbody tr:nth-of-type(even) {
 }
 /* Header hide title when minimized */
 
-#toggle{
-  display: none;
-}
 @media screen and (max-width: 520px) {
 
   #profileCard{
@@ -212,15 +208,14 @@ tbody tr:nth-of-type(even) {
   }
 } 
 
-@media screen and (max-width: 555px) {
-  #hideUserLabel {
+@media screen and (max-width: 350px) {
+  #parenthideTitle {
     display: none;
   }
 } 
 
-
-@media screen and (max-width: 590px) {
-  #hideHomeTitle {
+@media screen and (max-width: 555px) {
+  #hideUserLabel {
     display: none;
   }
 } 
@@ -294,6 +289,13 @@ button.back-button {
  button:hover .button-text {
   color: #fff;
  }
+
+/* Modal Sizing */
+.modal-content{
+  height: auto; 
+  width: 100vw;
+}
+
 /* Parent Home Cards Styling */
 
 .hoverable {
@@ -304,6 +306,50 @@ button.back-button {
   box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
 }
 
+@media (max-width:1200px) { 
+
+#parentCardsText{
+  font-size:x-large;
+}
+}
+
+@media (max-width:630px) { 
+
+  #parentCardsText{
+    font-size:large;
+  }
+}
+
+@media (max-width:440px) { 
+
+  #parentCardsText{
+    font-size:medium;
+  }
+}
+
+@media (max-width:390px) { 
+
+  #parentCardsText{
+    font-size:small;
+  }
+
+  *{
+    font-size:15px;
+  }
+
+}
+
+@media (max-width:320px) { 
+
+  #parentCardsText{
+    font-size:x-small;
+  }
+
+  *{
+    font-size: 12px;
+  }
+
+}
 
 /* Parent Home Button Styling */
 
@@ -346,14 +392,16 @@ button.back-button {
 #grid{
   background-color: rgb(240, 242, 245);
   position: relative;
-  padding: 3%;
+  padding: 3% 3% 20vh 3%;
   width: 100%;
   margin-top: 85px;
   min-height: 800px;
+  
 }
 
-/* Cards */ 
 
+
+/* Cards */ 
 
 .card-header{
   font-size: 13px;

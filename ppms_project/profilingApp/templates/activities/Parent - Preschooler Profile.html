@@ -56,7 +56,7 @@
             <div class="col-xl-4  col-md-6 col-12">
                 <div class="row d-flex justify-content-center align-items-stretch">
                     <div class="mb-3 d-flex justify-content-md-end justify-content-center h-100">
-                        <button style="background-color: #188045; color: white; max-height: 70px !important; height: 100%; margin-left: 10px;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#pres_history"><span class="fas fa-history"></span> Nutritional Status History</button>
+                        <button style="background-color: #188045; color: white; max-height: 70px !important; height: 100%;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#pres_history"><span class="fas fa-history"></span> Nutritional Status History</button>
                         <a href="{% url 'immunization_schedule' preschooler.id %}"><button style="background-color: #188045; color: white; margin-left:10px; max-height: 70px !important;" type="button" class="btn"><span class="fa fa-address-card"></span> Immunization Status</button></a>
                     </div>
                 </div>
@@ -159,7 +159,7 @@
                             </div>
                         </div>
                         <div class="card-footer text-center ">
-                            <h5 class="text-muted h4">Preschooler's nutritional status history</h5>
+                            <h5 class="text-muted  h4">Preschooler's nutritional status history</h5>
                         </div>
                     </div>
                 </div>
@@ -182,11 +182,11 @@
                                     </div>
                                     {% if preschooler.suffix_name is None %}
                                         <div class="col-sm justify-content-start justify-content-md-center">
-                                            <p class="text-muted mb-0">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }}</p>
+                                            <p class="text-muted  mb-0">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }}</p>
                                         </div>
                                     {% else %}
                                         <div class="col-sm justify-content-start justify-content-md-center">
-                                            <p class="text-muted mb-0">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }} {{ preschooler.suffix_name }}</p>
+                                            <p class="text-muted  mb-0">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }} {{ preschooler.suffix_name }}</p>
                                         </div>
                                     {% endif %}
                                 </div>
@@ -196,7 +196,7 @@
                                         <p class="mb-0">Date of Birth</p>
                                     </div>
                                     <div class="col-sm">
-                                        <p class="text-muted mb-0">{{ preschooler.birthday }}</p>
+                                        <p class="text-muted  mb-0">{{ preschooler.birthday }}</p>
                                     </div>
                                 </div>
                                 <hr>
@@ -205,7 +205,7 @@
                                         <p class="mb-0">Age</p>
                                     </div>
                                     <div class="col-sm justify-content-start justify-content-md-center">
-                                        <p class="text-muted mb-0">{{ preschooler.age_months }} Months</p>
+                                        <p class="text-muted  mb-0">{{ preschooler.age_months }} Months</p>
                                     </div>
                                 </div>
                                 <hr>
@@ -214,7 +214,7 @@
                                         <p class="mb-0">Gender</p>
                                     </div>
                                     <div class="col-sm justify-content-start justify-content-md-center">
-                                        <p class="text-muted mb-0">{{ preschooler.gender }}</p>
+                                        <p class="text-muted  mb-0">{{ preschooler.gender }}</p>
                                     </div>
                                 </div>
                                 <hr>
@@ -223,7 +223,7 @@
                                         <p class="mb-0">Health Problem</p>
                                     </div>
                                     <div class="col-sm justify-content-start justify-content-md-center">
-                                        <p class="text-muted mb-0">{{ preschooler.health_problem }}</p>
+                                        <p class="text-muted  mb-0">{{ preschooler.health_problem }}</p>
                                     </div>
                                 </div>
                                 <hr>
@@ -233,11 +233,11 @@
                                     </div>
                                     {% if preschooler.weight is None%}
                                     <div class="col-sm justify-content-start justify-content-md-center">
-                                        <p class="text-muted mb-0">{{ preschooler.weight }} </p>
+                                        <p class="text-muted  mb-0">{{ preschooler.weight }} </p>
                                     </div>
                                     {% else%}
                                     <div class="col-sm justify-content-start justify-content-md-center">
-                                        <p class="text-muted mb-0">{{ preschooler.weight }} kg</p>
+                                        <p class="text-muted  mb-0">{{ preschooler.weight }} kg</p>
                                     </div>
                                     {% endif %}
                                     
@@ -246,11 +246,11 @@
                                     </div>
                                     {% if preschooler.height is None%}
                                     <div class="col-sm justify-content-start justify-content-md-center">
-                                        <p class="text-muted mb-0">{{ preschooler.height }}</p>
+                                        <p class="text-muted  mb-0">{{ preschooler.height }}</p>
                                     </div>
                                     {% else %}
                                     <div class="col-sm justify-content-start justify-content-md-center">
-                                        <p class="text-muted mb-0">{{ preschooler.height }} cm</p>
+                                        <p class="text-muted  mb-0">{{ preschooler.height }} cm</p>
                                     </div>
                                     {% endif %}
                                 </div>
@@ -290,7 +290,7 @@
                                             <p class="card-text h5" style="color: rgb(238, 29, 35);">Severely Underweight ({{ preschooler.wfa }})</p>
                                         </div>
                                     {% endif %}
-                                    <div class="card-footer text-center text-muted">
+                                    <div class="card-footer text-center text-muted ">
                                         <span > Click card for reference</span>
                                     </div>
                                 </a>
@@ -324,7 +324,7 @@
                                             <p class="card-text h5" style="color: rgb(238, 29, 35);">Severely Stunted ({{ preschooler.hfa }})</p>
                                         </div>
                                     {% endif %}
-                                    <div class="card-footer text-center text-muted">
+                                    <div class="card-footer text-center text-muted ">
                                         <span> Click card for reference</span>
                                     </div>
                                 </a>
@@ -360,7 +360,7 @@
                                             <p class="card-text  h5" style="color: rgb(238, 29, 35);">Severely Wasted ({{ preschooler.whfa }})</p>
                                         </div>
                                     {% endif %}
-                                    <div class="card-footer text-center text-muted">
+                                    <div class="card-footer text-center text-muted ">
                                         <span> Click card for reference</span>
                                     </div>
                                 </a>
@@ -393,7 +393,7 @@
                                             <p class="card-text  h5" style="color: rgb(238, 29, 35);">Severely Wasted ({{ preschooler.bmifa }})</p>
                                         </div>
                                     {% endif %}
-                                    <div class="card-footer text-center text-muted">
+                                    <div class="card-footer text-center text-muted ">
                                         <span> Click card for reference</span>
                                     </div>
                                 </a>
