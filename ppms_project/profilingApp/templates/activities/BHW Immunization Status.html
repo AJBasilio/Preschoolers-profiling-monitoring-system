@@ -148,95 +148,127 @@
                                                 <div class="md-form mb-2">
                                                     <label id="user-lbl" data-error="wrong" data-success="right">Vaccine: </label>
                                                     <select required class="form-select" name="vax_name" aria-label="Default select example" onchange="changeNum(this)">
-                                                        {% if 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and 'Measles Containing Vaccines' in vax_list and 'Tetanus Toxoid' in vax_list and 'Inactivated Polio Vaccine' in vax_list and 'Measles Mumps - Rubella' in vax_list and dose_list.7 == 2 %}
-                                                            <option disabled value="BCG">BCG</option>
-                                                            <option disabled value="Hepatitis B">Hepatitis B</option>
-                                                            <option disabled value="Oral Poliovirus Vaccine">Oral Poliovirus Vaccine</option>
-                                                            <option disabled value="Pentavalent Vaccine">Pentavalent Vaccine</option>
-                                                            <option disabled value="Measles Containing Vaccines">Measles Containing Vaccines</option>
-                                                            <option disabled value="Tetanus Toxoid">Tetanus Toxoid</option>
-                                                            <option disabled value="Inactivated Polio Vaccine">Inactivated Polio Vaccine</option>
-                                                            <option disabled value="Measles Mumps - Rubella">Measles Mumps - Rubella</option>
-                                                        {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and 'Measles Containing Vaccines' in vax_list and 'Tetanus Toxoid' in vax_list and 'Inactivated Polio Vaccine' in vax_list and dose_list.6 == 2 %}
-                                                            <!-- <option disabled value="BCG">BCG</option> -->
-                                                            <!-- <option disabled value="Hepatitis B">Hepatitis B</option> -->
-                                                            <!-- <option disabled value="Oral Poliovirus Vaccine">Oral Poliovirus Vaccine</option> -->
-                                                            <!-- <option disabled value="Pentavalent Vaccine">Pentavalent Vaccine</option> -->
-                                                            <!-- <option disabled value="Measles Containing Vaccines">Measles Containing Vaccines</option> -->
-                                                            <!-- <option disabled value="Tetanus Toxoid">Tetanus Toxoid</option> -->
-                                                            <!-- <option disabled value="Inactivated Polio Vaccine">Inactivated Polio Vaccine</option> -->
-                                                            <option selected value="---">---</option>
-                                                            <option value="Measles Mumps - Rubella">Measles Mumps - Rubella</option>
-                                                        {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and 'Measles Containing Vaccines' in vax_list and 'Tetanus Toxoid' in vax_list %}
-                                                            <!-- <option disabled value="BCG">BCG</option> -->
-                                                            <!-- <option disabled value="Hepatitis B">Hepatitis B</option> -->
-                                                            <!-- <option disabled value="Oral Poliovirus Vaccine">Oral Poliovirus Vaccine</option> -->
-                                                            <!-- <option disabled value="Pentavalent Vaccine">Pentavalent Vaccine</option> -->
-                                                            <!-- <option disabled value="Measles Containing Vaccines">Measles Containing Vaccines</option> -->
-                                                            <!-- <option disabled value="Tetanus Toxoid">Tetanus Toxoid</option> -->
-                                                            <option selected value="---">---</option>
-                                                            <option value="Inactivated Polio Vaccine">Inactivated Polio Vaccine</option>
-                                                            <option disabled value="Measles Mumps - Rubella">Measles Mumps - Rubella</option>
-                                                        {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and 'Measles Containing Vaccines' in vax_list and dose_list.4 == 3 %}
-                                                            <!-- <option disabled value="BCG">BCG</option> -->
-                                                            <!-- <option disabled value="Hepatitis B">Hepatitis B</option> -->
-                                                            <!-- <option disabled value="Oral Poliovirus Vaccine">Oral Poliovirus Vaccine</option> -->
-                                                            <!-- <option disabled value="Pentavalent Vaccine">Pentavalent Vaccine</option> -->
-                                                            <!-- <option disabled value="Measles Containing Vaccines">Measles Containing Vaccines</option> -->
-                                                            <option selected value="---">---</option>
-                                                            <option value="Tetanus Toxoid">Tetanus Toxoid</option>
-                                                            <option disabled value="Inactivated Polio Vaccine">Inactivated Polio Vaccine</option>
-                                                            <option disabled value="Measles Mumps - Rubella">Measles Mumps - Rubella</option>
-                                                        {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and dose_list.3 == 3 %}
-                                                            <!-- <option disabled value="BCG">BCG</option> -->
-                                                            <!-- <option disabled value="Hepatitis B">Hepatitis B</option> -->
-                                                            <!-- <option disabled value="Oral Poliovirus Vaccine">Oral Poliovirus Vaccine</option> -->
-                                                            <!-- <option disabled value="Pentavalent Vaccine">Pentavalent Vaccine</option> -->
-                                                            <option selected value="---">---</option>
-                                                            <option value="Measles Containing Vaccines">Measles Containing Vaccines</option>
-                                                            <option disabled value="Tetanus Toxoid">Tetanus Toxoid</option>
-                                                            <option disabled value="Inactivated Polio Vaccine">Inactivated Polio Vaccine</option>
-                                                            <option disabled value="Measles Mumps - Rubella">Measles Mumps - Rubella</option>
-                                                        {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and dose_list.2 == 3 %}
-                                                            <!-- <option disabled value="BCG">BCG</option> -->
-                                                            <!-- <option disabled value="Hepatitis B">Hepatitis B</option> -->
-                                                            <!-- <option disabled value="Oral Poliovirus Vaccine">Oral Poliovirus Vaccine</option> -->
-                                                            <option selected value="---">---</option>
-                                                            <option value="Pentavalent Vaccine">Pentavalent Vaccine</option>
-                                                            <option disabled value="Measles Containing Vaccines">Measles Containing Vaccines</option>
-                                                            <option disabled value="Tetanus Toxoid">Tetanus Toxoid</option>
-                                                            <option disabled value="Inactivated Polio Vaccine">Inactivated Polio Vaccine</option>
-                                                            <option disabled value="Measles Mumps - Rubella">Measles Mumps - Rubella</option>
-                                                        {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list %}
-                                                            <!-- <option disabled value="BCG">BCG</option> -->
-                                                            <!-- <option disabled value="Hepatitis B">Hepatitis B</option> -->
-                                                            <option selected value="---">---</option>
-                                                            <option value="Oral Poliovirus Vaccine">Oral Poliovirus Vaccine</option>
-                                                            <option disabled value="Pentavalent Vaccine">Pentavalent Vaccine</option>
-                                                            <option disabled value="Measles Containing Vaccines">Measles Containing Vaccines</option>
-                                                            <option disabled value="Tetanus Toxoid">Tetanus Toxoid</option>
-                                                            <option disabled value="Inactivated Polio Vaccine">Inactivated Polio Vaccine</option>
-                                                            <option disabled value="Measles Mumps - Rubella">Measles Mumps - Rubella</option>
-                                                        {% elif 'BCG' in vax_list %}
-                                                            <!-- <option value="BCG">BCG</option> -->
-                                                            <option selected value="---">---</option>
-                                                            <option value="Hepatitis B">Hepatitis B</option>
-                                                            <option disabled value="Oral Poliovirus Vaccine">Oral Poliovirus Vaccine</option>
-                                                            <option disabled value="Pentavalent Vaccine">Pentavalent Vaccine</option>
-                                                            <option disabled value="Measles Containing Vaccines">Measles Containing Vaccines</option>
-                                                            <option disabled value="Tetanus Toxoid">Tetanus Toxoid</option>
-                                                            <option disabled value="Inactivated Polio Vaccine">Inactivated Polio Vaccine</option>
-                                                            <option disabled value="Measles Mumps - Rubella">Measles Mumps - Rubella</option>
-                                                        {% else %}
-                                                            <option selected value="---">---</option>
-                                                            <option value="BCG">BCG</option>
-                                                            <option disabled value="Hepatitis B">Hepatitis B</option>
-                                                            <option disabled value="Oral Poliovirus Vaccine">Oral Poliovirus Vaccine</option>
-                                                            <option disabled value="Pentavalent Vaccine">Pentavalent Vaccine</option>
-                                                            <option disabled value="Measles Containing Vaccines">Measles Containing Vaccines</option>
-                                                            <option disabled value="Tetanus Toxoid">Tetanus Toxoid</option>
-                                                            <option disabled value="Inactivated Polio Vaccine">Inactivated Polio Vaccine</option>
-                                                            <option disabled value="Measles Mumps - Rubella">Measles Mumps - Rubella</option>
+                                                        {% if preschooler.age_months >= 12 %}
+                                                            {% if 'Measles Mumps - Rubella' in vax_list %}
+                                                                <option disabled value="Measles Mumps - Rubella">Measles Mumps - Rubella</option>
+                                                            {% else %}
+                                                                <option value="Measles Mumps - Rubella">Measles Mumps - Rubella</option>
+                                                            {% endif %}
+
+                                                        {% elif preschooler.age_months == 9 %}
+                                                            {% if 'Measles Mumps - Rubella' in vax_list %}
+                                                                <option disabled value="Measles Mumps - Rubella">Measles Mumps - Rubella</option>
+                                                            {% else %}
+                                                                <option value="Measles Mumps - Rubella">Measles Mumps - Rubella</option>
+                                                            {% endif %}
+                                                            
+                                                        {% elif preschooler.age_weeks == 14 %}
+                                                            {% if 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and 'Measles Containing Vaccines' in vax_list and 'Tetanus Toxoid' in vax_list %}
+                                                                <option disabled value="Oral Poliovirus Vaccine">Oral Poliovirus Vaccine</option>
+                                                                <option disabled value="Pentavalent Vaccine">Pentavalent Vaccine</option>
+                                                                <option disabled value="Measles Containing Vaccines">Measles Containing Vaccines</option>
+                                                                <option disabled value="Tetanus Toxoid">Tetanus Toxoid</option>
+
+                                                            {% elif 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and 'Measles Containing Vaccines' in vax_list %}
+                                                                <option disabled value="Oral Poliovirus Vaccine">Oral Poliovirus Vaccine</option>
+                                                                <option disabled value="Pentavalent Vaccine">Pentavalent Vaccine</option>
+                                                                <option disabled value="Measles Containing Vaccines">Measles Containing Vaccines</option>
+                                                                <option value="Tetanus Toxoid">Tetanus Toxoid</option>
+
+                                                            {% elif 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list %}
+                                                                <option disabled value="Oral Poliovirus Vaccine">Oral Poliovirus Vaccine</option>
+                                                                <option disabled value="Pentavalent Vaccine">Pentavalent Vaccine</option>
+                                                                <option value="Measles Containing Vaccines">Measles Containing Vaccines</option>
+                                                                <option disabled value="Tetanus Toxoid">Tetanus Toxoid</option>
+
+                                                            {% elif 'Oral Poliovirus Vaccine' in vax_list %}
+                                                                <option disabled value="Oral Poliovirus Vaccine">Oral Poliovirus Vaccine</option>
+                                                                <option value="Pentavalent Vaccine">Pentavalent Vaccine</option>
+                                                                <option disabled value="Measles Containing Vaccines">Measles Containing Vaccines</option>
+                                                                <option disabled value="Tetanus Toxoid">Tetanus Toxoid</option>
+                                                            {% else %}
+                                                                <option value="Oral Poliovirus Vaccine">Oral Poliovirus Vaccine</option>
+                                                                <option disabled value="Pentavalent Vaccine">Pentavalent Vaccine</option>
+                                                                <option disabled value="Measles Containing Vaccines">Measles Containing Vaccines</option>
+                                                                <option disabled value="Tetanus Toxoid">Tetanus Toxoid</option>
+                                                            {% endif %}
+                                                        {% elif preschooler.age_weeks == 10 %}
+                                                            {% if 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and 'Measles Containing Vaccines' in vax_list and 'Inactivated Polio Vaccine' in vax_list %}
+                                                                <option disabled value="Oral Poliovirus Vaccine">Oral Poliovirus Vaccine</option>
+                                                                <option disabled value="Pentavalent Vaccine">Pentavalent Vaccine</option>
+                                                                <option disabled value="Measles Containing Vaccines">Measles Containing Vaccines</option>
+                                                                <option disabled value="Inactivated Polio Vaccine">Inactivated Polio Vaccine</option>
+
+                                                            {% elif 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and 'Measles Containing Vaccines' in vax_list %}
+                                                                <option disabled value="Oral Poliovirus Vaccine">Oral Poliovirus Vaccine</option>
+                                                                <option disabled value="Pentavalent Vaccine">Pentavalent Vaccine</option>
+                                                                <option disabled value="Measles Containing Vaccines">Measles Containing Vaccines</option>
+                                                                <option value="Inactivated Polio Vaccine">Inactivated Polio Vaccine</option>
+
+                                                            {% elif 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list %}
+                                                                <option disabled value="Oral Poliovirus Vaccine">Oral Poliovirus Vaccine</option>
+                                                                <option disabled value="Pentavalent Vaccine">Pentavalent Vaccine</option>
+                                                                <option value="Measles Containing Vaccines">Measles Containing Vaccines</option>
+                                                                <option disabled value="Inactivated Polio Vaccine">Inactivated Polio Vaccine</option>
+
+                                                            {% elif 'Oral Poliovirus Vaccine' in vax_list %}
+                                                                <option disabled value="Oral Poliovirus Vaccine">Oral Poliovirus Vaccine</option>
+                                                                <option value="Pentavalent Vaccine">Pentavalent Vaccine</option>
+                                                                <option disabled value="Measles Containing Vaccines">Measles Containing Vaccines</option>
+                                                                <option disabled value="Inactivated Polio Vaccine">Inactivated Polio Vaccine</option>
+
+                                                            {% else %}
+                                                                <option value="Oral Poliovirus Vaccine">Oral Poliovirus Vaccine</option>
+                                                                <option disabled value="Pentavalent Vaccine">Pentavalent Vaccine</option>
+                                                                <option disabled value="Measles Containing Vaccines">Measles Containing Vaccines</option>
+                                                                <option disabled value="Inactivated Polio Vaccine">Inactivated Polio Vaccine</option>
+                                                            {% endif %}
+
+                                                        {% elif preschooler.age_weeks == 6 %}
+                                                            {% if 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and 'Measles Containing Vaccines' in vax_list and 'Inactivated Polio Vaccine' in vax_list %}
+                                                                <option disabled value="Oral Poliovirus Vaccine">Oral Poliovirus Vaccine</option>
+                                                                <option disabled value="Pentavalent Vaccine">Pentavalent Vaccine</option>
+                                                                <option disabled value="Measles Containing Vaccines">Measles Containing Vaccines</option>
+                                                                <option disabled value="Inactivated Polio Vaccine">Inactivated Polio Vaccine</option>
+
+                                                            {% elif 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and 'Measles Containing Vaccines' in vax_list %}
+                                                                <option disabled value="Oral Poliovirus Vaccine">Oral Poliovirus Vaccine</option>
+                                                                <option disabled value="Pentavalent Vaccine">Pentavalent Vaccine</option>
+                                                                <option disabled value="Measles Containing Vaccines">Measles Containing Vaccines</option>
+                                                                <option value="Inactivated Polio Vaccine">Inactivated Polio Vaccine</option>
+
+                                                            {% elif 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list %}
+                                                                <option disabled value="Oral Poliovirus Vaccine">Oral Poliovirus Vaccine</option>
+                                                                <option disabled value="Pentavalent Vaccine">Pentavalent Vaccine</option>
+                                                                <option value="Measles Containing Vaccines">Measles Containing Vaccines</option>
+                                                                <option disabled value="Inactivated Polio Vaccine">Inactivated Polio Vaccine</option>
+
+                                                            {% elif 'Oral Poliovirus Vaccine' in vax_list %}
+                                                                <option disabled value="Oral Poliovirus Vaccine">Oral Poliovirus Vaccine</option>
+                                                                <option value="Pentavalent Vaccine">Pentavalent Vaccine</option>
+                                                                <option disabled value="Measles Containing Vaccines">Measles Containing Vaccines</option>
+                                                                <option disabled value="Inactivated Polio Vaccine">Inactivated Polio Vaccine</option>
+
+                                                            {% else %}
+                                                                <option value="Oral Poliovirus Vaccine">Oral Poliovirus Vaccine</option>
+                                                                <option disabled value="Pentavalent Vaccine">Pentavalent Vaccine</option>
+                                                                <option disabled value="Measles Containing Vaccines">Measles Containing Vaccines</option>
+                                                                <option disabled value="Inactivated Polio Vaccine">Inactivated Polio Vaccine</option>
+                                                            {% endif %}
+                                                                
+                                                        {% elif preschooler.age_hours <= 24 %}
+                                                            {% if 'BCG' in vax_list and 'Hepatitis B' in vax_list %}
+                                                                <option disabled value="BCG">BCG</option>
+                                                                <option disabled value="Hepatitis B">Hepatitis B</option>
+
+                                                            {% elif 'BCG' in vax_list %}
+                                                                <option disabled value="BCG">BCG</option>
+                                                                <option value="Hepatitis B">Hepatitis B</option>
+
+                                                            {% else %}
+                                                                <option value="BCG">BCG</option>
+                                                                <option disabled value="Hepatitis B">Hepatitis B</option>
+                                                            {% endif %}
                                                         {% endif %}
                                                     </select>
                                                 </div>
@@ -324,12 +356,253 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                    <td class="text-center">35 months</td>
-                                    <td class="text-center">3</td>
-                                    <td class="text-center">3</td>
-                                    <td class="text-center">Completed</td>
-                            </tr>
+                            {% if preschooler.age_months >= 12 %}
+                                <tr>
+                                        <td class="text-center">24 hours</td>
+                                        <td class="text-center">2</td>
+                                        <td class="text-center">2</td>
+                                        <td class="text-center">Completed</td>
+                                </tr>
+                                <tr>
+                                        <td class="text-center">6 weeks</td>
+                                        <td class="text-center">6</td>
+                                        <td class="text-center">6</td>
+                                        <td class="text-center">Complete</td>
+                                </tr>
+                                <tr>
+                                        <td class="text-center">10 weeks</td>
+                                        <td class="text-center">10</td>
+                                        <td class="text-center">10</td>
+                                        <td class="text-center">Complete</td>
+                                </tr>
+                                <tr>
+                                        <td class="text-center">14 weeks</td>
+                                        <td class="text-center">14</td>
+                                        <td class="text-center">14</td>
+                                        <td class="text-center">Complete</td>
+                                </tr>
+                                <tr>
+                                        <td class="text-center">9 months</td>
+                                        <td class="text-center">15</td>
+                                        <td class="text-center">15</td>
+                                        <td class="text-center">Complete</td>
+                                </tr>
+                                <tr>
+                                        <td class="text-center fw-bold">12-15 months</td>
+                                        <td class="text-center fw-bold">16</td>
+                                        <td class="text-center">{{ vax_count }}</td>
+                                        {% if vax_count == 16 %}
+                                            <td class="text-center">Complete</td>
+                                        {% else %}
+                                            <td class="text-center">Incomplete</td>
+                                        {% endif %}
+                                </tr>
+                            {% elif preschooler.age_months == 9 %}
+                                <tr>
+                                        <td class="text-center">24 hours</td>
+                                        <td class="text-center">2</td>
+                                        <td class="text-center">2</td>
+                                        <td class="text-center">Completed</td>
+                                </tr>
+                                <tr>
+                                        <td class="text-center">6 weeks</td>
+                                        <td class="text-center">6</td>
+                                        <td class="text-center">6</td>
+                                        <td class="text-center">Complete</td>
+                                </tr>
+                                <tr>
+                                        <td class="text-center">10 weeks</td>
+                                        <td class="text-center">10</td>
+                                        <td class="text-center">10</td>
+                                        <td class="text-center">Complete</td>
+                                </tr>
+                                <tr>
+                                        <td class="text-center">14 weeks</td>
+                                        <td class="text-center">14</td>
+                                        <td class="text-center">14</td>
+                                        <td class="text-center">Complete</td>
+                                </tr>
+                                <tr>
+                                        <td class="text-center fw-bold">9 months</td>
+                                        <td class="text-center fw-bold">15</td>
+                                        <td class="text-center">{{ vax_count }}</td>
+                                        {% if vax_count == 15 %}
+                                            <td class="text-center">Complete</td>
+                                        {% else %}
+                                            <td class="text-center">Incomplete</td>
+                                        {% endif %}
+                                </tr>
+                                <tr>
+                                        <td class="text-center">12-15 months</td>
+                                        <td class="text-center">16</td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"></td>
+                                </tr>
+                            {% elif preschooler.age_weeks == 14 %}
+                                <tr>
+                                        <td class="text-center">24 hours</td>
+                                        <td class="text-center">2</td>
+                                        <td class="text-center">2</td>
+                                        <td class="text-center">Completed</td>
+                                </tr>
+                                <tr>
+                                        <td class="text-center">6 weeks</td>
+                                        <td class="text-center">6</td>
+                                        <td class="text-center">6</td>
+                                        <td class="text-center">Complete</td>
+                                </tr>
+                                <tr>
+                                        <td class="text-center">10 weeks</td>
+                                        <td class="text-center">10</td>
+                                        <td class="text-center">10</td>
+                                        <td class="text-center">Complete</td>
+                                </tr>
+                                <tr>
+                                        <td class="text-center fw-bold">14 weeks</td>
+                                        <td class="text-center fw-bold">14</td>
+                                        <td class="text-center">{{ vax_count }}</td>
+                                        {% if vax_count == 14 %}
+                                            <td class="text-center">Complete</td>
+                                        {% else %}
+                                            <td class="text-center">Incomplete</td>
+                                        {% endif %}
+                                </tr>
+                                <tr>
+                                        <td class="text-center">9 months</td>
+                                        <td class="text-center">15</td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"></td>
+                                </tr>
+                                <tr>
+                                        <td class="text-center">12-15 months</td>
+                                        <td class="text-center">16</td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"></td>
+                                </tr>
+                            {% elif preschooler.age_weeks == 10 %}
+                                <tr>
+                                        <td class="text-center">24 hours</td>
+                                        <td class="text-center">2</td>
+                                        <td class="text-center">2</td>
+                                        <td class="text-center">Completed</td>
+                                </tr>
+                                <tr>
+                                        <td class="text-center">6 weeks</td>
+                                        <td class="text-center">6</td>
+                                        <td class="text-center">6</td>
+                                        <td class="text-center">Complete</td>
+                                </tr>
+                                <tr>
+                                        <td class="text-center fw-bold">10 weeks</td>
+                                        <td class="text-center fw-bold">10</td>
+                                        <td class="text-center">{{ vax_count }}</td>
+                                        {% if vax_count == 10 %}
+                                            <td class="text-center">Complete</td>
+                                        {% else %}
+                                            <td class="text-center">Incomplete</td>
+                                        {% endif %}
+                                </tr>
+                                <tr>
+                                        <td class="text-center">14 weeks</td>
+                                        <td class="text-center">14</td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"></td>
+                                </tr>
+                                <tr>
+                                        <td class="text-center">9 months</td>
+                                        <td class="text-center">15</td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"></td>
+                                </tr>
+                                <tr>
+                                        <td class="text-center">12-15 months</td>
+                                        <td class="text-center">16</td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"></td>
+                                </tr>
+                            {% elif preschooler.age_weeks == 6 %}
+                                <tr>
+                                        <td class="text-center">24 hours</td>
+                                        <td class="text-center">2</td>
+                                        <td class="text-center">2</td>
+                                        <td class="text-center">Completed</td>
+                                </tr>
+                                <tr>
+                                        <td class="text-center fw-bold">6 weeks</td>
+                                        <td class="text-center fw-bold">6</td>
+                                        <td class="text-center">{{ vax_count}}</td>
+                                        {% if vax_count == 6 %}
+                                            <td class="text-center">Complete</td>
+                                        {% else %}
+                                            <td class="text-center">Incomplete</td>
+                                        {% endif %}
+                                </tr>
+                                <tr>
+                                        <td class="text-center">10 weeks</td>
+                                        <td class="text-center">10</td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"></td>
+                                </tr>
+                                <tr>
+                                        <td class="text-center">14 weeks</td>
+                                        <td class="text-center">14</td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"></td>
+                                </tr>
+                                <tr>
+                                        <td class="text-center">9 months</td>
+                                        <td class="text-center">15</td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"></td>
+                                </tr>
+                                <tr>
+                                        <td class="text-center">12-15 months</td>
+                                        <td class="text-center">16</td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"></td>
+                                </tr>
+                            {% elif preschooler.age_hours <= 24 %}
+                                <tr>
+                                        <td class="text-center fw-bold">24 hours</td>
+                                        <td class="text-center fw-bold">2</td>
+                                        <td class="text-center">{{ vax_count }}</td>
+                                        {% if vax_count == 2 %}
+                                            <td class="text-center">Complete</td>
+                                        {% else %}
+                                            <td class="text-center">Incomplete</td>
+                                        {% endif %}
+                                </tr>
+                                <tr>
+                                        <td class="text-center">6 weeks</td>
+                                        <td class="text-center">6</td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"></td>
+                                </tr>
+                                <tr>
+                                        <td class="text-center">10 weeks</td>
+                                        <td class="text-center">10</td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"></td>
+                                </tr>
+                                <tr>
+                                        <td class="text-center">14 weeks</td>
+                                        <td class="text-center">14</td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"></td>
+                                </tr>
+                                <tr>
+                                        <td class="text-center">9 months</td>
+                                        <td class="text-center">15</td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"></td>
+                                </tr>
+                                <tr>
+                                        <td class="text-center">12-15 months</td>
+                                        <td class="text-center">16</td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"></td>
+                                </tr>
+                            {% endif %}
                         </tbody>
                     </table>
                 </div>

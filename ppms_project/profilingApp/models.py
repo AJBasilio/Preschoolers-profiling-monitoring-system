@@ -144,7 +144,31 @@ class Preschooler(Model):
             return int((in_days) / (365 / 12)) 
         
         except: 
-             return 'Undefined' 
+             return 'Undefined'
+    
+    def age_weeks(self):
+        today = date.today()
+        try:
+            date_diff = today - self.birthday
+
+            in_days = date_diff.days
+
+            return int((in_days) / (365 / 52))
+        
+        except: 
+             return 'Undefined'
+    
+    def age_hours(self):
+        today = date.today()
+        try:
+            date_diff = today - self.birthday
+
+            in_days = date_diff.days
+
+            return int(in_days * 24)
+        
+        except: 
+             return 'Undefined'
 
     def wfa(self):
         calculator = Calculator(adjust_height_data=False, adjust_weight_scores=False,

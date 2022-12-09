@@ -560,7 +560,13 @@ def immunization_schedule(request, pk):
     vaccines = Vaccine.objects.filter(vax_preschooler=preschooler)
     vax_list = vaccines.values_list('vax_name', flat=True)
     dose_list = vaccines.values_list('vax_dose', flat=True)
+
+    vax_count = 0
+
+    for i in vaccines:
+        vax_count += i.vax_dose
     
+    print(vax_count)
     if len(vaccines) == 0:
         next_vax_date = 'None'
     elif len(vaccines) == 8:
@@ -594,7 +600,8 @@ def immunization_schedule(request, pk):
                'dose_list' : dose_list,
                'preschooler':preschooler,
                'loggedin': loggedin,
-               'next_vax' : next_vax_date}
+               'next_vax' : next_vax_date,
+               'vax_count' : vax_count}
 
 
     return render(request, 'activities/BHW Immunization Status.html', context)
