@@ -558,7 +558,15 @@ def immunization_schedule(request, pk):
     vaccines = Vaccine.objects.filter(vax_preschooler=preschooler)
     vax_list = vaccines.values_list('vax_name', flat=True)
     dose_list = vaccines.values_list('vax_dose', flat=True)
+    
+    if len(vaccines) == 0:
+        next_vax_date = 'None'
+    elif len(vaccines) == 8:
+        next_vax_date = 'Complete'
+    else:
+        next_vax_date = vaccines.order_by('-id')[0].vax_remarks
 
+    
     if request.method == 'POST':
         preschooler_obj = preschooler
         vaxname = request.POST.get('vax_name')
@@ -583,7 +591,8 @@ def immunization_schedule(request, pk):
                'vax_list' : vax_list,
                'dose_list' : dose_list,
                'preschooler':preschooler,
-               'loggedin': loggedin}
+               'loggedin': loggedin,
+               'next_vax' : next_vax_date}
 
 
     return render(request, 'activities/BHW Immunization Status.html', context)
