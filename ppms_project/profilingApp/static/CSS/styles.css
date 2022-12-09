@@ -158,6 +158,14 @@ tbody tr:nth-of-type(even) {
     padding: 5px;
   }
 
+  .nav-link{
+    margin:0px;
+  }
+
+  .badge{
+    top:25 ; 
+    right: 0;
+  }
   #mobileNav
   {
     display: flex;
@@ -173,14 +181,16 @@ tbody tr:nth-of-type(even) {
     flex-direction: column;
     justify-content: start;
     align-items:center;
-    padding: 10vh;
+    padding: 10%;
     margin-top: 12vh;
     height: 100vh;
     width: 100vw;
     z-index: 1000;
   }
 
-  
+  #nav li a{
+    margin:0px !important;
+  }
   #nav{
     flex-direction: column;
   }
@@ -356,9 +366,8 @@ button.back-button {
   }
 
   *{
-    font-size: 11px;
+    font-size: 13px;
   }
-
 
 }
 
@@ -1253,8 +1262,13 @@ h2 {
 }
 @media (max-width: 992px){
 .site-footer {
-  padding: 16em 0;
+  padding: 4em 2em !important;
 }}
+
+@media (max-width: 570px){
+  .site-footer {
+    padding: 3em 2em !important;
+  }}
 
 .site-footer{
   display: flex;
