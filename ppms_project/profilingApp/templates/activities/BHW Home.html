@@ -122,55 +122,55 @@
             </div>
         </div>
         <div class="row d-flex align-items-stretch">
-            <div class="col-md mb-2">
+            <div class="col-lg mb-3">
                 <div class="card shadow-sm bg-white rounded h-100">
                         <!-- <div class="card-header" style="background-color: rgb(0, 165, 79) !important;"> -->
                         <div class="card-header">
-                            <h4 class="card-title">Severely Wasted</h4>
+                            <h5 class="card-title">Severely Wasted</h5>
                         </div>
                         <div class="card-body text-center">
                             <p style="font-size: xx-large;" class="card-text">{{ severly }}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md mb-2">
+                <div class="col-lg mb-3">
                     <div class="card shadow-sm bg-white rounded h-100">
                         <!-- <div class="card-header" style="background-color: rgb(233, 221, 0) !important;"> -->
                         <div class="card-header">
-                            <h4 class="card-title">Moderately Wasted</h4>
+                            <h5 class="card-title">Moderately Wasted</h5>
                         </div>
                         <div class="card-body text-center">
                             <p style="font-size: xx-large;" class="card-text">{{ wasted }}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md mb-2">
+                <div class="col-lg mb-3">
                     <div class="card shadow-sm bg-white rounded h-100 ">
                         <!-- <div class="card-header " style="background-color: rgb(238, 29, 35) !important;"> -->
                         <div class="card-header">
-                            <h4 class="card-title">Normal</h4>
+                            <h5 class="card-title">Normal</h5>
                         </div>
                         <div class="card-body text-center">
                             <p style="font-size: xx-large;" class="card-text">{{ normal }}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md mb-2">
+                <div class="col-lg mb-3">
                     <div class="card shadow-sm bg-white rounded h-100 ">
                         <!-- <div class="card-header" style="background-color: rgb(242, 98, 33)!important;"> -->
                             <div class="card-header">
-                            <h4 class="card-title">Overweight</h4>
+                            <h5 class="card-title">Overweight</h5>
                         </div>
                         <div class="card-body text-center">
                             <p style="font-size: xx-large;" class="card-text">{{ overweight }}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md mb-2">
+                <div class="col-lg mb-3">
                     <div class="card shadow-sm bg-white rounded h-100">
                         <!-- <div class="card-header" style="background-color: rgb(233, 221, 0) !important;"> -->
                         <div class="card-header">
-                            <h4 class="card-title">Obese</h4>
+                            <h5 class="card-title">Obese</h5>
                         </div>
                         <div class="card-body text-center">
                             <p style="font-size: xx-large;" class="card-text">{{ obese }}</p>
@@ -178,7 +178,6 @@
                     </div>
                 </div>
         </div>
-            <br>
             <div>
                 <div class="card shadow-sm bg-white rounded">
                     <div class="card-header">
@@ -230,7 +229,7 @@
         }
     },
     data:{
-        labels: ["Severely Wasted", "Wasted", "Normal","Overweight","Obese"],
+        labels: ["Severely Wasted", "Moderately Wasted", "Normal","Overweight","Obese"],
         datasets: [{
                 label: 'Normal',
                 data: data_count,

@@ -58,10 +58,10 @@
                 </div>
                 <div class="col-xl-4  col-md-6 col-12">
                     <div class="row d-flex justify-content-center align-items-stretch">
-                        <div class="mb-3 d-flex justify-content-md-end justify-content-center h-100">
-                            <button style="background-color: #188045; color: white; max-height: 70px !important; height: 100%;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#update"><span class="fa fa-user-edit"></span> Update preschooler</button>
-                            <button style="background-color: #188045; color: white; max-height: 70px !important; height: 100%; margin-left: 10px;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#history"><span class="fas fa-history"></span> Nutritional Status History</button>
-                            <a href="{% url 'immunization_schedule' preschooler.id %}"><button style="background-color: #188045; color: white; margin-left:10px; max-height: 70px !important;" type="button" class="btn"><span class="fa fa-address-card"></span> Immunization Status</button></a>
+                        <div class="mb-3 d-flex justify-content-md-end justify-content-center align-items-stretch">
+                            <button style="background-color: #188045; color: white;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#update"><span class="fa fa-user-edit"></span> Update preschooler</button>
+                            <button style="background-color: #188045; color: white; margin-left: 10px;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#history"><span class="fas fa-history"></span> Nutritional Status History</button>
+                            <a href="{% url 'immunization_schedule' preschooler.id %}" style="background-color: #188045; color: white; margin-left:10px; " type="button" class="btn"><span class="fa fa-address-card"></span> Immunization Status</a>
                         </div>
                     </div>
                 </div>
@@ -187,27 +187,27 @@
                                             <div class="modal-body mx-4">
                                                 <form method="POST">
                                                     {% csrf_token %}
-                                                    <div class="md-form">
+                                                    <div class="md-form mb-2">
                                                         <label id="user-lbl" data-error="wrong" data-success="right">Height (cm): </label>
                                                         {{ form.height }}
                                                     </div>
-                                                    <div class="md-form">
+                                                    <div class="md-form mb-2">
                                                         <label id="user-lbl" data-error="wrong" data-success="right">Weight (kg):</label>
                                                         {{ form.weight }}
                                                     </div>
-                                                    <div class="md-form">
+                                                    <div class="md-form mb-2">
                                                         <label id="user-lbl" data-error="wrong" data-success="right">Date Measured:</label>
                                                         {{ form.date_measured }}
                                                     </div>
-                                                    <div class="md-form">
+                                                    <div class="md-form mb-2">
                                                         <label id="user-lbl" data-error="wrong" data-success="right">Health Problem/s:</label>
                                                         {{ form.health_problem }}
                                                     </div>
                                                 
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn" style="background-color: #EF3A25; color: white;" data-bs-dismiss="modal" aria-label="Close"> Cancel</button>
-                                                <button type="submit" class="btn " style="background-color: #188045; color: white;">Save</button>
+                                                <button type="button" class="btn" style="background-color: #EF3A25; color: white; min-width: 12%;" data-bs-dismiss="modal" aria-label="Close"> Cancel</button>
+                                                <button type="submit" class="btn " style="background-color: #188045; color: white; min-width: 12%;">Save</button>
                                                
                                             </div>
                                         </form>
@@ -223,13 +223,16 @@
                                                 <div>
                                                     <h5 class="modal-title fas fa-history" id="exampleModalLabel"> Nutritional Status History</h5>
                                                 </div>
-                                                <div >
-                                                    <button type="button" class="btn" style="background-color: #EF3A25; color: white;" data-bs-dismiss="modal" aria-label="Close"> Close</button>
-                                                </div>
                                             </div>
                                             <div class="modal-body p-0">
                                                 <div class="table-responsive " style="margin:30px;">
                                                     <table class="table table-hover table-cell-border" id="NutStat_history" >
+                                                        {% if preschooler.suffix_name is None %}
+                                                            <h5 class="text-center">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }}'s Nutritional Status History</h5>
+                                                        {% else %}
+                                                            <h5 class="text-center">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }} {{ preschooler.suffix_name }}'s Nutritional Status History</h5>
+                                                        {% endif %}
+                                                        
                                                         <thead>
                                                             <tr style="text-align: center;">
                                                                 <th scope="col">No.</th>
@@ -312,8 +315,10 @@
                                                     </table>
                                                 </div>
                                             </div>
-                                            <div class="card-footer text-center ">
-                                                <h5 class="text-muted h4">Preschooler's nutritional status history</h5>
+                                            <div class="card-footer d-flex justify-content-end ">
+                                                <button type="button" class="btn" style="background-color: #EF3A25; color: white; min-width: 10%;" data-bs-dismiss="modal" aria-label="Close"> Close</button>
+
+                                                
                                             </div>
                                         </div>
                                     </div>

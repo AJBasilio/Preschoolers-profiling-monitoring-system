@@ -124,7 +124,9 @@ tbody tr:nth-of-type(even) {
   background-color: linear-gradient(to top, rgba(230, 250, 202, 0.884), rgb(255, 255, 255));
 }
 /* Header hide title when minimized */
-
+#toggle{
+  display: none;
+}
 @media screen and (max-width: 520px) {
 
   #profileCard{
@@ -134,7 +136,6 @@ tbody tr:nth-of-type(even) {
   #profileCard2{
     margin-left:5%; margin-right:5%; margin-top: 5px;
   }
-  
 
   #toggle{
     position: absolute !important;
@@ -205,6 +206,15 @@ tbody tr:nth-of-type(even) {
 @media screen and (max-width: 1000px) {
   #hideTitle {
     display: none;
+  }
+  #adminHideTitle {
+    display: none;
+  }
+} 
+
+@media screen and (max-width: 520px) {
+  #adminHideTitle {
+    display: inline;
   }
 } 
 
@@ -330,24 +340,25 @@ button.back-button {
 @media (max-width:390px) { 
 
   #parentCardsText{
-    font-size:small;
+    font-size:x-small;
   }
 
   *{
-    font-size:15px;
+    font-size:13px;
   }
 
 }
 
-@media (max-width:320px) { 
+@media (max-width:300px) { 
 
   #parentCardsText{
     font-size:x-small;
   }
 
   *{
-    font-size: 12px;
+    font-size: 11px;
   }
+
 
 }
 
@@ -392,7 +403,7 @@ button.back-button {
 #grid{
   background-color: rgb(240, 242, 245);
   position: relative;
-  padding: 3% 3% 20vh 3%;
+  padding: 5% 6% 8% 6% !important;
   width: 100%;
   margin-top: 85px;
   min-height: 800px;

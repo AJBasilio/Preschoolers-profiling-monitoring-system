@@ -64,8 +64,30 @@
     <div class="container-grid p-4">
         <div class="">
             <div class="row"> 
-                <div class="col">
-                    <h3 style="text-align:left;">Preschoolers Immunization</h3>
+                <!-- <div class="col-xl-8 col-md-6 col-12 mb-3 text-md-start text-center">
+                    <h3>Preschooler's Profile</h3>
+                </div>
+                <div class="col-xl-4  col-md-6 col-12">
+                    <div class="row d-flex justify-content-center align-items-stretch">
+                        <div class="mb-3 d-flex justify-content-md-end justify-content-center h-100">
+                            <button style="background-color: #188045; color: white; max-height: 70px !important; height: 100%;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#update"><span class="fa fa-user-edit"></span> Update preschooler</button>
+                            <button style="background-color: #188045; color: white; max-height: 70px !important; height: 100%; margin-left: 10px;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#history"><span class="fas fa-history"></span> Nutritional Status History</button>
+                            <a href="{% url 'immunization_schedule' preschooler.id %}"><button style="background-color: #188045; color: white; margin-left:10px; max-height: 70px !important;" type="button" class="btn"><span class="fa fa-address-card"></span> Immunization Status</button></a>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="col-xl-8 col-md-6 col-12 mb-3 text-md-start text-center">
+                    <h3>Preschoolers Immunization</h3>
+                </div>
+                <div class="col-xl-4  col-md-6 col-12">
+                    <div class="d-flex justify-content-md-end justify-content-center align-items-stretch">
+                    {% if loggedin == 'BHW' %}
+                        <button style="background-color: #188045; color: white;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#update"><span class="fas fa-calendar-edit"></span> Immunization Update</button>
+                    {% else %}
+                        <div class="">
+                        </div>
+                    {% endif %}
+                    </div>
                 </div>
             </div>
         <hr>    
@@ -93,15 +115,6 @@
                                     <p class="text-dark mb-0" style="font-size: 20px;">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }} {{ preschooler.suffix_name }}</p>
                                 </div>
                             {% endif %}
-                                
-                            <div class="" style="text-align: right !important; ">
-                                {% if loggedin == 'BHW' %}
-                                    <button style="background-color: #188045; color: white;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#update"><span class="fas fa-calendar-edit"></span> Immunization Update</button>
-                                {% else %}
-                                    <div class="">
-                                    </div>
-                                {% endif %}
-                                </div>
                             </div>
                             <div class="d-flex justify-content-start">
                                 <p style="font-size:20px; font-weight:bold;margin-right: 10px;">Next Vaccine Date:</p>
@@ -141,7 +154,7 @@
                                             <form method="POST">
                                                 {% csrf_token %}
                                             <!-- <form method="POST" onsubmit="get_cred($('#type').val());"> -->
-                                                <div class="md-form">
+                                                <div class="md-form mb-2">
                                                     <label id="user-lbl" data-error="wrong" data-success="right">Vaccine: </label>
                                                     <select required class="form-select" name="vax_name" aria-label="Default select example" onchange="changeNum(this)">
                                                         {% if 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and 'Measles Containing Vaccines' in vax_list and 'Tetanus Toxoid' in vax_list and 'Inactivated Polio Vaccine' in vax_list and 'Measles Mumps - Rubella' in vax_list and dose_list.7 == 2 %}
@@ -240,23 +253,23 @@
                                                     <label id="user-lbl" data-error="wrong" data-success="right">Dose(s):</label>
                                                     <input required class="form-control" type="number" min="1" max="1" name="dose" id="dose">
                                                 </div>
-                                                <div class="md-form">
+                                                <div class="md-form mb-2">
                                                     <label id="user-lbl" data-error="wrong" data-success="right">Required Doses:</label>
                                                     <label id="required_dose" for="">1</label>
                                                 </div>
-                                                <div class="md-form">
+                                                <div class="md-form mb-2">
                                                     <label id="user-lbl" data-error="wrong" data-success="right">Immunization Date:</label>
                                                     <input required class="form-control" type="date" name="immune_date" id="immune_date">
                                                 </div>
-                                                <div class="md-form">
+                                                <div class="md-form mb-2">
                                                     <label id="user-lbl" data-error="wrong" data-success="right">Next Vaccine Date:</label>
                                                     <input class="form-control" type="date" name="remarks" id="remarks">
                                                 </div>
                                             
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn" style="background-color: #EF3A25; color: white;" data-bs-dismiss="modal" aria-label="Close"> Cancel</button>
-                                            <button type="submit" class="btn " style="background-color: #188045; color: white;">Add</button>
+                                        <div class="modal-footer d-flex justify-content-end">
+                                            <button type="button" class="btn" style="background-color: #EF3A25; color: white; min-width: 10%;" data-bs-dismiss="modal" aria-label="Close"> Cancel</button>
+                                            <button type="submit" class="btn " style="background-color: #188045; color: white;  min-width: 10%;">Add</button>
                                         </div>
                                     </form>
                                     </div>
