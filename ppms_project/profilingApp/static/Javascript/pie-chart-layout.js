@@ -8,7 +8,7 @@ var ctx = document.getElementById("myPieChart");
 var myPieChart = new Chart(ctx, {
   type: 'pie',
   data: {
-    labels: ["Validated", "Invalidated", "Parent", "Preschooler"],
+    labels: ["Validated", "Unvalidated", "Parent", "Preschooler"],
     datasets: [{
       data: data_count,
       backgroundColor: ['#dc3545', '#ffc107', '#28a745'],
