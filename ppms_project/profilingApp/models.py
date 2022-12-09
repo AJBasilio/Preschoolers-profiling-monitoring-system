@@ -312,7 +312,7 @@ class PreschoolerHistory(Model):
         try:
             today = date.today()
 
-            date_diff = today - self.id_preschooler.birthday
+            date_diff = self.date_measured - self.id_preschooler.birthday
 
             in_days = date_diff.days
             age_months = int((in_days) / (365 / 12))
@@ -329,7 +329,7 @@ class PreschoolerHistory(Model):
         try:
             today = date.today()
 
-            date_diff = today - self.id_preschooler.birthday
+            date_diff = self.date_measured - self.id_preschooler.birthday
 
             in_days = date_diff.days
             age_months = int((in_days) / (365 / 12))
@@ -346,7 +346,7 @@ class PreschoolerHistory(Model):
         try:
             today = date.today()
 
-            date_diff = today - self.id_preschooler.birthday
+            date_diff = self.date_measured - self.id_preschooler.birthday
 
             in_days = date_diff.days
             age_months = int((in_days) / (365 / 12))
