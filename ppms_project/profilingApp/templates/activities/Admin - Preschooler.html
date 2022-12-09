@@ -233,13 +233,21 @@
     type: 'bar',
     options: {
         legend: {
+            
             display: false
+        },
+        scales:{
+            yAxes:[{
+                ticks: {
+                    beginAtZero: true,
+                }
+            }]
         }
     },
     data:{
-        labels: ["Severely Wasted", "Wasted", "Normal","Overweight","Obese"],
+        labels: ["Severely Wasted", "Moderately Wasted", "Normal","Overweight","Obese"],
         datasets: [{
-                label: 'Normal',
+                label: 'Preschoolers',
                 data: data_count,
                 backgroundColor: [
                 'rgb(238, 29, 35)',
