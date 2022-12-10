@@ -558,18 +558,11 @@ def immunization_schedule(request, pk):
     loggedin = request.user.user_type
     preschooler = Preschooler.objects.get(id=pk)
     vaccines = Vaccine.objects.filter(vax_preschooler=preschooler)
-    vax_list = vaccines.values_list('vax_name', flat=True)
+    vax_list = list(vaccines.values_list('vax_name', flat=True))
     dose_list = vaccines.values_list('vax_dose', flat=True)
 
-    vax_count = 0
-
-    for i in vaccines:
-        vax_count += i.vax_dose
-    
-    print(vax_count)
-    print(vax_list)
-    print(dose_list)
-    print(preschooler.age_weeks())
+    vax_bcg = vaccines.filter(vax_name='BCG').count()
+    # print(vax_list.count('Oral Poliovirus Vaccine'))
 
     if len(vaccines) == 0:
         next_vax_date = 'None'
@@ -585,27 +578,42 @@ def immunization_schedule(request, pk):
         dose = request.POST.get('dose')
         vaxdate = request.POST.get('immune_date')
         vaxremark = request.POST.get('remarks')
+
+        if vaxname in vax_list:
+            if vaxname == 'Oral Poliovirus Vaccine' or vaxname == 'Pentavalent Vaccine' or vaxname == 'Measles Containing Vaccines':
+
+                if vax_list.count(vaxname) == 3:
+                    messages.warning(request, f'{vaxname} already exists.')
+                    return redirect('immunization_schedule', pk=preschooler.id)
+            
+            elif vaxname == 'Inactivated Polio Vaccine' or vaxname == 'Measles Mumps - Rubella':
+
+                if vax_list.count(vaxname) == 2:
+                    messages.warning(request, f'{vaxname} already exists.')
+                    return redirect('immunization_schedule', pk=preschooler.id)
+            
+            else:
+                
+                messages.warning(request, f'{vaxname} already exists.')
+                return redirect('immunization_schedule', pk=preschooler.id)
+            
+            
         
-        if vaxname == '---':
-            messages.warning(request, 'Invalid Vaccine.')
-            return redirect('immunization_schedule', pk=preschooler.id)
-            
-        else:
-            vax_create = Vaccine.objects.update_or_create(vax_preschooler=preschooler_obj,
-                                                vax_name=vaxname,
-                                                defaults={'vax_dose' : dose,
-                                                        'vax_date' : vaxdate,
-                                                        'vax_remarks' : vaxremark})
-            
-            return redirect('immunization_schedule', pk=preschooler.id)
+        vax_create = Vaccine.objects.create(vax_preschooler=preschooler_obj,
+                                            vax_name=vaxname,
+                                            vax_dose=1,
+                                            vax_date=vaxdate,
+                                            vax_remarks=vaxremark
+                                            )
+        
+        return redirect('immunization_schedule', pk=preschooler.id)
         
     context = {'vaccines' : vaccines,
                'vax_list' : vax_list,
                'dose_list' : dose_list,
                'preschooler':preschooler,
                'loggedin': loggedin,
-               'next_vax' : next_vax_date,
-               'vax_count' : vax_count}
+               'next_vax' : next_vax_date,}
 
 
     return render(request, 'activities/BHW Immunization Status.html', context)
