@@ -567,6 +567,10 @@ def immunization_schedule(request, pk):
         vax_count += i.vax_dose
     
     print(vax_count)
+    print(vax_list)
+    print(dose_list)
+    print(preschooler.age_weeks())
+
     if len(vaccines) == 0:
         next_vax_date = 'None'
     elif len(vaccines) == 8:
