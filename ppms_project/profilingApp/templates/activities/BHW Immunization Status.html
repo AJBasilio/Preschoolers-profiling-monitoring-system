@@ -61,9 +61,9 @@
 
 <!-- Dashboard -->
 <div id="grid" class="container-fluid" style="padding:3%; margin: top 65px;">
-    <div class="container-grid p-4">
+    <div class="container-grid py-4">
         <div class="">
-            <div class="row"> 
+            <div class="row align-items-center"> 
                 <!-- <div class="col-xl-8 col-md-6 col-12 mb-3 text-md-start text-center">
                     <h3>Preschooler's Profile</h3>
                 </div>
@@ -76,19 +76,24 @@
                         </div>
                     </div>
                 </div> -->
-                <div class="col-xl-8 col-md-6 col-12 mb-3 text-md-start text-center">
+                <div class="col-xl-6 col-md-6 col-12 mb-3 text-md-start text-center text-uppercase">
                     {% if preschooler.suffix_name is None %}
                         <h3>{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }}'s Immunization</h3>
                     {% else %}
                         <h3>{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }} {{ preschooler.suffix_name }}'s Immunization</h3>
                     {% endif %}
                 </div>
-                <div class="col-xl-4  col-md-6 col-12">
+                <div class="col-xl-6  col-md-6 col-12">
                     <div class="d-flex justify-content-md-end justify-content-center align-items-stretch">
                     {% if loggedin == 'BHW' %}
-                        <button style="background-color: #188045; color: white;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#update"><span class="fas fa-calendar-edit"></span> Immunization Update</button>
+                        <button style="background-color: #188045; color: white;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#guide" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
+                        title="View Immunization Guide "><span class="fas fa-table"></span> Immunization Guide</button>
+                        <button style="background-color: #188045; color: white; margin-left:2%;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#update" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
+                        title="Update Schedule and Status "><span class="far fa-calendar"></span> Immunization Update</button>
                     {% else %}
                         <div class="">
+                            <button style="background-color: #188045; color: white;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#guide" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
+                            title="View Immunization Guide "><span class="fas fa-table"></span> Immunization Guide</button>
                         </div>
                     {% endif %}
                     </div>
@@ -107,10 +112,6 @@
                 <div class="card shadow-lg p-3 bg-white rounded" >
                     <div class="table-responsive">
                         <table class="table table-hover table-cell-border" id="table_validation">
-                            <div class="d-flex justify-content-start">
-                                <h5 style="font-size:20px; font-weight:bold;margin-right: 10px;">Next Vaccine Date:</h5>
-                                <h5 class="text-dark mb-0" style="font-size: 20px;">{{ next_vax }}</h5>
-                            </div>
                             <div class="" >
                                 <h5 style="font-size:20px; font-weight:bold; margin-right:10px; margin: 0;">Remaining Vaccine:</h5>
                                 {% if 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and 'Measles Containing Vaccines' in vax_list and 'Tetanus Toxoid' in vax_list and 'Inactivated Polio Vaccine' in vax_list and 'Measles Mumps - Rubella' in vax_list and dose_list.7 == 2 %}
@@ -134,6 +135,8 @@
                                 {% endif %}
                                 
                             </div>
+
+<!--    Modal for Immunization Update           -->
                             <div class="modal fade" id="update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-lg">
                                     <div class="modal-content">
@@ -150,29 +153,31 @@
                                                     <select required class="form-select" name="vax_name" aria-label="Default select example" onchange="changeNum(this)">
                                                         <option value="BCG">BCG</option>
                                                         <option value="Hepatitis B">Hepatitis B</option>
-                                                        <option value="Oral Poliovirus Vaccine">Oral Poliovirus Vaccine</option>
                                                         <option value="Pentavalent Vaccine">Pentavalent Vaccine</option>
+                                                        <option value="Oral Poliovirus Vaccine">Oral Poliovirus Vaccine</option>
+                                                        <option value="Inactivated Polio Vaccine">Inactivated Polio Vaccine</option>
                                                         <option value="Measles Containing Vaccines">Measles Containing Vaccines</option>
                                                         <option value="Tetanus Toxoid">Tetanus Toxoid</option>
-                                                        <option value="Inactivated Polio Vaccine">Inactivated Polio Vaccine</option>
                                                         <option value="Measles Mumps - Rubella">Measles Mumps - Rubella</option>
                                                     </select>
                                                 </div>
-                                                <div class="md-form">
-                                                    <label id="user-lbl" data-error="wrong" data-success="right">Dose:</label>
-                                                    <label id="dose" for="">1</label>
+                                                <div class="row d-flex justify-content-center align-items-center">
+                                                    <div class="col-md-6 md-form text-muted mb-2 text-md-center text-start">
+                                                        <label id="user-lbl" data-error="wrong" data-success="right">Dose:</label>
+                                                        <label id="dose" for="">1</label>
+                                                    </div>
+                                                    <div class="col-md-6 md-form mb-2 text-muted text-start">
+                                                        <label id="user-lbl" data-error="wrong" data-success="right">Required Doses:</label>    
+                                                        <label id="required_dose" for="">1</label>
+                                                    </div>
                                                 </div>
                                                 <div class="md-form mb-2">
-                                                    <label id="user-lbl" data-error="wrong" data-success="right">Required Doses:</label>
-                                                    <label id="required_dose" for="">1</label>
-                                                </div>
-                                                <div class="md-form mb-2">
-                                                    <label id="user-lbl" data-error="wrong" data-success="right">Immunization Date:</label>
-                                                    <input required class="form-control" type="date" name="immune_date" id="immune_date">
+                                                    <label id="user-lbl" data-error="wrong" data-success="right"  onchange="setNextDate()">Immunization Date:</label>
+                                                    <input required class="form-control" type="date" name="immune_date" id="immune_date" required>
                                                 </div>
                                                 <div class="md-form mb-2">
                                                     <label id="user-lbl" data-error="wrong" data-success="right">Next Vaccine Date:</label>
-                                                    <input class="form-control" type="date" name="remarks" id="remarks">
+                                                    <input class="form-control" type="date" name="remarks" id="remarks" required>
                                                 </div>
                                             
                                         </div>
@@ -225,6 +230,33 @@
             </div>
         </div>
     </div>
+<!--        Modal for Immunization Guide             -->
+        <div class="modal fade" id="guide" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header text-center d-flex justify-content-start">
+                        <img class="navbar-icon" style="margin-right:10px;" src="{% static '/Media/nncLogo.png' %}"><h5 class="modal-title" id="exampleModalLabel"> Immunization Guide</h5>
+                    </div>
+                    <div class="modal-body p-4">
+                        <div>
+                            <img class="img-fluid" alt="Responsive image" src="{% static '/Media/vaxGuide.png' %}">
+                        </div>
+                        <div class="my-4 d-flex justify-content-center">
+                            <span>Reference: <a target="_blank" href="https://www.nnc.gov.ph/regional-offices/mindanao/region-xi-davao-region/5711-an-overview-of-philippine-s-routine-immunization-for-infants">
+                                NNC - An Overview of Philippine's Routine Immunization for Infants </a></span>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" style="background-color: #EF3A25; color: white;" data-bs-dismiss="modal" aria-label="Close"> Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+<!--        Card/Table for Immunization Status       -->
     <div class="row">
         <div class="col p-2 mt-2">
             <div class="card-header">
@@ -517,7 +549,11 @@
     });
 
     function changeNum (vax_name) {
-        if (vax_name.value === "Oral Poliovirus Vaccine") {
+        if(vax_name.value === "BCG" || vax_name.value === "Hepatitis B" || vax_name.value === "Inactivated Polio Vaccine" ){
+            document.getElementById('dose').setAttribute('max', 1);
+            document.getElementById("required_dose").innerHTML = 1;
+        }
+        else if (vax_name.value === "Oral Poliovirus Vaccine") {
             document.getElementById('dose').setAttribute('max', 3);
             document.getElementById("dose").value = "{{ dose_list.2 }}";
             document.getElementById("required_dose").innerHTML = 3;
@@ -532,11 +568,23 @@
             document.getElementById("dose").value = "{{ dose_list.4 }}";
             document.getElementById("required_dose").innerHTML = 3;
             
-        } else if (vax_name.value === "Inactivated Polio Vaccine" || vax_name.value === "Measles Mumps - Rubella") {
+        } else if (vax_name.value === "Measles Mumps - Rubella") {
             document.getElementById('dose').setAttribute('max', 2);
             document.getElementById("dose").value = 1;
             document.getElementById("required_dose").innerHTML = 2;
         }
+    };
+    
+    // set recommended value for next vaccine date
+    function setNextDate (immune_date,vax_name){
+        // var plusOneMonth = immune_date.getDate() + +28;
+        // var plusThreeMonths = immune_date.getDate() + timedelta(month=3);
+        // if (vax_name.value === "Oral Poliovirus Vaccine" || vax_name.value === "Pentavalent Vaccine" || vax_name.value === "Measles Containing Vaccines"){
+        //     $("#remarks").datepicker("setDate", plusOneMonth);
+        // }
+
+
+
     };
 </script>
 {% if messages %}

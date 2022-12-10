@@ -8,11 +8,22 @@
   left: 0;
   z-index: 1030;
   max-height: 85px;
+  min-height: 85px;
   background-color: white;
   border-bottom: 3px;
   filter: drop-shadow(0px 0.8px 2px rgba(0, 0, 0, 0.75));
 }
 
+#secondNav{
+  position: sticky;
+  top: 85px;
+  padding: 0.9% 6% 0.9% 6%;
+  margin-bottom: 1%;
+  width: 100%;
+  z-index: 1030;
+  background-color: #ffffffcd;
+  filter: drop-shadow(0px 0.8px 2px rgba(0, 0, 0, 0.75));
+}
 .navbar-icon {
     width: 40px;
     max-width: 40px;
@@ -316,6 +327,11 @@ button.back-button {
   width: 100vw;
 }
 
+.modal{
+  height: auto;
+  width: 100vw;
+}
+
 /* Parent Home Cards Styling */
 
 .hoverable {
@@ -338,6 +354,9 @@ button.back-button {
   #parentCardsText{
     font-size:large;
   }
+  #grid{
+    margin-top: 13% !important;
+  }
 }
 
 @media (max-width:440px) { 
@@ -352,7 +371,9 @@ button.back-button {
   #parentCardsText{
     font-size:x-small;
   }
-
+  #grid{
+    margin-top: 18% !important;
+  }
   *{
     font-size:13px;
   }
@@ -363,6 +384,10 @@ button.back-button {
 
   #parentCardsText{
     font-size:x-small;
+  }
+
+  #grid{
+    margin-top: 25% !important;
   }
 
   *{
@@ -410,7 +435,7 @@ button.back-button {
 }
 
 #grid{
-  background-color: rgb(240, 242, 245);
+  background-color: #f0f2f5;
   position: relative;
   padding: 5% 6% 8% 6% !important;
   width: 100%;
