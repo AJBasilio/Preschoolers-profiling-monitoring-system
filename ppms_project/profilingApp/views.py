@@ -601,7 +601,7 @@ def immunization_schedule(request, pk):
             
         if vaxname == 'Others':
             vax_create = Vaccine.objects.create(vax_preschooler=preschooler_obj,
-                                            vax_name=others,
+                                            vax_name=other,
                                             vax_dose=1,
                                             vax_date=vaxdate,
                                             vax_remarks=vaxremark
