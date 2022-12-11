@@ -163,23 +163,6 @@
                                         <div class="text-center">
                                         <a href="{% url 'set_pass' bhw.user.id %}"><button type="button" style="background-color: #188045; color: #ffffff;" class="btn" title="Reset password"><i class="fa fa-lg fa-fw fa-key"></i></button></a>
                                         </div>
-                                        <!-- <script>
-                                            function toggleResetModal(message) {
-                                                $('#resetmsg').text(message);
-                                                $('#form').attr('action', "{% url 'set_pass' bhw.user.id %}");
-                                                var myModal = new bootstrap.Modal(document.getElementById('resetpass'), {
-                                                    keyboard: false
-                                                });
-                                                myModal.toggle();
-                                            }
-                                            function cancelreset() {
-                                                $('#bhwName').text('');
-                                                $('#form').attr('action', 'resetpass');
-                                                var myModalEl = document.getElementById('resetpass');
-                                                var modal = bootstrap.Modal.getInstance(myModalEl);
-                                                modal.hide();
-                                            }
-                                        </script> -->
                                     </td>
                                 </tr>
                                 {% endfor %}
@@ -242,61 +225,6 @@
             </div>
         </div>
     </div>
-    
-    <!-- <div class="modal fade" id="validate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header" >
-                    <h5 class="modal-title fas fa-question-circle d-flex  justify-content-center" id="exampleModalLabel">  Confirmation</h5>
-                </div>
-                <div class="modal-body mx-4">
-                    <form action="validation" id="form" method="POST">
-                        {% csrf_token %}
-                        <div class="md-form">
-                            <h5 class="modal-body" style="text-align:center;" id="message"></h5><br>
-                        </div>
-                        <div class="modal-footer" style="justify-content:center">
-                            <div class="d-flex justify-content-center">
-                                <input class="btn btn-primary px-3" type="submit" name="Confirm" value="Validate" style="margin-right: 2%; background-color: rgb(44, 95, 34);">
-                                <button type="button" onclick="cancelValidationModal()" style="background-color: #EF3A25; color: white;" class="btn">Cancel</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- <div class="modal fade" id="resetpass" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <form action="resetpass" id="form" method="POST"></form>
-                <div class="modal-content">
-                    <div class="modal-header d-flex align-items-center justify-content-center" >
-                        <h5 class=" p-0" id="resetmsg"></h5>
-                    </div>
-                    <div class="modal-body mx-4">
-                        {% csrf_token %}
-                        <div class="md-form">
-                            
-                            <div class="md-form">
-                                <label id="user-lbl" data-error="wrong" data-success="right">New Password: </label>
-                                {{ form.new_password1 }}
-                            </div>
-                            <div class="md-form">
-                                <label id="user-lbl" data-error="wrong" data-success="right">Confirm New Password: </label>
-                                {{ form.new_password2 }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer" style="justify-content:end">
-                        <div class="d-flex justify-content-center">
-                            <button type="submit" onclick="cancelreset()" style="background-color: #EF3A25; color: white;" class="btn">Cancel</button>
-                            <input class="btn btn-primary px-3" type="submit" name="Confirm" value="Save Password" style="margin-left: 2%; background-color: rgb(44, 95, 34);">
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div> -->
         <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
             

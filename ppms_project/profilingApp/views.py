@@ -215,7 +215,6 @@ def set_pass(request, pk):
             else:
                 messages.error(request, 'New Password did not match. Please fill up the form correctly!')
 
-        print(user)
         context = {'form' : form, 'user' :user}
 
         return render(request, 'activities/Admin - Set Password.html', context)
@@ -480,24 +479,26 @@ def preschooler_dashboard(request):
 def preschooler_profile(request, pk):
     if request.user.is_authenticated and request.user.user_type == 'BHW':
         preschooler = Preschooler.objects.get(id=pk)
+       
         form = UpdatePreschooler(instance=preschooler)
         preschooler_history = PreschoolerHistory.objects.filter(id_preschooler=preschooler)
 
         if request.method == 'POST':
             form = UpdatePreschooler(request.POST, instance=preschooler)
+            birthday = preschooler.birthday
+            dateMeasured = preschooler.date_measured
             if form.is_valid():
-                
-                p_history = PreschoolerHistory.objects.create(id_preschooler=preschooler,
-                                                              height=form.cleaned_data['height'],
-                                                              weight=form.cleaned_data['weight'],
-                                                              date_measured=form.cleaned_data['date_measured'])
-                
-                print(PreschoolerHistory.objects.filter(id_preschooler=preschooler).order_by('-id')[0].wfa())
-                print(PreschoolerHistory.objects.filter(id_preschooler=preschooler).order_by('-id')[0].hfa())
-                print(PreschoolerHistory.objects.filter(id_preschooler=preschooler).order_by('-id')[0].whfa())
-                form.save()
-
-                return redirect('preschooler_profile', preschooler.id)
+                if dateMeasured >= birthday:
+                    p_history = PreschoolerHistory.objects.create(id_preschooler=preschooler,
+                                                                height=form.cleaned_data['height'],
+                                                                weight=form.cleaned_data['weight'],
+                                                                date_measured=form.cleaned_data['date_measured'])
+                    form.save()
+                    return redirect('preschooler_profile', preschooler.id)
+                else:
+                    messages.error(request, 'Date Measured must be later than the Date of Birth')
+                    return redirect('preschooler_profile', preschooler.id)
+                    
 
         context = {'preschooler' : preschooler,
                    'form' : form,
@@ -525,7 +526,6 @@ def change_pass(request, pk):
             else:
                 messages.error(request, 'New Password did not match. Please fill up the form correctly!')
 
-        print(user)
         context = {'form' : form, 'user' :user, 'parent' : parent}
 
         return render(request, 'activities/Change Password.html', context)
@@ -541,7 +541,6 @@ def change_pass(request, pk):
             else:
                 messages.error(request, 'New Password did not match. Please fill up the form correctly!')
 
-        print(user)
         context = {'form' : form, 'user' :user, 'bhw' : bhw}
 
         return render(request, 'activities/Change Password.html', context)
@@ -627,9 +626,10 @@ def immunization_schedule(request, pk):
                'next_vax' : next_vax_date,
                'vax_24hrs' : vax_24hrs,
                'vax_6weeks' : vax_6weeks,
-               'vax_10weeks' : vax_10weeks,
-               'vax_14weeks' : vax_14weeks,
-               'vax_9months' : vax_9months}
+               'vax_10weeks' : vax_10weeks-3,
+               'vax_14weeks' : vax_14weeks-6,
+               'vax_9months' : vax_9months
+               }
 
 
     return render(request, 'activities/BHW Immunization Status.html', context)

@@ -97,14 +97,14 @@
             </div>
             <div class="card shadow-lg p-3 bg-white rounded" >
                 <div class="py-3">
-                    <div class="row d-flex justify-content-start align-items-center mb-2">
+                    <div class="row d-flex justify-content-start align-items-center mb-2 text-uppercase">
                         {% if preschooler.suffix_name is None %}
                         <h5>Name: {{ preschooler.first_name }}  {{ preschooler.middle_name }} {{ preschooler.last_name }}</h5>
                         {% else %}
                         <h5>Name: {{ preschooler.first_name }}  {{ preschooler.middle_name }} {{ preschooler.last_name }} {{ preschooler.suffix_name }}</h5>
                         {% endif %} 
                     </div>
-                    <div class="row d-flex justify-content-start align-items-center">
+                    <div class="row d-flex justify-content-start align-items-center text-uppercase">
                         {% if preschooler.age_hours < 48 %}
                         <h5>Age: {{ preschooler.age_days }} Day Old </h5>
                         {% elif preschooler.age_days > 1 and preschooler.age_weeks < 1 %}
@@ -135,7 +135,7 @@
                         <tbody>
                                 <tr>
                                         <td class="text-center fw-bold">24 hours</td>
-                                        <td class="text-center fw-bold">2 (BCG, HEPATITIS B)</td>
+                                        <td class="text-center fw-bold">2</td>
                                         {% if vax_24hrs == 2 %}
                                             <td class="text-center">2</td>
                                             <td class="text-center">Complete</td>
@@ -163,7 +163,7 @@
                                             <td class="text-center">3</td>
                                             <td class="text-center">Complete</td>
                                         {% else %}
-                                            <td class="text-center">{{ vax_10weeks }}</td>
+                                            <td class="text-center">0</td>
                                             <td class="text-center">Incomplete</td>
                                         {% endif %}
                                         
@@ -175,7 +175,7 @@
                                             <td class="text-center">4</td>
                                             <td class="text-center">Complete</td>
                                         {% else %}
-                                            <td class="text-center">{{ vax_14weeks }}</td>
+                                            <td class="text-center">0</td>
                                             <td class="text-center">Incomplete</td>
                                         {% endif %}
                                 </tr>
@@ -365,7 +365,7 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     document.getElementById("immune_date").max = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];
-
+    
     $(function(){
         var dtToday = new Date();
         
@@ -435,17 +435,6 @@
         }
     };
     
-    // set recommended value for next vaccine date
-    function setNextDate (immune_date,vax_name){
-        // var plusOneMonth = immune_date.getDate() + +28;
-        // var plusThreeMonths = immune_date.getDate() + timedelta(month=3);
-        // if (vax_name.value === "Oral Poliovirus Vaccine" || vax_name.value === "Pentavalent Vaccine" || vax_name.value === "Measles Containing Vaccines"){
-        //     $("#remarks").datepicker("setDate", plusOneMonth);
-        // }
-
-
-
-    };
 </script>
 {% if messages %}
     {% for message in messages %}
