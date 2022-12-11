@@ -114,7 +114,7 @@
                                 <th scope="col">Last Name</th>
                                 <th scope="col">Suffix</th>
                                 <th scope="col">Birthdate</th>
-                                <th scope="col">Age in months</th>
+                                <th scope="col">Age Last Measured (Month)</th>
                                 <th scope="col">WHFA STATUS</th>
                                 <th scope="col">Vaccine status</th>
                                 <th scope="col" class="nosort text-center">Action</th>
@@ -135,12 +135,16 @@
                                     <td>{{ preschooler.suffix_name }}</td>
                                 {% endif %}
                                 <td>{{ preschooler.birthday }}</td>
-                                <td>{{ preschooler.age_months }}</td>
+                                {% if preschooler.age_measured == 'Undefined' %}
+                                    <td>No Measuring Record</td>
+                                {% else %}
+                                    <td>{{ preschooler.age_measured }} Months</td>
+                                {% endif %}
                                 {% if preschooler.whfa is None %}
                                     {% if preschooler.height < 45.0 %}
-                                        <td class="bg-info" > Special Case <p class="text-muted text-small m-0"> (Too Small for WHFA Tagging) </p></td>
+                                        <td class="bg-info" > Special Case <p class="text text-small m-0"> (Too Small for WHFA Tagging) </p></td>
                                     {% elif preschooler.height > 110.0 %}
-                                        <td class="bg-info" > Special Case <p class="text-muted text-small m-0"> (Too Tall for WHFA Tagging) </p></td>
+                                        <td class="bg-info" > Special Case <p class="text text-small m-0"> (Too Tall for WHFA Tagging) </p></td>
                                     {% else %}
                                         <td style="background-color: rgb(211, 211, 211);"> No Data Record </td>
                                     {% endif %}
@@ -197,7 +201,7 @@
                                     <th scope="col">Last Name</th>
                                     <th scope="col">Suffix</th>
                                     <th scope="col">Birthdate</th>
-                                    <th scope="col">Age in months</th>
+                                    <th scope="col">Age Last Measured (Month)</th>
                                     <th scope="col">BMI STATUS</th>
                                 </tr>   
                             </thead>
@@ -210,7 +214,7 @@
                                     <td>{{ preschooler.last_name }}</td>
                                     <td>{{ preschooler.suffix_name }}</td>
                                     <td>{{ preschooler.birthday }}</td>
-                                    <td>{{ preschooler.age_months }}</td>
+                                    <td>{{ preschooler.age_measured }} Months</td>
                                     {% if preschooler.whfa is None %}
                                     
                                         <td> No Data Record </td>

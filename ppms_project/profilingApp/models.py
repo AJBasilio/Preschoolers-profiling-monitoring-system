@@ -125,6 +125,17 @@ class Preschooler(Model):
     # greater than or equal to 60 months old preschooler
     gte_60_objects = PreschoolerManagerGreater()
 
+
+    def age_measured(self):
+        today = date.today()
+        try:
+            date_diff = self.date_measured - self.birthday
+            in_days = date_diff.days
+            return int((in_days) / (365 / 12)) 
+        except: 
+             return 'Undefined'
+        
+
     def __str__(self):
         return f"{self.first_name} {self.middle_name} {self.last_name}"
 
@@ -191,7 +202,6 @@ class Preschooler(Model):
         try:
 
             date_diff = self.date_measured - self.birthday
-
             in_days = date_diff.days
             age_months = int((in_days) / (365 / 12))
 
@@ -349,7 +359,7 @@ class PreschoolerHistory(Model):
                        log_level='INFO')
         try:
             today = date.today()
-
+            
             date_diff = self.date_measured - self.id_preschooler.birthday
 
             in_days = date_diff.days
