@@ -561,8 +561,11 @@ def immunization_schedule(request, pk):
     vax_list = list(vaccines.values_list('vax_name', flat=True))
     dose_list = vaccines.values_list('vax_dose', flat=True)
 
-    vax_bcg = vaccines.filter(vax_name='BCG').count()
-    # print(vax_list.count('Oral Poliovirus Vaccine'))
+    vax_24hrs = vaccines.filter(vax_name__in=['BCG', 'Hepatitis B']).count()
+    vax_6weeks = vaccines.filter(vax_name__in=['Oral Poliovirus Vaccine', 'Pentavalent Vaccine', 'Measles Containing Vaccines']).count()
+    vax_10weeks = vaccines.filter(vax_name__in=['Oral Poliovirus Vaccine', 'Pentavalent Vaccine', 'Measles Containing Vaccines']).count()
+    vax_14weeks = vaccines.filter(vax_name__in=['Oral Poliovirus Vaccine', 'Pentavalent Vaccine', 'Inactivated Polio Vaccine','Measles Containing Vaccines']).count()
+    vax_9months = vaccines.filter(vax_name__in=['Measles Mumps - Rubella']).count()
 
     if len(vaccines) == 0:
         next_vax_date = 'None'
@@ -601,7 +604,7 @@ def immunization_schedule(request, pk):
             
         if vaxname == 'Others':
             vax_create = Vaccine.objects.create(vax_preschooler=preschooler_obj,
-                                            vax_name=others,
+                                            vax_name=other,
                                             vax_dose=1,
                                             vax_date=vaxdate,
                                             vax_remarks=vaxremark
@@ -621,7 +624,12 @@ def immunization_schedule(request, pk):
                'dose_list' : dose_list,
                'preschooler':preschooler,
                'loggedin': loggedin,
-               'next_vax' : next_vax_date,}
+               'next_vax' : next_vax_date,
+               'vax_24hrs' : vax_24hrs,
+               'vax_6weeks' : vax_6weeks,
+               'vax_10weeks' : vax_10weeks,
+               'vax_14weeks' : vax_14weeks,
+               'vax_9months' : vax_9months}
 
 
     return render(request, 'activities/BHW Immunization Status.html', context)

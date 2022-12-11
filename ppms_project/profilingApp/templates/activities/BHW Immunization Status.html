@@ -133,258 +133,74 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% if preschooler.age_months <= 15 and preschooler.age_months > 9 %}
-                                <tr>
-                                        <td class="text-center">24 hours</td>
-                                        <td class="text-center">2</td>
-                                        <td class="text-center">2</td>
-                                        <td class="text-center">Complete</td>
-                                </tr>
-                                <tr>
-                                        <td class="text-center">6 weeks</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">Complete</td>
-                                </tr>
-                                <tr>
-                                        <td class="text-center">10 weeks</td>
-                                        <td class="text-center">10</td>
-                                        <td class="text-center">10</td>
-                                        <td class="text-center">Complete</td>
-                                </tr>
-                                <tr>
-                                        <td class="text-center">14 weeks</td>
-                                        <td class="text-center">14</td>
-                                        <td class="text-center">14</td>
-                                        <td class="text-center">Complete</td>
-                                </tr>
-                                <tr>
-                                        <td class="text-center">9 months</td>
-                                        <td class="text-center">15</td>
-                                        <td class="text-center">15</td>
-                                        <td class="text-center">Complete</td>
-                                </tr>
-                                <tr>
-                                        <td class="text-center fw-bold">12-15 months</td>
-                                        <td class="text-center fw-bold">16</td>
-                                        <td class="text-center">{{ vax_count }}</td>
-                                        {% if vax_count == 16 %}
-                                            <td class="text-center">Complete</td>
-                                        {% else %}
-                                            <td class="text-center">Incomplete</td>
-                                        {% endif %}
-                                </tr>
-                            {% elif preschooler.age_months <= 9 and preschooler.age_weeks > 14 %}
-                                <tr>
-                                        <td class="text-center">24 hours</td>
-                                        <td class="text-center">2</td>
-                                        <td class="text-center">2</td>
-                                        <td class="text-center">Complete</td>
-                                </tr>
-                                <tr>
-                                        <td class="text-center">6 weeks</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">Complete</td>
-                                </tr>
-                                <tr>
-                                        <td class="text-center">10 weeks</td>
-                                        <td class="text-center">10</td>
-                                        <td class="text-center">10</td>
-                                        <td class="text-center">Complete</td>
-                                </tr>
-                                <tr>
-                                        <td class="text-center">14 weeks</td>
-                                        <td class="text-center">14</td>
-                                        <td class="text-center">14</td>
-                                        <td class="text-center">Complete</td>
-                                </tr>
-                                <tr>
-                                        <td class="text-center fw-bold">9 months</td>
-                                        <td class="text-center fw-bold">15</td>
-                                        <td class="text-center">{{ vax_count }}</td>
-                                        {% if vax_count == 15 %}
-                                            <td class="text-center">Complete</td>
-                                        {% else %}
-                                            <td class="text-center">Incomplete</td>
-                                        {% endif %}
-                                </tr>
-                                <tr>
-                                        <td class="text-center">12-15 months</td>
-                                        <td class="text-center">16</td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
-                                </tr>
-                            {% elif preschooler.age_weeks <= 14 and preschooler.age_weeks > 10 %}
-                                <tr>
-                                        <td class="text-center">24 hours</td>
-                                        <td class="text-center">2</td>
-                                        <td class="text-center">2</td>
-                                        <td class="text-center">Complete</td>
-                                </tr>
-                                <tr>
-                                        <td class="text-center">6 weeks</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">Complete</td>
-                                </tr>
-                                <tr>
-                                        <td class="text-center">10 weeks</td>
-                                        <td class="text-center">10</td>
-                                        <td class="text-center">10</td>
-                                        <td class="text-center">Complete</td>
-                                </tr>
-                                <tr>
-                                        <td class="text-center fw-bold">14 weeks</td>
-                                        <td class="text-center fw-bold">14</td>
-                                        <td class="text-center">{{ vax_count }}</td>
-                                        {% if vax_count == 14 %}
-                                            <td class="text-center">Complete</td>
-                                        {% else %}
-                                            <td class="text-center">Incomplete</td>
-                                        {% endif %}
-                                </tr>
-                                <tr>
-                                        <td class="text-center">9 months</td>
-                                        <td class="text-center">15</td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
-                                </tr>
-                                <tr>
-                                        <td class="text-center">12-15 months</td>
-                                        <td class="text-center">16</td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
-                                </tr>
-                            {% elif preschooler.age_weeks <= 10 and preschooler.age_weeks > 6 %}
-                                <tr>
-                                        <td class="text-center">24 hours</td>
-                                        <td class="text-center">2</td>
-                                        <td class="text-center">2</td>
-                                        <td class="text-center">Complete</td>
-                                </tr>
-                                <tr>
-                                        <td class="text-center">6 weeks</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">Complete</td>
-                                </tr>
-                                <tr>
-                                        <td class="text-center fw-bold">10 weeks</td>
-                                        <td class="text-center fw-bold">10</td>
-                                        <td class="text-center">{{ vax_count }}</td>
-                                        {% if vax_count == 10 %}
-                                            <td class="text-center">Complete</td>
-                                        {% else %}
-                                            <td class="text-center">Incomplete</td>
-                                        {% endif %}
-                                </tr>
-                                <tr>
-                                        <td class="text-center">14 weeks</td>
-                                        <td class="text-center">14</td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
-                                </tr>
-                                <tr>
-                                        <td class="text-center">9 months</td>
-                                        <td class="text-center">15</td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
-                                </tr>
-                                <tr>
-                                        <td class="text-center">12-15 months</td>
-                                        <td class="text-center">16</td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
-                                </tr>
-                            {% elif preschooler.age_weeks <= 6 and preschooler.age_hours > 24 %}
-                                <tr>
-                                        <td class="text-center">24 hours</td>
-                                        <td class="text-center">2</td>
-                                        <td class="text-center">2</td>
-                                        <td class="text-center">Complete</td>
-                                </tr>
-                                <tr>
-                                        <td class="text-center fw-bold">6 weeks</td>
-                                        <td class="text-center fw-bold">6</td>
-                                        <td class="text-center">{{ vax_count}}</td>
-                                        {% if vax_count == 6 %}
-                                            <td class="text-center">Complete</td>
-                                        {% else %}
-                                            <td class="text-center">Incomplete</td>
-                                        {% endif %}
-                                </tr>
-                                <tr>
-                                        <td class="text-center">10 weeks</td>
-                                        <td class="text-center">10</td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
-                                </tr>
-                                <tr>
-                                        <td class="text-center">14 weeks</td>
-                                        <td class="text-center">14</td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
-                                </tr>
-                                <tr>
-                                        <td class="text-center">9 months</td>
-                                        <td class="text-center">15</td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
-                                </tr>
-                                <tr>
-                                        <td class="text-center">12-15 months</td>
-                                        <td class="text-center">16</td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
-                                </tr>
-                            {% elif preschooler.age_hours <= 24 %}
                                 <tr>
                                         <td class="text-center fw-bold">24 hours</td>
                                         <td class="text-center fw-bold">2 (BCG, HEPATITIS B)</td>
-                                        {% if vax_count %}
-                                            <td class="text-center">{{ vax_count }}</td>
-                                            {% if vax_count == 2 %}
-                                                <td class="text-center">Complete</td>
-                                            {% else %}
-                                                <td class="text-center">Incomplete</td>
-                                            {% endif %}
+                                        {% if vax_24hrs == 2 %}
+                                            <td class="text-center">2</td>
+                                            <td class="text-center">Complete</td>
                                         {% else %}
-                                            <td class="text-center">0</td>
-                                            <td class="text-center">No Record</td>
+                                            <td class="text-center">{{ vax_24hrs }}</td>
+                                            <td class="text-center">Incomplete</td>
                                         {% endif %}
                                 </tr>
                                 <tr>
                                         <td class="text-center">6 weeks</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
+                                        <td class="text-center">3</td>
+                                        {% if vax_6weeks >= 3 %}
+                                            <td class="text-center">3</td>
+                                            <td class="text-center">Complete</td>
+                                        {% else %}
+                                            <td class="text-center">{{ vax_6weeks }}</td>
+                                            <td class="text-center">Incomplete</td>
+                                        {% endif %}
+                                        
                                 </tr>
                                 <tr>
                                         <td class="text-center">10 weeks</td>
-                                        <td class="text-center">10</td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
+                                        <td class="text-center">3</td>
+                                        {% if vax_10weeks >= 3 %}
+                                            <td class="text-center">3</td>
+                                            <td class="text-center">Complete</td>
+                                        {% else %}
+                                            <td class="text-center">{{ vax_10weeks }}</td>
+                                            <td class="text-center">Incomplete</td>
+                                        {% endif %}
+                                        
                                 </tr>
                                 <tr>
                                         <td class="text-center">14 weeks</td>
-                                        <td class="text-center">14</td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
+                                        <td class="text-center">4</td>
+                                        {% if vax_14weeks >= 4 %}
+                                            <td class="text-center">4</td>
+                                            <td class="text-center">Complete</td>
+                                        {% else %}
+                                            <td class="text-center">{{ vax_14weeks }}</td>
+                                            <td class="text-center">Incomplete</td>
+                                        {% endif %}
                                 </tr>
                                 <tr>
                                         <td class="text-center">9 months</td>
-                                        <td class="text-center">15</td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
+                                        <td class="text-center">1</td>
+                                        {% if vax_9months >= 1 %}
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">Complete</td>
+                                        {% else %}
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">Incomplete</td>
+                                        {% endif %}
                                 </tr>
                                 <tr>
                                         <td class="text-center">12-15 months</td>
-                                        <td class="text-center">16</td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
+                                        <td class="text-center">1</td>
+                                        {% if vax_9months == 2 %}
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">Complete</td>
+                                        {% else %}
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">Incomplete</td>
+                                        {% endif %}
                                 </tr>
-                            {% endif %}
                         </tbody>
                     </table>
                 </div>
