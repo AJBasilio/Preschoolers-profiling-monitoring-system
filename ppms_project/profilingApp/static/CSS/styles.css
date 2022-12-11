@@ -17,10 +17,10 @@
 #secondNav{
   position: sticky;
   top: 85px;
-  padding: 0.9% 6% 0.9% 6%;
+  padding: 1.2% 6% 1% 6%;
   margin-bottom: 1%;
   width: 100%;
-  z-index: 1030;
+  z-index: 2;
   background-color: #ffffffcd;
   filter: drop-shadow(0px 0.8px 2px rgba(0, 0, 0, 0.75));
 }
@@ -355,7 +355,7 @@ button.back-button {
     font-size:large;
   }
   #grid{
-    margin-top: 13% !important;
+    padding-top: 23% !important;
   }
 }
 
@@ -372,7 +372,7 @@ button.back-button {
     font-size:x-small;
   }
   #grid{
-    margin-top: 18% !important;
+    padding-top: 18% !important;
   }
   *{
     font-size:13px;
@@ -387,7 +387,7 @@ button.back-button {
   }
 
   #grid{
-    margin-top: 25% !important;
+    padding-top: 25% !important;
   }
 
   *{
@@ -437,7 +437,7 @@ button.back-button {
 #grid{
   background-color: #f0f2f5;
   position: relative;
-  padding: 5% 6% 8% 6% !important;
+  padding: 4% 6% 8% 6% !important;
   width: 100%;
   margin-top: 85px;
   min-height: 800px;

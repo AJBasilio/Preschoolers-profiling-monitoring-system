@@ -22,7 +22,7 @@
                     <ul class="nav text-small">
                         <li>
                             {% if loggedin == 'BHW' %}
-                                <a href="{% url 'preschooler_profile' preschooler.id %}"  style="border-radius: 13%;background-color: white;"class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7" 
+                                <a href="{% url 'preschooler_profile' preschooler.id %}"  style="border-radius: 13%;background-color: white;"class="nav-link" data-toggle="tooltip" data-bs-placement="left" data-bs-offset="0,7" 
                                 title="Go back to Preschooler Profile">
                                 <button class="back-button bg-white">
                                     <span class="circle" aria-hidden="true">
@@ -32,7 +32,7 @@
                                 </button>  
                                 </a>
                             {% else %}
-                                <a href="{% url 'parent_preschooler' preschooler.id %}"  style="border-radius: 13%;background-color: white;"class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7" 
+                                <a href="{% url 'parent_preschooler' preschooler.id %}"  style="border-radius: 13%;background-color: white;"class="nav-link" data-toggle="tooltip" data-bs-placement="left" data-bs-offset="0,7" 
                                 title="Go back to Preschooler Profile">
                                 <button class="back-button bg-white">
                                     <span class="circle" aria-hidden="true">
@@ -55,214 +55,73 @@
     $(function () {
        $('[data-toggle="tooltip"]').tooltip()})
        $('[data-toggle="tooltip"]').on('shown.bs.tooltip', function () {
-       $('.tooltip').addClass('animated fade');
+       $('[data-toggle="tooltip"]').addClass('animated fade');
+       $('[data-toggle="tooltip"]').tooltip({
+        trigger : 'hover'})  
    })
 </script>
 
 <!-- Dashboard -->
+<div class="" id="secondNav">
+    <div class="row align-items-center"> 
+        <div class="col-6 d-flex text-md-start text-center text-uppercase align-items-center ">
+            {% if preschooler.suffix_name is None %}
+                <h5 class="m-0 align-items-center">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }}'s Immunization</h5>
+            {% else %}
+                <h5 class="m-0 align-items-center">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }} {{ preschooler.suffix_name }}'s Immunization</h5>
+            {% endif %}
+        </div>
+        <div class="col-6 d-flex justify-content-md-end justify-content-center align-items-stretch">
+        {% if loggedin == 'BHW' %}
+            <button style="background-color: #188045; color: white;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#guide" ><span class="fas fa-table"></span> Guide</button>
+            <button style="background-color: #188045; color: white; margin-left:2%;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#update" ><span class="far fa-calendar"></span> Update</button>
+        {% else %}
+            <div class="">
+                <button style="background-color: #188045; color: white;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#guide"><span class="fas fa-table"></span> Guide</button>
+            </div>
+        {% endif %}
+        </div>
+    </div>
+</div>
 <div id="grid" class="container-fluid" style="padding:3%; margin: top 65px;">
     <div class="container-grid py-4">
-        <div class="">
-            <div class="row align-items-center"> 
-                <!-- <div class="col-xl-8 col-md-6 col-12 mb-3 text-md-start text-center">
-                    <h3>Preschooler's Profile</h3>
-                </div>
-                <div class="col-xl-4  col-md-6 col-12">
-                    <div class="row d-flex justify-content-center align-items-stretch">
-                        <div class="mb-3 d-flex justify-content-md-end justify-content-center h-100">
-                            <button style="background-color: #188045; color: white; max-height: 70px !important; height: 100%;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#update"><span class="fa fa-user-edit"></span> Update preschooler</button>
-                            <button style="background-color: #188045; color: white; max-height: 70px !important; height: 100%; margin-left: 10px;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#history"><span class="fas fa-history"></span> Nutritional Status History</button>
-                            <a href="{% url 'immunization_schedule' preschooler.id %}"><button style="background-color: #188045; color: white; margin-left:10px; max-height: 70px !important;" type="button" class="btn"><span class="fa fa-address-card"></span> Immunization Status</button></a>
-                        </div>
-                    </div>
-                </div> -->
-                <div class="col-xl-6 col-md-6 col-12 mb-3 text-md-start text-center text-uppercase">
-                    {% if preschooler.suffix_name is None %}
-                        <h3>{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }}'s Immunization</h3>
-                    {% else %}
-                        <h3>{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }} {{ preschooler.suffix_name }}'s Immunization</h3>
-                    {% endif %}
-                </div>
-                <div class="col-xl-6  col-md-6 col-12">
-                    <div class="d-flex justify-content-md-end justify-content-center align-items-stretch">
-                    {% if loggedin == 'BHW' %}
-                        <button style="background-color: #188045; color: white;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#guide" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
-                        title="View Immunization Guide "><span class="fas fa-table"></span> Immunization Guide</button>
-                        <button style="background-color: #188045; color: white; margin-left:2%;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#update" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
-                        title="Update Schedule and Status "><span class="far fa-calendar"></span> Immunization Update</button>
-                    {% else %}
-                        <div class="">
-                            <button style="background-color: #188045; color: white;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#guide" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
-                            title="View Immunization Guide "><span class="fas fa-table"></span> Immunization Guide</button>
-                        </div>
-                    {% endif %}
-                    </div>
-                </div>
-            </div>
-        <hr>    
-        </div>
     </div>
-    <!--------------------- DataTables --------------------->
-    <div class="text-dark">
-        <div class="row">
-            <div class="col p-2">
-                <div class="card-header">
-                    <h3> Immunization Schedule</h3>
-                </div>
-                <div class="card shadow-lg p-3 bg-white rounded" >
-                    <div class="table-responsive">
-                        <table class="table table-hover table-cell-border" id="table_validation">
-                            <div class="" >
-                                <h5 style="font-size:20px; font-weight:bold; margin-right:10px; margin: 0;">Remaining Vaccine:</h5>
-                                {% if 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and 'Measles Containing Vaccines' in vax_list and 'Tetanus Toxoid' in vax_list and 'Inactivated Polio Vaccine' in vax_list and 'Measles Mumps - Rubella' in vax_list and dose_list.7 == 2 %}
-                                    <h5 class="text-dark mb-0" style="font-size: 20px;"> No remaining vaccines.</h5>
-                                {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and 'Measles Containing Vaccines' in vax_list and 'Tetanus Toxoid' in vax_list and 'Inactivated Polio Vaccine' in vax_list and dose_list.6 == 2 %}
-                                    <h5 class="text-dark mb-0" style="font-size: 20px;">Measles Mumps - Rubella </h5>
-                                {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and 'Measles Containing Vaccines' in vax_list and 'Tetanus Toxoid' in vax_list %}
-                                    <h5 class="text-dark mb-0" style="font-size: 20px;">Inactivated Polio Vaccine and Measles Mumps - Rubella </p>
-                                {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and 'Measles Containing Vaccines' in vax_list and dose_list.4 == 3 %}
-                                    <h5 class="text-dark mb-0" style="font-size: 20px;">Tetanus Toxoid, Inactivated Polio Vaccine, and Measles Mumps - Rubella </p>
-                                {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and dose_list.3 == 3 %}
-                                    <h5 class="text-dark mb-0" style="font-size: 20px;">Measles Containing Vaccines, Tetanus Toxoid, Inactivated Polio Vaccine, and Measles Mumps - Rubella </h5>
-                                {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and dose_list.2 == 3 %}
-                                    <h5 class="text-dark mb-0" style="font-size: 20px;">Pentavalent Vaccine, Measles Containing Vaccines, Tetanus Toxoid, Inactivated Polio Vaccine, and Measles Mumps - Rubella </h5>
-                                {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list %}
-                                    <h5 class="text-dark mb-0" style="font-size: 20px;">Oral Poliovirus Vaccine, Pentavalent Vaccine, Measles Containing Vaccines, Tetanus Toxoid, Inactivated Polio Vaccine, and Measles Mumps - Rubella </h5>
-                                {% elif 'BCG' in vax_list %}
-                                    <h5 class="text-dark mb-0" style="font-size: 20px;">Hepatitis B, Oral Poliovirus Vaccine, Pentavalent Vaccine, Measles Containing Vaccines, Tetanus Toxoid, Inactivated Polio Vaccine, and Measles Mumps - Rubella </h5>
-                                {% else %}
-                                    <h5 class="text-dark mb-0" style="font-size: 20px;">BCG, Hepatitis B, Oral Poliovirus Vaccine, Pentavalent Vaccine, Measles Containing Vaccines, Tetanus Toxoid, Inactivated Polio Vaccine, and Measles Mumps - Rubella </p>
-                                {% endif %}
-                                
-                            </div>
-
-<!--    Modal for Immunization Update           -->
-                            <div class="modal fade" id="update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header text-center">
-                                            <h5 class="modal-title fas fa-calendar-edit" id="exampleModalLabel"> Immunization Update</h5>
-                                            
-                                        </div>
-                                        <div class="modal-body mx-4">
-                                            <form method="POST">
-                                                {% csrf_token %}
-                                            <!-- <form method="POST" onsubmit="get_cred($('#type').val());"> -->
-                                                <div class="md-form mb-2">
-                                                    <label id="user-lbl" data-error="wrong" data-success="right">Vaccine: </label>
-                                                    <select required class="form-select" name="vax_name" aria-label="Default select example" onchange="changeNum(this)">
-                                                        <option value="BCG">BCG</option>
-                                                        <option value="Hepatitis B">Hepatitis B</option>
-                                                        <option value="Pentavalent Vaccine">Pentavalent Vaccine</option>
-                                                        <option value="Oral Poliovirus Vaccine">Oral Poliovirus Vaccine</option>
-                                                        <option value="Inactivated Polio Vaccine">Inactivated Polio Vaccine</option>
-                                                        <option value="Measles Containing Vaccines">Measles Containing Vaccines</option>
-                                                        <option value="Tetanus Toxoid">Tetanus Toxoid</option>
-                                                        <option value="Measles Mumps - Rubella">Measles Mumps - Rubella</option>
-                                                    </select>
-                                                </div>
-                                                <div class="row d-flex justify-content-center align-items-center">
-                                                    <div class="col-md-6 md-form text-muted mb-2 text-md-center text-start">
-                                                        <label id="user-lbl" data-error="wrong" data-success="right">Dose:</label>
-                                                        <label id="dose" for="">1</label>
-                                                    </div>
-                                                    <div class="col-md-6 md-form mb-2 text-muted text-start">
-                                                        <label id="user-lbl" data-error="wrong" data-success="right">Required Doses:</label>    
-                                                        <label id="required_dose" for="">1</label>
-                                                    </div>
-                                                </div>
-                                                <div class="md-form mb-2">
-                                                    <label id="user-lbl" data-error="wrong" data-success="right"  onchange="setNextDate()">Immunization Date:</label>
-                                                    <input required class="form-control" type="date" name="immune_date" id="immune_date" required>
-                                                </div>
-                                                <div class="md-form mb-2">
-                                                    <label id="user-lbl" data-error="wrong" data-success="right">Next Vaccine Date:</label>
-                                                    <input class="form-control" type="date" name="remarks" id="remarks" required>
-                                                </div>
-                                            
-                                        </div>
-                                        <div class="modal-footer d-flex justify-content-end">
-                                            <button type="button" class="btn" style="background-color: #EF3A25; color: white; min-width: 10%;" data-bs-dismiss="modal" aria-label="Close"> Cancel</button>
-                                            <button type="submit" class="btn " style="background-color: #188045; color: white;  min-width: 10%;">Add</button>
-                                        </div>
-                                    </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                            <thead>
-                                <tr>
-                                    <th scope="col" class="text-center">Vaccine</th>
-                                    <th scope="col" class="text-center">Doses</th>
-                                    <th scope="col" class="text-center">Required Doses</th>
-                                    <th scope="col" class="text-center">Immunization Date</th>
-                                    <th scope="col" class="text-center">Next Vaccine Date</th>
-                                </tr>
-                            </thead>
-                            {% for vaccine in vaccines %}
-                            <tbody>
-                                <tr>
-                                    {% if vaccine.vax_name == 'Oral Poliovirus Vaccine' or vaccine.vax_name == 'Pentavalent Vaccine' or vaccine.vax_name == 'Measles Containing Vaccines' %}
-                                        <td class="text-center">{{ vaccine.vax_name }}</td>
-                                        <td class="text-center">{{ vaccine.vax_dose }}</td>
-                                        <td class="text-center">3</td>
-                                        <td class="text-center">{{ vaccine.vax_date }}</td>
-                                        <td class="text-center">{{ vaccine.vax_remarks }}</td>
-                                    {% elif vaccine.vax_name == 'Inactivated Polio Vaccine' or vaccine.vax_name == 'Measles Mumps - Rubella' %}
-                                        <td class="text-center">{{ vaccine.vax_name }}</td>
-                                        <td class="text-center">{{ vaccine.vax_dose }}</td>
-                                        <td class="text-center">2</td>
-                                        <td class="text-center">{{ vaccine.vax_date }}</td>
-                                        <td class="text-center">{{ vaccine.vax_remarks }}</td>
-                                    {% else %}
-                                        <td class="text-center">{{ vaccine.vax_name }}</td>
-                                        <td class="text-center">{{ vaccine.vax_dose }}</td>
-                                        <td class="text-center">1</td>
-                                        <td class="text-center">{{ vaccine.vax_date }}</td>
-                                        <td class="text-center">{{ vaccine.vax_remarks }}</td>
-                                    {% endif %}
-                                </tr>
-                            </tbody>
-                            {% endfor %}
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-<!--        Modal for Immunization Guide             -->
-        <div class="modal fade" id="guide" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header text-center d-flex justify-content-start">
-                        <img class="navbar-icon" style="margin-right:10px;" src="{% static '/Media/nncLogo.png' %}"><h5 class="modal-title" id="exampleModalLabel"> Immunization Guide</h5>
-                    </div>
-                    <div class="modal-body p-4">
-                        <div>
-                            <img class="img-fluid" alt="Responsive image" src="{% static '/Media/vaxGuide.png' %}">
-                        </div>
-                        <div class="my-4 d-flex justify-content-center">
-                            <span>Reference: <a target="_blank" href="https://www.nnc.gov.ph/regional-offices/mindanao/region-xi-davao-region/5711-an-overview-of-philippine-s-routine-immunization-for-infants">
-                                NNC - An Overview of Philippine's Routine Immunization for Infants </a></span>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn" style="background-color: #EF3A25; color: white;" data-bs-dismiss="modal" aria-label="Close"> Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
 
 
-
-
+<!--------------------- DataTables --------------------->
 <!--        Card/Table for Immunization Status       -->
     <div class="row">
         <div class="col p-2 mt-2">
             <div class="card-header">
-                <h3> Immunization Status </h3>
+                <h4> Required Immunization Status </h4>
             </div>
             <div class="card shadow-lg p-3 bg-white rounded" >
+                <div class="py-3">
+                    <div class="row d-flex justify-content-start align-items-center mb-2">
+                        {% if preschooler.suffix_name is None %}
+                        <h5>Name: {{ preschooler.first_name }}  {{ preschooler.middle_name }} {{ preschooler.last_name }}</h5>
+                        {% else %}
+                        <h5>Name: {{ preschooler.first_name }}  {{ preschooler.middle_name }} {{ preschooler.last_name }} {{ preschooler.suffix_name }}</h5>
+                        {% endif %} 
+                    </div>
+                    <div class="row d-flex justify-content-start align-items-center">
+                        {% if preschooler.age_hours < 48 %}
+                        <h5>Age: {{ preschooler.age_days }} Day Old </h5>
+                        {% elif preschooler.age_days > 1 and preschooler.age_weeks < 1 %}
+                        <h5>Age: {{ preschooler.age_days }} Days Old </h5>
+                        {% elif preschooler.age_days > 7 and preschooler.age_months < 1 %}
+                        <h5>Age: {{ preschooler.age_weeks }} Weeks Old ({{ preschooler.age_days }} days)</h5>
+                        {% elif preschooler.age_months >= 1 and preschooler.age_months < 2 %}
+                        <h5>Age: {{ preschooler.age_months }} Month Old ({{ preschooler.age_weeks }} weeks) </h5>
+                        {% elif preschooler.age_months >= 2 and preschooler.age_years < 1 %}
+                        <h5>Age: {{ preschooler.age_months }} Months Old ({{ preschooler.age_weeks }} weeks) </h5>
+                        {% elif preschooler.age_years >= 1 and preschooler.age_years < 2 %}
+                        <h5>Age: {{ preschooler.age_years }} Year Old ({{ preschooler.age_months }} months) </h5>
+                        {% elif preschooler.age_years >= 2 and preschooler.age_years <= 5 %}
+                        <h5>Age: {{ preschooler.age_years }} Years Old ({{ preschooler.age_months }} months) </h5>
+                        {% endif %}
+                    </div>
+                </div>
                 <div class="table-responsive">
                     <table class="table table-hover table-cell-border" id="table_validation">
                         <thead>
@@ -482,12 +341,17 @@
                             {% elif preschooler.age_hours <= 24 %}
                                 <tr>
                                         <td class="text-center fw-bold">24 hours</td>
-                                        <td class="text-center fw-bold">2</td>
-                                        <td class="text-center">{{ vax_count }}</td>
-                                        {% if vax_count == 2 %}
-                                            <td class="text-center">Complete</td>
+                                        <td class="text-center fw-bold">2 (BCG, HEPATITIS B)</td>
+                                        {% if vax_count %}
+                                            <td class="text-center">{{ vax_count }}</td>
+                                            {% if vax_count == 2 %}
+                                                <td class="text-center">Complete</td>
+                                            {% else %}
+                                                <td class="text-center">Incomplete</td>
+                                            {% endif %}
                                         {% else %}
-                                            <td class="text-center">Incomplete</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">No Record</td>
                                         {% endif %}
                                 </tr>
                                 <tr>
@@ -527,10 +391,165 @@
             </div>
         </div>
     </div>
+<!-- Card for Immunization Schedule Record -->
+    <div class="text-dark">
+        <div class="row">
+            <div class="col p-2">
+                <div class="card-header">
+                    <h4> Immunization Schedule Record</h4>
+                </div>
+                <div class="card shadow-lg p-3 bg-white rounded" >
+                    <div class="table-responsive">
+                        <table class="table table-hover table-cell-border" id="table_validation">
+                            <div class="" >
+                                <h5 style="font-size:20px; font-weight:bold; margin-right:10px; margin: 0;">Remaining Vaccine:</h5>
+                                {% if 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and 'Measles Containing Vaccines' in vax_list and 'Tetanus Toxoid' in vax_list and 'Inactivated Polio Vaccine' in vax_list and 'Measles Mumps - Rubella' in vax_list and dose_list.7 == 2 %}
+                                    <h5 class="text-dark mb-0" style="font-size: 20px;"> No remaining vaccines.</h5>
+                                {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and 'Measles Containing Vaccines' in vax_list and 'Tetanus Toxoid' in vax_list and 'Inactivated Polio Vaccine' in vax_list and dose_list.6 == 2 %}
+                                    <h5 class="text-dark mb-0" style="font-size: 20px;">Measles Mumps - Rubella </h5>
+                                {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and 'Measles Containing Vaccines' in vax_list and 'Tetanus Toxoid' in vax_list %}
+                                    <h5 class="text-dark mb-0" style="font-size: 20px;">Inactivated Polio Vaccine and Measles Mumps - Rubella </p>
+                                {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and 'Measles Containing Vaccines' in vax_list and dose_list.4 == 3 %}
+                                    <h5 class="text-dark mb-0" style="font-size: 20px;">Tetanus Toxoid, Inactivated Polio Vaccine, and Measles Mumps - Rubella </p>
+                                {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and dose_list.3 == 3 %}
+                                    <h5 class="text-dark mb-0" style="font-size: 20px;">Measles Containing Vaccines, Tetanus Toxoid, Inactivated Polio Vaccine, and Measles Mumps - Rubella </h5>
+                                {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and dose_list.2 == 3 %}
+                                    <h5 class="text-dark mb-0" style="font-size: 20px;">Pentavalent Vaccine, Measles Containing Vaccines, Tetanus Toxoid, Inactivated Polio Vaccine, and Measles Mumps - Rubella </h5>
+                                {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list %}
+                                    <h5 class="text-dark mb-0" style="font-size: 20px;">Oral Poliovirus Vaccine, Pentavalent Vaccine, Measles Containing Vaccines, Tetanus Toxoid, Inactivated Polio Vaccine, and Measles Mumps - Rubella </h5>
+                                {% elif 'BCG' in vax_list %}
+                                    <h5 class="text-dark mb-0" style="font-size: 20px;">Hepatitis B, Oral Poliovirus Vaccine, Pentavalent Vaccine, Measles Containing Vaccines, Tetanus Toxoid, Inactivated Polio Vaccine, and Measles Mumps - Rubella </h5>
+                                {% else %}
+                                    <h5 class="text-dark mb-0" style="font-size: 20px;">BCG, Hepatitis B, Oral Poliovirus Vaccine, Pentavalent Vaccine, Measles Containing Vaccines, Tetanus Toxoid, Inactivated Polio Vaccine, and Measles Mumps - Rubella </p>
+                                {% endif %}
+                                
+                            </div>
+                            <br>
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="text-center">Vaccine</th>
+                                    <th scope="col" class="text-center">Doses</th>
+                                    <th scope="col" class="text-center">Required Doses</th>
+                                    <th scope="col" class="text-center">Immunization Date</th>
+                                    <th scope="col" class="text-center">Next Vaccine Date</th>
+                                </tr>
+                            </thead>
+                            {% for vaccine in vaccines %}
+                            <tbody>
+                                <tr>
+                                    {% if vaccine.vax_name == 'Oral Poliovirus Vaccine' or vaccine.vax_name == 'Pentavalent Vaccine' or vaccine.vax_name == 'Measles Containing Vaccines' %}
+                                        <td class="text-center">{{ vaccine.vax_name }}</td>
+                                        <td class="text-center">{{ vaccine.vax_dose }}</td>
+                                        <td class="text-center">3</td>
+                                        <td class="text-center">{{ vaccine.vax_date }}</td>
+                                        <td class="text-center">{{ vaccine.vax_remarks }}</td>
+                                    {% elif vaccine.vax_name == 'Inactivated Polio Vaccine' or vaccine.vax_name == 'Measles Mumps - Rubella' %}
+                                        <td class="text-center">{{ vaccine.vax_name }}</td>
+                                        <td class="text-center">{{ vaccine.vax_dose }}</td>
+                                        <td class="text-center">2</td>
+                                        <td class="text-center">{{ vaccine.vax_date }}</td>
+                                        <td class="text-center">{{ vaccine.vax_remarks }}</td>
+                                    {% else %}
+                                        <td class="text-center">{{ vaccine.vax_name }}</td>
+                                        <td class="text-center">{{ vaccine.vax_dose }}</td>
+                                        <td class="text-center">1</td>
+                                        <td class="text-center">{{ vaccine.vax_date }}</td>
+                                        <td class="text-center">{{ vaccine.vax_remarks }}</td>
+                                    {% endif %}
+                                </tr>
+                            </tbody>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--        Modal for Immunization Guide             -->
+        <div class="modal fade" id="guide" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header text-center d-flex justify-content-start">
+                        <img class="navbar-icon" style="margin-right:10px;" src="{% static '/Media/nncLogo.png' %}"><h5 class="modal-title" id="exampleModalLabel"> Immunization Guide</h5>
+                    </div>
+                    <div class="modal-body p-4">
+                        <div>
+                            <img class="img-fluid" alt="Responsive image" src="{% static '/Media/vaxGuide.png' %}">
+                        </div>
+                        <div class="my-4 d-flex justify-content-center">
+                            <span>Reference: <a target="_blank" href="https://www.nnc.gov.ph/regional-offices/mindanao/region-xi-davao-region/5711-an-overview-of-philippine-s-routine-immunization-for-infants">
+                                NNC - An Overview of Philippine's Routine Immunization for Infants </a></span>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" style="background-color: #EF3A25; color: white;" data-bs-dismiss="modal" aria-label="Close"> Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--    Modal for Immunization Update           -->
+        <div class="modal fade" id="update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h5 class="modal-title fas fa-calendar-edit" id="exampleModalLabel"> Immunization Update</h5>
+                        
+                    </div>
+                    <div class="modal-body mx-4">
+                        <form method="POST">
+                            {% csrf_token %}
+                        <!-- <form method="POST" onsubmit="get_cred($('#type').val());"> -->
+                            <div class="md-form mb-2">
+                                <label id="user-lbl" data-error="wrong" data-success="right">Vaccine: </label>
+                                <select required class="form-select" name="vax_name" aria-label="Default select example" onchange="changeNum(this)">
+                                    <option value="BCG">BCG</option>
+                                    <option value="Hepatitis B">Hepatitis B</option>
+                                    <option value="Pentavalent Vaccine">Pentavalent Vaccine</option>
+                                    <option value="Oral Poliovirus Vaccine">Oral Poliovirus Vaccine</option>
+                                    <option value="Inactivated Polio Vaccine">Inactivated Polio Vaccine</option>
+                                    <option value="Measles Containing Vaccines">Measles Containing Vaccines</option>
+                                    <option value="Measles Mumps - Rubella">Measles Mumps - Rubella</option>
+                                    <option value="Others">Others</option>
+                                </select>
+                            </div>
+                            <div class="md-form mb-2" id="other_input" style="display: none;">
+                                <label id="user-lbl" data-error="wrong" data-success="right">Other Vaccines: </label>
+                                <input class="form-control" type="text" name="Others" id="Others">
+                            </div>
+                            <div class="row d-flex justify-content-center align-items-center">
+                                <div class="col-md-6 md-form text-muted mb-2 text-md-center text-start" id="show_doses" style>
+                                    <label id="user-lbl" data-error="wrong" data-success="right">Dose:</label>
+                                    <label id="dose" for="">1</label>
+                                </div>
+                                <div class="col-md-6 md-form mb-2 text-muted text-start" id="show_dose" style>
+                                    <label id="user-lbl" data-error="wrong" data-success="right">Required Doses:</label>    
+                                    <label id="required_dose" for="">1</label>
+                                </div>
+                            </div>
+                            <div class="md-form mb-2">
+                                <label id="user-lbl" data-error="wrong" data-success="right"  onchange="setNextDate()">Immunization Date:</label>
+                                <input required class="form-control" type="date" name="immune_date" id="immune_date" required>
+                            </div>
+                            <div class="md-form mb-2">
+                                <label id="user-lbl" data-error="wrong" data-success="right">Next Vaccine Date:</label>
+                                <input class="form-control" type="date" name="remarks" id="remarks" required>
+                            </div>
+                        
+                    </div>
+                    <div class="modal-footer d-flex justify-content-end">
+                        <button type="button" class="btn" style="background-color: #EF3A25; color: white; min-width: 10%;" data-bs-dismiss="modal" aria-label="Close"> Cancel</button>
+                        <button type="submit" class="btn " style="background-color: #188045; color: white;  min-width: 10%;">Add</button>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
 </div>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
+    document.getElementById("immune_date").max = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];
+
     $(function(){
         var dtToday = new Date();
         
@@ -544,7 +563,6 @@
         
         var maxDate = year + '-' + month + '-' + day;
 
-        $('#immune_date').attr('min', maxDate);
         $('#remarks').attr('min', maxDate);
     });
 
@@ -552,26 +570,52 @@
         if(vax_name.value === "BCG" || vax_name.value === "Hepatitis B" || vax_name.value === "Inactivated Polio Vaccine" ){
             document.getElementById('dose').setAttribute('max', 1);
             document.getElementById("required_dose").innerHTML = 1;
+            document.getElementById("other_input").setAttribute("style", "display: none;");
+            document.getElementById("show_doses").removeAttribute("style");
+            document.getElementById("show_dose").removeAttribute("style");
+            document.getElementById("immune_date").focus();
         }
         else if (vax_name.value === "Oral Poliovirus Vaccine") {
             document.getElementById('dose').setAttribute('max', 3);
             document.getElementById("dose").value = "{{ dose_list.2 }}";
             document.getElementById("required_dose").innerHTML = 3;
+            document.getElementById("other_input").setAttribute("style", "display: none;");
+            document.getElementById("show_doses").removeAttribute("style");
+            document.getElementById("show_dose").removeAttribute("style");
+            document.getElementById("immune_date").focus();
 
         } else if (vax_name.value === "Pentavalent Vaccine") {
             document.getElementById('dose').setAttribute('max', 3);
             document.getElementById("dose").value = "{{ dose_list.3 }}";
             document.getElementById("required_dose").innerHTML = 3;
+            document.getElementById("other_input").setAttribute("style", "display: none;");
+            document.getElementById("show_doses").removeAttribute("style");
+            document.getElementById("show_dose").removeAttribute("style");
+            document.getElementById("immune_date").focus();
 
         } else if (vax_name.value === "Measles Containing Vaccines") {
             document.getElementById('dose').setAttribute('max', 3);
             document.getElementById("dose").value = "{{ dose_list.4 }}";
             document.getElementById("required_dose").innerHTML = 3;
+            document.getElementById("other_input").setAttribute("style", "display: none;");
+            document.getElementById("show_doses").removeAttribute("style");
+            document.getElementById("show_dose").removeAttribute("style");
+            document.getElementById("immune_date").focus();
             
         } else if (vax_name.value === "Measles Mumps - Rubella") {
             document.getElementById('dose').setAttribute('max', 2);
             document.getElementById("dose").value = 1;
             document.getElementById("required_dose").innerHTML = 2;
+            document.getElementById("other_input").setAttribute("style", "display: none;");
+            document.getElementById("show_doses").removeAttribute("style");
+            document.getElementById("show_dose").removeAttribute("style");
+            document.getElementById("immune_date").focus();
+        }
+        else if (vax_name.value === "Others") {
+            document.getElementById("other_input").removeAttribute("style")
+            document.getElementById("show_doses").setAttribute("style",  "display: none;");
+            document.getElementById("show_dose").setAttribute("style",  "display: none;");
+            document.getElementById("Others").focus();
         }
     };
     
@@ -593,12 +637,10 @@
             <script>
                 Swal.fire({
                 icon: 'warning',
-                title: 'Invalid',
+                title: 'Invalid Vaccine',
                 text: '{{message}}',
                 confirmButtonText: "Ok",
                 confirmButtonColor: '#EF3A25',
-            }).then(function() {
-                window.location = "{% url 'immunization_schedule' preschooler.id %}";
             });
             </script>
         {% endif %}

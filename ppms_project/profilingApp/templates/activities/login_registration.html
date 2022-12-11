@@ -76,10 +76,10 @@
                         <hr>
                         <div>
                             <div class="row" style="padding:5px;">
-                                <div class="col-6 justify-content-sm-start text-sm-start text-center p-0">
+                                <div class="col-6 justify-content-sm-center justify-content-start text-sm-start text-center p-0">
                                     <p style="font-size:medium;">Not registered?</p>
                                 </div>
-                                <div class="col-6 justify-content-sm-end text-sm-end text-center">
+                                <div class="col-6 justify-content-sm-center justify-content-end text-sm-end text-center">
                                     <a class="m-0" id="createAccountButton"onclick="openpaneltwo(event)">Create Account</a>
                                 </div>
                             </div>
@@ -95,13 +95,13 @@
                 <div class="form-content">
                     <form method="POST" action="">
                         {% csrf_token %}
-                        <div class="input-group mb-3">
+                        <div class="input-group mb-3" required>
                             <label for="">User Type</label>
                             {{ form.user_type }}
                             <br>
                         </div>
 
-                        <div class="input-group mb-3">
+                        <div class="input-group mb-3" required>
                             <label for="">Barangay</label>
                             {{ form.barangay }}
                             <!-- <select class="fstdropdown-select" id="brgy">  
@@ -136,7 +136,7 @@
                             <br>
                         </div>
                         <!-- Name -->
-                        <div class="form-group">
+                        <div class="form-group" required>
                             <div class="row">
                                 <div class="col-sm-6 mb-1" style="margin-top: 1%;">
                                     <label for="">First Name</label>
@@ -240,7 +240,7 @@
                         <div class="col-lg-4">
                             <h2 class="footer-heading mb-4">Contact Us</h2>
                             <ul class="list-unstyled">
-                            <li><span><img class="navbar-icon" style="margin-right:10px;" src="{% static '/Media/contactLogo.png' %}" alt="Phone-logo"> +63-9760494415</span></li>
+                            <li><span><img class="navbar-icon" style="margin-right:10px;" src="{% static '/Media/contactLogo.png' %}" alt="Phone-logo"> +63-xxxxxxxxx</span></li>
                             <li><a href="https://www.facebook.com/Cho3dasmarinas" target="_blank"><img class="navbar-icon" style="margin-right:10px;" src="{% static '/Media/facebookLogo.png' %}" alt="City Health Office-logo"> City Health Office </a></li>
                             </ul>
                         </div>

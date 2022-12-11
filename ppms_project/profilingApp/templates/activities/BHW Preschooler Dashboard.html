@@ -22,13 +22,13 @@
                     <ul class="nav text-small">
                         <li>
                             <a href="{% url 'bhw_home' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7" 
-                            title="Barangay Health Worker Home">
+                            title="Home">
                             <i class="fa fa-fw fa-home" style="font-size: 24px;"></i>   
                             </a>
                         </li>
                         <li>
                             <a href="{% url 'preschooler_dashboard' %}" class="nav-link" style="color:rgb(27, 177, 92) !important;" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
-                            title="Preschooler Profile">
+                            title="Preschooler List">
                             <i class="fa fa-fw fa-id-card " style="font-size: 24px;"></i>
                             </a>
                         </li>
@@ -84,16 +84,21 @@
     
 
 <!-- Dashboard -->
-<div id="grid" class="container-fluid" style="margin-top:85px;">
-    <div class="container-grid">
+<div class="" id="secondNav">
+    <div class="row align-items-center"> 
+        <div class="col-6 d-flex text-md-start text-center text-uppercase align-items-center ">
+            <h5 class="m-0 align-items-center">List of Preschoolers</h5>
+        </div>
+        <div class="col-6 d-flex justify-content-md-end justify-content-center align-items-stretch">
+            <button class="btn"type="button" style="background-color: #188045; color: white;" data-bs-toggle="modal" data-bs-target="#modalArc"><h6 style="padding:5px;margin-bottom: 0px !important;"><i class="fa fa-archive"></i> Archive</h6></button>
+        </div>
     </div>
+</div>
+<div id="grid" class="container-fluid" style="margin-top:85px;">
 <!-- DataTables -->
 <div class="container text-black">
     <div class="row">
         <div class="col">
-            <div class="d-flex align-items-center justify-content-sm-end justify-content-center">
-                <button class="btn mb-2"type="button" style="background-color: #188045; color: white;" data-bs-toggle="modal" data-bs-target="#modalArc"><h6 style="padding:5px;margin-bottom: 0px !important;"><i class="fa fa-archive"></i> Archive</h6></button>
-            </div>
             <div class="card-header">
                 <h3>Preschooler's Nutritional Status</h3>
             </div>
@@ -110,7 +115,7 @@
                                 <th scope="col">Suffix</th>
                                 <th scope="col">Birthdate</th>
                                 <th scope="col">Age in months</th>
-                                <th scope="col">BMI STATUS</th>
+                                <th scope="col">WHFA STATUS</th>
                                 <th scope="col">Vaccine status</th>
                                 <th scope="col" class="nosort text-center">Action</th>
                             </tr>   
@@ -132,9 +137,14 @@
                                 <td>{{ preschooler.birthday }}</td>
                                 <td>{{ preschooler.age_months }}</td>
                                 {% if preschooler.whfa is None %}
-                                    
-                                    <td style="background-color: rgb(211, 211, 211);"> No Data Record </td>
-                                    
+                                    {% if preschooler.height < 45.0 %}
+                                        <td class="bg-info" > Special Case <p class="text-muted text-small m-0"> (Too Small for WHFA Tagging) </p></td>
+                                    {% elif preschooler.height > 110.0 %}
+                                        <td class="bg-info" > Special Case <p class="text-muted text-small m-0"> (Too Tall for WHFA Tagging) </p></td>
+                                    {% else %}
+                                        <td style="background-color: rgb(211, 211, 211);"> No Data Record </td>
+                                    {% endif %}
+
                                 {% elif preschooler.whfa > 3.0%}
                                     <td style="background-color: rgb(242, 98, 33);"> Obese ({{ preschooler.whfa }})</td>
                                 {% elif preschooler.whfa > 2.0 and preschooler.whfa <= 3.0 %}

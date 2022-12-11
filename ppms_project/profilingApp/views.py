@@ -575,6 +575,7 @@ def immunization_schedule(request, pk):
     if request.method == 'POST':
         preschooler_obj = preschooler
         vaxname = request.POST.get('vax_name')
+        other = request.POST.get('Others')
         dose = request.POST.get('dose')
         vaxdate = request.POST.get('immune_date')
         vaxremark = request.POST.get('remarks')
@@ -598,13 +599,20 @@ def immunization_schedule(request, pk):
                 return redirect('immunization_schedule', pk=preschooler.id)
             
             
-        
-        vax_create = Vaccine.objects.create(vax_preschooler=preschooler_obj,
-                                            vax_name=vaxname,
+        if vaxname == 'Others':
+            vax_create = Vaccine.objects.create(vax_preschooler=preschooler_obj,
+                                            vax_name=others,
                                             vax_dose=1,
                                             vax_date=vaxdate,
                                             vax_remarks=vaxremark
                                             )
+        else:
+            vax_create = Vaccine.objects.create(vax_preschooler=preschooler_obj,
+                                                vax_name=vaxname,
+                                                vax_dose=1,
+                                                vax_date=vaxdate,
+                                                vax_remarks=vaxremark
+                                                )
         
         return redirect('immunization_schedule', pk=preschooler.id)
         
@@ -617,3 +625,5 @@ def immunization_schedule(request, pk):
 
 
     return render(request, 'activities/BHW Immunization Status.html', context)
+
+    

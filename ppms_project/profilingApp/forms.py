@@ -16,9 +16,8 @@ class CustomUserCreationForm(UserCreationForm):
     """
     A Custom form for creating new users.
     """
-    USER_TYPE = [('Choose User Type', 'Choose User Type'),
-                 ('BHW', 'Barangay Health Worker'),
-                 ('P/G', 'Parent/Guardian')]
+    USER_TYPE = [('P/G', 'Parent/Guardian'),
+                ('BHW', 'Barangay Health Worker')]
                  
     BARANGAYS = [('Select Barangay', 'Select Barangay'),
                  ('Burol', 'Burol'),
@@ -29,15 +28,15 @@ class CustomUserCreationForm(UserCreationForm):
                  ('Emmanuel Begado I', 'Emmanuel Begado I'),
                  ('Emmanuel Begado II', 'Emmanuel Begado II'),]
     
-    user_type = forms.CharField(label="User Type:", widget=forms.Select(choices=USER_TYPE, attrs={'class' : 'custom-select', 'id' : 'userTypeSelect'}))
+    user_type = forms.CharField(required=True, label="User Type:", widget=forms.Select(choices=USER_TYPE, attrs={'class' : 'custom-select', 'id' : 'userTypeSelect'}))
     first_name = forms.CharField(required=True, widget=forms.TextInput(attrs={'type': 'text', 'placeholder': 'First Name', 'id' : 'firstname'}))
     middle_name = forms.CharField(required=True, widget=forms.TextInput(attrs={'type': 'text', 'placeholder': 'Middle Name', 'id' : 'middlename'}))
     last_name = forms.CharField(required=True, widget=forms.TextInput(attrs={'type': 'text', 'placeholder': 'Last Name', 'id' : 'lastname'}))
     suffix_name = forms.CharField(required=False, widget=forms.TextInput(attrs={'type': 'text', 'placeholder': 'Suffix', 'id' : 'suffixname'}))
     email = forms.EmailField(required=True, widget=forms.TextInput(attrs={'name' : 'email', 'type' : 'email', 'id' : 'email', 'placeholder': 'Enter your email address'}))
-    password1 = forms.CharField(widget=PasswordInput(attrs={'type' : 'password', 'id' : 'password', 'aria-describeby' : 'passwordHelpBlock', 'placeholder':'Enter your Password', 'data-toggle': 'password'}))
-    password2 = forms.CharField(widget=PasswordInput(attrs={'type' : 'password', 'id' : 'cpassword', 'placeholder':'Confirm Your Password','data-toggle': 'password'}))
-    barangay = forms.ModelChoiceField(queryset=Barangay.objects.all(), widget=forms.Select(attrs={'class' : 'fstdropdown-select', 'id' : 'brgy'}))
+    password1 = forms.CharField(required=True,widget=PasswordInput(attrs={'type' : 'password', 'id' : 'password', 'aria-describeby' : 'passwordHelpBlock', 'placeholder':'Enter your Password', 'data-toggle': 'password'}))
+    password2 = forms.CharField(required=True,widget=PasswordInput(attrs={'type' : 'password', 'id' : 'cpassword', 'placeholder':'Confirm Your Password','data-toggle': 'password'}))
+    barangay = forms.ModelChoiceField(required=True, queryset=Barangay.objects.all(), widget=forms.Select(attrs={'class' : 'fstdropdown-select', 'id' : 'brgy'}))
     phone_num = forms.IntegerField(required=True, widget=forms.TextInput(attrs={'type': 'number', 'placeholder': 'Phone Number', 'id' : 'phonenum'}))
     class Meta:
         model = get_user_model()
@@ -92,10 +91,12 @@ class Validate_BHW(ModelForm):
         return user
 
 class UpdatePreschooler(ModelForm):
-    height = forms.FloatField(required=True, max_value=120.0, min_value=45.0, widget=forms.NumberInput(attrs={'class' : 'form-control', 'step': '0.01'}))
-    weight = forms.FloatField(required=True, max_value=28.0, min_value=1.0, widget=forms.NumberInput(attrs={'class' : 'form-control', 'step': '0.01'}))
+    # height = forms.FloatField(required=True, max_value=120.0, min_value=45.0, widget=forms.NumberInput(attrs={'class' : 'form-control', 'step': '0.01','placeholder': '45cm - 120cm'}))
+    # weight = forms.FloatField(required=True, max_value=28.0, min_value=1.0, widget=forms.NumberInput(attrs={'class' : 'form-control', 'step': '0.01', 'placeholder': '1kg - 28kg'}))
+    height = forms.FloatField(required=True, widget=forms.NumberInput(attrs={'class' : 'form-control', 'step': '0.01','placeholder': '45cm - 120cm'}))
+    weight = forms.FloatField(required=True, widget=forms.NumberInput(attrs={'class' : 'form-control', 'step': '0.01', 'placeholder': '1kg - 28kg'}))
     date_measured = forms.DateField(required=True, widget=forms.DateInput(attrs={'class': 'form-control', 'type': 'date', 'id' : "data_count"}))
-    health_problem = forms.CharField(widget=forms.Textarea(attrs={'class' : 'form-control', 'type': 'text', 'id' : 'health_problem'}))
+    health_problem = forms.CharField(required=False, widget=forms.Textarea(attrs={'class' : 'form-control', 'type': 'text', 'id' : 'health_problem', 'placeholder': 'N/A'}))
 
     class Meta:
         model = Preschooler

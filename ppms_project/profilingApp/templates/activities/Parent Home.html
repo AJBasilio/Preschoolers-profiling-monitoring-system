@@ -82,24 +82,20 @@
  </script>
 
 <body>
-    <div id="grid" class="container-fluid" style="padding:7%;">
-        <div class="container-grid">
-            <div class="">
-                <div class="row"> 
-                    <div class="row d-flex justify-content-stretch flex-row m-0">
-                        <div class="col-sm-6  mb-3 d-flex justify-content-sm-start justify-content-center">
-                            <h3 style="text-align:left;">My Preschoolers</h3>
-                        </div>
-                        <div class="col-sm-6  mb-3 d-flex justify-content-sm-end justify-content-center">
-                            <button style="margin-bottom: 15px; background-color: #188045;border-color:#188045; height: 50px;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSched">
-                                <span class="fa fa-calendar-alt"></span> Enroll Preschooler</button>
-                        </div>
-                    </div>
+    <div class="" id="secondNav">
+        <div class="row"> 
+            <div class="row d-flex justify-content-stretch align-items-center m-0">
+                <div class="col-sm-6 d-flex justify-content-sm-start justify-content-center align-items-center text-uppercase">
+                    <h5 class="m-0"style="text-align:left;">My Preschoolers</h5>
                 </div>
-            <hr>
-            <br>
+                <div class="col-sm-6 d-flex justify-content-sm-end justify-content-center align-items-center">
+                    <button style="background-color: #188045;border-color:#188045;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSched">
+                        <span class="fa fa-calendar-alt"></span> Enroll Preschooler</button>
+                </div>
             </div>
         </div>
+    </div>
+    <div id="grid" class="container-fluid" style="padding:7%;">
         <div class="container-fluid">
             <div class="modal fade" id="addSched" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
                 <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -110,39 +106,39 @@
                         <div class="modal-body mx-4">
                             <form method="POST">
                                 {% csrf_token %}
-                                <div class="md-form mb-2">
+                                <div class="md-form mb-2" >
                                     <label id="user-lbl" data-error="wrong" data-success="right">First Name: </label>
                                     <input class="form-control" type="text" name="first_name" id="first_name" required>
                                 </div>
-                                <div class="md-form mb-2">
+                                <div class="md-form mb-2" >
                                     <label id="user-lbl" data-error="wrong" data-success="right">Middle name:</label>
                                     <input class="form-control" type="text" name="middle_name" id="middle_name" required>
                                 </div>
-                                <div class="md-form mb-2">
+                                <div class="md-form mb-2" >
                                     <label id="user-lbl" data-error="wrong" data-success="right">Last name:</label>
                                     <input class="form-control" type="text" name="last_name" id="last_name" required>
                                 </div>
-                                <div class="md-form mb-2">
-                                    <label id="user-lbl" data-error="wrong" data-success="right">Suffix:</label>
+                                <div class="md-form mb-2"  >
+                                    <label id="user-lbl" data-error="wrong" data-success="right">Suffix (Optional):</label>
                                     <input class="form-control" type="text" placeholder="If Applicable" name="suffix_name" id="suffix_name">
                                 </div>
-                                <div class="md-form mb-2">
+                                <div class="md-form mb-2" >
                                     <label id="user-lbl" data-error="wrong" data-success="right">Birthdate:</label>
                                     <input class="form-control" type="date" name="birthday" id="birthday" required>
                                 </div>
-                                <div class="md-form mb-2">
+                                <div class="md-form mb-2" >
                                     <label id="user-lbl" data-error="wrong" data-success="right">Gender:</label>
                                     <select name="gender" class="form-select" aria-label="Default select example" required>
                                         <option value="Male" selected>Male</option>
                                         <option value="Female">Female</option>
                                     </select>
                                 </div>
-                            </form>
                         </div>
                         <div class="modal-footer justify-content-end" >
                             <button type="button" data-bs-dismiss="modal" style="background-color: red; color: white; min-width: 15%;" class="btn">Cancel</button>
                             <button type="submit" class="btn btn-primary" style="background-color: #188045;border-color: #188045; min-width: 15%;">Enroll</button>
                         </div>
+                    </form>
                     </div>
                 </div>
             </div>
@@ -199,79 +195,24 @@
             </div>
         {% endfor %}
     </div>
-    <!--
-    <div class="container text-black">
-            <div class="row">
-                <div class="col">
-                    <div class="card shadow-lg bg-white rounded h-100">
-                        <div class="card-header">
-                            
-                        </div>
-                        <div class="card-body p-4">
-                        
-                                 <thead>
-                                    <tr>
-                                        <th scope="col">No.</th>
-                                        <th scope="col">First Name</th>
-                                        <th scope="col">Middle Name</th>
-                                        <th scope="col">Last Name</th>
-                                        <th scope="col">Suffix</th>
-                                        <th scope="col">Age (Years)</th>
-                                        <th scope="col">Age (Months)</th>
-                                        <th scope="col">Birthdate</th>
-                                        <th scope="col" class="nosort text-center">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for preschooler in preschoolers %}
-                                    <tr>
-                                        <td></td>
-                                        <td>{{ preschooler.first_name }}</td>
-                                        <td>{{ preschooler.middle_name }}</td>
-                                        <td>{{ preschooler.last_name }}</td>
-                                        {% if preschooler.suffix_name is None %}
-                                            <td>N/A</td>
-                                        {% elif preschooler.suffix_name == '' %}
-                                            <td>N/A</td>
-                                        {% else %}
-                                            <td>{{ preschooler.suffix_name }}</td>
-                                        {% endif %}
-                                        <td>{{ preschooler.age_years }}</td>
-                                        <td>{{ preschooler.age_months }}</td>
-                                        <td>{{ preschooler.birthday }}</td>
-                                        <td style="text-align: center;">
-                                            <div>
-                                                <a href="{% url 'parent_preschooler' preschooler.id %}"><button type="button" style="background-color: #188045; color: white;" class="btn">View Profile</button></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    --->       
     {% endblock %}
     <!-- Footer -->
     <div class="footer text-muted">
         <div class="container">
             <div class="row text-center align-items-center">
-                    <div class="border-top p-4">
-                        <p class="copyright"><small>
-                        Copyright ©<script>document.write(new Date().getFullYear());</script> All rights reserved <i class="icon-heart text-danger" aria-hidden="true"></i>
-                        </small>
-                        </p>
-                    </div>
+                <div class="border-top p-4">
+                    <p class="copyright"><small>
+                    Copyright ©<script>document.write(new Date().getFullYear());</script> All rights reserved <i class="icon-heart text-danger" aria-hidden="true"></i>
+                    </small>
+                    </p>
+                </div>
             </div>
         </div>
       </div>
 </body>
+<script>
+        document.getElementById("birthday").max = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];
+</script>
 
 <script src="{% static '/Javascript/js/bootstrap.bundle.min.js' %}"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>

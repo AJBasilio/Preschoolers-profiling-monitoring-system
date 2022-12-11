@@ -172,15 +172,15 @@
                 <div class="modal-body mx-4">
                     <form method="POST">
                         {% csrf_token %}
-                        <div class="md-form">
+                        <div class="md-form" required>
                             <label id="user-lbl" data-error="wrong" data-success="right" aria-required="true">Barangay Name: </label>
                             {{ form.brgy_name }}
                         </div>
-                        <div class="md-form">
+                        <div class="md-form" required>
                             <label id="user-lbl" data-error="wrong" data-success="right" aria-required="true">Barangay Phone Number: </label>
                             {{ form.brgy_phone }}
                         </div>
-                        <div class="md-form">
+                        <div class="md-form" required>
                             <label id="user-lbl" data-error="wrong" data-success="right" aria-required="true">Barangay Hall Address: </label>
                             {{ form.brgy_address }}
                         </div>

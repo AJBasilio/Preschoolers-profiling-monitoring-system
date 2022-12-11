@@ -58,7 +58,7 @@ class CustomUser(AbstractUser):
 
     username = None
     email = models.EmailField(_('email address'), unique=True)
-    user_type = models.CharField(max_length=100, choices=USER_TYPE, default='Choose User Type')
+    user_type = models.CharField(max_length=100, choices=USER_TYPE)
     middle_name = models.CharField(max_length=100, null=True)
     suffix_name = models.CharField(max_length=100, null=True, blank=True)
     phone_num = models.CharField(max_length=100, null=True)
@@ -107,8 +107,10 @@ class Preschooler(Model):
     middle_name = models.CharField(max_length=100)
     suffix_name = models.CharField(max_length=100, null=True, blank=True)
     birthday = models.DateField(null=True, blank=True)
-    height = models.FloatField(null=True, validators=[MinValueValidator(45.0), MaxValueValidator(120.0)])
-    weight = models.FloatField(null=True, validators=[MinValueValidator(1.0), MaxValueValidator(28.0)])
+    # height = models.FloatField(null=True, validators=[MinValueValidator(45.0), MaxValueValidator(120.0)])
+    # weight = models.FloatField(null=True, validators=[MinValueValidator(1.0), MaxValueValidator(28.0)])
+    height = models.FloatField(null=True)
+    weight = models.FloatField(null=True)
     gender = models.CharField(max_length=100, choices=GENDER, null=True)
     date_measured = models.DateField(null=True, blank=True)
     health_problem = models.CharField(max_length=500, null=True, blank=True)
@@ -158,6 +160,18 @@ class Preschooler(Model):
         except: 
              return 'Undefined'
     
+    def age_days(self):
+        today = date.today()
+        try:
+            date_diff = today - self.birthday
+
+            in_days = date_diff.days
+
+            return in_days
+        
+        except: 
+             return 'Undefined'
+
     def age_hours(self):
         today = date.today()
         try:

@@ -46,33 +46,35 @@
        $('.tooltip').addClass('animated fade');
        $('[data-toggle="tooltip"]').tooltip({
         trigger : 'hover'})  
+
     })
 </script>
     
 
 <!-- Dashboard -->
-<div id="grid" class="container-fluid" style="margin-top: 85px;">
-    <div class="container-grid p-4">
-        <div class="">
-            <div class="row"> 
-                <div class="col-xl-8 col-md-6 col-12 mb-3 text-md-start text-center">
-                    <h3>Preschooler's Profile</h3>
-                </div>
-                <div class="col-xl-4  col-md-6 col-12">
-                    <div class="row d-flex justify-content-center align-items-stretch">
-                        <div class="mb-3 d-flex justify-content-md-end justify-content-center align-items-stretch">
-                            <button style="background-color: #188045; color: white;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#update" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
-                            title="Update Preschooler's Profile"><span class="fa fa-user-edit"></span> Update</button>
-                            <button style="background-color: #188045; color: white; margin-left: 10px;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#history"  data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
-                            title="Preschooler Status History"><span class="fas fa-history"></span> History </button>
-                            <a href="{% url 'immunization_schedule' preschooler.id %}"  data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="5,5"
-                            title="Immunization Status" style="background-color: #188045; color: white; margin-left:10px; text-align: center;" type="button" class="btn"><span class="fa fa-address-card"></span> Immunization</a>
-                        </div>
-                    </div>
+<div class="" id="secondNav">
+    <div class="row"> 
+        <div class="col-xl-8 col-md-6 col-12 text-md-start text-center d-flex align-items-center justify-content-md-start justify-content-center">
+            {% if preschooler.suffix_name is None %}
+                <h5 class="text-center text-uppercase m-0">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }}'s Profile</h5>
+            {% else %}
+                <h5 class="text-center text-uppercase m-0">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }} {{ preschooler.suffix_name }}'s Profile</h5>
+            {% endif %}
+        </div>
+        <div class="col-xl-4 col-md-6 col-12">
+            <div class="row d-flex justify-content-center align-items-stretch">
+                <div class=" d-flex justify-content-md-end justify-content-center align-items-stretch gap-2">
+                    <button style="background-color: #188045; color: white;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#update" ><span class="fa fa-user-edit "></span> Update</button>
+                    <button style="background-color: #188045; color: white;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#history" ><span class="fas fa-history "></span> History </button>
+                    <a href="{% url 'immunization_schedule' preschooler.id %}"  data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="5,5"
+                    title="Go to Immunization Status" style="background-color: #188045; color: white; text-align: center;" type="button" class="btn"><span class=" fa fa-address-card"></span> Immunization</a>
                 </div>
             </div>
-        <hr>
         </div>
+    </div>
+</div>
+<div id="grid" class="container-fluid">
+    <div class="container-grid p-4">
         <div>
             <section>
                 <div class="row">
@@ -87,11 +89,11 @@
                                         <p class="mb-0">Full Name</p>
                                     </div>
                                     {% if preschooler.suffix_name is None %}
-                                        <div class="col-sm justify-content-start justify-content-md-center">
+                                        <div class="col-sm justify-content-start justify-content-md-center text-uppercase">
                                             <p class="text-muted mb-0">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }}</p>
                                         </div>
                                     {% else %}
-                                        <div class="col-sm justify-content-start justify-content-md-center">
+                                        <div class="col-sm justify-content-start justify-content-md-center text-uppercase">
                                             <p class="text-muted mb-0">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }} {{ preschooler.suffix_name }}</p>
                                         </div>
                                     {% endif %}
@@ -128,7 +130,7 @@
                                     <div class="col-sm justify-content-start justify-content-md-center">
                                         <p class="mb-0">Guardian Name</p>
                                     </div>
-                                    <div class="col-sm justify-content-start justify-content-md-center">
+                                    <div class="col-sm justify-content-start justify-content-md-center text-uppercase">
                                         <p class="text-muted mb-0">{{ preschooler.parent.user.first_name }} {{ preschooler.parent.user.last_name }} {{ preschooler.parent.user.suffix_name }}</p>
                                     </div>
                                 </div>
@@ -147,7 +149,11 @@
                                         <p class="mb-0">Health Problem</p>
                                     </div>
                                     <div class="col-sm justify-content-start justify-content-md-center">
+                                        {% if preschooler.health_problem %}
                                         <p class="text-muted mb-0">{{ preschooler.health_problem }}</p>
+                                        {% else %}
+                                        <p class="text-muted mb-0">N/A</p>
+                                        {% endif %}
                                     </div>
                                 </div>
                                 <hr>
@@ -192,20 +198,20 @@
                                             <div class="modal-body mx-4">
                                                 <form method="POST">
                                                     {% csrf_token %}
-                                                    <div class="md-form mb-2">
+                                                    <div class="md-form mb-2" required>
                                                         <label id="user-lbl" data-error="wrong" data-success="right">Height (cm): </label>
                                                         {{ form.height }}
                                                     </div>
-                                                    <div class="md-form mb-2">
+                                                    <div class="md-form mb-2" required>
                                                         <label id="user-lbl" data-error="wrong" data-success="right">Weight (kg):</label>
                                                         {{ form.weight }}
                                                     </div>
-                                                    <div class="md-form mb-2">
+                                                    <div class="md-form mb-2" required>
                                                         <label id="user-lbl" data-error="wrong" data-success="right">Date Measured:</label>
                                                         {{ form.date_measured }}
                                                     </div>
                                                     <div class="md-form mb-2">
-                                                        <label id="user-lbl" data-error="wrong" data-success="right">Health Problem/s:</label>
+                                                        <label id="user-lbl" data-error="wrong" data-success="right">Health Problem/s (Optional): </label>
                                                         {{ form.health_problem }}
                                                     </div>
                                                 
@@ -343,7 +349,7 @@
                                     <div class="card-header">
                                         <h5 class="card-title">Weight for Age (WFA)</h4>
                                     </div>
-                                    {% if preschooler.wfa is None%}
+                                    {% if preschooler.wfa is None %}
                                         <div class="card-body">
                                             <p class="card-text h5" >{{ preschooler.wfa }}</p>
                                         </div>
@@ -411,8 +417,19 @@
                                     </div>
                                     {% if preschooler.whfa is None %}
                                         <div class="card-body p-3">
-                                            <p class="card-text h5" >{{ preschooler.whfa }}</p>
+                                            {% if preschooler.height < 45.0 %}
+                                            <div class="d-flex justify-content-center align-items-center gap-2">
+                                                <p class="card-text h5 text-primary m-0" > Special Case <p class="text-muted text-small m-0"> (Too Small for WHFA Tagging) </p></p>
+                                            </div>
+                                            {% elif preschooler.height > 110.0 %}
+                                            <div class="d-flex justify-content-center align-items-center gap-2">
+                                                <p class="card-text h5 text-primary m-0" > Special Case <p class="text-muted text-small m-0"> (Too Tall for WHFA Tagging) </p></p>
+                                            </div>
+                                            {% else %}
+                                                <p class="card-text  h5">{{ preschooler.whfa }}</p>
+                                            {% endif %}
                                         </div>
+                                    
                                     {% elif preschooler.whfa > 3.0 %}
                                     <div class="card-body p-3">
                                         <p class="card-text h5" style="color: rgb(242, 98, 33);"> Obese ({{ preschooler.whfa }})</p>
@@ -444,7 +461,7 @@
                             <div class="col-md-6 col-12 mb-3">
                                 <a class=" card hoverable text-decoration-none p-0" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#modalBMI">
                                     <div class="card-header">
-                                        <h4 class="card-title">Body Mass Index (BMI)</h4>
+                                        <h5 class="card-title">Body Mass Index (BMI)</h5>
                                     </div>
                                     {% if preschooler.bmifa is None %}
                                         <div class="card-body p-3">
@@ -687,6 +704,9 @@
 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
 
 <script>
+    document.getElementById("data_count").max = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];
+
+
     var t = $('#NutStat_history').DataTable({
         dom: 'frtip',
         aoColumnDefs: [{

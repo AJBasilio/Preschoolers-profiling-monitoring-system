@@ -47,127 +47,131 @@
 </script>
 
 <!-- Dashboard -->
+<div class="row m-0" id="secondNav"> 
+    <div class="col-xl-8 col-md-6 col-12 text-md-start text-center d-flex align-items-center">
+        {% if preschooler.suffix_name is None %}
+            <h5 class="text-start text-uppercase m-0">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }}'s Profile</h5>
+        {% else %}
+            <h5 class="text-start text-uppercase m-0">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }} {{ preschooler.suffix_name }}'s Profile</h5>
+        {% endif %}
+    </div>
+    <div class="col-xl-4 col-md-6 col-12">
+        <div class="row d-flex justify-content-center align-items-stretch">
+            <div class="d-flex justify-content-md-end justify-content-center h-100">
+                <button style="background-color: #188045; color: white; max-height: 70px !important; height: 100%;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#pres_history"><span class="fas fa-history"></span> History</button>
+                <a href="{% url 'immunization_schedule' preschooler.id %}"><button style="background-color: #188045; color: white; margin-left:10px; max-height: 70px !important;" type="button" class="btn"><span class="fa fa-address-card"></span> Immunization Status</button></a>
+            </div>
+        </div>
+    </div>
+</div>
 <div id="grid" class="container-fluid" style="margin-top: 85px;">
     <div class="container-grid p-4">
-        <div class="row"> 
-            <div class="col-xl-8 col-md-6 col-12 mb-3 text-md-start text-center">
-                <h3>Preschooler's Profile</h3>
-            </div>
-            <div class="col-xl-4  col-md-6 col-12">
-                <div class="row d-flex justify-content-center align-items-stretch">
-                    <div class="mb-3 d-flex justify-content-md-end justify-content-center h-100">
-                        <button style="background-color: #188045; color: white; max-height: 70px !important; height: 100%;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#pres_history"><span class="fas fa-history"></span> Nutritional Status History</button>
-                        <a href="{% url 'immunization_schedule' preschooler.id %}"><button style="background-color: #188045; color: white; margin-left:10px; max-height: 70px !important;" type="button" class="btn"><span class="fa fa-address-card"></span> Immunization Status</button></a>
+        <!----- MODAL FOR HISTORY ---------->
+        <div class="modal fade" id="pres_history" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header d-flex align-items-center justify-content-between">
+                        <div>
+                            <h5 class="modal-title fas fa-history" id="exampleModalLabel"> Nutritional Status History</h5>
+                        </div>
                     </div>
-                </div>
-            </div>
-<!----- MODAL FOR HISTORY ---------->
-            <div class="modal fade" id="pres_history" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-header d-flex align-items-center justify-content-between">
-                            <div>
-                                <h5 class="modal-title fas fa-history" id="exampleModalLabel"> Nutritional Status History</h5>
-                            </div>
-                        </div>
-                        <div class="modal-body p-0">
-                            <div class="table-responsive " style="margin:30px;">
-                                {% if preschooler.suffix_name is None %}
-                                    <h5 class="text-center text-uppercase">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }}'s Nutritional Status History</h5>
-                                {% else %}
-                                    <h5 class="text-center text-uppercase">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }} {{ preschooler.suffix_name }}'s Nutritional Status History</h5>
-                                {% endif %}
-                                <table class="table table-hover table-cell-border" id="NutStat_pres_history" >
-                                    <thead>
-                                        <tr style="text-align: center;">
-                                            <th scope="col">No.</th>
-                                            <th scope="col">Date Measured</th>
-                                            <th scope="col">Weight</th>
-                                            <th scope="col">Height</th>
-                                            <th scope="col">Weight for Age (WFA)</th>
-                                            <th scope="col">Height for Age (HFA)</th>
-                                            <th scope="col">Weight for Height for Age (WHFA)</th>
-                                        </tr>   
-                                    </thead>
-                                    <tbody>
-                                        {% for h in history %}
-                                        <tr>
-                                            <td></td>
-                                            <td>{{ h.date_measured }}</td>
-                                            <td>{{ h.weight }}</td>
-                                            <td>{{ h.height }}</td>
-                                            {% if h.wfa > 2.0 %}
-                                                <td style="background-color: rgb(242, 98, 33);"> Overweight ({{ h.wfa }})</td>
-                                            {% elif h.wfa >= -2.0 and h.wfa <= 2.0 %}
-                                                <td style="background-color: rgb(0, 165, 79);"> Normal ({{ h.wfa }})</td>
-                                            {% elif h.wfa >= -3.0 and h.wfa < -2.0 %}
-                                                <td style="background-color: rgb(255, 241, 2);"> Wasted ({{ h.wfa }})</td>
-                                            {% else %}
-                                                <td style="background-color: rgb(238, 29, 35);"> Severely Wasted ({{ h.wfa }})</td>
-                                            {% endif %}
+                    <div class="modal-body p-0">
+                        <div class="table-responsive " style="margin:30px;">
+                            {% if preschooler.suffix_name is None %}
+                                <h5 class="text-center text-uppercase">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }}'s Nutritional Status History</h5>
+                            {% else %}
+                                <h5 class="text-center text-uppercase">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }} {{ preschooler.suffix_name }}'s Nutritional Status History</h5>
+                            {% endif %}
+                            <table class="table table-hover table-cell-border" id="NutStat_pres_history" >
+                                <thead>
+                                    <tr style="text-align: center;">
+                                        <th scope="col">No.</th>
+                                        <th scope="col">Date Measured</th>
+                                        <th scope="col">Weight</th>
+                                        <th scope="col">Height</th>
+                                        <th scope="col">Weight for Age (WFA)</th>
+                                        <th scope="col">Height for Age (HFA)</th>
+                                        <th scope="col">Weight for Height for Age (WHFA)</th>
+                                    </tr>   
+                                </thead>
+                                <tbody>
+                                    {% for h in history %}
+                                    <tr>
+                                        <td></td>
+                                        <td>{{ h.date_measured }}</td>
+                                        <td>{{ h.weight }}</td>
+                                        <td>{{ h.height }}</td>
+                                        {% if h.wfa > 2.0 %}
+                                            <td style="background-color: rgb(242, 98, 33);"> Overweight ({{ h.wfa }})</td>
+                                        {% elif h.wfa >= -2.0 and h.wfa <= 2.0 %}
+                                            <td style="background-color: rgb(0, 165, 79);"> Normal ({{ h.wfa }})</td>
+                                        {% elif h.wfa >= -3.0 and h.wfa < -2.0 %}
+                                            <td style="background-color: rgb(255, 241, 2);"> Wasted ({{ h.wfa }})</td>
+                                        {% else %}
+                                            <td style="background-color: rgb(238, 29, 35);"> Severely Wasted ({{ h.wfa }})</td>
+                                        {% endif %}
 
-                                            {% if h.hfa > 2.0 %}
-                                                <td style="background-color: rgb(0, 165, 79);"> Tall ({{ h.hfa }})</td>
-                                            {% elif h.hfa >= -2.0 and h.hfa <= 2.0 %}
-                                                <td style="background-color: rgb(0, 165, 79);"> Normal ({{ h.hfa }})</td>
-                                            {% elif h.hfa >= -3.0 and h.hfa < -2.0 %}
-                                                <td style="background-color: rgb(255, 241, 2);"> Stunted ({{ h.hfa }})</td>
-                                            {% else %}
-                                                <td style="background-color: rgb(238, 29, 35);"> Severely Stunted ({{ h.hfa }})</td>
-                                            {% endif %}
-                                            
-                                            {% if h.whfa > 3.0 %}
-                                                <td style="background-color: rgb(242, 98, 33);"> Obese ({{ h.whfa }})</td>
-                                            {% elif h.whfa > 2.0 and h.whfa <= 3.0 %}
-                                                <td style="background-color: rgb(242, 98, 33);"> Overweight ({{ h.whfa }})</td>
-                                            {% elif h.whfa >= -2.0 and h.whfa <= 2.0 %}
-                                                <td style="background-color: rgb(0, 165, 79);"> Normal ({{ h.whfa }})</td>
-                                            {% elif h.whfa >= -3.0 and h.whfa < -2.0 %}
-                                                <td style="background-color: rgb(255, 241, 2);"> Moderately Wasted ({{ h.whfa }})</td>
-                                            {% else %}
-                                                <td style="background-color: rgb(238, 29, 35);"> Severely Wasted ({{ h.whfa }})</td>
-                                            {% endif %}
-                                        </tr>
-                                        {% endfor %}
-                                    </tbody>
-                                    <!-- <tbody>
-                                        {% for preschooler in archive_preschoolers %}
-                                        <tr style="text-align: center;">
-                                            <td></td>
-                                            <td>{{ preschooler.first_name }}</td>
-                                            <td>{{ preschooler.middle_name }}</td>
-                                            <td>{{ preschooler.last_name }}</td>
-                                            <td>{{ preschooler.suffix_name }}</td>
-                                            <td>{{ preschooler.birthday }}</td>
-                                            <td>{{ preschooler.age_months }}</td>
-                                            {% if preschooler.bmifa is None %}
-                                            
-                                                <td> No Data Record </td>
-                                            {% elif preschooler.bmifa > 3.0%}
-                                                <td style="background-color: rgb(242, 98, 33);"> Obese ({{ preschooler.bmifa }})</td>
-                                            {% elif preschooler.bmifa > 2.0 %}
-                                                <td style="background-color: rgb(242, 98, 33);"> Overweight ({{ preschooler.bmifa }})</td>
-                                            {% elif preschooler.bmifa >= -2.0 and preschooler.bmifa <= 2.0 %}
-                                                <td style="background-color: rgb(0, 165, 79);"> Normal ({{ preschooler.bmifa}})</td>
-                                            {% elif preschooler.bmifa >= -3.0 and preschooler.bmifa <= -2.0 %}
-                                                <td style="background-color: rgb(255, 241, 2);"> Wasted ({{ preschooler.bmifa }})</td>
-                                            {% else %}
-                                                <td style="background-color: rgb(238, 29, 35);"> Severely Wasted ({{preschooler.bmifa }})</td>
-                                            {% endif %}                                   
-                                        </tr>
-                                        {% endfor %}
-                                    </tbody> -->
-                                </table>
-                            </div>
+                                        {% if h.hfa > 2.0 %}
+                                            <td style="background-color: rgb(0, 165, 79);"> Tall ({{ h.hfa }})</td>
+                                        {% elif h.hfa >= -2.0 and h.hfa <= 2.0 %}
+                                            <td style="background-color: rgb(0, 165, 79);"> Normal ({{ h.hfa }})</td>
+                                        {% elif h.hfa >= -3.0 and h.hfa < -2.0 %}
+                                            <td style="background-color: rgb(255, 241, 2);"> Stunted ({{ h.hfa }})</td>
+                                        {% else %}
+                                            <td style="background-color: rgb(238, 29, 35);"> Severely Stunted ({{ h.hfa }})</td>
+                                        {% endif %}
+                                        
+                                        {% if h.whfa > 3.0 %}
+                                            <td style="background-color: rgb(242, 98, 33);"> Obese ({{ h.whfa }})</td>
+                                        {% elif h.whfa > 2.0 and h.whfa <= 3.0 %}
+                                            <td style="background-color: rgb(242, 98, 33);"> Overweight ({{ h.whfa }})</td>
+                                        {% elif h.whfa >= -2.0 and h.whfa <= 2.0 %}
+                                            <td style="background-color: rgb(0, 165, 79);"> Normal ({{ h.whfa }})</td>
+                                        {% elif h.whfa >= -3.0 and h.whfa < -2.0 %}
+                                            <td style="background-color: rgb(255, 241, 2);"> Moderately Wasted ({{ h.whfa }})</td>
+                                        {% else %}
+                                            <td style="background-color: rgb(238, 29, 35);"> Severely Wasted ({{ h.whfa }})</td>
+                                        {% endif %}
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                                <!-- <tbody>
+                                    {% for preschooler in archive_preschoolers %}
+                                    <tr style="text-align: center;">
+                                        <td></td>
+                                        <td>{{ preschooler.first_name }}</td>
+                                        <td>{{ preschooler.middle_name }}</td>
+                                        <td>{{ preschooler.last_name }}</td>
+                                        <td>{{ preschooler.suffix_name }}</td>
+                                        <td>{{ preschooler.birthday }}</td>
+                                        <td>{{ preschooler.age_months }}</td>
+                                        {% if preschooler.bmifa is None %}
+                                        
+                                            <td> No Data Record </td>
+                                        {% elif preschooler.bmifa > 3.0%}
+                                            <td style="background-color: rgb(242, 98, 33);"> Obese ({{ preschooler.bmifa }})</td>
+                                        {% elif preschooler.bmifa > 2.0 %}
+                                            <td style="background-color: rgb(242, 98, 33);"> Overweight ({{ preschooler.bmifa }})</td>
+                                        {% elif preschooler.bmifa >= -2.0 and preschooler.bmifa <= 2.0 %}
+                                            <td style="background-color: rgb(0, 165, 79);"> Normal ({{ preschooler.bmifa}})</td>
+                                        {% elif preschooler.bmifa >= -3.0 and preschooler.bmifa <= -2.0 %}
+                                            <td style="background-color: rgb(255, 241, 2);"> Wasted ({{ preschooler.bmifa }})</td>
+                                        {% else %}
+                                            <td style="background-color: rgb(238, 29, 35);"> Severely Wasted ({{preschooler.bmifa }})</td>
+                                        {% endif %}                                   
+                                    </tr>
+                                    {% endfor %}
+                                </tbody> -->
+                            </table>
                         </div>
-                        <div class="card-footer text-end ">
-                            <button type="button" class="btn" style="background-color: #EF3A25; color: white;" data-bs-dismiss="modal" aria-label="Close"> Close</button>
-                        </div>
+                    </div>
+                    <div class="card-footer text-end ">
+                        <button type="button" class="btn" style="background-color: #EF3A25; color: white;" data-bs-dismiss="modal" aria-label="Close"> Close</button>
                     </div>
                 </div>
             </div>
         </div>
-        <hr>
+
         </div>
         <div>
             <section>
@@ -183,11 +187,11 @@
                                         <p class="mb-0">Full Name</p>
                                     </div>
                                     {% if preschooler.suffix_name is None %}
-                                        <div class="col-sm justify-content-start justify-content-md-center">
+                                        <div class="col-sm justify-content-start justify-content-md-center text-uppercase">
                                             <p class="text-muted  mb-0">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }}</p>
                                         </div>
                                     {% else %}
-                                        <div class="col-sm justify-content-start justify-content-md-center">
+                                        <div class="col-sm justify-content-start justify-content-md-center text-uppercase">
                                             <p class="text-muted  mb-0">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }} {{ preschooler.suffix_name }}</p>
                                         </div>
                                     {% endif %}
