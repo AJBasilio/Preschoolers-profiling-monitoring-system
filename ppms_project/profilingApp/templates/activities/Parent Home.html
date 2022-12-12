@@ -160,7 +160,7 @@
                                         </div>
                                         <div id="parentCardsText" class="col-8 d-flex justify-content-center align-items-center text-start text-body">
                                             <div>
-                                                <div class="row">
+                                                <div class="row text-capitalize">
                                                     Name : {{ item.first_name }} {{ item.middle_name }} {{ item.last_name }} {{ preschooler.suffix_name }} 
                                                 </div>
                                                 <div class="row">
@@ -171,14 +171,16 @@
                                                         Age: {{item.age_months}} months
                                                     {% endif %}
                                                 </div>
-                                                <div class="row">
+                                                <div class="row text-capitalize">
                                                     Gender: {{ item.gender }}
                                                 </div>
                                                 <div class="row">
-                                                    {% if item.vaccine_count == 8 %}
-                                                        Vaccine: Complete
+                                                    {% if item.vaccine_count >= 14 %}
+                                                    <div class="d-flex flex-row p-0"> Vaccine: <p class="text-success mx-1 my-0 fw-bold">Complete</p> </div>
+                                                    {% elif item.vaccine_count == 0 %}
+                                                    <div class="d-flex flex-row p-0"> Vaccine: <p class="text-danger mx-1 my-0 fw-bold">No Record</p></div>
                                                     {% else %}
-                                                        Vaccine: Incomplete
+                                                    <div class="d-flex flex-row p-0"> Vaccine: <p class="text-warning mx-1 my-0 fw-bold">On Going</p></div>
                                                     {% endif %}
                                                 </div>
                                             </div>
