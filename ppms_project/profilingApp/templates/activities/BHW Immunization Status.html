@@ -254,24 +254,24 @@
                         <table class="table table-hover table-cell-border" id="table_validation">
                             <div class="" >
                                 <h5 style="font-size:20px; font-weight:bold; margin-right:10px; margin: 0;">Remaining Vaccine:</h5>
-                                {% if 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and 'Measles Containing Vaccines' in vax_list and 'Tetanus Toxoid' in vax_list and 'Inactivated Polio Vaccine' in vax_list and 'Measles Mumps - Rubella' in vax_list and dose_list.7 == 2 %}
+                                {% if 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and 'Measles Containing Vaccines' in vax_list and 'Inactivated Polio Vaccine' in vax_list and 'Measles Mumps - Rubella' in vax_list %}
                                     <h5 class="text-dark mb-0" style="font-size: 20px;"> No remaining vaccines.</h5>
-                                {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and 'Measles Containing Vaccines' in vax_list and 'Tetanus Toxoid' in vax_list and 'Inactivated Polio Vaccine' in vax_list and dose_list.6 == 2 %}
+                                {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and 'Measles Containing Vaccines' in vax_list and 'Inactivated Polio Vaccine' in vax_list %}
                                     <h5 class="text-dark mb-0" style="font-size: 20px;">Measles Mumps - Rubella </h5>
-                                {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and 'Measles Containing Vaccines' in vax_list and 'Tetanus Toxoid' in vax_list %}
+                                {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and 'Measles Containing Vaccines' in vax_list %}
                                     <h5 class="text-dark mb-0" style="font-size: 20px;">Inactivated Polio Vaccine and Measles Mumps - Rubella </p>
-                                {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and 'Measles Containing Vaccines' in vax_list and dose_list.4 == 3 %}
+                                {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and 'Measles Containing Vaccines' in vax_list %}
                                     <h5 class="text-dark mb-0" style="font-size: 20px;">Tetanus Toxoid, Inactivated Polio Vaccine, and Measles Mumps - Rubella </p>
-                                {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and dose_list.3 == 3 %}
-                                    <h5 class="text-dark mb-0" style="font-size: 20px;">Measles Containing Vaccines, Tetanus Toxoid, Inactivated Polio Vaccine, and Measles Mumps - Rubella </h5>
-                                {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and dose_list.2 == 3 %}
-                                    <h5 class="text-dark mb-0" style="font-size: 20px;">Pentavalent Vaccine, Measles Containing Vaccines, Tetanus Toxoid, Inactivated Polio Vaccine, and Measles Mumps - Rubella </h5>
+                                {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list %}
+                                    <h5 class="text-dark mb-0" style="font-size: 20px;">Measles Containing Vaccines, Inactivated Polio Vaccine, and Measles Mumps - Rubella </h5>
+                                {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list %}
+                                    <h5 class="text-dark mb-0" style="font-size: 20px;">Pentavalent Vaccine, Measles Containing Vaccines, Inactivated Polio Vaccine, and Measles Mumps - Rubella </h5>
                                 {% elif 'BCG' in vax_list and 'Hepatitis B' in vax_list %}
-                                    <h5 class="text-dark mb-0" style="font-size: 20px;">Oral Poliovirus Vaccine, Pentavalent Vaccine, Measles Containing Vaccines, Tetanus Toxoid, Inactivated Polio Vaccine, and Measles Mumps - Rubella </h5>
+                                    <h5 class="text-dark mb-0" style="font-size: 20px;">Oral Poliovirus Vaccine, Pentavalent Vaccine, Measles Containing Vaccines, Inactivated Polio Vaccine, and Measles Mumps - Rubella </h5>
                                 {% elif 'BCG' in vax_list %}
-                                    <h5 class="text-dark mb-0" style="font-size: 20px;">Hepatitis B, Oral Poliovirus Vaccine, Pentavalent Vaccine, Measles Containing Vaccines, Tetanus Toxoid, Inactivated Polio Vaccine, and Measles Mumps - Rubella </h5>
+                                    <h5 class="text-dark mb-0" style="font-size: 20px;">Hepatitis B, Oral Poliovirus Vaccine, Pentavalent Vaccine, Measles Containing Vaccines, Inactivated Polio Vaccine, and Measles Mumps - Rubella </h5>
                                 {% else %}
-                                    <h5 class="text-dark mb-0" style="font-size: 20px;">BCG, Hepatitis B, Oral Poliovirus Vaccine, Pentavalent Vaccine, Measles Containing Vaccines, Tetanus Toxoid, Inactivated Polio Vaccine, and Measles Mumps - Rubella </p>
+                                    <h5 class="text-dark mb-0" style="font-size: 20px;">BCG, Hepatitis B, Oral Poliovirus Vaccine, Pentavalent Vaccine, Measles Containing Vaccines, Inactivated Polio Vaccine, and Measles Mumps - Rubella </p>
                                 {% endif %}
                                 
                             </div>

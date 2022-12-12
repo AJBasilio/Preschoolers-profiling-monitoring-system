@@ -562,7 +562,7 @@ def immunization_schedule(request, pk):
     vaccines = Vaccine.objects.filter(vax_preschooler=preschooler)
     vax_list = list(vaccines.values_list('vax_name', flat=True))
     dose_list = vaccines.values_list('vax_dose', flat=True)
-
+    
     vax_24hrs = vaccines.filter(vax_name__in=['BCG', 'Hepatitis B']).count()
     vax_6weeks = vaccines.filter(vax_name__in=['Oral Poliovirus Vaccine', 'Pentavalent Vaccine', 'Measles Containing Vaccines']).count()
     vax_10weeks = vaccines.filter(vax_name__in=['Oral Poliovirus Vaccine', 'Pentavalent Vaccine', 'Measles Containing Vaccines']).count()
@@ -575,8 +575,6 @@ def immunization_schedule(request, pk):
         next_vax_date = 'Complete'
     else:
         next_vax_date = vaccines.order_by('-id')[0].vax_remarks
-
-    print(vax_14weeks)
     
     if request.method == 'POST':
         preschooler_obj = preschooler
