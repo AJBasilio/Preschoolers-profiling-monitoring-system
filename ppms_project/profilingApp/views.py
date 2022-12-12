@@ -497,7 +497,7 @@ def preschooler_profile(request, pk):
                                                                 date_measured=form.cleaned_data['date_measured'])
                     form.save()
                     return redirect('preschooler_profile', preschooler.id)
-                    
+
                 else:
                     messages.error(request, 'Date Measured must be later than the Date of Birth')
                     return redirect('preschooler_profile', preschooler.id)
@@ -585,18 +585,52 @@ def immunization_schedule(request, pk):
         vaxdate = request.POST.get('immune_date')
         vaxremark = request.POST.get('remarks')
 
+        if vaxname == 'Measles Mumps - Rubella':
+            if preschooler.age_months() < 9:
+                messages.warning(request, f'Too young.')
+                return redirect('immunization_schedule', pk=preschooler.id)
+
+        elif vaxname == 'Inactivated Polio Vaccine':
+            if preschooler.age_weeks() < 14:
+                messages.warning(request, f'Too young.')
+                return redirect('immunization_schedule', pk=preschooler.id)
+                
+        elif vaxname == 'Oral Poliovirus Vaccine' or vaxname == 'Pentavalent Vaccine' or vaxname == 'Measles Containing Vaccines':
+            if preschooler.age_weeks() < 6:
+                messages.warning(request, f'Too young.')
+                return redirect('immunization_schedule', pk=preschooler.id)
+
         if vaxname in vax_list:
             if vaxname == 'Oral Poliovirus Vaccine' or vaxname == 'Pentavalent Vaccine' or vaxname == 'Measles Containing Vaccines':
+                if preschooler.age_weeks() >= 6 and preschooler.age_weeks() < 10:
+                    if vax_list.count(vaxname) == 1:
+                        messages.warning(request, f'{vaxname} already exists.')
+                        return redirect('immunization_schedule', pk=preschooler.id)
 
-                if vax_list.count(vaxname) == 3:
+                elif preschooler.age_weeks() >= 10 and preschooler.age_weeks() < 14:
+                    if vax_list.count(vaxname) == 2:
+                        messages.warning(request, f'{vaxname} already exists.')
+                        return redirect('immunization_schedule', pk=preschooler.id)
+
+                elif preschooler.age_weeks() >= 14 and preschooler.age_months() < 9:
+                    if vax_list.count(vaxname) == 3:
+                        messages.warning(request, f'{vaxname} already exists.')
+                        return redirect('immunization_schedule', pk=preschooler.id)
+
+                elif vax_list.count(vaxname) == 3:
                     messages.warning(request, f'{vaxname} already exists.')
                     return redirect('immunization_schedule', pk=preschooler.id)
             
-            elif vaxname == 'Inactivated Polio Vaccine' or vaxname == 'Measles Mumps - Rubella':
+            elif vaxname == 'Measles Mumps - Rubella':
+                if preschooler.age_months() >= 9 and preschooler.age_months() < 12:
+                    if vax_list.count(vaxname) == 1:
+                        messages.warning(request, f'{vaxname} already exists.')
+                        return redirect('immunization_schedule', pk=preschooler.id)
 
-                if vax_list.count(vaxname) == 2:
-                    messages.warning(request, f'{vaxname} already exists.')
-                    return redirect('immunization_schedule', pk=preschooler.id)
+                elif preschooler.age_months() >= 12 and preschooler.age_months() <= 15:
+                    if vax_list.count(vaxname) == 2:
+                        messages.warning(request, f'{vaxname} already exists.')
+                        return redirect('immunization_schedule', pk=preschooler.id)
             
             else:
                 
