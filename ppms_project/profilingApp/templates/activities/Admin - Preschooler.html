@@ -26,21 +26,21 @@
                             <a href="{% url 'admin_home' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"  
                             title="Admin Home">
                             <i id="navIcon" class="fa fa-fw fa-home" style="font-size: 24px;"></i>   
-                            <span id="navText" style="font-size: 20px;">Home</span>
+                            <span id="navText" style="font-size: 20px;"><i class="fa fa-fw fa-home" style="font-size: 20px;margin-right:8px;"></i>Home</span>
                             </a>
                         </li>
                         <li>
                             <a href="{% url 'admin_home2' %}" style="color:rgb(27, 177, 92) !important;"class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
                             title="Preschooler Status">
                             <i id="navIcon" class="fa fa-3x fa-fw fa-id-card " style="font-size: 24px;"></i>
-                            <span id="navText" style="font-size: 20px; color:rgb(27, 177, 92) !important;" >Preschooler Status</span>
+                            <span id="navText" style="font-size: 20px; color:rgb(27, 177, 92) !important;" ><i class="fa fa-fw fa-id-card" style="font-size: 20px;margin-right:8px;"></i>Preschooler Status</span>
                             </a>
                         </li>
                         <li>
                             <a href="{% url 'admin_barangay' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
                             title="List of Barangay">
                             <i id="navIcon" class="fa fa-3x fa-fw fas fa-landmark " style="font-size: 24px;"></i>
-                            <span id="navText" style="font-size: 20px;" >List of Barangay</span>
+                            <span id="navText" style="font-size: 20px;" ><i class="fa fa-fw fa-landmark" style="font-size: 20px;margin-right:8px;"></i>List of Barangay</span>
                             </a>
                         </li>
                         <li>
@@ -48,7 +48,7 @@
                             <a href="{% url 'bhw_validation' %}" class="nav-link"  data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
                                 title="BHW Validation" >
                                 <i id="navIcon" class="fa fa-fw fa-user-md" style="font-size: 24px;"></i>
-                                <span id="navText" style="font-size: 20px; " >BHW Validation</span>
+                                <span id="navText" style="font-size: 20px; " ><i class="fa fa-fw fa-user-md" style="font-size: 20px;margin-right:8px;"></i>BHW Validation</span>
                                 <span class="position-absolute top-25 start-75 translate-middle badge rounded-pill bg-danger">
                                     {{ invalidated_count }}
                                     <span class="visually-hidden">BHW Validation</span>
@@ -57,7 +57,7 @@
                             <a href="{% url 'bhw_validation' %}" class="nav-link"  data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
                                 title="BHW Validation" >
                                 <i id="navIcon" class="fa fa-fw fa-user-md" style="font-size: 24px;"></i>  
-                                <span id="navText"style="font-size: 20px; " >BHW Validation</span>
+                                <span id="navText"style="font-size: 20px; " ><i class="fa fa-fw fa-user-md" style="font-size: 20px;margin-right:8px;"></i>BHW Validation</span>
                                 </a>
                             {% endif %}
                         </li>
@@ -65,7 +65,7 @@
                             <a href="{% url 'admin_userAccounts' %}" class="nav-link" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
                             title="User Accounts">
                             <i id="navIcon" class="fa fa-3x fa-fw fas fa-users " style="font-size: 24px;"></i>
-                            <span id="navText" style="font-size: 20px; " >User Accounts</span>
+                            <span id="navText" style="font-size: 20px; " ><i class="fa fa-fw fa-users" style="font-size: 20px;margin-right:8px;"></i>User Accounts</span>
                             </a>
                         </li>
                         <li>
@@ -77,7 +77,7 @@
                                 </span></a>
                             </a>
                             <a id="navText" style="color:white; text-decoration: none;font-size: 20px;"href="{% url 'logout' %}" data-toggle="tooltip" data-bs-placement="bottom" data-bs-offset="0,7"
-                            title="Log Out Account">Sign Out</a>
+                            title="Log Out Account"><i class="fa fa-fw fa-sign-out-alt" style="font-size: 20px;margin-right:8px;"></i>Sign Out</a>
                             <ul class="dropdown-menu dropdown-menu-end p-2" style="margin-right:3%;" aria-labelledby="dropdownUser1">
                                 <div class="card p-3 d-flex align-items-center justify-content-center">
                                     <div class="row d-block">
