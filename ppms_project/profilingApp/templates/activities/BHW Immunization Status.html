@@ -134,14 +134,17 @@
                         </thead>
                         <tbody>
                                 <tr>
-                                        <td class="text-center fw-bold">24 hours</td>
-                                        <td class="text-center fw-bold">2</td>
+                                        <td class="text-center">24 hours</td>
+                                        <td class="text-center">2</td>
                                         {% if vax_24hrs == 2 %}
                                             <td class="text-center">2</td>
-                                            <td class="text-center">Complete</td>
+                                            <td class="text-center fw-bold">Complete</td>
+                                        {% elif vax_24hrs == 0 %}
+                                            <td class="text-center">0</td>
+                                            <td class="text-center fw-bold">No Record</td>
                                         {% else %}
-                                            <td class="text-center">{{ vax_24hrs }}</td>
-                                            <td class="text-center">Incomplete</td>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center fw-bold">On Going</td>
                                         {% endif %}
                                 </tr>
                                 <tr>
@@ -149,34 +152,66 @@
                                         <td class="text-center">3</td>
                                         {% if vax_6weeks >= 3 %}
                                             <td class="text-center">3</td>
-                                            <td class="text-center">Complete</td>
+                                            <td class="text-center fw-bold">Complete</td>
+                                        {% elif vax_6weeks == 2 %}
+                                            <td class="text-center">2</td>
+                                            <td class="text-center fw-bold">On Going</td>
+                                        {% elif vax_6weeks == 1 %}
+                                            <td class="text-center">1</td>
+                                            <td class="text-center fw-bold">On Going</td>
                                         {% else %}
-                                            <td class="text-center">{{ vax_6weeks }}</td>
-                                            <td class="text-center">Incomplete</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center fw-bold">No Record</td>
                                         {% endif %}
                                         
                                 </tr>
                                 <tr>
                                         <td class="text-center">10 weeks</td>
                                         <td class="text-center">3</td>
-                                        {% if vax_10weeks >= 3 %}
-                                            <td class="text-center">3</td>
-                                            <td class="text-center">Complete</td>
-                                        {% else %}
+
+                                        {% if vax_10weeks == 4 %}
+                                            <td class="text-center">1</td>
+                                            <td class="text-center fw-bold">On Going</td>
+
+                                        {% elif vax_10weeks == 5 %}
+                                            <td class="text-center">2</td>
+                                            <td class="text-center fw-bold">On Going</td>
+                                            
+                                        {% elif vax_10weeks <= 3 %}
                                             <td class="text-center">0</td>
-                                            <td class="text-center">Incomplete</td>
+                                            <td class="text-center fw-bold">No Record</td>
+
+                                        {% elif vax_10weeks >= 6 %} 
+                                            <td class="text-center">3</td>
+                                            <td class="text-center fw-bold">Complete</td>
+            
                                         {% endif %}
                                         
                                 </tr>
                                 <tr>
                                         <td class="text-center">14 weeks</td>
                                         <td class="text-center">4</td>
-                                        {% if vax_14weeks >= 4 %}
+
+                                        {% if vax_14weeks == 10 %}
                                             <td class="text-center">4</td>
-                                            <td class="text-center">Complete</td>
-                                        {% else %}
+                                            <td class="text-center fw-bold">Complete</td>
+
+                                        {% elif vax_14weeks == 9 %}
+                                            <td class="text-center">3</td>
+                                            <td class="text-center fw-bold">On Going</td>
+
+                                        {% elif vax_14weeks == 8 %}
+                                            <td class="text-center">2</td>
+                                            <td class="text-center fw-bold">On Going</td>
+
+                                        {% elif vax_14weeks == 7 %}
+                                            <td class="text-center">1</td>
+                                            <td class="text-center fw-bold">On Going</td>
+
+                                        {% elif vax_14weeks <= 6 %}
                                             <td class="text-center">0</td>
-                                            <td class="text-center">Incomplete</td>
+                                            <td class="text-center fw-bold">No Record</td>
+
                                         {% endif %}
                                 </tr>
                                 <tr>
@@ -184,10 +219,10 @@
                                         <td class="text-center">1</td>
                                         {% if vax_9months >= 1 %}
                                             <td class="text-center">1</td>
-                                            <td class="text-center">Complete</td>
+                                            <td class="text-center fw-bold">Complete</td>
                                         {% else %}
                                             <td class="text-center">0</td>
-                                            <td class="text-center">Incomplete</td>
+                                            <td class="text-center fw-bold">No Record</td>
                                         {% endif %}
                                 </tr>
                                 <tr>
@@ -195,10 +230,10 @@
                                         <td class="text-center">1</td>
                                         {% if vax_9months == 2 %}
                                             <td class="text-center">1</td>
-                                            <td class="text-center">Complete</td>
+                                            <td class="text-center fw-bold">Complete</td>
                                         {% else %}
                                             <td class="text-center">0</td>
-                                            <td class="text-center">Incomplete</td>
+                                            <td class="text-center fw-bold">No Record</td>
                                         {% endif %}
                                 </tr>
                         </tbody>

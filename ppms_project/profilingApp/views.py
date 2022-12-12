@@ -576,6 +576,7 @@ def immunization_schedule(request, pk):
     else:
         next_vax_date = vaccines.order_by('-id')[0].vax_remarks
 
+    print(vax_14weeks)
     
     if request.method == 'POST':
         preschooler_obj = preschooler
@@ -663,8 +664,8 @@ def immunization_schedule(request, pk):
                'next_vax' : next_vax_date,
                'vax_24hrs' : vax_24hrs,
                'vax_6weeks' : vax_6weeks,
-               'vax_10weeks' : vax_10weeks-3,
-               'vax_14weeks' : vax_14weeks-6,
+               'vax_10weeks' : vax_10weeks,
+               'vax_14weeks' : vax_14weeks,
                'vax_9months' : vax_9months
                }
 
