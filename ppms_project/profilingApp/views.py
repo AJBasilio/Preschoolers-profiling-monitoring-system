@@ -486,8 +486,10 @@ def preschooler_profile(request, pk):
         if request.method == 'POST':
             form = UpdatePreschooler(request.POST, instance=preschooler)
             birthday = preschooler.birthday
-            dateMeasured = preschooler.date_measured
+            
             if form.is_valid():
+                dateMeasured = form.cleaned_data['date_measured']
+
                 if dateMeasured >= birthday:
                     p_history = PreschoolerHistory.objects.create(id_preschooler=preschooler,
                                                                 height=form.cleaned_data['height'],
@@ -495,6 +497,7 @@ def preschooler_profile(request, pk):
                                                                 date_measured=form.cleaned_data['date_measured'])
                     form.save()
                     return redirect('preschooler_profile', preschooler.id)
+                    
                 else:
                     messages.error(request, 'Date Measured must be later than the Date of Birth')
                     return redirect('preschooler_profile', preschooler.id)
