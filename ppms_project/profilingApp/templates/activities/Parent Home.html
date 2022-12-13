@@ -176,17 +176,17 @@
                                                 </div>
                                                 <div class="row">
                                                     {% if item.whfa is None %}
-                                                        <div class="d-flex flex-row p-0"> Last BMI: <p class="text-info mx-1 my-0">No Record</p> </div>
+                                                        <div class="d-flex flex-row p-0"> Last Status: <p class="text-info mx-1 my-0">No Record</p> </div>
                                                     {% elif item.whfa > 3.0 %}
-                                                        <div class="d-flex flex-row p-0"> Last BMI: <p class=" mx-1 my-0" style="color: rgb(242, 98, 33);">Obese</p> </div>
+                                                        <div class="d-flex flex-row p-0"> Last Status: <p class=" mx-1 my-0" style="color: rgb(242, 98, 33);">Obese</p> </div>
                                                     {% elif item.whfa > 2.0 and item.whfa <= 3.0 %}
-                                                        <div class="d-flex flex-row p-0"> Last BMI: <p class=" mx-1 my-0" style="color: rgb(242, 98, 33);">Overweight</p> </div>
+                                                        <div class="d-flex flex-row p-0"> Last Status: <p class=" mx-1 my-0" style="color: rgb(242, 98, 33);">Overweight</p> </div>
                                                     {% elif item.whfa >= -2.0 and item.whfa <= 2.0 %}
-                                                        <div class="d-flex flex-row p-0"> Last BMI: <p class=" mx-1 my-0" style="color: rgb(0, 165, 79);">Normal</p> </div>
+                                                        <div class="d-flex flex-row p-0"> Last Status: <p class=" mx-1 my-0" style="color: rgb(0, 165, 79);">Normal</p> </div>
                                                     {% elif item.whfa >= -3.0 and item.whfa < -2.0 %}
-                                                        <div class="d-flex flex-row p-0"> Last BMI: <p class=" mx-1 my-0" style="color: rgb(255, 241, 2);">Moderately Wasted</p> </div>
+                                                        <div class="d-flex flex-row p-0"> Last Status: <p class=" mx-1 my-0" style="color: rgb(255, 241, 2);">Moderately Wasted</p> </div>
                                                     {% else %}
-                                                        <div class="d-flex flex-row p-0"> Last BMI: <p class=" mx-1 my-0" style="color: rgb(238, 29, 35);">Severely Wasted</p> </div>
+                                                        <div class="d-flex flex-row p-0"> Last Status: <p class=" mx-1 my-0" style="color: rgb(238, 29, 35);">Severely Wasted</p> </div>
                                                     {% endif %}
                                                 </div>
                                                 <div class="row">
