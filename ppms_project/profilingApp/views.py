@@ -75,6 +75,10 @@ def logout_user(request):
     logout(request)
     return redirect('login_registration')
 
+def privacyPolicy(request):
+
+     return render(request, 'activities/Privacy_Policy.html')
+
 # ================================== PARENTS/GUARDIANS ==================================
 
 @login_required(login_url='login_registration')

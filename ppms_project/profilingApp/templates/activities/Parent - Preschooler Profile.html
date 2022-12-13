@@ -48,16 +48,16 @@
 
 <!-- Dashboard -->
 <div class="row m-0" id="secondNav"> 
-    <div class="col-xl-8 col-md-6 col-12 text-md-start text-center d-flex align-items-center">
+    <div class="col-xl-8 col-md-6 col-12 d-flex align-items-center justify-content-md-start justify-content-center mb-1">
         {% if preschooler.suffix_name is None %}
-            <h5 class="text-start text-uppercase m-0">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }}'s Profile</h5>
+            <h5 class="text-md-start text-center text-uppercase m-0">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }}'s Profile</h5>
         {% else %}
-            <h5 class="text-start text-uppercase m-0">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }} {{ preschooler.suffix_name }}'s Profile</h5>
+            <h5 class="text-md-start text-center text-uppercase m-0">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }} {{ preschooler.suffix_name }}'s Profile</h5>
         {% endif %}
     </div>
-    <div class="col-xl-4 col-md-6 col-12">
+    <div class="col-xl-4 col-md-6 col-12 mb-1">
         <div class="row d-flex justify-content-center align-items-stretch">
-            <div class="d-flex justify-content-md-end justify-content-center h-100">
+            <div class="d-flex justify-content-md-end justify-content-center align-items-stretch">
                 <button style="background-color: #188045; color: white; max-height: 70px !important; height: 100%;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#pres_history"><span class="fas fa-history"></span> History</button>
                 <a href="{% url 'immunization_schedule' preschooler.id %}"><button style="background-color: #188045; color: white; margin-left:10px; max-height: 70px !important;" type="button" class="btn"><span class="fa fa-address-card"></span> Immunization Status</button></a>
             </div>

@@ -5,6 +5,9 @@ urlpatterns = [
     # path('', views.index, name='index'),
     path('', views.login_registration, name='login_registration'),
     path('logout', views.logout_user, name='logout'),
+    
+    #privacy policy
+    path('privacyPolicy', views.privacyPolicy, name='privacyPolicy'),
 
     # Parent
     path('home', views.parent_home, name='parent_home'),
