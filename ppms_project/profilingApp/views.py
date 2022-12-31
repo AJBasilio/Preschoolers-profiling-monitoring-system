@@ -139,6 +139,7 @@ def parent_home(request):
     elif request.user.is_authenticated and request.user.user_type == 'Admin':
         return redirect('admin_home')
 
+@login_required(login_url='login_registration')
 def parent_preschooler(request, pk):
     if request.user.is_authenticated and request.user.user_type == 'P/G':
         preschooler = Preschooler.objects.get(id=pk)
@@ -187,6 +188,7 @@ def admin_home(request):
         return redirect('parent_home')
 
 
+@login_required(login_url='login_registration')
 def bhw_validation(request):
     if request.user.is_authenticated and request.user.user_type == 'Admin':
         bhw = BarangayHealthWorker.objects.filter(is_validated=False)
@@ -206,6 +208,8 @@ def bhw_validation(request):
     elif request.user.is_authenticated and request.user.user_type == 'P/G':
         return redirect('parent_home')
 
+
+@login_required(login_url='login_registration')
 def set_pass(request, pk):
     if request.user.is_authenticated and request.user.user_type == 'Admin':
         user = CustomUser.objects.get(id=pk)
@@ -228,6 +232,8 @@ def set_pass(request, pk):
     elif request.user.is_authenticated and request.user.user_type == 'P/G':
         return redirect('parent_home')
 
+
+@login_required(login_url='login_registration')
 def admin_preschoolers(request):
     if request.user.is_authenticated and request.user.user_type == 'Admin':
         invalidated_status = BarangayHealthWorker.objects.filter(
@@ -278,6 +284,8 @@ def admin_preschoolers(request):
     elif request.user.is_authenticated and request.user.user_type == 'P/G':
         return redirect('parent_home')
 
+
+@login_required(login_url='login_registration')
 def admin_preschoolers_barangay(request, brgy):
     if request.user.is_authenticated and request.user.user_type == 'Admin':
         invalidated_status = BarangayHealthWorker.objects.filter(
@@ -334,6 +342,8 @@ def admin_preschoolers_barangay(request, brgy):
     elif request.user.is_authenticated and request.user.user_type == 'P/G':
         return redirect('parent_home')
 
+
+@login_required(login_url='login_registration')
 def unvalidated_profile(request, pk):
     if request.user.is_authenticated and request.user.user_type == 'Admin':
         unvalidate_bhw = BarangayHealthWorker.objects.get(user_id=pk)
@@ -355,6 +365,8 @@ def unvalidated_profile(request, pk):
         return redirect('parent_home')
 
 
+
+@login_required(login_url='login_registration')
 def delete_profile(request, pk):
     if request.user.is_authenticated and request.user.user_type == 'Admin':
         delete_bhw = BarangayHealthWorker.objects.get(user_id=pk)
@@ -375,6 +387,7 @@ def delete_profile(request, pk):
         return redirect('parent_home')
 
 
+@login_required(login_url='login_registration')
 def admin_barangay(request):
     if request.user.is_authenticated and request.user.user_type == 'Admin':
         invalidated_status = BarangayHealthWorker.objects.filter(
@@ -396,6 +409,8 @@ def admin_barangay(request):
     
         return render(request, 'activities/Admin - barangay.html', context)
 
+
+@login_required(login_url='login_registration')
 def admin_userAccounts(request):
     if request.user.is_authenticated and request.user.user_type == 'Admin':
         all_bhw = BarangayHealthWorker.objects.all()
@@ -462,6 +477,7 @@ def bhw_home(request):
         return redirect('parent_home')
 
 
+@login_required(login_url='login_registration')
 def preschooler_dashboard(request):
     if request.user.is_authenticated and request.user.user_type == 'BHW':
         bhw_logged = BarangayHealthWorker.objects.get(user_id=request.user.id)
@@ -480,6 +496,8 @@ def preschooler_dashboard(request):
     elif request.user.is_authenticated and request.user.user_type == 'P/G':
         return redirect('parent_home')
 
+
+@login_required(login_url='login_registration')
 def preschooler_profile(request, pk):
     if request.user.is_authenticated and request.user.user_type == 'BHW':
         preschooler = Preschooler.objects.get(id=pk)
@@ -518,6 +536,8 @@ def preschooler_profile(request, pk):
     elif request.user.is_authenticated and request.user.user_type == 'P/G':
         return redirect('parent_home')
 
+
+@login_required(login_url='login_registration')
 def change_pass(request, pk):
     user = CustomUser.objects.get(id=pk)
 
@@ -555,11 +575,12 @@ def change_pass(request, pk):
 
 # ================================== MODAL UPDATE ==================================
 
-
+@login_required(login_url='login_registration')
 def update_preschooler(request):
     return render(request, 'activities/Preschooler Profile.html')
 
 
+@login_required(login_url='login_registration')
 def immunization_schedule(request, pk):
     loggedin = request.user.user_type
     preschooler = Preschooler.objects.get(id=pk)
