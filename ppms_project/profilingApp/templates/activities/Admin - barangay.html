@@ -215,5 +215,22 @@
                 this.data(i++);
             });}).draw();
     </script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+{% if messages %}
+    {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+            <script>
+                Swal.fire({
+                icon: 'warning',
+                title: 'Already Exists',
+                text: '{{message}}',
+                confirmButtonText: "Ok",
+                confirmButtonColor: '#EF3A25',
+            });
+            </script>
+        {% endif %}
+    {% endfor %}
+{% endif %}
 {% endblock %}

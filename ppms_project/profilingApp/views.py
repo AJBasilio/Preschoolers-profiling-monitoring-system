@@ -100,16 +100,24 @@ def parent_home(request):
                 birthday = request.POST.get('birthday')
                 gender = request.POST.get('gender')
 
-            psa = Preschooler.objects.create(parent=parent,
-                                            first_name=first_name,
-                                            middle_name=middle_name,
-                                            last_name=last_name,
-                                            suffix_name=suffix_name,
-                                            birthday=birthday,
-                                            gender=gender
-                                            
-                                            )
-            return redirect('parent_home')
+            if Preschooler.objects.filter(first_name=first_name, middle_name=middle_name, last_name=last_name, suffix_name=suffix_name).exists():
+
+                messages.warning(request, f'{first_name} {middle_name} {last_name} {suffix_name} already exists.')
+
+                return redirect('parent_home')
+
+            else:
+
+                psa = Preschooler.objects.create(parent=parent,
+                                                first_name=first_name,
+                                                middle_name=middle_name,
+                                                last_name=last_name,
+                                                suffix_name=suffix_name,
+                                                birthday=birthday,
+                                                gender=gender
+                                                
+                                                )
+                return redirect('parent_home')
 
         if len(preschooler) <= 2:
             numberOfColumns = 6
@@ -402,8 +410,10 @@ def admin_barangay(request):
                 brgy_name = form.cleaned_data['brgy_name']
 
                 if Barangay.objects.filter(brgy_name=brgy_name).exists():
+                    
+                    messages.warning(request, f'{brgy_name} already exists.')
+                    return redirect('admin_barangay')
 
-                    return HttpResponse('Barangay already exists.')
                 else:
 
                     form.save()
