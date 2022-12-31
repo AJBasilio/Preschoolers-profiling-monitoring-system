@@ -399,9 +399,15 @@ def admin_barangay(request):
             form = AddBarangay(request.POST)
             
             if form.is_valid():
-                form.save()
-                
-                return redirect('admin_barangay')
+                brgy_name = form.cleaned_data['brgy_name']
+
+                if Barangay.objects.filter(brgy_name=brgy_name).exists():
+
+                    return HttpResponse('Barangay already exists.')
+                else:
+
+                    form.save()
+                    return redirect('admin_barangay')
 
         context = {'barangays' : barangays,
                    'invalidated_count' : invalidated_status,
