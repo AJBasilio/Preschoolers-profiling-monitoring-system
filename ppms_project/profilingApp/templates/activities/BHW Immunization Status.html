@@ -66,9 +66,9 @@
     <div class="row align-items-center"> 
         <div class="col-6 d-flex text-md-start text-center text-uppercase align-items-center ">
             {% if preschooler.suffix_name is None %}
-                <h5 class="m-0 align-items-center">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }}'s Immunization</h5>
+                <h5 class="m-0 align-items-center">{{ preschooler.last_name }}, {{ preschooler.first_name }} {{ preschooler.middle_name }}'s Immunization</h5>
             {% else %}
-                <h5 class="m-0 align-items-center">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }} {{ preschooler.suffix_name }}'s Immunization</h5>
+                <h5 class="m-0 align-items-center">{{ preschooler.last_name }}, {{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.suffix_name }}'s Immunization</h5>
             {% endif %}
         </div>
         <div class="col-6 d-flex justify-content-md-end justify-content-center align-items-stretch">
@@ -99,9 +99,9 @@
                 <div class="py-3">
                     <div class="row d-flex justify-content-start align-items-center mb-2 text-uppercase">
                         {% if preschooler.suffix_name is None %}
-                        <h5>Name: {{ preschooler.first_name }}  {{ preschooler.middle_name }} {{ preschooler.last_name }}</h5>
+                        <h5>Name: {{ preschooler.last_name }}, {{ preschooler.first_name }}  {{ preschooler.middle_name }} </h5>
                         {% else %}
-                        <h5>Name: {{ preschooler.first_name }}  {{ preschooler.middle_name }} {{ preschooler.last_name }} {{ preschooler.suffix_name }}</h5>
+                        <h5>Name: {{ preschooler.last_name }}, {{ preschooler.first_name }}  {{ preschooler.middle_name }} {{ preschooler.suffix_name }}</h5>
                         {% endif %} 
                     </div>
                     <div class="row d-flex justify-content-start align-items-center text-uppercase">
@@ -138,13 +138,13 @@
                                         <td class="text-center">2</td>
                                         {% if vax_24hrs == 2 %}
                                             <td class="text-center">2</td>
-                                            <td class="text-center fw-bold">Complete</td>
+                                            <td class="text-center text-success fw-bold">Complete</td>
                                         {% elif vax_24hrs == 0 %}
-                                            <td class="text-center">0</td>
-                                            <td class="text-center fw-bold">No Record</td>
+                                            <td class="text-center text-danger">0</td>
+                                            <td class="text-center text-danger fw-bold">No Record</td>
                                         {% else %}
                                             <td class="text-center">1</td>
-                                            <td class="text-center fw-bold">On Going</td>
+                                            <td class="text-center text-warning fw-bold">On Going</td>
                                         {% endif %}
                                 </tr>
                                 <tr>
@@ -152,16 +152,16 @@
                                         <td class="text-center">3</td>
                                         {% if vax_6weeks >= 3 %}
                                             <td class="text-center">3</td>
-                                            <td class="text-center fw-bold">Complete</td>
+                                            <td class="text-center text-success fw-bold">Complete</td>
                                         {% elif vax_6weeks == 2 %}
                                             <td class="text-center">2</td>
-                                            <td class="text-center fw-bold">On Going</td>
+                                            <td class="text-center text-warning fw-bold">On Going</td>
                                         {% elif vax_6weeks == 1 %}
                                             <td class="text-center">1</td>
-                                            <td class="text-center fw-bold">On Going</td>
+                                            <td class="text-center text-warning fw-bold">On Going</td>
                                         {% else %}
-                                            <td class="text-center">0</td>
-                                            <td class="text-center fw-bold">No Record</td>
+                                            <td class="text-center text-danger ">0</td>
+                                            <td class="text-center text-danger fw-bold">No Record</td>
                                         {% endif %}
                                         
                                 </tr>
@@ -171,19 +171,19 @@
 
                                         {% if vax_10weeks == 4 %}
                                             <td class="text-center">1</td>
-                                            <td class="text-center fw-bold">On Going</td>
+                                            <td class="text-center text-warning fw-bold">On Going</td>
 
                                         {% elif vax_10weeks == 5 %}
                                             <td class="text-center">2</td>
-                                            <td class="text-center fw-bold">On Going</td>
+                                            <td class="text-center text-warning fw-bold">On Going</td>
                                             
                                         {% elif vax_10weeks <= 3 %}
-                                            <td class="text-center">0</td>
-                                            <td class="text-center fw-bold">No Record</td>
+                                            <td class="text-center text-danger">0</td>
+                                            <td class="text-center text-danger fw-bold">No Record</td>
 
                                         {% elif vax_10weeks >= 6 %} 
                                             <td class="text-center">3</td>
-                                            <td class="text-center fw-bold">Complete</td>
+                                            <td class="text-center text-success fw-bold">Complete</td>
             
                                         {% endif %}
                                         
@@ -194,23 +194,23 @@
 
                                         {% if vax_14weeks == 10 %}
                                             <td class="text-center">4</td>
-                                            <td class="text-center fw-bold">Complete</td>
+                                            <td class="text-center text-success fw-bold">Complete</td>
 
                                         {% elif vax_14weeks == 9 %}
                                             <td class="text-center">3</td>
-                                            <td class="text-center fw-bold">On Going</td>
+                                            <td class="text-center text-warning fw-bold">On Going</td>
 
                                         {% elif vax_14weeks == 8 %}
                                             <td class="text-center">2</td>
-                                            <td class="text-center fw-bold">On Going</td>
+                                            <td class="text-center text-warning fw-bold">On Going</td>
 
                                         {% elif vax_14weeks == 7 %}
                                             <td class="text-center">1</td>
-                                            <td class="text-center fw-bold">On Going</td>
+                                            <td class="text-center text-warning fw-bold">On Going</td>
 
                                         {% elif vax_14weeks <= 6 %}
-                                            <td class="text-center">0</td>
-                                            <td class="text-center fw-bold">No Record</td>
+                                            <td class="text-center text-danger">0</td>
+                                            <td class="text-center text-danger fw-bold">No Record</td>
 
                                         {% endif %}
                                 </tr>
@@ -219,10 +219,10 @@
                                         <td class="text-center">1</td>
                                         {% if vax_9months >= 1 %}
                                             <td class="text-center">1</td>
-                                            <td class="text-center fw-bold">Complete</td>
+                                            <td class="text-center text-success fw-bold">Complete</td>
                                         {% else %}
-                                            <td class="text-center">0</td>
-                                            <td class="text-center fw-bold">No Record</td>
+                                            <td class="text-center text-danger">0</td>
+                                            <td class="text-center text-danger fw-bold">No Record</td>
                                         {% endif %}
                                 </tr>
                                 <tr>
@@ -230,10 +230,10 @@
                                         <td class="text-center">1</td>
                                         {% if vax_9months == 2 %}
                                             <td class="text-center">1</td>
-                                            <td class="text-center fw-bold">Complete</td>
+                                            <td class="text-center text-success fw-bold">Complete</td>
                                         {% else %}
-                                            <td class="text-center">0</td>
-                                            <td class="text-center fw-bold">No Record</td>
+                                            <td class="text-center text-danger">0</td>
+                                            <td class="text-center text-danger fw-bold">No Record</td>
                                         {% endif %}
                                 </tr>
                         </tbody>

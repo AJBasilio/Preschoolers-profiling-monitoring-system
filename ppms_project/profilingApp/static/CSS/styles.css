@@ -1231,9 +1231,6 @@ html {
   #eulaButton{
     margin-left:5px;
   }
-  #eulaButton:hover{
-    text-decoration: underline; 
-  }
   /* Modal Close Button */
   #modalCloseButton{
     border-radius: 25%; 

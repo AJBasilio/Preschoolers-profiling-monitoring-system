@@ -161,11 +161,11 @@
                                     </div>
                                     {% if preschooler.suffix_name is None %}
                                         <div class="col-sm justify-content-start justify-content-md-center text-uppercase">
-                                            <p class="text-muted  mb-0">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }}</p>
+                                            <p class="text-muted  mb-0">{{ preschooler.last_name }}, {{ preschooler.first_name }} {{ preschooler.middle_name }} </p>
                                         </div>
                                     {% else %}
                                         <div class="col-sm justify-content-start justify-content-md-center text-uppercase">
-                                            <p class="text-muted  mb-0">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }} {{ preschooler.suffix_name }}</p>
+                                            <p class="text-muted  mb-0">{{ preschooler.last_name }}, {{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.suffix_name }}</p>
                                         </div>
                                     {% endif %}
                                 </div>

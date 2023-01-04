@@ -56,9 +56,9 @@
     <div class="row"> 
         <div class="col-xl-8 col-md-6 col-12 text-md-start text-center d-flex align-items-center justify-content-md-start justify-content-center">
             {% if preschooler.suffix_name is None %}
-                <h5 class="text-center text-uppercase m-0">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }}'s Profile</h5>
+                <h5 class="text-center text-uppercase m-0">{{ preschooler.last_name }}, {{ preschooler.first_name }} {{ preschooler.middle_name }}'s Profile</h5>
             {% else %}
-                <h5 class="text-center text-uppercase m-0">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }} {{ preschooler.suffix_name }}'s Profile</h5>
+                <h5 class="text-center text-uppercase m-0">{{ preschooler.last_name }}, {{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.suffix_name }}'s Profile</h5>
             {% endif %}
         </div>
         <div class="col-xl-4 col-md-6 col-12">
@@ -90,11 +90,11 @@
                                     </div>
                                     {% if preschooler.suffix_name is None %}
                                         <div class="col-sm justify-content-start justify-content-md-center text-uppercase">
-                                            <p class="text-muted mb-0">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }}</p>
+                                            <p class="text-muted mb-0">{{ preschooler.last_name }}, {{ preschooler.first_name }} {{ preschooler.middle_name }}</p>
                                         </div>
                                     {% else %}
                                         <div class="col-sm justify-content-start justify-content-md-center text-uppercase">
-                                            <p class="text-muted mb-0">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }} {{ preschooler.suffix_name }}</p>
+                                            <p class="text-muted mb-0">{{ preschooler.last_name }}, {{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.suffix_name }}</p>
                                         </div>
                                     {% endif %}
                                 </div>
@@ -131,7 +131,7 @@
                                         <p class="mb-0">Guardian Name</p>
                                     </div>
                                     <div class="col-sm justify-content-start justify-content-md-center text-uppercase">
-                                        <p class="text-muted mb-0">{{ preschooler.parent.user.first_name }} {{ preschooler.parent.user.last_name }} {{ preschooler.parent.user.suffix_name }}</p>
+                                        <p class="text-muted mb-0">{{ preschooler.parent.user.last_name }}, {{ preschooler.parent.user.first_name }} {{ preschooler.parent.user.suffix_name }}</p>
                                     </div>
                                 </div>
                                 <hr>

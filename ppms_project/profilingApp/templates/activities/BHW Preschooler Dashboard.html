@@ -109,9 +109,9 @@
                         <thead>
                             <tr style="text-align: center;">
                                 <th scope="col">No.</th>
+                                <th scope="col">Last Name</th>
                                 <th scope="col">First Name</th>
                                 <th scope="col">Middle Name</th>
-                                <th scope="col">Last Name</th>
                                 <th scope="col">Suffix</th>
                                 <th scope="col">Birthdate</th>
                                 <th scope="col">Age Last Measured (Month)</th>
@@ -124,9 +124,9 @@
                             {% for preschooler in preschoolers %}
                             <tr style="text-align: center;">
                                 <td></td>
+                                <td>{{ preschooler.last_name }}</td>
                                 <td>{{ preschooler.first_name }}</td>
                                 <td>{{ preschooler.middle_name }}</td>
-                                <td>{{ preschooler.last_name }}</td>
                                 {% if preschooler.suffix_name is None %}
                                     <td>N/A</td>
                                 {% elif preschooler.suffix_name == '' %}
@@ -196,9 +196,9 @@
                             <thead>
                                 <tr style="text-align: center;">
                                     <th scope="col">No.</th>
+                                    <th scope="col">Last Name</th>
                                     <th scope="col">First Name</th>
                                     <th scope="col">Middle Name</th>
-                                    <th scope="col">Last Name</th>
                                     <th scope="col">Suffix</th>
                                     <th scope="col">Birthdate</th>
                                     <th scope="col">Age Last Measured (Month)</th>
@@ -209,9 +209,9 @@
                                 {% for preschooler in archive_preschoolers %}
                                 <tr style="text-align: center;">
                                     <td></td>
+                                    <td>{{ preschooler.last_name }}</td>
                                     <td>{{ preschooler.first_name }}</td>
                                     <td>{{ preschooler.middle_name }}</td>
-                                    <td>{{ preschooler.last_name }}</td>
                                     <td>{{ preschooler.suffix_name }}</td>
                                     <td>{{ preschooler.birthday }}</td>
                                     <td>{{ preschooler.age_measured }} Months</td>

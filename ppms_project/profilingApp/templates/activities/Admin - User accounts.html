@@ -50,7 +50,7 @@
                                 <i id="navIcon" class="fa fa-fw fa-user-md" style="font-size: 24px;"></i>
                                 <span id="navText" style="font-size: 20px; " ><i class="fa fa-fw fa-user-md" style="font-size: 20px;margin-right:8px;"></i>BHW Validation</span>
                                 <span class="position-absolute top-25 start-75 translate-middle badge rounded-pill bg-danger">
-                                    {{ invalidated_count }}
+                                    !
                                     <span class="visually-hidden">BHW Validation</span>
                                 </span></a>
                             {% else %}
@@ -138,9 +138,9 @@
                             <thead>
                                 <tr>
                                     <th scope="col" class="text-center">No.</th>
+                                    <th scope="col" class="text-center">Last Name</th>
                                     <th scope="col" class="text-center">First Name</th>
                                     <th scope="col" class="text-center">Middle Name</th>
-                                    <th scope="col" class="text-center">Last Name</th>
                                     <th scope="col" class="text-center">Suffix</th>
                                     <th scope="col" class="text-center">Phone Number</th>
                                     <th scope="col" class="text-center">Email</th>
@@ -152,9 +152,9 @@
                                 {% for bhw in bhws %}
                                 <tr>
                                     <td class="text-center"></td>
+                                    <td class="text-center">{{ bhw.user.last_name }}</td>
                                     <td class="text-center">{{ bhw.user.first_name }}</td>
                                     <td class="text-center">{{ bhw.user.middle_name }}</td>
-                                    <td class="text-center">{{ bhw.user.last_name }}</td>
                                     <td class="text-center">{{ bhw.user.suffix_name }}</td>
                                     <td class="text-center">{{ bhw.user.phone_num}}</td>
                                     <td class="text-center">{{ bhw.user.email }}</td>
@@ -190,9 +190,9 @@
                             <thead>
                                 <tr>
                                     <th scope="col" class="text-center">No.</th>
+                                    <th scope="col" class="text-center">Last Name</th>
                                     <th scope="col" class="text-center">First Name</th>
                                     <th scope="col" class="text-center">Middle Name</th>
-                                    <th scope="col" class="text-center">Last Name</th>
                                     <th scope="col" class="text-center">Suffix</th>
                                     <th scope="col" class="text-center">Phone Number</th>
                                     <th scope="col" class="text-center">Email</th>
@@ -204,9 +204,9 @@
                                 {% for parent in parents %}
                                 <tr>
                                     <td class="text-center"></td>
+                                    <td class="text-center">{{ parent.user.last_name }}</td>
                                     <td class="text-center">{{ parent.user.first_name }}</td>
                                     <td class="text-center">{{ parent.user.middle_name }}</td>
-                                    <td class="text-center">{{ parent.user.last_name }}</td>
                                     <td class="text-center">{{ parent.user.suffix_name }}</td>
                                     <td class="text-center">{{ parent.user.phone_num }}</td>
                                     <td class="text-center">{{ parent.user.email }}</td>

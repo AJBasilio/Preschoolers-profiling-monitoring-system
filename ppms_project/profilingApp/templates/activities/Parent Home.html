@@ -161,7 +161,7 @@
                                         <div id="parentCardsText" class="col-8 d-flex justify-content-center align-items-center text-start text-body">
                                             <div>
                                                 <div class="row text-capitalize">
-                                                    Name : {{ item.first_name }} {{ item.middle_name }} {{ item.last_name }} {{ preschooler.suffix_name }} 
+                                                    Name : {{ item.last_name }}, {{ item.first_name }} {{ item.middle_name }} {{ preschooler.suffix_name }} 
                                                 </div>
                                                 <div class="row">
                                                     {% if item.age_months >= 60 %}
@@ -176,7 +176,7 @@
                                                 </div>
                                                 <div class="row">
                                                     {% if item.whfa is None %}
-                                                        <div class="d-flex flex-row p-0"> Last Status: <p class="text-info mx-1 my-0">No Record</p> </div>
+                                                        <div class="d-flex flex-row p-0"> Last Status: <p class="text-danger mx-1 my-0">No Record</p> </div>
                                                     {% elif item.whfa > 3.0 %}
                                                         <div class="d-flex flex-row p-0"> Last Status: <p class=" mx-1 my-0" style="color: rgb(242, 98, 33);">Obese</p> </div>
                                                     {% elif item.whfa > 2.0 and item.whfa <= 3.0 %}
@@ -193,7 +193,7 @@
                                                     {% if item.vaccine_count >= 14 %}
                                                     <div class="d-flex flex-row p-0"> Vaccine: <p class="text-success mx-1 my-0">Complete</p> </div>
                                                     {% elif item.vaccine_count == 0 %}
-                                                    <div class="d-flex flex-row p-0"> Vaccine: <p class="text-info mx-1 my-0">No Record</p></div>
+                                                    <div class="d-flex flex-row p-0"> Vaccine: <p class="text-danger mx-1 my-0">No Record</p></div>
                                                     {% else %}
                                                     <div class="d-flex flex-row p-0"> Vaccine: <p class="text-warning mx-1 my-0">On Going</p></div>
                                                     {% endif %}
