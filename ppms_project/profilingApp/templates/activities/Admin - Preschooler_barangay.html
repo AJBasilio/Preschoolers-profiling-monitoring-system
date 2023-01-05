@@ -124,7 +124,7 @@
                     <div class="text-right " style="width: 10rem;">
                         <div class="dropdown text-center" >
                             <h6 class="text-uppercase text-dark dropdown-header"><i class="fa fa-3x fa-fw fas fa-landmark " style="font-size: 15px; margin-right: 5px;"></i>Barangay</h6>
-                            <select class="form-select " aria-label="Default select example" onchange="javascript:handleNextView(this)">
+                            <select class="form-select" style="cursor: pointer;" aria-label="Default select example" onchange="javascript:handleNextView(this)">
                                 <option selected disabled >{{ brgy }}</option>
                                 <option value="{% url 'admin_home2' %}">All</option>
                                 {% for barangay in barangays %}

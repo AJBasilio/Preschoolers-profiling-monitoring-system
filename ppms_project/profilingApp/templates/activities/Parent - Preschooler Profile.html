@@ -50,9 +50,9 @@
 <div class="row m-0" id="secondNav"> 
     <div class="col-xl-8 col-md-6 col-12 d-flex align-items-center justify-content-md-start justify-content-center mb-1">
         {% if preschooler.suffix_name is None %}
-            <h5 class="text-md-start text-center text-uppercase m-0">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }}'s Profile</h5>
+            <h5 class="text-md-start text-center text-uppercase m-0">{{ preschooler.last_name }}, {{ preschooler.first_name }} {{ preschooler.middle_name }}'s Profile</h5>
         {% else %}
-            <h5 class="text-md-start text-center text-uppercase m-0">{{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.last_name }} {{ preschooler.suffix_name }}'s Profile</h5>
+            <h5 class="text-md-start text-center text-uppercase m-0">{{ preschooler.last_name }}, {{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.suffix_name }}'s Profile</h5>
         {% endif %}
     </div>
     <div class="col-xl-4 col-md-6 col-12 mb-1">
@@ -72,7 +72,7 @@
                 <div class="modal-content">
                     <div class="modal-header d-flex align-items-center justify-content-between">
                         <div>
-                            <h5 class="modal-title fas fa-history" id="exampleModalLabel"> Nutritional Status History</h5>
+                            <h5 class="modal-title fw-bold" id="exampleModalLabel"><i class="fas fa-history" style="color:#188045"></i> Nutritional Status History</h5>
                         </div>
                     </div>
                     <div class="modal-body p-0">
@@ -149,19 +149,6 @@
         <div>
             <section>
                 <div class="row">
-                    {% if preschooler.gender == 'Male' %}
-                        {% if preschooler.ps_image %}
-                            <img class="rounded-circle" src="/Media/{{ preschooler.ps_image }}" width="100%" height="100%" style="min-width: 85px;">
-                        {% else %}
-                            <img class="rounded-circle"src="{% static '/Media/kidBoy.jpg' %}" height="100%" width="100%" style="min-width: 85px;">
-                        {% endif %}
-                    {% elif preschooler.gender == 'Female' %}
-                        {% if preschooler.ps_image %}
-                            <img class="rounded-circle" src="/Media/{{ preschooler.ps_image }}" width="100%" height="100%" style="min-width: 85px;">
-                        {% else %}
-                            <img class="rounded-circle"src="{% static '/Media/kidGirl.jpg' %}" height="100%" width="100%" style="min-width: 85px;">
-                        {% endif %}
-                    {% endif %}
                     <div class="col-md-12 col-12 mb-4 mb-md-3">
                         <div class="card d-flex align-items-stretch flex-column" >
                             <div class="card-header">
@@ -169,85 +156,98 @@
                             </div>
                             <div class="card-body p-4 shadow-sm align-items-center">
                                 <div class="row">
-                                    <div class="col-sm justify-content-start justify-content-md-center">
-                                        <p class="mb-0">Full Name</p>
-                                    </div>
-                                    {% if preschooler.suffix_name is None %}
-                                        <div class="col-sm justify-content-start justify-content-md-center text-uppercase">
-                                            <p class="text-muted  mb-0">{{ preschooler.last_name }}, {{ preschooler.first_name }} {{ preschooler.middle_name }} </p>
+                                    <div class="col-lg-6 d-flex justify-content-center align-items-center">
+                                        <div class="row d-block justify-content-center align-items-center gap" style="padding:0% 3% 3% 3%; max-height: 300px;">
+                                            {% if preschooler.gender == 'Male' %}
+                                                {% if preschooler.ps_image %}
+                                                    <img class="rounded-circle hoverableImage" src="/Media/{{ preschooler.ps_image }}" style="min-width: 85px; max-width: 200px;">
+                                                {% else %}
+                                                    <img class="rounded-circle hoverableImage"src="{% static '/Media/kidBoy.jpg' %}" style="min-width: 85px; max-width: 200px;">
+                                                {% endif %}
+                                            {% elif preschooler.gender == 'Female' %}
+                                                {% if preschooler.ps_image %}
+                                                    <img class="rounded-circle hoverableImage" src="/Media/{{ preschooler.ps_image }}" style="min-width: 85px; max-width: 200px;">
+                                                {% else %}
+                                                    <img class="rounded-circle hoverableImage"src="{% static '/Media/kidGirl.jpg' %}" style="min-width: 85px; max-width: 200px;">
+                                                {% endif %}
+                                            {% endif %}
+                                            {% if preschooler.suffix_name is None %}
+                                                <div class="col-sm justify-content-start justify-content-md-center text-uppercase text-center my-3">
+                                                    <p class="fw-bold  mb-0">{{ preschooler.last_name }}, {{ preschooler.first_name }} {{ preschooler.middle_name }} </p>
+                                                </div>
+                                            {% else %}
+                                                <div class="col-sm justify-content-start justify-content-md-center text-uppercase text-center my-3">
+                                                    <p class="fw-bold  mb-0">{{ preschooler.last_name }}, {{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.suffix_name }}</p>
+                                                </div>
+                                            {% endif %}
                                         </div>
-                                    {% else %}
-                                        <div class="col-sm justify-content-start justify-content-md-center text-uppercase">
-                                            <p class="text-muted  mb-0">{{ preschooler.last_name }}, {{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.suffix_name }}</p>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="row">
+                                            <div class="col-sm justify-content-start justify-content-md-center">
+                                                <p class="mb-0">Date of Birth</p>
+                                            </div>
+                                            <div class="col-sm">
+                                                <p class="fw-bold  mb-0">{{ preschooler.birthday }}</p>
+                                            </div>
                                         </div>
-                                    {% endif %}
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm justify-content-start justify-content-md-center">
+                                                <p class="mb-0">Age</p>
+                                            </div>
+                                            <div class="col-sm justify-content-start justify-content-md-center">
+                                                <p class="fw-bold  mb-0">{{ preschooler.age_months }} Months</p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm justify-content-start justify-content-md-center">
+                                                <p class="mb-0">Gender</p>
+                                            </div>
+                                            <div class="col-sm justify-content-start justify-content-md-center">
+                                                <p class="fw-bold  mb-0">{{ preschooler.gender }}</p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm justify-content-start justify-content-md-center">
+                                                <p class="mb-0">Health Problem</p>
+                                            </div>
+                                            <div class="col-sm justify-content-start justify-content-md-center">
+                                                <p class="fw-bold  mb-0">{{ preschooler.health_problem }}</p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm justify-content-start justify-content-md-center">
+                                                <p class="mb-0">Weight:</p>
+                                            </div>
+                                            {% if preschooler.weight is None%}
+                                            <div class="col-sm justify-content-start justify-content-md-center">
+                                                <p class="fw-bold  mb-0">{{ preschooler.weight }} </p>
+                                            </div>
+                                            {% else%}
+                                            <div class="col-sm justify-content-start justify-content-md-center">
+                                                <p class="fw-bold  mb-0">{{ preschooler.weight }} kg</p>
+                                            </div>
+                                            {% endif %}
+                                            
+                                            <div class="col-sm justify-content-start justify-content-md-center">
+                                                <p class="mb-0">Height:</p>
+                                            </div>
+                                            {% if preschooler.height is None%}
+                                            <div class="col-sm justify-content-start justify-content-md-center">
+                                                <p class="fw-bold  mb-0">{{ preschooler.height }}</p>
+                                            </div>
+                                            {% else %}
+                                            <div class="col-sm justify-content-start justify-content-md-center">
+                                                <p class="fw-bold  mb-0">{{ preschooler.height }} cm</p>
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
                                 </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm justify-content-start justify-content-md-center">
-                                        <p class="mb-0">Date of Birth</p>
-                                    </div>
-                                    <div class="col-sm">
-                                        <p class="text-muted  mb-0">{{ preschooler.birthday }}</p>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm justify-content-start justify-content-md-center">
-                                        <p class="mb-0">Age</p>
-                                    </div>
-                                    <div class="col-sm justify-content-start justify-content-md-center">
-                                        <p class="text-muted  mb-0">{{ preschooler.age_months }} Months</p>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm justify-content-start justify-content-md-center">
-                                        <p class="mb-0">Gender</p>
-                                    </div>
-                                    <div class="col-sm justify-content-start justify-content-md-center">
-                                        <p class="text-muted  mb-0">{{ preschooler.gender }}</p>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm justify-content-start justify-content-md-center">
-                                        <p class="mb-0">Health Problem</p>
-                                    </div>
-                                    <div class="col-sm justify-content-start justify-content-md-center">
-                                        <p class="text-muted  mb-0">{{ preschooler.health_problem }}</p>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm justify-content-start justify-content-md-center">
-                                        <p class="mb-0">Weight:</p>
-                                    </div>
-                                    {% if preschooler.weight is None%}
-                                    <div class="col-sm justify-content-start justify-content-md-center">
-                                        <p class="text-muted  mb-0">{{ preschooler.weight }} </p>
-                                    </div>
-                                    {% else%}
-                                    <div class="col-sm justify-content-start justify-content-md-center">
-                                        <p class="text-muted  mb-0">{{ preschooler.weight }} kg</p>
-                                    </div>
-                                    {% endif %}
-                                    
-                                    <div class="col-sm justify-content-start justify-content-md-center">
-                                        <p class="mb-0">Height:</p>
-                                    </div>
-                                    {% if preschooler.height is None%}
-                                    <div class="col-sm justify-content-start justify-content-md-center">
-                                        <p class="text-muted  mb-0">{{ preschooler.height }}</p>
-                                    </div>
-                                    {% else %}
-                                    <div class="col-sm justify-content-start justify-content-md-center">
-                                        <p class="text-muted  mb-0">{{ preschooler.height }} cm</p>
-                                    </div>
-                                    {% endif %}
-                                </div>
-                                <hr>
-
                             </div>
                             <div class="card-footer small text-muted">
                                 Last Measuring Date : {{ preschooler.date_measured }} | ({{ preschooler.age_measured }} months Old)
