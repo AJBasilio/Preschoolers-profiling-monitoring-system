@@ -154,25 +154,8 @@ def parent_preschooler(request, pk):
         preschooler = Preschooler.objects.get(id=pk)
         preschooler_history = PreschoolerHistory.objects.filter(id_preschooler=preschooler)
 
-        form = ChangePicture(instance=preschooler)
-
-        if request.method == 'POST':
-            form = ChangePicture(request.POST, request.FILES, instance=preschooler)
-            if form.is_valid():
-
-                form.save()
-                try:
-                    image_path = preschooler.ps_image.path
-                    image = Image.open(image_path)
-                    image.save(image_path, quality=40)
-                except:
-                    pass
-
-                return redirect('parent_preschooler', preschooler.id)
-
         context = {'preschooler' : preschooler,
-                   'history' : preschooler_history,
-                   'form' : form}
+                   'history' : preschooler_history,}
 
         return render(request, 'activities/Parent - Preschooler Profile.html', context)
         
@@ -536,13 +519,28 @@ def preschooler_profile(request, pk):
     if request.user.is_authenticated and request.user.user_type == 'BHW':
         preschooler = Preschooler.objects.get(id=pk)
        
+        changepic_form = ChangePicture(instance=preschooler)
         form = UpdatePreschooler(instance=preschooler)
         preschooler_history = PreschoolerHistory.objects.filter(id_preschooler=preschooler)
 
         if request.method == 'POST':
+            
             form = UpdatePreschooler(request.POST, instance=preschooler)
             birthday = preschooler.birthday
             
+            changepic_form = ChangePicture(request.POST, request.FILES, instance=preschooler)
+            if changepic_form.is_valid():
+
+                changepic_form.save()
+                try:
+                    image_path = preschooler.ps_image.path
+                    image = Image.open(image_path)
+                    image.save(image_path, quality=40)
+                except:
+                    pass
+
+                return redirect('preschooler_profile', preschooler.id)
+
             if form.is_valid():
                 dateMeasured = form.cleaned_data['date_measured']
 
@@ -561,7 +559,8 @@ def preschooler_profile(request, pk):
 
         context = {'preschooler' : preschooler,
                    'form' : form,
-                   'history' : preschooler_history}
+                   'history' : preschooler_history,
+                   'changepic_form' : changepic_form}
                    
         return render(request, 'activities/Preschooler Profile.html', context)
 

@@ -58,7 +58,6 @@
     <div class="col-xl-4 col-md-6 col-12 mb-1">
         <div class="row d-flex justify-content-center align-items-stretch">
             <div class="d-flex justify-content-md-end justify-content-center align-items-stretch">
-                <button style="background-color: #188045; color: white; max-height: 70px !important; height: 100%;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#pres_changepic"><span class="fas fa-history"></span> Change Picture</button>
                 <button style="background-color: #188045; color: white; max-height: 70px !important; height: 100%;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#pres_history"><span class="fas fa-history"></span> History</button>
                 <a href="{% url 'immunization_schedule' preschooler.id %}"><button style="background-color: #188045; color: white; margin-left:10px; max-height: 70px !important;" type="button" class="btn"><span class="fa fa-address-card"></span> Immunization Status</button></a>
             </div>
@@ -137,35 +136,6 @@
                                     {% endfor %}
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
-                    <div class="card-footer text-end ">
-                        <button type="button" class="btn" style="background-color: #EF3A25; color: white;" data-bs-dismiss="modal" aria-label="Close"> Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!----- MODAL FOR CHANGE PICTURE ---------->
-        <div class="modal fade" id="pres_changepic" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header d-flex align-items-center justify-content-between">
-                        <div>
-                            <h5 class="modal-title fas fa-history" id="exampleModalLabel"> Change Profile Picture</h5>
-                        </div>
-                    </div>
-                    <div class="modal-body p-0">
-                        <div class="modal-body mx-4">
-                            <form method="POST" enctype="multipart/form-data">
-                                {% csrf_token %}
-                                <div class="md-form mb-2" >
-                                    {{ form.ps_image }}
-                                </div>
-                        
-                                <div class="modal-footer justify-content-end" >
-                                    <button type="submit" class="btn btn-primary" style="background-color: #188045;border-color: #188045; min-width: 15%;">Submit</button>
-                                </div>
-                            </form>
                         </div>
                     </div>
                     <div class="card-footer text-end ">
