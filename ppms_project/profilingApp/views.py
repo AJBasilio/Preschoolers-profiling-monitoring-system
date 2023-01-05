@@ -10,6 +10,7 @@ from .models import *
 from datetime import datetime, timedelta
 from json import dumps
 from PIL import Image
+from django.db.models import Q
 # Create your views here.
 
 @unauthenticated_user
@@ -276,6 +277,20 @@ def admin_preschoolers(request):
 
         count_list = [severly_count, wasted_count, normal_count, overweight_count, obese_count]
         data_json = dumps(count_list)
+
+        # ==== Total Preschoolers ======
+        all_preschoolers = Preschooler.objects.all().count()
+
+        # ==== Preschooler w/ out Records ====
+        preschooler_without_record = Preschooler.lt_60_objects.filter(Q(height__isnull=True) | Q(weight__isnull=True)).count()
+
+        # ==== Preschooler w Records ====
+        preschooler_with_record = Preschooler.lt_60_objects.filter(Q(height__isnull=False) | Q(weight__isnull=False) | Q(date_measured__isnull=False))
+        preschooler_with_record_count = preschooler_with_record.count()
+
+        # ==== Preschooler above 60 months ====
+        preschooler_60_above = Preschooler.gte_60_objects.all()
+        preschooler_60_above_count = preschooler_60_above.count()
         
         context = {'invalidated_count': invalidated_status,
                 'normal' : normal_count,
@@ -284,6 +299,12 @@ def admin_preschoolers(request):
                 'overweight' : overweight_count,
                 'obese' : obese_count,
                 'barangays' : barangays,
+                'all_preschooler_count' : all_preschoolers,
+                'preschooler_without_record_count' : preschooler_without_record,
+                'preschooler_with_record_count' : preschooler_with_record_count,
+                'preschooler_60_above_count' : preschooler_60_above_count,
+                'preschooler_with_record' : preschooler_with_record,
+                'preschooler_60_above' : preschooler_60_above,
                 'count_data' : data_json}
 
         return render(request, 'activities/Admin - Preschooler.html', context)
