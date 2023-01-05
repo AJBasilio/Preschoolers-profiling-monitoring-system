@@ -112,6 +112,7 @@ class Preschooler(Model):
     gender = models.CharField(max_length=100, choices=GENDER, null=True)
     date_measured = models.DateField(null=True, blank=True)
     health_problem = models.CharField(max_length=500, null=True, blank=True)
+    ps_image = models.ImageField(null=True, blank=True, upload_to='ps_images')
 
     # === Managers ===
     history= HistoricalRecords()

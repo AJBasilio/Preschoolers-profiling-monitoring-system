@@ -104,3 +104,8 @@ class AddBarangay(ModelForm):
     class Meta:
         model = Barangay
         fields = ['brgy_name', 'brgy_phone', 'brgy_address']
+
+class ChangePicture(ModelForm):
+    class Meta:
+        model = Preschooler
+        fields = ['ps_image']

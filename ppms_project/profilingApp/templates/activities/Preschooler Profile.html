@@ -78,6 +78,19 @@
         <div>
             <section>
                 <div class="row">
+                    {% if preschooler.gender == 'Male' %}
+                        {% if preschooler.ps_image %}
+                            <img class="rounded-circle" src="/Media/{{ preschooler.ps_image }}" width="100%" height="100%" style="min-width: 85px;">
+                        {% else %}
+                            <img class="rounded-circle"src="{% static '/Media/kidBoy.jpg' %}" height="100%" width="100%" style="min-width: 85px;">
+                        {% endif %}
+                    {% elif preschooler.gender == 'Female' %}
+                        {% if preschooler.ps_image %}
+                            <img class="rounded-circle" src="/Media/{{ preschooler.ps_image }}" width="100%" height="100%" style="min-width: 85px;">
+                        {% else %}
+                            <img class="rounded-circle"src="{% static '/Media/kidGirl.jpg' %}" height="100%" width="100%" style="min-width: 85px;">
+                        {% endif %}
+                    {% endif %}
                     <div class="col-md-12 col-12 mb-4 mb-md-3">
                         <div class="card d-flex align-items-stretch flex-column" >
                             <div class="card-header">

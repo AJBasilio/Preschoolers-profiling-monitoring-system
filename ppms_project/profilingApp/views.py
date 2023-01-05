@@ -9,6 +9,7 @@ from .decorators import *
 from .models import *
 from datetime import datetime, timedelta
 from json import dumps
+from PIL import Image
 # Create your views here.
 
 @unauthenticated_user
@@ -153,8 +154,25 @@ def parent_preschooler(request, pk):
         preschooler = Preschooler.objects.get(id=pk)
         preschooler_history = PreschoolerHistory.objects.filter(id_preschooler=preschooler)
 
+        form = ChangePicture(instance=preschooler)
+
+        if request.method == 'POST':
+            form = ChangePicture(request.POST, request.FILES, instance=preschooler)
+            if form.is_valid():
+
+                form.save()
+                try:
+                    image_path = preschooler.ps_image.path
+                    image = Image.open(image_path)
+                    image.save(image_path, quality=40)
+                except:
+                    pass
+
+                return redirect('parent_preschooler', preschooler.id)
+
         context = {'preschooler' : preschooler,
-                   'history' : preschooler_history}
+                   'history' : preschooler_history,
+                   'form' : form}
 
         return render(request, 'activities/Parent - Preschooler Profile.html', context)
         
