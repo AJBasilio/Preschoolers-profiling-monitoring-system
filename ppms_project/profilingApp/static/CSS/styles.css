@@ -1227,6 +1227,15 @@ html {
     cursor: pointer;
     text-decoration: underline;
   }
+
+  /* Admin Archive Button Styling */
+  #adminArchive{
+    background-color: #188045;
+    border-radius:10px;
+    font-weight: bold; 
+    color: white;
+  }
+
   /* EULA BUTTON */
   #eulaButton{
     margin-left:5px;
