@@ -1228,6 +1228,11 @@ html {
     text-decoration: underline;
   }
 
+  /* Text Shadow */
+  .textShadow{
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+
   /* Admin Archive Button Styling */
   #adminArchive{
     background-color: #188045;

@@ -141,30 +141,34 @@
             <div class="col-lg mb-2">
                 <div class="card shadow-sm bg-white rounded h-100">
                     <div class="card-header">
-                        <h5 class="card-title">Number of Preschoolers</h5>
+                        <h4 class="card-title">Number of Preschoolers</h4>
                     </div>
                     <div class="card-body text-center">
                         <div class="row">
-                            <div class="col-md-8 d-block justify-content-center">
-                                <p style="font-size: xx-large;" class="card-text">{{ preschooler_60_above_count }}</p>
-                                <p class="text-uppercase fw-bold">Archived Preschoolers (60 months and above old) </p>
+                            <div class="col-md-6 d-flex align-items-center justify-content-center">
+                                <div class="d-block">
+                                    <p style="font-size: xx-large; " class="card-text fw-bold"><i class="fas fa-sm fa-child" style="color: #ffc107 ;"></i> {{ all_preschooler_count }}</p>
+                                    <p class="text-uppercase fw-bold">Registered preschoolers</p>
+                                </div>
+                                
+                            
                             </div>
-                            <div class="col-md-4 d-flex align-items-center justify-content-center">
-                                <button class="btn" type="button" id="adminArchive" data-bs-toggle="modal" data-bs-target="#modalArc"><h6 style="padding:5px;margin-bottom: 0px !important;"><i class="fa fa-archive"></i> View Archive</h6></button>
+                            <div class="col-md-6 d-flex justify-content-center align-items-center">
+                                <div class="d-block">
+                                    <p style="font-size: xx-large;" class="card-text fw-bold"><i class="fa fa-sm fa-archive" style="color: #d86a10 ;"></i>  {{ preschooler_60_above_count }}</p>
+                                    <p class="text-uppercase fw-bold">Archived Preschoolers (60 months and above old) </p>
+                                </div>
                             </div>
+                           
                         </div>
                         <hr>
                         <div class="row">
-                            <div class="col-md-4 d-block">
-                                <p style="font-size: xx-large;" class="card-text">{{ all_preschooler_count }}</p>
-                                <p class="text-uppercase fw-bold">Registered preschoolers</p>
-                            </div>
-                            <div class="col-md-4 d-block">
-                                <p style="font-size: xx-large;" class="card-text">{{ preschooler_with_record_count }}</p>
+                            <div class="col-md-6 d-block">
+                                <p style="font-size: xx-large; " class="card-text fw-bold"><i class="fa fa-sm fa-check-circle" style="color: #2fbc44;"></i>  {{ preschooler_with_record_count }}</p>
                                 <p class="text-uppercase fw-bold">Preschoolers with records </p>
                             </div>
-                            <div class="col-md-4 d-block">
-                                <p style="font-size: xx-large;" class="card-text">{{ preschooler_without_record_count }}</p>
+                            <div class="col-md-6 d-block">
+                                <p style="font-size: xx-large;" class="card-text fw-bold"><i class="fa fa-sm fa-times-circle" style="color: #d23114;" ></i>  {{ preschooler_without_record_count }}</p>
                                 <p class="text-uppercase fw-bold">Preschoolers with no records </p>
                             </div> 
                         </div>
@@ -237,45 +241,45 @@
 <!-- END OF MODAL -->
         <div class="mb-4">
             <div class="card-header">
-                <h5>Nutrition Summary Chart</h5>
+                <h4>Preschooler's Nutrition Summary Chart</h4>
             </div>
             <div class="card shadow-sm bg-white rounded">
                 <div class="row d-flex align-items-stretch" style="padding:25px 60px 0px 60px;">
                     <div class="col-lg my-2">
-                        <div class="shadow-sm bg-white h-100 fw-bold justify-content-center d-flex align-items-center text-center" style="background-color:rgb(238, 29, 35) !important; border-radius: 50px;">
-                            <div class="d-block text-white p-3">
-                                <p style="font-size: xx-large;" class="card-text m-0">{{ severly }}</p>
+                        <div class="shadow-md bg-white h-100 fw-bold justify-content-center d-flex align-items-center text-center" style="background-color:rgb(238, 29, 35) !important; border-radius: 50px;">
+                            <div class="d-block textShadow text-white p-3">
+                                <p style="font-size: xx-large;" class="card-text m-0 ">{{ severly }}</p>
                                 <h6 class="fw-bold">Severely Wasted</h6>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg my-2">
-                        <div class="shadow-sm bg-white h-100 fw-bold justify-content-center d-flex align-items-center text-center" style="background-color:rgb(255, 241, 2) !important; border-radius: 50px;">
-                            <div class="d-block text-white p-3">
+                        <div class="shadow-md bg-white h-100 fw-bold justify-content-center d-flex align-items-center text-center" style="background-color:rgb(255, 241, 2) !important; border-radius: 50px;">
+                            <div class="d-block textShadow text-white p-3">
                                 <p style="font-size: xx-large;" class="card-text m-0">{{ wasted }}</p>
                                 <h6 class="fw-bold">Moderately Wasted</h6>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg my-2">
-                        <div class="shadow-sm bg-white h-100 fw-bold justify-content-center d-flex align-items-center text-center" style="background-color:rgb(0, 165, 79) !important; border-radius: 50px;">
-                            <div class="d-block text-white p-3">
+                        <div class="shadow-md bg-white h-100 fw-bold justify-content-center d-flex align-items-center text-center" style="background-color:rgb(0, 165, 79) !important; border-radius: 50px;">
+                            <div class="d-block textShadow text-white p-3">
                                 <p style="font-size: xx-large;" class="card-text m-0">{{ normal }}</p>
                                 <h6 class="fw-bold">Normal</h6>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg my-2">
-                        <div class="shadow-sm bg-white h-100 fw-bold justify-content-center d-flex align-items-center text-center" style="background-color:rgb(242, 98, 33) !important; border-radius: 50px;">
-                            <div class="d-block text-white p-3">
+                        <div class="shadow-md bg-white h-100 fw-bold justify-content-center d-flex align-items-center text-center" style="background-color:rgb(242, 98, 33) !important; border-radius: 50px;">
+                            <div class="d-block textShadow text-white p-3">
                                 <p style="font-size: xx-large;" class="card-text m-0">{{ overweight }}</p>
                                 <h6 class="fw-bold">Overweight</h6>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg my-2">
-                        <div class="shadow-sm bg-white h-100 fw-bold justify-content-center d-flex align-items-center text-center" style="background-color:rgb(242, 98, 33) !important; border-radius: 50px;">
-                            <div class="d-block text-white p-3">
+                        <div class="shadow-md bg-white h-100 fw-bold justify-content-center d-flex align-items-center text-center" style="background-color:rgb(242, 98, 33) !important; border-radius: 50px;">
+                            <div class="d-block textShadow text-white p-3">
                                 <p style="font-size: xx-large;" class="card-text m-0">{{ obese }}</p>
                                 <h6 class="fw-bold">Obese</h6>
                             </div>
@@ -290,12 +294,14 @@
         <div class="row">
             <div class="col">
                 <div class="card-header">
-                    <h5>List of Preschoolers</h5>
-
+                    <h4>List of Preschoolers</h4>
                 </div>
                 <div class="card shadow-lg p-3 bg-white rounded" >
+                    <div class="d-flex justify-content-end my-2">
+                        <button class="btn" type="button" id="adminArchive" data-bs-toggle="modal" data-bs-target="#modalArc" style="max-width: 15%!important;"><h6 style="padding:5px;margin-bottom: 0px !important;"><i class="fa fa-archive"></i> View Archive</h6></button>
+                    </div>
                     <div class="table-responsive" >
-                        <table class="table table-hover table-cell-border" id="BHWuser_table" >
+                        <table class="table table-hover table-cell-border" id="adminPreschoolerList" >
                             <thead>
                                 <tr style="text-align: center;">
                                     <th scope="col">No.</th>
@@ -423,6 +429,25 @@
         t.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
             this.data(i++);
         });}).draw();
+
+
+    var t = $('#adminPreschoolerList').DataTable({
+        dom: 'Blfrtip',
+        info: 'true',
+        aoColumnDefs: [{
+            'bSortable': false,
+            'aTargets': ['nosort'],
+            'orderable': false,
+            'targets': [0, 8],
+        }],
+        order: [[1, 'asc']],
+        });
+        t.on('order.dt search.dt', function () {
+        let i = 1;
+        t.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+            this.data(i++);
+        });}).draw();
+
     
 </script>
 {% endblock %}
