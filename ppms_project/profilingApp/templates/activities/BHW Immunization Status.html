@@ -75,9 +75,19 @@
         {% if loggedin == 'BHW' %}
             <button style="background-color: #188045; color: white;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#guide" ><span class="fas fa-table"></span> Guide</button>
             <button style="background-color: #188045; color: white; margin-left:2%;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#update" ><span class="far fa-calendar"></span> Update</button>
+            
+            <form method="POST" action="">
+                {% csrf_token %}
+                <button style="background-color: #188045; color: white; margin-left:2%;" name="PDF" type="submit" class="btn" ><span class="fa fa-file-pdf"></span> Print PDF</button>
+            </form>
+            
         {% else %}
             <div class="">
                 <button style="background-color: #188045; color: white;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#guide"><span class="fas fa-table"></span> Guide</button>
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <button style="background-color: #188045; color: white; margin-left:2%;" name="PDF" type="submit" class="btn" ><span class="fa fa-file-pdf"></span> Print PDF</button>
+                </form>
             </div>
         {% endif %}
         </div>

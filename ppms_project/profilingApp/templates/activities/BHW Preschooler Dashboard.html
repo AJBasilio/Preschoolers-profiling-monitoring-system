@@ -383,6 +383,7 @@
                             };
                             doc.defaultStyle.fontSize = 12; //2, 3, 4,etc
                             doc.styles.tableHeader.fontSize = 12; //2, 3, 4, etc
+                            doc.styles.tableHeader.alignment = 'left';
                             doc.content[1].table.widths = [ '5%', '15%',  '10%', '5%', '10%', '15%', '15%', '15%', '10%'];
                         },
                     exportOptions: {
@@ -410,7 +411,52 @@
             console.log(table);
 
         var t = $('#archive').DataTable({
-            dom: 'frtip',
+            dom: 'Bfrtip',
+            info: false,
+            buttons: [
+                {
+                    extend: 'excelHtml5',
+                    text: 'Generate Excel Report',
+                    title: 'List of Preschoolers in Barangay ' + '{{bhw.bhw_barangay}} | ' + '{{current_date}}',
+                },
+                {
+                    extend: 'pdfHtml5',
+                    orientation: 'landscape',
+                    pageSize: 'LEGAL',
+                    download: 'open',
+                    text: 'Generate PDF Report',
+                    title: 'List of Archived Preschoolers in Barangay ' + '{{bhw.bhw_barangay}} | ' + '{{current_date}}',
+                    customize: function(doc){
+                        BMI = t.column(7).data().toArray();
+                        for (var i = 0; i < BMI.length; i++) {
+                            var val = parseFloat(Number(BMI[i].replace(/[^0-9\.-]+/g,"")));
+                            console.log(val);
+                            if (val == 0){
+                                    doc.content[1].table.body[i + 1][7].fillColor = '#d3d3d3';
+                                }
+                                else if (val > 3.0) {
+                                    doc.content[1].table.body[i + 1][7].fillColor = '#f26221';
+                                }
+                                else if (val > 2.0 && val <= 3.0 ) {
+                                    doc.content[1].table.body[i + 1][7].fillColor = '#f26221';
+                                }
+                                else if (val >= -2.0 && val <= 2.0 ) {
+                                    doc.content[1].table.body[i + 1][7].fillColor = '#00A54F';
+                                }
+                                else if (val >= -3.0 && val < -2.0 ) {
+                                    doc.content[1].table.body[i + 1][7].fillColor = '#FFF102';
+                                }
+                                else {
+                                    doc.content[1].table.body[i + 1][7].fillColor = '#EE1D23';
+                                }
+                        };
+                        doc.defaultStyle.fontSize = 12; //2, 3, 4,etc
+                        doc.styles.tableHeader.fontSize = 12; //2, 3, 4, etc
+                        doc.styles.tableHeader.alignment = 'left';
+                        doc.content[1].table.widths = [ '5%', '15%',  '15%', '15%', '5%', '15%', '10%', '20%',];
+                    }
+                },
+            ],
             aoColumnDefs: [{
                 'bSortable': false,
                 'aTargets': ['nosort'],
