@@ -522,10 +522,12 @@ def preschooler_dashboard(request):
         parents = Parent.objects.filter(barangay=bhw_logged.bhw_barangay)
         preschooler = Preschooler.lt_60_objects.filter(parent__in=(parents))
         preschooler_60months = Preschooler.gte_60_objects.filter(parent__in=(parents))
+        current_date =  datetime.now()
 
         context = {'bhw' : bhw_logged,
                    'preschoolers': preschooler,
-                   'archive_preschoolers' : preschooler_60months}
+                   'archive_preschoolers' : preschooler_60months,
+                   'current_date': current_date}
         
         return render(request, 'activities/BHW Preschooler Dashboard.html', context)
 
