@@ -1,6 +1,26 @@
-{% extends 'activities/Admin Home.html' %} <!-- header and footer of page linked from admin home html file -->
 {% load static %}
 {% block dashboard %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- table layout -->
+    <script src="{% static '/Javascript/js/jquery.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static '/CSS/styles.css' %}">
+    <link rel="stylesheet" href="{% static '/CSS/font-awesome/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static '/CSS/css/bootstrap.min.css' %}">
+    <script src="{% static '/Javascript/js/jquery.min.js' %}"></script>
+
+    <script src="{% static '/Javascript/js/Chart.min.js' %}" crossorigin="anonymous"></script>
+    <link rel="icon" href="{% static '/Media/Dasmalogo.png' %}" type="image/y-icon">
+    <link rel="stylesheet" href="{% static '/CSS/DataTables/datatables.min.css' %}">
+    <script src="{% static '/CSS/DataTables/datatables.js' %}"></script>
+    <link rel="stylesheet" href="{% static '/CSS/DataTables/Buttons-1.7.1/css/buttons.bootstrap5.css' %}">
+    <script src="{% static '/CSS/DataTables/Buttons-1.7.1/js/buttons.bootstrap5.js' %}"></script>
+
 
 <title>Preschooler Status | PPMS </title>
 </head>
@@ -196,9 +216,13 @@
                                         <th scope="col">First Name</th>
                                         <th scope="col">Middle Name</th>
                                         <th scope="col">Suffix</th>
+                                        <th scope="col">Gender</th>
                                         <th scope="col">Birthdate</th>
                                         <th scope="col">Age Last Measured (Month)</th>
-                                        <th scope="col">BMI STATUS</th>
+                                        <th scope="col">WFA STATUS</th>
+                                        <th scope="col">HFA STATUS</th>
+                                        <th scope="col">WHFA STATUS</th>
+                                        <th scope="col">Vaccine status</th>
                                     </tr>   
                                 </thead>
                                 <tbody>
@@ -209,11 +233,48 @@
                                         <td>{{ preschooler.first_name }}</td>
                                         <td>{{ preschooler.middle_name }}</td>
                                         <td>{{ preschooler.suffix_name }}</td>
+                                        <td>{{ preschooler.gender }}</td>
                                         <td>{{ preschooler.birthday }}</td>
-                                        <td>{{ preschooler.age_measured }} Months</td>
+                                        {% if preschooler.age_measured == 'Undefined' %}
+                                            <td>No Measuring Record</td>
+                                        {% else %}
+                                            <td>{{ preschooler.age_measured }} Months</td>
+                                        {% endif %}
+
+                                        {% if preschooler.wfa is None %}
+                                            <td style="background-color: rgb(211, 211, 211);"> No Data Record </td>
+                                        {% elif preschooler.wfa > 2.0 %}
+                                            <td style="background-color: rgb(242, 98, 33);"> Overweight ({{ preschooler.wfa }})</td>
+                                        {% elif preschooler.wfa >= -2.0 and preschooler.wfa <= 2.0 %}
+                                            <td style="background-color: rgb(0, 165, 79);"> Normal ({{ preschooler.wfa }})</td>
+                                        {% elif preschooler.wfa >= -3.0 and preschooler.wfa < -2.0 %}
+                                            <td style="background-color: rgb(255, 241, 2);"> Underweight ({{ preschooler.wfa }})</td>
+                                        {% else %}
+                                            <td style="background-color: rgb(238, 29, 35);"> Severely Underweight ({{ preschooler.wfa }})</td>
+                                        {% endif %}
+
+                                        {% if preschooler.hfa is None %}
+                                            <td style="background-color: rgb(211, 211, 211);"> No Data Record </td>
+                                        {% elif preschooler.hfa > 2.0 %}
+                                            <td style="background-color: rgb(0, 165, 79);"> Tall ({{preschooler.hfa }})</td>
+                                        {% elif preschooler.hfa >= -2.0 and preschooler.hfa <= 2.0 %}
+                                            <td style="background-color: rgb(0, 165, 79);"> Normal ({{ preschooler.hfa }})</td>
+                                        {% elif preschooler.hfa >= -3.0 and preschooler.hfa < -2.0 %}
+                                            <td style="background-color: rgb(255, 241, 2);"> Stunted ({{ preschooler.hfa }})</td>
+                                        {% else %}
+                                            <td style="background-color: rgb(238, 29, 35);"> Severely Stunted ({{ preschooler.hfa }})</td>
+                                        {% endif %}
+
+
                                         {% if preschooler.whfa is None %}
-                                        
-                                            <td> No Data Record </td>
+                                            {% if preschooler.height < 45.0 %}
+                                                <td class="bg-info" > Special Case <p class="text text-small m-0"> (Too Small for WHFA Tagging) </p></td>
+                                            {% elif preschooler.height > 110.0 %}
+                                                <td class="bg-info" > Special Case <p class="text text-small m-0"> (Too Tall for WHFA Tagging) </p></td>
+                                            {% else %}
+                                                <td style="background-color: rgb(211, 211, 211);"> No Data Record </td>
+                                            {% endif %}
+    
                                         {% elif preschooler.whfa > 3.0%}
                                             <td style="background-color: rgb(242, 98, 33);"> Obese ({{ preschooler.whfa }})</td>
                                         {% elif preschooler.whfa > 2.0 and preschooler.whfa <= 3.0 %}
@@ -224,7 +285,13 @@
                                             <td style="background-color: rgb(255, 241, 2);"> Moderately Wasted ({{ preschooler.whfa }})</td>
                                         {% else %}
                                             <td style="background-color: rgb(238, 29, 35);"> Severely Wasted ({{preschooler.whfa }})</td>
-                                        {% endif %}                                   
+                                        {% endif %}
+                                        
+                                        {% if preschooler.vaccine_count == 8 %}
+                                            <td style="color: rgb(0, 165, 79);">Complete</td>
+                                        {% else %}
+                                            <td>Incomplete</td>
+                                        {% endif %}
                                     </tr>
                                     {% endfor %}
                                 </tbody>
@@ -304,29 +371,70 @@
                         <table class="table table-hover table-cell-border" id="adminPreschoolerList" >
                             <thead>
                                 <tr style="text-align: center;">
-                                    <th scope="col">No.</th>
+                                    <th scope="col">No</th>
                                     <th scope="col">Last Name</th>
                                     <th scope="col">First Name</th>
                                     <th scope="col">Middle Name</th>
                                     <th scope="col">Suffix</th>
+                                    <th scope="col">Gender</th>
                                     <th scope="col">Birthdate</th>
                                     <th scope="col">Age Last Measured (Month)</th>
-                                    <th scope="col">BMI STATUS</th>
+                                    <th scope="col">WFA STATUS</th>
+                                    <th scope="col">HFA STATUS</th>
+                                    <th scope="col">WHFA STATUS</th>
+                                    <th scope="col">Vaccine status</th>
                                 </tr>   
                             </thead>
                             <tbody>
-                                {% for preschooler in preschooler_with_record %}
+                                {% for preschooler in preschooler_60_above %}
                                 <tr style="text-align: center;">
                                     <td></td>
                                     <td>{{ preschooler.last_name }}</td>
                                     <td>{{ preschooler.first_name }}</td>
                                     <td>{{ preschooler.middle_name }}</td>
                                     <td>{{ preschooler.suffix_name }}</td>
+                                    <td>{{ preschooler.gender }}</td>
                                     <td>{{ preschooler.birthday }}</td>
-                                    <td>{{ preschooler.age_measured }} Months</td>
+                                    {% if preschooler.age_measured == 'Undefined' %}
+                                        <td>No Measuring Record</td>
+                                    {% else %}
+                                        <td>{{ preschooler.age_measured }} Months</td>
+                                    {% endif %}
+
+                                    {% if preschooler.wfa is None %}
+                                        <td style="background-color: rgb(211, 211, 211);"> No Data Record </td>
+                                    {% elif preschooler.wfa > 2.0 %}
+                                        <td style="background-color: rgb(242, 98, 33);"> Overweight ({{ preschooler.wfa }})</td>
+                                    {% elif preschooler.wfa >= -2.0 and preschooler.wfa <= 2.0 %}
+                                        <td style="background-color: rgb(0, 165, 79);"> Normal ({{ preschooler.wfa }})</td>
+                                    {% elif preschooler.wfa >= -3.0 and preschooler.wfa < -2.0 %}
+                                        <td style="background-color: rgb(255, 241, 2);"> Underweight ({{ preschooler.wfa }})</td>
+                                    {% else %}
+                                        <td style="background-color: rgb(238, 29, 35);"> Severely Underweight ({{ preschooler.wfa }})</td>
+                                    {% endif %}
+
+                                    {% if preschooler.hfa is None %}
+                                        <td style="background-color: rgb(211, 211, 211);"> No Data Record </td>
+                                    {% elif preschooler.hfa > 2.0 %}
+                                        <td style="background-color: rgb(0, 165, 79);"> Tall ({{preschooler.hfa }})</td>
+                                    {% elif preschooler.hfa >= -2.0 and preschooler.hfa <= 2.0 %}
+                                        <td style="background-color: rgb(0, 165, 79);"> Normal ({{ preschooler.hfa }})</td>
+                                    {% elif preschooler.hfa >= -3.0 and preschooler.hfa < -2.0 %}
+                                        <td style="background-color: rgb(255, 241, 2);"> Stunted ({{ preschooler.hfa }})</td>
+                                    {% else %}
+                                        <td style="background-color: rgb(238, 29, 35);"> Severely Stunted ({{ preschooler.hfa }})</td>
+                                    {% endif %}
+
+
                                     {% if preschooler.whfa is None %}
-                                    
-                                        <td> No Data Record </td>
+                                        {% if preschooler.height < 45.0 %}
+                                            <td class="bg-info" > Special Case <p class="text text-small m-0"> (Too Small for WHFA Tagging) </p></td>
+                                        {% elif preschooler.height > 110.0 %}
+                                            <td class="bg-info" > Special Case <p class="text text-small m-0"> (Too Tall for WHFA Tagging) </p></td>
+                                        {% else %}
+                                            <td style="background-color: rgb(211, 211, 211);"> No Data Record </td>
+                                        {% endif %}
+
                                     {% elif preschooler.whfa > 3.0%}
                                         <td style="background-color: rgb(242, 98, 33);"> Obese ({{ preschooler.whfa }})</td>
                                     {% elif preschooler.whfa > 2.0 and preschooler.whfa <= 3.0 %}
@@ -337,7 +445,13 @@
                                         <td style="background-color: rgb(255, 241, 2);"> Moderately Wasted ({{ preschooler.whfa }})</td>
                                     {% else %}
                                         <td style="background-color: rgb(238, 29, 35);"> Severely Wasted ({{preschooler.whfa }})</td>
-                                    {% endif %}                                   
+                                    {% endif %}
+                                    
+                                    {% if preschooler.vaccine_count == 8 %}
+                                        <td style="color: rgb(0, 165, 79);">Complete</td>
+                                    {% else %}
+                                        <td>Incomplete</td>
+                                    {% endif %}
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -349,11 +463,23 @@
         </div>
     </div>
 </div>
+<!-- Footer -->
+<div class="footer text-muted">
+    <div class="container">
+        <div class="row text-center align-items-center">
+                <div class="border-top p-4">
+                    <p class="copyright"><small>
+                    Copyright ©<script>document.write(new Date().getFullYear());</script> All rights reserved <i class="icon-heart text-danger" aria-hidden="true"></i>
+                    </small>
+                    </p>
+                </div>
+        </div>
+    </div>
 
 <script type="text/javascript">
     function handleNextView(el){ 
         window.location.assign( el.value ); /* redirect on select */
-    } 
+    };
 </script>
 
 <script>
@@ -361,7 +487,6 @@
     Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
     Chart.defaults.global.defaultFontColor = '#292b2c';
     Chart.defaults.global.defaultFontSize = 15;
-    Chart.defaults.global.defaultFontStyle = 'bold';
     
     
 
@@ -424,41 +549,212 @@
             },
         },
     });
-
-    var t = $('#archive').DataTable({
-        dom: 'frtip',
-        aoColumnDefs: [{
-            'bSortable': false,
-            'aTargets': ['nosort'],
-            'orderable': false,
-            'targets': [0, 7],
-        }],
-        order: [[1, 'asc']],
-        });
-        t.on('order.dt search.dt', function () {
-        let i = 1;
-        t.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
-            this.data(i++);
-        });}).draw();
-
-
-    var t = $('#adminPreschoolerList').DataTable({
-        dom: 'Blfrtip',
-        info: 'true',
-        aoColumnDefs: [{
-            'bSortable': false,
-            'aTargets': ['nosort'],
-            'orderable': false,
-            'targets': [0, 8],
-        }],
-        order: [[1, 'asc']],
-        });
-        t.on('order.dt search.dt', function () {
-        let i = 1;
-        t.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
-            this.data(i++);
-        });}).draw();
-
-    
 </script>
+
+<script>
+    var t1 = $('#archive').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+                {
+                    extend: 'excelHtml5',
+                    text: 'Generate Excel Report',
+                    title: 'List of Preschoolers in Barangay ' + '{{bhw.bhw_barangay}} | ' + '{{current_date}}',
+                },
+                {
+                    extend: 'pdfHtml5',
+                    orientation: 'landscape',
+                    pageSize: 'LEGAL',
+                    download: 'open',
+                    text: 'Generate PDF Report',
+                    title: 'List of Archived Preschoolers in all Barangay | ' + '{{ user.first_name }} {{ user.last_name }} | ' + '{{current_date}}',
+                    customize: function(doc){
+
+                        WFA = t2.column(8).data().toArray();
+                        for (var i = 0; i < WFA.length; i++) {
+                            var val = parseFloat(Number(WFA[i].replace(/[^0-9\.-]+/g,"")));
+                            if (val == 0){
+                                doc.content[1].table.body[i + 1][8].fillColor = '#d3d3d3';
+                            }
+                            else if (val > 2.0) {
+                                doc.content[1].table.body[i + 1][8].fillColor = '#f26221';
+                            }
+                            else if (val >= -2.0 && val <= 2.0 ) {
+                                doc.content[1].table.body[i + 1][8].fillColor = '#00a54f';
+                            }
+                            else if (val >= -3.0 && val < -2.0 ) {
+                                doc.content[1].table.body[i + 1][8].fillColor = '#fff102';
+                            }
+                            else {
+                                doc.content[1].table.body[i + 1][8].fillColor = '#EE1D23';
+                            }
+                        };
+
+                        HFA = t2.column(9).data().toArray();
+                        for (var i = 0; i < HFA.length; i++) {
+                            var val = parseFloat(Number(HFA[i].replace(/[^0-9\.-]+/g,"")));
+                            if (val == 0){
+                                doc.content[1].table.body[i + 1][9].fillColor = '#d3d3d3';
+                            }
+                            else if (val > 2.0) {
+                                doc.content[1].table.body[i + 1][9].fillColor = '#00a54f';
+                            }
+                            else if (val  >= -2.0 && val <= 2.0 ) {
+                                doc.content[1].table.body[i + 1][9].fillColor = '#00a54f';
+                            }
+                            else if (val >= -3.0 && val < -2.0 ) {
+                                doc.content[1].table.body[i + 1][9].fillColor = '#fff102';
+                            }
+                            else {
+                                doc.content[1].table.body[i + 1][9].fillColor = '#EE1D23';
+                            }
+                        };
+                        
+                        WHFA = t2.column(10).data().toArray();
+                        for (var i = 0; i < WHFA.length; i++) {
+                            var val = parseFloat(Number(WHFA[i].replace(/[^0-9\.-]+/g,"")));
+                            if (val == 0){
+                                    doc.content[1].table.body[i + 1][10].fillColor = '#d3d3d3';
+                                }
+                                else if (val > 3.0) {
+                                    doc.content[1].table.body[i + 1][10].fillColor = '#f26221';
+                                }
+                                else if (val > 2.0 && val <= 3.0 ) {
+                                    doc.content[1].table.body[i + 1][10].fillColor = '#f26221';
+                                }
+                                else if (val >= -2.0 && val <= 2.0 ) {
+                                    doc.content[1].table.body[i + 1][10].fillColor = '#00A54F';
+                                }
+                                else if (val >= -3.0 && val < -2.0 ) {
+                                    doc.content[1].table.body[i + 1][10].fillColor = '#FFF102';
+                                }
+                                else {
+                                    doc.content[1].table.body[i + 1][10].fillColor = '#EE1D23';
+                                }
+                        };
+                        doc.defaultStyle.fontSize = 12; //2, 3, 4,etc
+                        doc.styles.tableHeader.fontSize = 12; //2, 3, 4, etc
+                        doc.styles.tableHeader.alignment = 'left';
+                        doc.content[1].table.widths = [ '2%', '10%',  '8%', '10%', '5%', '5%', '10%', '10%','10%','10%','10%','10%',];
+                    }
+                },
+            ],
+        aoColumnDefs: [{
+            'bSortable': false,
+            'aTargets': ['nosort'],
+            'orderable': false,
+            'targets': [0],
+        }],
+        order: [[1, 'asc']],
+        });
+        t1.on('order.dt search.dt', function () {
+        let i = 1;
+        t1.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+            this.data(i++);
+        });}).draw();
+</script>
+
+<script>
+    var t2 = $('#adminPreschoolerList').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+                {
+                    extend: 'excelHtml5',
+                    text: 'Generate Excel Report',
+                    title: 'List of Preschoolers in Barangay ' + '{{bhw.bhw_barangay}} | ' + '{{current_date}}',
+                },
+                {
+                    extend: 'pdfHtml5',
+                    orientation: 'landscape',
+                    pageSize: 'LEGAL',
+                    download: 'open',
+                    text: 'Generate PDF Report',
+                    title: 'List of Preschoolers in all Barangay | ' + '{{ user.first_name }} {{ user.last_name }} | ' + '{{current_date}}',
+                    customize: function(doc){
+
+                        WFA = t2.column(8).data().toArray();
+                        for (var i = 0; i < WFA.length; i++) {
+                            var val = parseFloat(Number(WFA[i].replace(/[^0-9\.-]+/g,"")));
+                            if (val == 0){
+                                doc.content[1].table.body[i + 1][8].fillColor = '#d3d3d3';
+                            }
+                            else if (val > 2.0) {
+                                doc.content[1].table.body[i + 1][8].fillColor = '#f26221';
+                            }
+                            else if (val >= -2.0 && val <= 2.0 ) {
+                                doc.content[1].table.body[i + 1][8].fillColor = '#00a54f';
+                            }
+                            else if (val >= -3.0 && val < -2.0 ) {
+                                doc.content[1].table.body[i + 1][8].fillColor = '#fff102';
+                            }
+                            else {
+                                doc.content[1].table.body[i + 1][8].fillColor = '#EE1D23';
+                            }
+                        };
+
+                        HFA = t2.column(9).data().toArray();
+                        for (var i = 0; i < HFA.length; i++) {
+                            var val = parseFloat(Number(HFA[i].replace(/[^0-9\.-]+/g,"")));
+                            if (val == 0){
+                                doc.content[1].table.body[i + 1][9].fillColor = '#d3d3d3';
+                            }
+                            else if (val > 2.0) {
+                                doc.content[1].table.body[i + 1][9].fillColor = '#00a54f';
+                            }
+                            else if (val  >= -2.0 && val <= 2.0 ) {
+                                doc.content[1].table.body[i + 1][9].fillColor = '#00a54f';
+                            }
+                            else if (val >= -3.0 && val < -2.0 ) {
+                                doc.content[1].table.body[i + 1][9].fillColor = '#fff102';
+                            }
+                            else {
+                                doc.content[1].table.body[i + 1][9].fillColor = '#EE1D23';
+                            }
+                        };
+                        
+                        WHFA = t2.column(10).data().toArray();
+                        for (var i = 0; i < WHFA.length; i++) {
+                            var val = parseFloat(Number(WHFA[i].replace(/[^0-9\.-]+/g,"")));
+                            if (val == 0){
+                                    doc.content[1].table.body[i + 1][10].fillColor = '#d3d3d3';
+                                }
+                                else if (val > 3.0) {
+                                    doc.content[1].table.body[i + 1][10].fillColor = '#f26221';
+                                }
+                                else if (val > 2.0 && val <= 3.0 ) {
+                                    doc.content[1].table.body[i + 1][10].fillColor = '#f26221';
+                                }
+                                else if (val >= -2.0 && val <= 2.0 ) {
+                                    doc.content[1].table.body[i + 1][10].fillColor = '#00A54F';
+                                }
+                                else if (val >= -3.0 && val < -2.0 ) {
+                                    doc.content[1].table.body[i + 1][10].fillColor = '#FFF102';
+                                }
+                                else {
+                                    doc.content[1].table.body[i + 1][10].fillColor = '#EE1D23';
+                                }
+                        };
+                        doc.defaultStyle.fontSize = 12; //2, 3, 4,etc
+                        doc.styles.tableHeader.fontSize = 12; //2, 3, 4, etc
+                        doc.styles.tableHeader.alignment = 'left';
+                        doc.content[1].table.widths = [ '2%', '10%',  '8%', '10%', '5%', '5%', '10%', '10%','10%','10%','10%','10%',];
+                    }
+                },
+            ],
+        aoColumnDefs: [{
+            'bSortable': false,
+            'aTargets': ['nosort'],
+            'orderable': false,
+            'targets': [0],
+        }],
+        order: [[1, 'asc']],
+        });
+        t2.on('order.dt search.dt', function () {
+        let i = 1;
+        t2.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+            this.data(i++);
+        });}).draw();
+</script>
+<script src="{% static '/Javascript/js/functions.js' %}"></script>
+<script src="{% static '/Javascript/js/bootstrap.bundle.min.js' %}"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 {% endblock %}

@@ -250,6 +250,8 @@ def admin_preschoolers(request):
             is_validated=False).count()
 
         barangays = Barangay.objects.all()
+        current_date =  datetime.now()
+
 
         preschooler_normal = []
         preschooler_wasted = []
@@ -305,7 +307,8 @@ def admin_preschoolers(request):
                 'preschooler_60_above_count' : preschooler_60_above_count,
                 'preschooler_with_record' : preschooler_with_record,
                 'preschooler_60_above' : preschooler_60_above,
-                'count_data' : data_json}
+                'count_data' : data_json,
+                'current_date': current_date}
 
         return render(request, 'activities/Admin - Preschooler.html', context)
 

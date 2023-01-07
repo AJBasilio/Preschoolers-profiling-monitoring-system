@@ -158,7 +158,7 @@
                                 {% endif %}
 
                                 {% if preschooler.wfa is None %}
-                                <td style="background-color: rgb(211, 211, 211);"> No Data Record </td>
+                                    <td style="background-color: rgb(211, 211, 211);"> No Data Record </td>
                                 {% elif preschooler.wfa > 2.0 %}
                                     <td style="background-color: rgb(242, 98, 33);"> Overweight ({{ preschooler.wfa }})</td>
                                 {% elif preschooler.wfa >= -2.0 and preschooler.wfa <= 2.0 %}
@@ -340,7 +340,6 @@
                             HFA = table.column(6).data().toArray();
                             for (var i = 0; i < HFA.length; i++) {
                                 var val = parseFloat(Number(HFA[i].replace(/[^0-9\.-]+/g,"")));
-                                console.log(val);
                                 if (val == 0){
                                     doc.content[1].table.body[i + 1][6].fillColor = '#d3d3d3';
                                 }
@@ -361,7 +360,6 @@
                             WHFA = table.column(7).data().toArray();
                             for (var i = 0; i < WHFA.length; i++) {
                                 var val = parseFloat(Number(WHFA[i].replace(/[^0-9\.-]+/g,"")));
-                                console.log(val);
                                 if (val == 0){
                                     doc.content[1].table.body[i + 1][7].fillColor = '#d3d3d3';
                                 }
