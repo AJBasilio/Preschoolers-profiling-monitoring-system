@@ -21,7 +21,7 @@
   margin-bottom: 1%;
   width: 100%;
   z-index: 2;
-  background-color: #ffffffcd;
+  background-color: #e8e8e8cd;
   filter: drop-shadow(0px 0.8px 2px rgba(0, 0, 0, 0.75));
 }
 .navbar-icon {
@@ -138,7 +138,7 @@ tbody tr:nth-of-type(even) {
 #toggle{
   display: none;
 }
-@media screen and (max-width: 520px) {
+@media screen and (max-width: 590px) {
 
   #profileCard{
     margin-left:5%; margin-right:5%; margin-top: 85px;
@@ -214,7 +214,7 @@ tbody tr:nth-of-type(even) {
   }
 } 
 
-@media screen and (min-width: 520px) {
+@media screen and (min-width: 590px) {
 
   #hamburger{
     font-size: 26px; line-height: 70px; display: none;
@@ -232,7 +232,7 @@ tbody tr:nth-of-type(even) {
   }
 } 
 
-@media screen and (max-width: 520px) {
+@media screen and (max-width: 590px) {
   #adminHideTitle {
     display: inline;
   }
@@ -457,7 +457,7 @@ button.back-button {
 }
 
 #grid{
-  background-color: #f0f2f5;
+  background-color: #e4e6ea;
   position: relative;
   padding: 4% 6% 8% 6% !important;
   width: 100%;

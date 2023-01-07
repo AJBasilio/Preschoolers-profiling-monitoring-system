@@ -466,6 +466,25 @@ def admin_userAccounts(request):
     
         return render(request, 'activities/Admin - User accounts.html', context)
 
+@login_required(login_url='login_registration')
+def admin_historyLogs(request):
+    if request.user.is_authenticated and request.user.user_type == 'Admin':
+        systemLogs= Log.objects.all()
+        allUsers= CustomUser.objects.all()
+        all_bhw = BarangayHealthWorker.objects.all()
+        all_parents = Parent.objects.all()
+        
+        invalidated_status = BarangayHealthWorker.objects.filter(
+            is_validated=False).count()
+
+        context = {'bhws': all_bhw,
+                    'invalidated_count': invalidated_status,
+                   'parents' : all_parents,
+                   'systemLogs' : systemLogs,
+                   'user':allUsers,}
+    
+        return render(request, 'activities/Admin - History Logs.html', context)
+
 # ================================== BHW ==================================
 
 

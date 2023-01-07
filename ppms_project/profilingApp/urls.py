@@ -26,6 +26,7 @@ urlpatterns = [
     path('abarangay', views.admin_barangay, name='admin_barangay'),
     path('set_password/<str:pk>/', views.set_pass, name='set_pass'),
     path('auseraccounts', views.admin_userAccounts, name='admin_userAccounts'),
+    path('aHistoryLogs', views.admin_historyLogs, name='admin_historyLogs'),
 
 
 
