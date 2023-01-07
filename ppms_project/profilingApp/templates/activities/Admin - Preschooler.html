@@ -240,7 +240,11 @@
                                         <td>{{ preschooler.first_name }}</td>
                                         <td>{{ preschooler.middle_name }}</td>
                                         <td>{{ preschooler.suffix_name }}</td>
-                                        <td>{{ preschooler.gender }}</td>
+                                        {% if preschooler.gender == 'Male' %}
+                                            <td class="text-uppercase textShadow" style="color:rgb(26, 171, 187)">{{ preschooler.gender }}</td>
+                                        {% else %}
+                                            <td class="text-uppercase textShadow" style="color:rgb(233, 63, 202)">{{ preschooler.gender }}</td>
+                                        {% endif %}
                                         <td>{{ preschooler.birthday }}</td>
                                         {% if preschooler.age_measured == 'Undefined' %}
                                             <td>No Measuring Record</td>
@@ -295,9 +299,11 @@
                                         {% endif %}
                                         
                                         {% if preschooler.vaccine_count == 8 %}
-                                            <td style="color: rgb(0, 165, 79);">Complete</td>
+                                            <td class=" text-success textShadow">Complete</td>
+                                        {% elif preschooler.vaccine_count == 0 %}
+                                            <td class=" text-danger textShadow">No Record</td>
                                         {% else %}
-                                            <td>Incomplete</td>
+                                            <td class=" text-warning textShadow">Incomplete</td>
                                         {% endif %}
                                     </tr>
                                     {% endfor %}
@@ -371,8 +377,8 @@
                     <h4>List of Preschoolers</h4>
                 </div>
                 <div class="card shadow-lg p-3 bg-white rounded" >
-                    <div class="d-flex justify-content-end my-2">
-                        <button class="btn" type="button" id="adminArchive" data-bs-toggle="modal" data-bs-target="#modalArc" style="max-width: 15%!important;"><h6 style="padding:5px;margin-bottom: 0px !important;"><i class="fa fa-archive"></i> View Archive</h6></button>
+                    <div class="d-flex justify-content-md-end justify-content-center my-2">
+                        <button class="btn" type="button" id="adminArchive" data-bs-toggle="modal" data-bs-target="#modalArc" ><h6 style="padding:5px;margin-bottom: 0px !important;"><i class="fa fa-archive"></i> View Archive</h6></button>
                     </div>
                     <div class="table-responsive" >
                         <table class="table table-hover table-cell-border" id="adminPreschoolerList" >
@@ -400,7 +406,11 @@
                                     <td>{{ preschooler.first_name }}</td>
                                     <td>{{ preschooler.middle_name }}</td>
                                     <td>{{ preschooler.suffix_name }}</td>
-                                    <td>{{ preschooler.gender }}</td>
+                                    {% if preschooler.gender == 'Male' %}
+                                    <td class="text-uppercase textShadow" style="color:rgb(26, 171, 187)">{{ preschooler.gender }}</td>
+                                    {% else %}
+                                    <td class="text-uppercase textShadow" style="color:rgb(233, 63, 202)">{{ preschooler.gender }}</td>
+                                    {% endif %}
                                     <td>{{ preschooler.birthday }}</td>
                                     {% if preschooler.age_measured == 'Undefined' %}
                                         <td>No Measuring Record</td>
@@ -455,9 +465,11 @@
                                     {% endif %}
                                     
                                     {% if preschooler.vaccine_count == 8 %}
-                                        <td style="color: rgb(0, 165, 79);">Complete</td>
+                                    <td class=" text-success textShadow">Complete</td>
+                                    {% elif preschooler.vaccine_count == 0 %}
+                                        <td class=" text-danger textShadow">No Record</td>
                                     {% else %}
-                                        <td>Incomplete</td>
+                                        <td class=" text-warning textShadow">Incomplete</td>
                                     {% endif %}
                                 </tr>
                                 {% endfor %}
@@ -494,8 +506,6 @@
     Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
     Chart.defaults.global.defaultFontColor = '#292b2c';
     Chart.defaults.global.defaultFontSize = 15;
-    
-    
 
     // Pie Chart Example
     var data_count = JSON.parse('{{ count_data|escapejs }}')
@@ -564,7 +574,7 @@
         buttons: [
                 {
                     extend: 'excelHtml5',
-                    text: 'Generate Excel Report',
+                    text: 'Generate Excel ',
                     title: 'List of Preschoolers in Barangay ' + '{{bhw.bhw_barangay}} | ' + '{{current_date}}',
                 },
                 {
@@ -572,7 +582,7 @@
                     orientation: 'landscape',
                     pageSize: 'LEGAL',
                     download: 'open',
-                    text: 'Generate PDF Report',
+                    text: 'Generate PDF ',
                     title: 'List of Archived Preschoolers in all Barangay | ' + '{{ user.first_name }} {{ user.last_name }} | ' + '{{current_date}}',
                     customize: function(doc){
 
@@ -666,7 +676,7 @@
         buttons: [
                 {
                     extend: 'excelHtml5',
-                    text: 'Generate Excel Report',
+                    text: 'Generate Excel ',
                     title: 'List of Preschoolers in Barangay ' + '{{bhw.bhw_barangay}} | ' + '{{current_date}}',
                 },
                 {
@@ -674,7 +684,7 @@
                     orientation: 'landscape',
                     pageSize: 'LEGAL',
                     download: 'open',
-                    text: 'Generate PDF Report',
+                    text: 'Generate PDF ',
                     title: 'List of Preschoolers in all Barangay | ' + '{{ user.first_name }} {{ user.last_name }} | ' + '{{current_date}}',
                     customize: function(doc){
 

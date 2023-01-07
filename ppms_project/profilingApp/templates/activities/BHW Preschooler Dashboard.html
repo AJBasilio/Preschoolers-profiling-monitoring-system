@@ -145,12 +145,16 @@
                             <tr style="text-align: center;">
                                 <td></td>
                                 {% if preschooler.suffix_name is None or preschooler.suffix_name == ''  %}
-                                    <td>{{ preschooler.last_name }} {{ preschooler.first_name }} {{ preschooler.middle_name }}</td>
+                                    <td class="text-capitalize">{{ preschooler.last_name }}, {{ preschooler.first_name }} {{ preschooler.middle_name }}</td>
                                 {% else %}
-                                    <td>{{ preschooler.last_name }} {{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.suffix_name }}</td>
+                                    <td class="text-capitalize">{{ preschooler.last_name }}, {{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.suffix_name }}</td>
                                 {% endif %}
                                 <td>{{ preschooler.birthday }}</td>
-                                <td>{{ preschooler.gender }}</td>
+                                {% if preschooler.gender == 'Male' %}
+                                    <td class="text-uppercase textShadow" style="color:rgb(26, 171, 187)">{{ preschooler.gender }}</td>
+                                {% else %}
+                                    <td class="text-uppercase textShadow" style="color:rgb(233, 63, 202)">{{ preschooler.gender }}</td>
+                                {% endif %}
                                 {% if preschooler.age_measured == 'Undefined' %}
                                     <td>No Measuring Record</td>
                                 {% else %}
@@ -158,54 +162,56 @@
                                 {% endif %}
 
                                 {% if preschooler.wfa is None %}
-                                    <td style="background-color: rgb(211, 211, 211);"> No Data Record </td>
+                                    <td class="fw-bold " style="background-color: rgb(211, 211, 211);"> No Data Record </td>
                                 {% elif preschooler.wfa > 2.0 %}
-                                    <td style="background-color: rgb(242, 98, 33);"> Overweight ({{ preschooler.wfa }})</td>
+                                    <td class="fw-bold " style="background-color: rgb(242, 98, 33);"> Overweight ({{ preschooler.wfa }})</td>
                                 {% elif preschooler.wfa >= -2.0 and preschooler.wfa <= 2.0 %}
-                                    <td style="background-color: rgb(0, 165, 79);"> Normal ({{ preschooler.wfa }})</td>
+                                    <td class="fw-bold " style="background-color: rgb(0, 165, 79);"> Normal ({{ preschooler.wfa }})</td>
                                 {% elif preschooler.wfa >= -3.0 and preschooler.wfa < -2.0 %}
-                                    <td style="background-color: rgb(255, 241, 2);"> Underweight ({{ preschooler.wfa }})</td>
+                                    <td class="fw-bold " style="background-color: rgb(255, 241, 2);"> Underweight ({{ preschooler.wfa }})</td>
                                 {% else %}
-                                    <td style="background-color: rgb(238, 29, 35);"> Severely Underweight ({{ preschooler.wfa }})</td>
+                                    <td class="fw-bold " style="background-color: rgb(238, 29, 35);"> Severely Underweight ({{ preschooler.wfa }})</td>
                                 {% endif %}
 
                                 {% if preschooler.hfa is None %}
-                                    <td style="background-color: rgb(211, 211, 211);"> No Data Record </td>
+                                    <td class="fw-bold" style="background-color: rgb(211, 211, 211);"> No Data Record </td>
                                 {% elif preschooler.hfa > 2.0 %}
-                                    <td style="background-color: rgb(0, 165, 79);"> Tall ({{preschooler.hfa }})</td>
+                                    <td class="fw-bold " style="background-color: rgb(0, 165, 79);"> Tall ({{preschooler.hfa }})</td>
                                 {% elif preschooler.hfa >= -2.0 and preschooler.hfa <= 2.0 %}
-                                    <td style="background-color: rgb(0, 165, 79);"> Normal ({{ preschooler.hfa }})</td>
+                                    <td class="fw-bold " style="background-color: rgb(0, 165, 79);"> Normal ({{ preschooler.hfa }})</td>
                                 {% elif preschooler.hfa >= -3.0 and preschooler.hfa < -2.0 %}
-                                    <td style="background-color: rgb(255, 241, 2);"> Stunted ({{ preschooler.hfa }})</td>
+                                    <td class="fw-bold " style="background-color: rgb(255, 241, 2);"> Stunted ({{ preschooler.hfa }})</td>
                                 {% else %}
-                                    <td style="background-color: rgb(238, 29, 35);"> Severely Stunted ({{ preschooler.hfa }})</td>
+                                    <td class="fw-bold" style="background-color: rgb(238, 29, 35);"> Severely Stunted ({{ preschooler.hfa }})</td>
                                 {% endif %}
 
                                 {% if preschooler.whfa is None %}
                                     {% if preschooler.height < 45.0 %}
-                                        <td class="bg-info" > Special Case <p class="text text-small m-0"> (Too Small for WHFA Tagging) </p></td>
+                                        <td class="bg-info fw-bold" > Special Case <p class="text text-small m-0"> (Too Small for WHFA Tagging) </p></td>
                                     {% elif preschooler.height > 110.0 %}
-                                        <td class="bg-info" > Special Case <p class="text text-small m-0"> (Too Tall for WHFA Tagging) </p></td>
+                                        <td class="bg-info fw-bold" > Special Case <p class="text text-small m-0"> (Too Tall for WHFA Tagging) </p></td>
                                     {% else %}
-                                        <td style="background-color: rgb(211, 211, 211);"> No Data Record </td>
+                                        <td class="fw-bold" style="background-color: rgb(211, 211, 211);"> No Data Record </td>
                                     {% endif %}
 
                                 {% elif preschooler.whfa > 3.0%}
-                                    <td style="background-color: rgb(242, 98, 33);"> Obese ({{ preschooler.whfa }})</td>
+                                    <td class="fw-bold" style="background-color: rgb(242, 98, 33);"> Obese ({{ preschooler.whfa }})</td>
                                 {% elif preschooler.whfa > 2.0 and preschooler.whfa <= 3.0 %}
-                                    <td style="background-color: rgb(242, 98, 33);"> Overweight ({{ preschooler.whfa }})</td>
+                                    <td class="fw-bold" style="background-color: rgb(242, 98, 33);"> Overweight ({{ preschooler.whfa }})</td>
                                 {% elif preschooler.whfa >= -2.0 and preschooler.whfa <= 2.0 %}
-                                    <td style="background-color: rgb(0, 165, 79);"> Normal ({{ preschooler.whfa}})</td>
+                                    <td class="fw-bold" style="background-color: rgb(0, 165, 79);"> Normal ({{ preschooler.whfa}})</td>
                                 {% elif preschooler.whfa >= -3.0 and preschooler.whfa < -2.0 %}
-                                    <td style="background-color: rgb(255, 241, 2);"> Moderately Wasted ({{ preschooler.whfa }})</td>
+                                    <td class="fw-bold" style="background-color: rgb(255, 241, 2);"> Moderately Wasted ({{ preschooler.whfa }})</td>
                                 {% else %}
-                                    <td style="background-color: rgb(238, 29, 35);"> Severely Wasted ({{preschooler.whfa }})</td>
+                                    <td class="fw-bold" style="background-color: rgb(238, 29, 35);"> Severely Wasted ({{preschooler.whfa }})</td>
                                 {% endif %}
                                 
                                 {% if preschooler.vaccine_count == 8 %}
-                                    <td style="color: rgb(0, 165, 79);">Complete</td>
+                                    <td class=" text-success textShadow">Complete</td>
+                                {% elif preschooler.vaccine_count == 0 %}
+                                    <td class=" text-danger textShadow">No Record</td>
                                 {% else %}
-                                    <td>Incomplete</td>
+                                    <td class=" text-warning textShadow">Incomplete</td>
                                 {% endif %}
                                 
                                 <td style="text-align: center;">
@@ -283,6 +289,7 @@
         </div>
     </div>
 </div>
+</
 <!-- Footer -->
 <div class="footer text-muted">
     <div class="container">
@@ -304,7 +311,7 @@
             buttons: [
                     {
                     extend: 'excelHtml5',
-                    text: 'Generate Excel Report',
+                    text: 'Generate Excel ',
                     title: 'List of Preschoolers in Barangay ' + '{{bhw.bhw_barangay}} | ' + '{{current_date}}',
                     },
                    {
@@ -312,7 +319,7 @@
                     orientation: 'landscape',
                     pageSize: 'LEGAL',
                     download: 'open',
-                    text: 'Generate PDF Report',
+                    text: 'Generate PDF ',
                     title: 'List of Preschoolers in Barangay ' + '{{bhw.bhw_barangay}} | ' + '{{current_date}}',
                     customize: function (doc) {
 
@@ -414,7 +421,7 @@
             buttons: [
                 {
                     extend: 'excelHtml5',
-                    text: 'Generate Excel Report',
+                    text: 'Generate Excel',
                     title: 'List of Preschoolers in Barangay ' + '{{bhw.bhw_barangay}} | ' + '{{current_date}}',
                 },
                 {
@@ -422,7 +429,7 @@
                     orientation: 'landscape',
                     pageSize: 'LEGAL',
                     download: 'open',
-                    text: 'Generate PDF Report',
+                    text: 'Generate PDF',
                     title: 'List of Archived Preschoolers in Barangay ' + '{{bhw.bhw_barangay}} | ' + '{{current_date}}',
                     customize: function(doc){
                         BMI = t.column(7).data().toArray();

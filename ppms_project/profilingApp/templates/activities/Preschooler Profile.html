@@ -56,9 +56,9 @@
     <div class="row"> 
         <div class="col-xl-8 col-md-6 col-12 text-md-start text-center d-flex align-items-center justify-content-md-start justify-content-center">
             {% if preschooler.suffix_name is None %}
-                <h5 class="text-center text-uppercase m-0">{{ preschooler.last_name }}, {{ preschooler.first_name }} {{ preschooler.middle_name }}'s Profile</h5>
+                <h5 class="text-center text-capitalize m-0">{{ preschooler.last_name }}, {{ preschooler.first_name }} {{ preschooler.middle_name }}'s Profile</h5>
             {% else %}
-                <h5 class="text-center text-uppercase m-0">{{ preschooler.last_name }}, {{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.suffix_name }}'s Profile</h5>
+                <h5 class="text-center text-capitalize m-0">{{ preschooler.last_name }}, {{ preschooler.first_name }} {{ preschooler.middle_name }} {{ preschooler.suffix_name }}'s Profile</h5>
             {% endif %}
         </div>
         <div class="col-xl-4 col-md-6 col-12">
@@ -85,7 +85,7 @@
                             </div>
                             <div class="card-body p-4 shadow-sm align-items-center">
                                     <div class="row">
-                                        <div class="col-lg-6 d-flex justify-content-center align-items-center">
+                                        <div class="col-lg-6 d-flex justify-content-center align-items-center  mb-3">
                                             <div class="row d-block justify-content-center align-items-center gap" style="padding:0% 3% 3% 3%; max-height: 300px;">
                                                 
                                                 <div>
@@ -118,7 +118,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-6 d-flex flex-column justify-content-center">
                                             <div class="row">
                                                 <div class="col-sm justify-content-start justify-content-md-center">
                                                     <p class="mb-0">Date of Birth</p>

@@ -147,7 +147,6 @@
                                     <th scope="col" class="text-center">No.</th>
                                     <th scope="col" class="text-center">Log Action</th>
                                     <th scope="col" class="text-center">Email</th>
-                                    <th scope="col" class="text-center">Barangay Designation</th>
                                     <th scope="col" class="text-center">DateTime</th>
                                 </tr>
                             </thead>
@@ -160,8 +159,7 @@
                                     {% else %}
                                         <td class="text-center text-uppercase text-danger fw-bold">{{ logs.log_action }}</td>
                                     {% endif %}
-                                    <td class="text-center">{{ logs.logged_userid }}</td>
-                                    <td class="text-center">{{ user.phone_num}}</td>
+                                    <td class="text-center">{{ logs.log_email }}</td>
                                     <td class="text-center">{{ logs.datetime_log }}</td>
                                 </tr>
                                 {% endfor %}

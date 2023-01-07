@@ -40,7 +40,7 @@ def login_registration(request):
             user = authenticate(request, email=user_email, password=password)
             if user is not None and user.user_type == 'P/G':
                 login(request, user)
-                Log.objects.create(log_action = 'Logged IN', logged_userid  = user.id, datetime_log = format_date
+                Log.objects.create(log_action = 'Logged IN', logged_userid  = user.id,  log_email = user.email, datetime_log = format_date
                 )
                 return redirect('parent_home')
                 
@@ -49,7 +49,7 @@ def login_registration(request):
                     user=user)
                 if bhw_validation_status.is_validated:
                     login(request, user)
-                    Log.objects.create(log_action = 'logged in', logged_userid  = user.id, datetime_log = format_date
+                    Log.objects.create(log_action = 'logged in', logged_userid  = user.id, log_email = user.email, datetime_log = format_date
                 )
                     return redirect('bhw_home')
                 else:
@@ -58,7 +58,7 @@ def login_registration(request):
                         request, 'Please wait for the validation.')
             elif user is not None and user.user_type == 'Admin':
                 login(request, user)
-                Log.objects.create(log_action = 'logged in', logged_userid  = user.id, datetime_log = format_date
+                Log.objects.create(log_action = 'logged in', logged_userid  = user.id, log_email = user.email, datetime_log = format_date
                 )
                 return redirect('admin_home')
             else:
@@ -72,7 +72,7 @@ def logout_user(request):
     user= request.user
     current_date =  datetime.now()
     format_date =  current_date.strftime("%Y/%m/%d, %H:%M:%S")
-    Log.objects.create(log_action = 'Logged Out', logged_userid  = user.id, datetime_log = format_date
+    Log.objects.create(log_action = 'Logged Out', logged_userid  = user.id, log_email = user.email, datetime_log = format_date
                 )
     logout(request)
     return redirect('login_registration')
@@ -481,7 +481,7 @@ def admin_historyLogs(request):
                     'invalidated_count': invalidated_status,
                    'parents' : all_parents,
                    'systemLogs' : systemLogs,
-                   'user':allUsers,}
+                   'users':allUsers,}
     
         return render(request, 'activities/Admin - History Logs.html', context)
 
