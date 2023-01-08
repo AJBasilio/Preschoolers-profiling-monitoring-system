@@ -89,6 +89,7 @@ class BarangayHealthWorker(Model):
     user = models.OneToOneField(CustomUser, on_delete=CASCADE, primary_key=True)
     is_validated = models.BooleanField(default=False)
     bhw_barangay = models.ForeignKey(Barangay, on_delete=CASCADE)
+    history = HistoricalRecords()
 
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name}"

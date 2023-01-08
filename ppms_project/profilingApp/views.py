@@ -516,19 +516,16 @@ def admin_userAccounts(request):
 @login_required(login_url='login_registration')
 def admin_historyLogs(request):
     if request.user.is_authenticated and request.user.user_type == 'Admin':
-        systemLogs= Log.objects.all()
-        allUsers= CustomUser.objects.all()
-        all_bhw = BarangayHealthWorker.objects.all()
-        all_parents = Parent.objects.all()
         
+        bhw_history = BarangayHealthWorker.history.all()
+
         invalidated_status = BarangayHealthWorker.objects.filter(
             is_validated=False).count()
 
-        context = {'bhws': all_bhw,
-                    'invalidated_count': invalidated_status,
-                   'parents' : all_parents,
-                   'systemLogs' : systemLogs,
-                   'users':allUsers,}
+        context = {
+                   'invalidated_count': invalidated_status,
+                   'validate_logs' : bhw_history
+                   }
     
         return render(request, 'activities/Admin - History Logs.html', context)
 
