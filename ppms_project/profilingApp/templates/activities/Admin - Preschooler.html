@@ -576,6 +576,8 @@
                     extend: 'excelHtml5',
                     text: 'Generate Excel ',
                     title: 'List of Archived Preschoolers in all Barangay | ' + '{{ user.first_name }} {{ user.last_name }} | ' + '{{current_date}}',
+                    autoFilter: true,
+
                 },
                 {
                     extend: 'pdfHtml5',
@@ -584,6 +586,8 @@
                     download: 'open',
                     text: 'Generate PDF ',
                     title: 'List of Archived Preschoolers in all Barangay | ' + '{{ user.first_name }} {{ user.last_name }} | ' + '{{current_date}}',
+                    messageTop: 'Number of Archived Preschoolers: ' + '{{preschooler_60_above_count}}',
+
                     customize: function(doc){
 
                         gender = t1.column(5).data().toArray();
@@ -591,10 +595,10 @@
                         for (var i = 0; i < gender.length; i++){
                             var val = (gender[i])
                             if (val == 'Male'){
-                                doc.content[1].table.body[i + 1][5].color = '#1aabbb';
+                                doc.content[2].table.body[i + 1][5].color = '#1aabbb';
                             }
                             else {
-                                doc.content[1].table.body[i + 1][5].color = '#e93fca';
+                                doc.content[2].table.body[i + 1][5].color = '#e93fca';
                             }
                         };
 
@@ -603,13 +607,13 @@
                         for (var i = 0; i < vacstatus.length; i++){
                             var val = (vacstatus[i])
                             if (val == 'Complete'){
-                                doc.content[1].table.body[i + 1][11].color = '#28a745';
+                                doc.content[2].table.body[i + 1][11].color = '#28a745';
                             }
                             else if (val == 'No Record'){
-                                doc.content[1].table.body[i + 1][11].color = '#dc3545';
+                                doc.content[2].table.body[i + 1][11].color = '#dc3545';
                             }
                             else {
-                                doc.content[1].table.body[i + 1][11].color = '#ffc107';
+                                doc.content[2].table.body[i + 1][11].color = '#ffc107';
                             }
                         };
 
@@ -618,19 +622,19 @@
                         for (var i = 0; i < WFA.length; i++) {
                             var val = parseFloat(Number(WFA[i].replace(/[^0-9\.-]+/g,"")));
                             if (val == 0){
-                                doc.content[1].table.body[i + 1][8].fillColor = '#d3d3d3';
+                                doc.content[2].table.body[i + 1][8].fillColor = '#d3d3d3';
                             }
                             else if (val > 2.0) {
-                                doc.content[1].table.body[i + 1][8].fillColor = '#f26221';
+                                doc.content[2].table.body[i + 1][8].fillColor = '#f26221';
                             }
                             else if (val >= -2.0 && val <= 2.0 ) {
-                                doc.content[1].table.body[i + 1][8].fillColor = '#00a54f';
+                                doc.content[2].table.body[i + 1][8].fillColor = '#00a54f';
                             }
                             else if (val >= -3.0 && val < -2.0 ) {
-                                doc.content[1].table.body[i + 1][8].fillColor = '#fff102';
+                                doc.content[2].table.body[i + 1][8].fillColor = '#fff102';
                             }
                             else {
-                                doc.content[1].table.body[i + 1][8].fillColor = '#EE1D23';
+                                doc.content[2].table.body[i + 1][8].fillColor = '#EE1D23';
                             }
                         };
 
@@ -638,19 +642,19 @@
                         for (var i = 0; i < HFA.length; i++) {
                             var val = parseFloat(Number(HFA[i].replace(/[^0-9\.-]+/g,"")));
                             if (val == 0){
-                                doc.content[1].table.body[i + 1][9].fillColor = '#d3d3d3';
+                                doc.content[2].table.body[i + 1][9].fillColor = '#d3d3d3';
                             }
                             else if (val > 2.0) {
-                                doc.content[1].table.body[i + 1][9].fillColor = '#00a54f';
+                                doc.content[2].table.body[i + 1][9].fillColor = '#00a54f';
                             }
                             else if (val  >= -2.0 && val <= 2.0 ) {
-                                doc.content[1].table.body[i + 1][9].fillColor = '#00a54f';
+                                doc.content[2].table.body[i + 1][9].fillColor = '#00a54f';
                             }
                             else if (val >= -3.0 && val < -2.0 ) {
-                                doc.content[1].table.body[i + 1][9].fillColor = '#fff102';
+                                doc.content[2].table.body[i + 1][9].fillColor = '#fff102';
                             }
                             else {
-                                doc.content[1].table.body[i + 1][9].fillColor = '#EE1D23';
+                                doc.content[2].table.body[i + 1][9].fillColor = '#EE1D23';
                             }
                         };
                         
@@ -658,28 +662,29 @@
                         for (var i = 0; i < WHFA.length; i++) {
                             var val = parseFloat(Number(WHFA[i].replace(/[^0-9\.-]+/g,"")));
                             if (val == 0){
-                                    doc.content[1].table.body[i + 1][10].fillColor = '#d3d3d3';
+                                    doc.content[2].table.body[i + 1][10].fillColor = '#d3d3d3';
                                 }
                                 else if (val > 3.0) {
-                                    doc.content[1].table.body[i + 1][10].fillColor = '#f26221';
+                                    doc.content[2].table.body[i + 1][10].fillColor = '#f26221';
                                 }
                                 else if (val > 2.0 && val <= 3.0 ) {
-                                    doc.content[1].table.body[i + 1][10].fillColor = '#f26221';
+                                    doc.content[2].table.body[i + 1][10].fillColor = '#f26221';
                                 }
                                 else if (val >= -2.0 && val <= 2.0 ) {
-                                    doc.content[1].table.body[i + 1][10].fillColor = '#00A54F';
+                                    doc.content[2].table.body[i + 1][10].fillColor = '#00A54F';
                                 }
                                 else if (val >= -3.0 && val < -2.0 ) {
-                                    doc.content[1].table.body[i + 1][10].fillColor = '#FFF102';
+                                    doc.content[2].table.body[i + 1][10].fillColor = '#FFF102';
                                 }
                                 else {
-                                    doc.content[1].table.body[i + 1][10].fillColor = '#EE1D23';
+                                    doc.content[2].table.body[i + 1][10].fillColor = '#EE1D23';
                                 }
                         };
                         doc.defaultStyle.fontSize = 12; //2, 3, 4,etc
                         doc.styles.tableHeader.fontSize = 12; //2, 3, 4, etc
                         doc.styles.tableHeader.alignment = 'left';
-                        doc.content[1].table.widths = [ '2%', '10%',  '8%', '10%', '5%', '5%', '10%', '10%','10%','10%','10%','10%',];
+                        doc.content[1].alignment = 'center';
+                        doc.content[2].table.widths = [ '2%', '10%',  '8%', '10%', '5%', '5%', '10%', '10%','10%','10%','10%','10%',];
                     }
                 },
             ],
@@ -706,6 +711,7 @@
                     extend: 'excelHtml5',
                     text: 'Generate Excel ',
                     title: 'List of Preschoolers in all Barangay | ' + '{{ user.first_name }} {{ user.last_name }} | ' + '{{current_date}}',
+                    autoFilter: true,
                 },
                 {
                     extend: 'pdfHtml5',
@@ -714,17 +720,19 @@
                     download: 'open',
                     text: 'Generate PDF ',
                     title: 'List of Preschoolers in all Barangay | ' + '{{ user.first_name }} {{ user.last_name }} | ' + '{{current_date}}',
+                    messageTop: 'Number of Preschoolers: ' + '{{all_preschoolersListCount}}' + '                 '+
+                                'Number of Preschoolers With Records: ' + '{{preschooler_with_record_count}}' + '                 '+
+                                'Number of Preschoolers Without Records: ' + '{{preschooler_without_record_count}}' + '                 ',
                     customize: function(doc){
 
                         gender = t2.column(5).data().toArray();
-                        console.log(gender)
                         for (var i = 0; i < gender.length; i++){
                             var val = (gender[i])
                             if (val == 'Male'){
-                                doc.content[1].table.body[i + 1][5].color = '#1aabbb';
+                                doc.content[2].table.body[i + 1][5].color = '#1aabbb';
                             }
                             else {
-                                doc.content[1].table.body[i + 1][5].color = '#e93fca';
+                                doc.content[2].table.body[i + 1][5].color = '#e93fca';
                             }
                         };
                         
@@ -732,13 +740,13 @@
                         for (var i = 0; i < vacstatus.length; i++){
                             var val = (vacstatus[i])
                             if (val == 'Complete'){
-                                doc.content[1].table.body[i + 1][11].color = '#28a745';
+                                doc.content[2].table.body[i + 1][11].color = '#28a745';
                             }
                             else if (val == 'No Record'){
-                                doc.content[1].table.body[i + 1][11].color = '#dc3545';
+                                doc.content[2].table.body[i + 1][11].color = '#dc3545';
                             }
                             else {
-                                doc.content[1].table.body[i + 1][11].color = '#ffc107';
+                                doc.content[2].table.body[i + 1][11].color = '#ffc107';
                             }
                         };
 
@@ -746,19 +754,19 @@
                         for (var i = 0; i < WFA.length; i++) {
                             var val = parseFloat(Number(WFA[i].replace(/[^0-9\.-]+/g,"")));
                             if (val == 0){
-                                doc.content[1].table.body[i + 1][8].fillColor = '#d3d3d3';
+                                doc.content[2].table.body[i + 1][8].fillColor = '#d3d3d3';
                             }
                             else if (val > 2.0) {
-                                doc.content[1].table.body[i + 1][8].fillColor = '#f26221';
+                                doc.content[2].table.body[i + 1][8].fillColor = '#f26221';
                             }
                             else if (val >= -2.0 && val <= 2.0 ) {
-                                doc.content[1].table.body[i + 1][8].fillColor = '#00a54f';
+                                doc.content[2].table.body[i + 1][8].fillColor = '#00a54f';
                             }
                             else if (val >= -3.0 && val < -2.0 ) {
-                                doc.content[1].table.body[i + 1][8].fillColor = '#fff102';
+                                doc.content[2].table.body[i + 1][8].fillColor = '#fff102';
                             }
                             else {
-                                doc.content[1].table.body[i + 1][8].fillColor = '#EE1D23';
+                                doc.content[2].table.body[i + 1][8].fillColor = '#EE1D23';
                             }
                         };
 
@@ -766,19 +774,19 @@
                         for (var i = 0; i < HFA.length; i++) {
                             var val = parseFloat(Number(HFA[i].replace(/[^0-9\.-]+/g,"")));
                             if (val == 0){
-                                doc.content[1].table.body[i + 1][9].fillColor = '#d3d3d3';
+                                doc.content[2].table.body[i + 1][9].fillColor = '#d3d3d3';
                             }
                             else if (val > 2.0) {
-                                doc.content[1].table.body[i + 1][9].fillColor = '#00a54f';
+                                doc.content[2].table.body[i + 1][9].fillColor = '#00a54f';
                             }
                             else if (val  >= -2.0 && val <= 2.0 ) {
-                                doc.content[1].table.body[i + 1][9].fillColor = '#00a54f';
+                                doc.content[2].table.body[i + 1][9].fillColor = '#00a54f';
                             }
                             else if (val >= -3.0 && val < -2.0 ) {
-                                doc.content[1].table.body[i + 1][9].fillColor = '#fff102';
+                                doc.content[2].table.body[i + 1][9].fillColor = '#fff102';
                             }
                             else {
-                                doc.content[1].table.body[i + 1][9].fillColor = '#EE1D23';
+                                doc.content[2].table.body[i + 1][9].fillColor = '#EE1D23';
                             }
                         };
                         
@@ -786,29 +794,31 @@
                         for (var i = 0; i < WHFA.length; i++) {
                             var val = parseFloat(Number(WHFA[i].replace(/[^0-9\.-]+/g,"")));
                             if (val == 0){
-                                    doc.content[1].table.body[i + 1][10].fillColor = '#d3d3d3';
+                                    doc.content[2].table.body[i + 1][10].fillColor = '#d3d3d3';
                                 }
                                 else if (val > 3.0) {
-                                    doc.content[1].table.body[i + 1][10].fillColor = '#f26221';
+                                    doc.content[2].table.body[i + 1][10].fillColor = '#f26221';
                                 }
                                 else if (val > 2.0 && val <= 3.0 ) {
-                                    doc.content[1].table.body[i + 1][10].fillColor = '#f26221';
+                                    doc.content[2].table.body[i + 1][10].fillColor = '#f26221';
                                 }
                                 else if (val >= -2.0 && val <= 2.0 ) {
-                                    doc.content[1].table.body[i + 1][10].fillColor = '#00A54F';
+                                    doc.content[2].table.body[i + 1][10].fillColor = '#00A54F';
                                 }
                                 else if (val >= -3.0 && val < -2.0 ) {
-                                    doc.content[1].table.body[i + 1][10].fillColor = '#FFF102';
+                                    doc.content[2].table.body[i + 1][10].fillColor = '#FFF102';
                                 }
                                 else {
-                                    doc.content[1].table.body[i + 1][10].fillColor = '#EE1D23';
+                                    doc.content[2].table.body[i + 1][10].fillColor = '#EE1D23';
                                 }
                         };
                         doc.defaultStyle.fontSize = 12; //2, 3, 4,etc
                         doc.styles.tableHeader.fontSize = 12; //2, 3, 4, etc
                         doc.styles.tableHeader.alignment = 'left';
-                        doc.content[1].table.widths = [ '2%', '10%',  '8%', '10%', '5%', '5%', '10%', '10%','10%','10%','10%','10%',];
-                    }
+                        doc.content[2].table.widths = [ '2%', '10%',  '8%', '10%', '5%', '5%', '10%', '10%','10%','10%','10%','10%',];
+                        doc.content[1].alignment = 'center';
+
+                    },
                 },
             ],
         aoColumnDefs: [{

@@ -283,6 +283,8 @@ def admin_preschoolers(request):
         # ==== Total Preschoolers ======
         all_preschoolers = Preschooler.objects.all().count()
         all_preschoolersList = Preschooler.lt_60_objects.all()
+        all_preschoolersListCount = Preschooler.lt_60_objects.all().count
+
 
         # ==== Preschooler w/ out Records ====
         preschooler_without_record = Preschooler.lt_60_objects.filter(Q(height__isnull=True) | Q(weight__isnull=True)).count()
@@ -304,6 +306,7 @@ def admin_preschoolers(request):
                 'barangays' : barangays,
                 'all_preschoolersList': all_preschoolersList,
                 'all_preschooler_count' : all_preschoolers,
+                'all_preschoolersListCount':all_preschoolersListCount,
                 'preschooler_without_record_count' : preschooler_without_record,
                 'preschooler_with_record_count' : preschooler_with_record_count,
                 'preschooler_60_above_count' : preschooler_60_above_count,
@@ -362,6 +365,8 @@ def admin_preschoolers_barangay(request, brgy):
 
          # ==== Total Preschoolers ======
         all_preschoolers = Preschooler.objects.filter(parent__in=(parents)).count
+        all_preschoolersListCount = Preschooler.lt_60_objects.filter(parent__in=(parents)).count
+
 
         # ==== Preschooler w/ out Records ====
         preschooler_without_record = preschoolers.filter(Q(height__isnull=True) | Q(weight__isnull=True)).count()
@@ -386,6 +391,7 @@ def admin_preschoolers_barangay(request, brgy):
                 'current_date': current_date,
                 'barangays' : barangays,
                 'all_preschooler_count' : all_preschoolers,
+                'all_preschoolersListCount': all_preschoolersListCount,
                 'preschooler_without_record_count' : preschooler_without_record,
                 'preschooler_with_record_count' : preschooler_with_record_count,
                 'preschooler_60_above_count' : preschooler_60_above_count,
@@ -549,17 +555,19 @@ def bhw_home(request):
         data_json = dumps(count_list)
 
          # ==== Total Preschoolers ======
-        all_preschoolers = Preschooler.objects.all().count()
+        all_preschoolers = Preschooler.objects.filter(parent__in=(parents)).count
+        all_preschoolersListCount = Preschooler.lt_60_objects.filter(parent__in=(parents)).count
+
 
         # ==== Preschooler w/ out Records ====
-        preschooler_without_record = Preschooler.lt_60_objects.filter(Q(height__isnull=True) | Q(weight__isnull=True)).count()
+        preschooler_without_record = preschoolers.filter(Q(height__isnull=True) | Q(weight__isnull=True)).count()
 
         # ==== Preschooler w Records ====
-        preschooler_with_record = Preschooler.lt_60_objects.filter(Q(height__isnull=False) | Q(weight__isnull=False) | Q(date_measured__isnull=False))
+        preschooler_with_record = preschoolers.filter(Q(height__isnull=False) | Q(weight__isnull=False) | Q(date_measured__isnull=False))
         preschooler_with_record_count = preschooler_with_record.count()
 
         # ==== Preschooler above 60 months ====
-        preschooler_60_above = Preschooler.gte_60_objects.all()
+        preschooler_60_above = Preschooler.gte_60_objects.filter(parent__in=(parents))
         preschooler_60_above_count = preschooler_60_above.count()
         
         
@@ -570,12 +578,13 @@ def bhw_home(request):
                 'overweight' : overweight_count,
                 'obese' : obese_count,
                 'all_preschooler_count' : all_preschoolers,
+                'all_preschoolersListCount': all_preschoolersListCount,
                 'preschooler_without_record_count' : preschooler_without_record,
                 'preschooler_with_record_count' : preschooler_with_record_count,
                 'preschooler_60_above_count' : preschooler_60_above_count,
                 'preschooler_with_record' : preschooler_with_record,
                 'preschooler_60_above' : preschooler_60_above,
-                'count_data' : data_json,}
+                'count_data' : data_json}
         return render(request, 'activities/BHW Home.html', context)
     
     elif request.user.is_authenticated and request.user.user_type == 'Admin':
@@ -590,13 +599,31 @@ def preschooler_dashboard(request):
         bhw_logged = BarangayHealthWorker.objects.get(user_id=request.user.id)
         parents = Parent.objects.filter(barangay=bhw_logged.bhw_barangay)
         preschooler = Preschooler.lt_60_objects.filter(parent__in=(parents))
+
+        # ==== Total Preschoolers ======
+        all_preschoolersListCount = Preschooler.lt_60_objects.filter(parent__in=(parents)).count
+
+        # ==== Preschooler above 60 months ====
         preschooler_60months = Preschooler.gte_60_objects.filter(parent__in=(parents))
+        preschooler_60monthsList = Preschooler.gte_60_objects.filter(parent__in=(parents)).count
+
+         # ==== Preschooler w/ out Records ====
+        preschooler_without_record = preschooler.filter(Q(height__isnull=True) | Q(weight__isnull=True)).count()
+
+        # ==== Preschooler w Records ====
+        preschooler_with_record = preschooler.filter(Q(height__isnull=False) | Q(weight__isnull=False) | Q(date_measured__isnull=False))
+        preschooler_with_record_count = preschooler_with_record.count()
+
         current_date =  datetime.now()
 
         context = {'bhw' : bhw_logged,
                    'preschoolers': preschooler,
+                   'all_preschoolersListCount': all_preschoolersListCount,
+                   'preschooler_without_record': preschooler_without_record,
+                   'preschooler_with_record_count': preschooler_with_record_count,
                    'archive_preschoolers' : preschooler_60months,
-                   'current_date': current_date}
+                   'current_date': current_date,
+                   'preschooler_60monthsList': preschooler_60monthsList,}
         
         return render(request, 'activities/BHW Preschooler Dashboard.html', context)
 

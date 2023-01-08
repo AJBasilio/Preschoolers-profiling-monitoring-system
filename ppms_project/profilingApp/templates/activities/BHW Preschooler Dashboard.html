@@ -241,14 +241,18 @@
                         <table class="table table-hover table-cell-border" id="archive" >
                             <thead>
                                 <tr style="text-align: center;">
-                                    <th scope="col">No.</th>
+                                    <th scope="col">No</th>
                                     <th scope="col">Last Name</th>
                                     <th scope="col">First Name</th>
                                     <th scope="col">Middle Name</th>
                                     <th scope="col">Suffix</th>
+                                    <th scope="col">Gender</th>
                                     <th scope="col">Birthdate</th>
                                     <th scope="col">Age Last Measured (Month)</th>
-                                    <th scope="col">BMI STATUS</th>
+                                    <th scope="col">WFA STATUS</th>
+                                    <th scope="col">HFA STATUS</th>
+                                    <th scope="col">WHFA STATUS</th>
+                                    <th scope="col">Vaccine status</th>
                                 </tr>   
                             </thead>
                             <tbody>
@@ -259,11 +263,52 @@
                                     <td>{{ preschooler.first_name }}</td>
                                     <td>{{ preschooler.middle_name }}</td>
                                     <td>{{ preschooler.suffix_name }}</td>
+                                    {% if preschooler.gender == 'Male' %}
+                                        <td class="text-uppercase textShadow" style="color:rgb(26, 171, 187)">{{ preschooler.gender }}</td>
+                                    {% else %}
+                                        <td class="text-uppercase textShadow" style="color:rgb(233, 63, 202)">{{ preschooler.gender }}</td>
+                                    {% endif %}
                                     <td>{{ preschooler.birthday }}</td>
-                                    <td>{{ preschooler.age_measured }} Months</td>
+                                    {% if preschooler.age_measured == 'Undefined' %}
+                                        <td>No Measuring Record</td>
+                                    {% else %}
+                                        <td>{{ preschooler.age_measured }} Months</td>
+                                    {% endif %}
+
+                                    {% if preschooler.wfa is None %}
+                                        <td style="background-color: rgb(211, 211, 211);"> No Data Record </td>
+                                    {% elif preschooler.wfa > 2.0 %}
+                                        <td style="background-color: rgb(242, 98, 33);"> Overweight ({{ preschooler.wfa }})</td>
+                                    {% elif preschooler.wfa >= -2.0 and preschooler.wfa <= 2.0 %}
+                                        <td style="background-color: rgb(0, 165, 79);"> Normal ({{ preschooler.wfa }})</td>
+                                    {% elif preschooler.wfa >= -3.0 and preschooler.wfa < -2.0 %}
+                                        <td style="background-color: rgb(255, 241, 2);"> Underweight ({{ preschooler.wfa }})</td>
+                                    {% else %}
+                                        <td style="background-color: rgb(238, 29, 35);"> Severely Underweight ({{ preschooler.wfa }})</td>
+                                    {% endif %}
+
+                                    {% if preschooler.hfa is None %}
+                                        <td style="background-color: rgb(211, 211, 211);"> No Data Record </td>
+                                    {% elif preschooler.hfa > 2.0 %}
+                                        <td style="background-color: rgb(0, 165, 79);"> Tall ({{preschooler.hfa }})</td>
+                                    {% elif preschooler.hfa >= -2.0 and preschooler.hfa <= 2.0 %}
+                                        <td style="background-color: rgb(0, 165, 79);"> Normal ({{ preschooler.hfa }})</td>
+                                    {% elif preschooler.hfa >= -3.0 and preschooler.hfa < -2.0 %}
+                                        <td style="background-color: rgb(255, 241, 2);"> Stunted ({{ preschooler.hfa }})</td>
+                                    {% else %}
+                                        <td style="background-color: rgb(238, 29, 35);"> Severely Stunted ({{ preschooler.hfa }})</td>
+                                    {% endif %}
+
+
                                     {% if preschooler.whfa is None %}
-                                    
-                                        <td> No Data Record </td>
+                                        {% if preschooler.height < 45.0 %}
+                                            <td class="bg-info" > Special Case <p class="text text-small m-0"> (Too Small for WHFA Tagging) </p></td>
+                                        {% elif preschooler.height > 110.0 %}
+                                            <td class="bg-info" > Special Case <p class="text text-small m-0"> (Too Tall for WHFA Tagging) </p></td>
+                                        {% else %}
+                                            <td style="background-color: rgb(211, 211, 211);"> No Data Record </td>
+                                        {% endif %}
+
                                     {% elif preschooler.whfa > 3.0%}
                                         <td style="background-color: rgb(242, 98, 33);"> Obese ({{ preschooler.whfa }})</td>
                                     {% elif preschooler.whfa > 2.0 and preschooler.whfa <= 3.0 %}
@@ -274,7 +319,15 @@
                                         <td style="background-color: rgb(255, 241, 2);"> Moderately Wasted ({{ preschooler.whfa }})</td>
                                     {% else %}
                                         <td style="background-color: rgb(238, 29, 35);"> Severely Wasted ({{preschooler.whfa }})</td>
-                                    {% endif %}                                   
+                                    {% endif %}
+                                    
+                                    {% if preschooler.vaccine_count == 8 %}
+                                        <td class=" text-success textShadow">Complete</td>
+                                    {% elif preschooler.vaccine_count == 0 %}
+                                        <td class=" text-danger textShadow">No Record</td>
+                                    {% else %}
+                                        <td class=" text-warning textShadow">Incomplete</td>
+                                    {% endif %}
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -304,178 +357,272 @@
     </div>
 </div>
         
-    <script>
-        var table = $('#preschooler_bmi').DataTable({
-            dom: 'Bfrtip',
-            info: false,
-            buttons: [
-                    {
+<script>
+    var t1 = $('#archive').DataTable({
+        dom: 'Blfrtip',
+        buttons: [
+                {
                     extend: 'excelHtml5',
                     text: 'Generate Excel ',
-                    title: 'List of Preschoolers in Barangay ' + '{{bhw.bhw_barangay}} | ' + '{{current_date}}',
-                    },
-                   {
+                    title: 'List of Preschoolers in Barangay ' + '{{bhw.bhw_barangay}}' + ' | {{ user.first_name }} {{ user.last_name }} | ' + '{{current_date}}',
+                    autoFilter: true,
+
+                },
+                {
                     extend: 'pdfHtml5',
                     orientation: 'landscape',
                     pageSize: 'LEGAL',
                     download: 'open',
                     text: 'Generate PDF ',
-                    title: 'List of Preschoolers in Barangay ' + '{{bhw.bhw_barangay}} | ' + '{{current_date}}',
-                    customize: function (doc) {
+                    title: 'List of Preschoolers in Barangay ' + '{{bhw.bhw_barangay}}' + ' | {{ user.first_name }} {{ user.last_name }} | ' + '{{current_date}}',
+                    messageTop: 'Number of Archived Preschoolers: ' + '{{preschooler_60monthsList}}',
+                    customize: function(doc){
 
-                            WFA = table.column(5).data().toArray();
-                            for (var i = 0; i < WFA.length; i++) {
-                                var val = parseFloat(Number(WFA[i].replace(/[^0-9\.-]+/g,"")));
-                                console.log(val);
-                                if (val == 0){
-                                    doc.content[1].table.body[i + 1][5].fillColor = '#d3d3d3';
-                                }
-                                else if (val > 2.0) {
-                                    doc.content[1].table.body[i + 1][5].fillColor = '#f26221';
-                                }
-                                else if (val >= -2.0 && val <= 2.0 ) {
-                                    doc.content[1].table.body[i + 1][5].fillColor = '#00a54f';
-                                }
-                                else if (val >= -3.0 && val < -2.0 ) {
-                                    doc.content[1].table.body[i + 1][5].fillColor = '#fff102';
-                                }
-                                else {
-                                    doc.content[1].table.body[i + 1][5].fillColor = '#EE1D23';
-                                }
-                            };
+                        gender = t1.column(5).data().toArray();
+                        console.log(gender)
+                        for (var i = 0; i < gender.length; i++){
+                            var val = (gender[i])
+                            if (val == 'Male'){
+                                doc.content[2].table.body[i + 1][5].color = '#1aabbb';
+                            }
+                            else {
+                                doc.content[2].table.body[i + 1][5].color = '#e93fca';
+                            }
+                        };
 
-                            HFA = table.column(6).data().toArray();
-                            for (var i = 0; i < HFA.length; i++) {
-                                var val = parseFloat(Number(HFA[i].replace(/[^0-9\.-]+/g,"")));
-                                if (val == 0){
-                                    doc.content[1].table.body[i + 1][6].fillColor = '#d3d3d3';
-                                }
-                                else if (val > 2.0) {
-                                    doc.content[1].table.body[i + 1][6].fillColor = '#00a54f';
-                                }
-                                else if (val  >= -2.0 && val <= 2.0 ) {
-                                    doc.content[1].table.body[i + 1][6].fillColor = '#00a54f';
-                                }
-                                else if (val >= -3.0 && val < -2.0 ) {
-                                    doc.content[1].table.body[i + 1][6].fillColor = '#fff102';
-                                }
-                                else {
-                                    doc.content[1].table.body[i + 1][6].fillColor = '#EE1D23';
-                                }
-                            };
 
-                            WHFA = table.column(7).data().toArray();
-                            for (var i = 0; i < WHFA.length; i++) {
-                                var val = parseFloat(Number(WHFA[i].replace(/[^0-9\.-]+/g,"")));
-                                if (val == 0){
-                                    doc.content[1].table.body[i + 1][7].fillColor = '#d3d3d3';
+                        vacstatus = t1.column(11).data().toArray();
+                        for (var i = 0; i < vacstatus.length; i++){
+                            var val = (vacstatus[i])
+                            if (val == 'Complete'){
+                                doc.content[2].table.body[i + 1][11].color = '#28a745';
+                            }
+                            else if (val == 'No Record'){
+                                doc.content[2].table.body[i + 1][11].color = '#dc3545';
+                            }
+                            else {
+                                doc.content[2].table.body[i + 1][11].color = '#ffc107';
+                            }
+                        };
+
+                        
+                        WFA = t1.column(8).data().toArray();
+                        for (var i = 0; i < WFA.length; i++) {
+                            var val = parseFloat(Number(WFA[i].replace(/[^0-9\.-]+/g,"")));
+                            if (val == 0){
+                                doc.content[2].table.body[i + 1][8].fillColor = '#d3d3d3';
+                            }
+                            else if (val > 2.0) {
+                                doc.content[2].table.body[i + 1][8].fillColor = '#f26221';
+                            }
+                            else if (val >= -2.0 && val <= 2.0 ) {
+                                doc.content[2].table.body[i + 1][8].fillColor = '#00a54f';
+                            }
+                            else if (val >= -3.0 && val < -2.0 ) {
+                                doc.content[2].table.body[i + 1][8].fillColor = '#fff102';
+                            }
+                            else {
+                                doc.content[2].table.body[i + 1][8].fillColor = '#EE1D23';
+                            }
+                        };
+
+                        HFA = t1.column(9).data().toArray();
+                        for (var i = 0; i < HFA.length; i++) {
+                            var val = parseFloat(Number(HFA[i].replace(/[^0-9\.-]+/g,"")));
+                            if (val == 0){
+                                doc.content[2].table.body[i + 1][9].fillColor = '#d3d3d3';
+                            }
+                            else if (val > 2.0) {
+                                doc.content[2].table.body[i + 1][9].fillColor = '#00a54f';
+                            }
+                            else if (val  >= -2.0 && val <= 2.0 ) {
+                                doc.content[2].table.body[i + 1][9].fillColor = '#00a54f';
+                            }
+                            else if (val >= -3.0 && val < -2.0 ) {
+                                doc.content[2].table.body[i + 1][9].fillColor = '#fff102';
+                            }
+                            else {
+                                doc.content[2].table.body[i + 1][9].fillColor = '#EE1D23';
+                            }
+                        };
+                        
+                        WHFA = t1.column(10).data().toArray();
+                        for (var i = 0; i < WHFA.length; i++) {
+                            var val = parseFloat(Number(WHFA[i].replace(/[^0-9\.-]+/g,"")));
+                            if (val == 0){
+                                    doc.content[2].table.body[i + 1][10].fillColor = '#d3d3d3';
                                 }
                                 else if (val > 3.0) {
-                                    doc.content[1].table.body[i + 1][7].fillColor = '#f26221';
+                                    doc.content[2].table.body[i + 1][10].fillColor = '#f26221';
                                 }
                                 else if (val > 2.0 && val <= 3.0 ) {
-                                    doc.content[1].table.body[i + 1][7].fillColor = '#f26221';
+                                    doc.content[2].table.body[i + 1][10].fillColor = '#f26221';
                                 }
                                 else if (val >= -2.0 && val <= 2.0 ) {
-                                    doc.content[1].table.body[i + 1][7].fillColor = '#00A54F';
+                                    doc.content[2].table.body[i + 1][10].fillColor = '#00A54F';
                                 }
                                 else if (val >= -3.0 && val < -2.0 ) {
-                                    doc.content[1].table.body[i + 1][7].fillColor = '#FFF102';
+                                    doc.content[2].table.body[i + 1][10].fillColor = '#FFF102';
                                 }
                                 else {
-                                    doc.content[1].table.body[i + 1][7].fillColor = '#EE1D23';
+                                    doc.content[2].table.body[i + 1][10].fillColor = '#EE1D23';
                                 }
-                            };
-                            doc.defaultStyle.fontSize = 12; //2, 3, 4,etc
-                            doc.styles.tableHeader.fontSize = 12; //2, 3, 4, etc
-                            doc.styles.tableHeader.alignment = 'left';
-                            doc.content[1].table.widths = [ '5%', '15%',  '10%', '5%', '10%', '15%', '15%', '15%', '10%'];
-                        },
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+                        };
+                        doc.defaultStyle.fontSize = 12; //2, 3, 4,etc
+                        doc.styles.tableHeader.fontSize = 12; //2, 3, 4, etc
+                        doc.styles.tableHeader.alignment = 'left';
+                        doc.content[1].alignment = 'center';
+                        doc.content[2].table.widths = [ '2%', '10%',  '8%', '10%', '5%', '5%', '10%', '10%','10%','10%','10%','10%',];
                     }
                 },
             ],
-            aoColumnDefs: [{
-                'bSortable': false,
-                'aTargets': ['nosort'],
-                'orderable': false,
-                'targets': [0, 8],
-            }],
-            order: [[1, 'asc']],
-            });
-            table.on('order.dt search.dt', function () {
-            let i = 1;
-            table.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
-                this.data(i++);
-            });}).draw();
-
-            table.buttons().container().appendTo('#preschooler_bmi_wrapper .col-md-6:eq(0)');
-        
-
-            console.log(table);
-
-        var t = $('#archive').DataTable({
-            dom: 'Bfrtip',
-            info: false,
-            buttons: [
+        aoColumnDefs: [{
+            'bSortable': false,
+            'aTargets': ['nosort'],
+            'orderable': false,
+            'targets': [0],
+        }],
+        order: [[1, 'asc']],
+        });
+        t1.on('order.dt search.dt', function () {
+        let i = 1;
+        t1.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+            this.data(i++);
+        });}).draw();
+</script>
+<script>
+    var t2 = $('#preschooler_bmi').DataTable({
+        dom: 'Blfrtip',
+        buttons: [
                 {
                     extend: 'excelHtml5',
-                    text: 'Generate Excel',
-                    title: 'List of Preschoolers in Barangay ' + '{{bhw.bhw_barangay}} | ' + '{{current_date}}',
+                    text: 'Generate Excel ',
+                    title: 'List of Preschoolers in Barangay ' + '{{bhw.bhw_barangay}}' + ' | {{ user.first_name }} {{ user.last_name }} | ' + '{{current_date}}',
+                    autoFilter: true,
                 },
                 {
                     extend: 'pdfHtml5',
                     orientation: 'landscape',
                     pageSize: 'LEGAL',
                     download: 'open',
-                    text: 'Generate PDF',
-                    title: 'List of Archived Preschoolers in Barangay ' + '{{bhw.bhw_barangay}} | ' + '{{current_date}}',
+                    text: 'Generate PDF ',
+                    title: 'List of Preschoolers in Barangay ' + '{{bhw.bhw_barangay}}' + ' | {{ user.first_name }} {{ user.last_name }} | ' + '{{current_date}}',
+                    messageTop: 'Number of Preschoolers: ' + '{{all_preschoolersListCount}}' + '                 '+
+                                'Number of Preschoolers With Records: ' + '{{preschooler_with_record_count}}' + '                 '+
+                                'Number of Preschoolers Without Records: ' + '{{preschooler_without_record}}' + '                 ',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8 ]},
                     customize: function(doc){
-                        BMI = t.column(7).data().toArray();
-                        for (var i = 0; i < BMI.length; i++) {
-                            var val = parseFloat(Number(BMI[i].replace(/[^0-9\.-]+/g,"")));
-                            console.log(val);
+
+                        gender = t2.column(3).data().toArray();
+                        for (var i = 0; i < gender.length; i++){
+                            var val = (gender[i])
+                            if (val == 'Male'){
+                                doc.content[2].table.body[i + 1][3].color = '#1aabbb';
+                            }
+                            else {
+                                doc.content[2].table.body[i + 1][3].color = '#e93fca';
+                            }
+                        };
+                        
+                        vacstatus = t2.column(8).data().toArray();
+                        for (var i = 0; i < vacstatus.length; i++){
+                            var val = (vacstatus[i])
+                            if (val == 'Complete'){
+                                doc.content[2].table.body[i + 1][8].color = '#28a745';
+                            }
+                            else if (val == 'No Record'){
+                                doc.content[2].table.body[i + 1][8].color = '#dc3545';
+                            }
+                            else {
+                                doc.content[2].table.body[i + 1][8].color = '#ffc107';
+                            }
+                        };
+
+                        WFA = t2.column(5).data().toArray();
+                        for (var i = 0; i < WFA.length; i++) {
+                            var val = parseFloat(Number(WFA[i].replace(/[^0-9\.-]+/g,"")));
                             if (val == 0){
-                                    doc.content[1].table.body[i + 1][7].fillColor = '#d3d3d3';
+                                doc.content[2].table.body[i + 1][5].fillColor = '#d3d3d3';
+                            }
+                            else if (val > 2.0) {
+                                doc.content[2].table.body[i + 1][5].fillColor = '#f26221';
+                            }
+                            else if (val >= -2.0 && val <= 2.0 ) {
+                                doc.content[2].table.body[i + 1][5].fillColor = '#00a54f';
+                            }
+                            else if (val >= -3.0 && val < -2.0 ) {
+                                doc.content[2].table.body[i + 1][5].fillColor = '#fff102';
+                            }
+                            else {
+                                doc.content[2].table.body[i + 1][5].fillColor = '#EE1D23';
+                            }
+                        };
+
+                        HFA = t2.column(6).data().toArray();
+                        for (var i = 0; i < HFA.length; i++) {
+                            var val = parseFloat(Number(HFA[i].replace(/[^0-9\.-]+/g,"")));
+                            if (val == 0){
+                                doc.content[2].table.body[i + 1][6].fillColor = '#d3d3d3';
+                            }
+                            else if (val > 2.0) {
+                                doc.content[2].table.body[i + 1][6].fillColor = '#00a54f';
+                            }
+                            else if (val  >= -2.0 && val <= 2.0 ) {
+                                doc.content[2].table.body[i + 1][6].fillColor = '#00a54f';
+                            }
+                            else if (val >= -3.0 && val < -2.0 ) {
+                                doc.content[2].table.body[i + 1][6].fillColor = '#fff102';
+                            }
+                            else {
+                                doc.content[2].table.body[i + 1][6].fillColor = '#EE1D23';
+                            }
+                        };
+                        
+                        WHFA = t2.column(7).data().toArray();
+                        for (var i = 0; i < WHFA.length; i++) {
+                            var val = parseFloat(Number(WHFA[i].replace(/[^0-9\.-]+/g,"")));
+                            if (val == 0){
+                                    doc.content[2].table.body[i + 1][7].fillColor = '#d3d3d3';
                                 }
                                 else if (val > 3.0) {
-                                    doc.content[1].table.body[i + 1][7].fillColor = '#f26221';
+                                    doc.content[2].table.body[i + 1][7].fillColor = '#f26221';
                                 }
                                 else if (val > 2.0 && val <= 3.0 ) {
-                                    doc.content[1].table.body[i + 1][7].fillColor = '#f26221';
+                                    doc.content[2].table.body[i + 1][7].fillColor = '#f26221';
                                 }
                                 else if (val >= -2.0 && val <= 2.0 ) {
-                                    doc.content[1].table.body[i + 1][7].fillColor = '#00A54F';
+                                    doc.content[2].table.body[i + 1][7].fillColor = '#00A54F';
                                 }
                                 else if (val >= -3.0 && val < -2.0 ) {
-                                    doc.content[1].table.body[i + 1][7].fillColor = '#FFF102';
+                                    doc.content[2].table.body[i + 1][7].fillColor = '#FFF102';
                                 }
                                 else {
-                                    doc.content[1].table.body[i + 1][7].fillColor = '#EE1D23';
+                                    doc.content[2].table.body[i + 1][7].fillColor = '#EE1D23';
                                 }
                         };
                         doc.defaultStyle.fontSize = 12; //2, 3, 4,etc
                         doc.styles.tableHeader.fontSize = 12; //2, 3, 4, etc
                         doc.styles.tableHeader.alignment = 'left';
-                        doc.content[1].table.widths = [ '5%', '15%',  '15%', '15%', '5%', '15%', '10%', '20%',];
+                        doc.content[1].alignment = 'center';
+                        doc.content[2].table.widths = [ '2%', '15%', '10%', '10%', '10%', '15%', '15%', '15%','10%',];
                     }
                 },
             ],
-            aoColumnDefs: [{
-                'bSortable': false,
-                'aTargets': ['nosort'],
-                'orderable': false,
-                'targets': [0, 7],
-            }],
-            order: [[1, 'asc']],
-            });
-            t.on('order.dt search.dt', function () {
-            let i = 1;
-            t.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
-                this.data(i++);
-            });}).draw();
-    </script>
+        aoColumnDefs: [{
+            'bSortable': false,
+            'aTargets': ['nosort'],
+            'orderable': false,
+            'targets': [0],
+        }],
+        order: [[1, 'asc']],
+        });
+        t2.on('order.dt search.dt', function () {
+        let i = 1;
+        t2.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+            this.data(i++);
+        });}).draw();
+</script>
 
 <script src="{% static '/Javascript/js/functions.js' %}"></script>
 <script src="{% static '/Javascript/js/bootstrap.bundle.min.js' %}"></script>
