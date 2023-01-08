@@ -2,7 +2,7 @@
 {% load static %}
 {% block dashboard %}
 
-<title>Validation | PPMS </title>
+<title>PPMS | Validation</title>
 </head>
 <body>
 
@@ -168,7 +168,7 @@
                                     <td class="text-center">{{ bhw.bhw_barangay }}</td>
                                     <td style="text-align: center;">
                                         <div>
-                                            <button type="button" style="background-color: #188045; color: #ffffff;" class="btn" title="Validate" onclick="toggleValidateModal('Are you sure you want to validate {{ bhw.user.first_name }} {{ bhw.user.last_name }}?')"><i class="fa fa-lg fa-fw fa-user-check"></i></button>
+                                            <button type="button" style="background-color: #188045; color: #ffffff;" class="btn hoverableButton" title="Validate" onclick="toggleValidateModal('Are you sure you want to validate {{ bhw.user.first_name }} {{ bhw.user.last_name }}?')"><i class="fa fa-lg fa-fw fa-user-check"></i></button>
                                             <button type="button" style="color: rgb(255, 0, 0);" class="btn" onclick="toggleDeleteModal('Are you sure you want to delete {{ bhw.user.first_name }} {{ bhw.user.last_name }}?')" title="Delete"><i class="fa fa-lg fa-fw fa-trash-alt"></i></button>
                                         </div>
                                         <script>

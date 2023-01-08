@@ -64,6 +64,23 @@ a{
 }
 
 
+
+/* Hoverable Buttons Styling */
+
+.hoverableButton:hover{
+  background-color: #21a95c!important;
+  color: #ffffff !important;
+  transform: scale(1.025);
+  transition: 0.3s;
+}
+
+.hoverableButton:active{
+  background-color: #35af6a!important;
+  color: #ffffff !important;
+  transform: scale(.95);
+  transition: 0.3s;
+  
+}
 /* Data table Styling */
 
 div.dt-buttons{
@@ -78,6 +95,7 @@ div.dt-buttons{
   background-color: white !important;
   color: #188045;
   border: 2px #188045 solid;
+  transition: 0.3s;
 }
 
 .btn-group>.btn-group:not(:first-child)>.btn, .btn-group>.btn:nth-child(n+3), .btn-group>:not(.btn-check)+.btn{
@@ -93,6 +111,7 @@ div.dt-buttons{
   background-color: white !important;
   color: #188045;
   border: 2px #188045 solid;
+  transition: 0.3s;
   
 }
 
@@ -373,8 +392,12 @@ button.back-button {
 
 /* Change Profile Picture Stylings */
 
-#ps_image-clear{
-  color: green;
+.changeProfile a{
+  color: #188045 !important;
+}
+
+#file-upload-button{
+  background-color: green !important;
 }
 
 /* Parent Home Cards Styling */
@@ -385,6 +408,16 @@ button.back-button {
 .hoverableImage:hover{
   transition-delay:0.2s;
   transform: scale(1.5);
+  z-index: 1;
+  box-shadow: 0 0 10px rgba(11, 11, 11, 0.871);
+}
+
+.hoverableImage2 {
+  transition: .4s ,.4s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+}
+
+.hoverableImage2:hover {
+  transform: scale(1.15);
   z-index: 1;
   box-shadow: 0 0 10px rgba(11, 11, 11, 0.871);
 }

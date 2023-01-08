@@ -22,7 +22,7 @@
     <script src="{% static '/CSS/DataTables/Buttons-1.7.1/js/buttons.bootstrap5.js' %}"></script>
 
 
-<title>{{ bhw.user.first_name }} {{ bhw.user.last_name }} | Preschooler Dashboard</title>
+<title>PPMS | Preschooler Dashboard</title>
 </head>
 <body>
 
@@ -110,7 +110,7 @@
             <h5 class="m-0 align-items-center">List of Preschoolers</h5>
         </div>
         <div class="col-6 d-flex justify-content-md-end justify-content-center align-items-stretch">
-            <button class="btn"type="button" style="background-color: #188045; color: white;" data-bs-toggle="modal" data-bs-target="#modalArc"><h6 style="padding:5px;margin-bottom: 0px !important;"><i class="fa fa-archive"></i> Archive</h6></button>
+            <button class="btn hoverableButton"type="button" style="background-color: #188045; color: white;" data-bs-toggle="modal" data-bs-target="#modalArc"><h6 style="padding:5px;margin-bottom: 0px !important;"><i class="fa fa-archive"></i> Archive</h6></button>
         </div>
     </div>
 </div>
@@ -216,7 +216,7 @@
                                 
                                 <td style="text-align: center;">
                                     <div>
-                                        <a href="{% url 'preschooler_profile' preschooler.id %}"><button type="button" style="background-color: #188045; color: white;" class="btn">View Profile</button></a>
+                                        <a href="{% url 'preschooler_profile' preschooler.id %}"><button type="button" style="background-color: #188045; color: white;" class="btn hoverableButton">View Profile</button></a>
                                     </div>
                                 </td>
                             </tr>

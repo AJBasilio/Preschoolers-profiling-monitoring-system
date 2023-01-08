@@ -2,7 +2,7 @@
 {% load static %}
 {% block dashboard %}
 
-<title>Accounts | PPMS </title>
+<title>PPMS | Accounts</title>
 </head>
 <body>
 
@@ -168,7 +168,7 @@
                                     <td class="text-center">{{ bhw.bhw_barangay }}</td>
                                     <td>
                                         <div class="text-center">
-                                        <a href="{% url 'set_pass' bhw.user.id %}"><button type="button" style="background-color: #188045; color: #ffffff;" class="btn" title="Reset password"><i class="fa fa-lg fa-fw fa-key"></i></button></a>
+                                        <a href="{% url 'set_pass' bhw.user.id %}"><button type="button" style="background-color: #188045; color: #ffffff;" class="btn hoverableButton" title="Reset password"><i class="fa fa-lg fa-fw fa-key"></i></button></a>
                                         </div>
                                     </td>
                                 </tr>
@@ -220,7 +220,7 @@
                                     <td class="text-center">{{ parent.barangay }}</td>
                                     <td style="text-align: center;">
                                         <div class="text-center">
-                                            <a href="{% url 'set_pass' parent.user.id %}"><button type="button" style="background-color: #188045; color: #ffffff;" class="btn" title="Reset password"><i class="fa fa-lg fa-fw fa-key"></i></button></a>
+                                            <a href="{% url 'set_pass' parent.user.id %}"><button type="button" style="background-color: #188045; color: #ffffff;" class="btn hoverableButton" title="Reset password"><i class="fa fa-lg fa-fw fa-key"></i></button></a>
                                         </div>
                                     </td>
                                 </tr>

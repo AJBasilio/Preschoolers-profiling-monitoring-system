@@ -2,7 +2,7 @@
 {% load static %} 
 {% block dashboard %}
 
-<title>Immunization Status | PPMS</title>
+<title>PPMS | Immunization Status</title>
 </head>
 <body>
 
@@ -75,17 +75,17 @@
             <div class="row d-flex justify-content-center align-items-stretch">
                 <div class=" d-flex justify-content-md-end justify-content-center align-items-stretch gap-2">
                     {% if loggedin == 'BHW' %}
-                    <button style="background-color: #188045; color: white;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#guide" ><span class="fas fa-table"></span> Guide</button>
-                    <button style="background-color: #188045; color: white;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#update" ><span class="far fa-calendar"></span> Update</button>
+                    <button style="background-color: #188045; color: white;" type="button" class="btn hoverableButton" data-bs-toggle="modal" data-bs-target="#guide" ><span class="fas fa-table"></span> Guide</button>
+                    <button style="background-color: #188045; color: white;" type="button" class="btn hoverableButton" data-bs-toggle="modal" data-bs-target="#update" ><span class="far fa-calendar"></span> Update</button>
                     <form method="POST" action="">
                         {% csrf_token %}
-                        <button style="background-color: #188045; color: white;" name="PDF" type="submit" class="btn" ><span class="fa fa-file-pdf"></span> Print PDF</button>
+                        <button style="background-color: #188045; color: white;" name="PDF" type="submit" class="btn hoverableButton" ><span class="fa fa-file-pdf"></span> Print PDF</button>
                     </form>
                     {% else %}
-                        <button style="background-color: #188045; color: white;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#guide"><span class="fas fa-table"></span> Guide</button>
+                        <button style="background-color: #188045; color: white;" type="button" class="btn hoverableButton" data-bs-toggle="modal" data-bs-target="#guide"><span class="fas fa-table"></span> Guide</button>
                         <form method="POST" action="">
                             {% csrf_token %}
-                            <button style="background-color: #188045; color: white;" name="PDF" type="submit" class="btn" ><span class="fa fa-file-pdf"></span> Print PDF</button>
+                            <button style="background-color: #188045; color: white;" name="PDF" type="submit" class="btn hoverableButton" ><span class="fa fa-file-pdf"></span> Print PDF</button>
                         </form>
                     {% endif %}
                 </div>
