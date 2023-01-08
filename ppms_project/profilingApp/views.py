@@ -282,6 +282,7 @@ def admin_preschoolers(request):
 
         # ==== Total Preschoolers ======
         all_preschoolers = Preschooler.objects.all().count()
+        all_preschoolersList = Preschooler.lt_60_objects.all()
 
         # ==== Preschooler w/ out Records ====
         preschooler_without_record = Preschooler.lt_60_objects.filter(Q(height__isnull=True) | Q(weight__isnull=True)).count()
@@ -301,6 +302,7 @@ def admin_preschoolers(request):
                 'overweight' : overweight_count,
                 'obese' : obese_count,
                 'barangays' : barangays,
+                'all_preschoolersList': all_preschoolersList,
                 'all_preschooler_count' : all_preschoolers,
                 'preschooler_without_record_count' : preschooler_without_record,
                 'preschooler_with_record_count' : preschooler_with_record_count,
@@ -326,7 +328,8 @@ def admin_preschoolers_barangay(request, brgy):
 
         parents = Parent.objects.filter(barangay=brgy)
         preschoolers = Preschooler.lt_60_objects.filter(parent__in=(parents))
-        
+        current_date =  datetime.now()
+
         barangay = Barangay.objects.get(id=brgy)
         barangays = Barangay.objects.all()
 
@@ -357,6 +360,22 @@ def admin_preschoolers_barangay(request, brgy):
         count_list = [severly_count, wasted_count, normal_count, overweight_count, obese_count]
         data_json = dumps(count_list)
 
+         # ==== Total Preschoolers ======
+        all_preschoolers = Preschooler.objects.filter(parent__in=(parents)).count
+
+        # ==== Preschooler w/ out Records ====
+        preschooler_without_record = preschoolers.filter(Q(height__isnull=True) | Q(weight__isnull=True)).count()
+
+        # ==== Preschooler w Records ====
+        preschooler_with_record = preschoolers.filter(Q(height__isnull=False) | Q(weight__isnull=False) | Q(date_measured__isnull=False))
+        preschooler_with_record_count = preschooler_with_record.count()
+
+        # ==== Preschooler above 60 months ====
+        preschooler_60_above = Preschooler.gte_60_objects.filter(parent__in=(parents))
+        preschooler_60_above_count = preschooler_60_above.count()
+        
+        
+
         context = {'invalidated_count': invalidated_status,
                 'brgy' : barangay,
                 'normal' : normal_count,
@@ -364,7 +383,14 @@ def admin_preschoolers_barangay(request, brgy):
                 'severly' : severly_count,
                 'overweight' : overweight_count,
                 'obese' : obese_count,
+                'current_date': current_date,
                 'barangays' : barangays,
+                'all_preschooler_count' : all_preschoolers,
+                'preschooler_without_record_count' : preschooler_without_record,
+                'preschooler_with_record_count' : preschooler_with_record_count,
+                'preschooler_60_above_count' : preschooler_60_above_count,
+                'preschooler_with_record' : preschooler_with_record,
+                'preschooler_60_above' : preschooler_60_above,
                 'count_data' : data_json
                 }
 

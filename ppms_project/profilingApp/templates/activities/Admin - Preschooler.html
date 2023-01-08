@@ -399,7 +399,7 @@
                                 </tr>   
                             </thead>
                             <tbody>
-                                {% for preschooler in preschooler_60_above %}
+                                {% for preschooler in all_preschoolersList %}
                                 <tr style="text-align: center;">
                                     <td></td>
                                     <td>{{ preschooler.last_name }}</td>
@@ -407,9 +407,9 @@
                                     <td>{{ preschooler.middle_name }}</td>
                                     <td>{{ preschooler.suffix_name }}</td>
                                     {% if preschooler.gender == 'Male' %}
-                                    <td class="text-uppercase textShadow" style="color:rgb(26, 171, 187)">{{ preschooler.gender }}</td>
+                                    <td class="text-uppercase textShadow" style="color:#1aabbb">{{ preschooler.gender }}</td>
                                     {% else %}
-                                    <td class="text-uppercase textShadow" style="color:rgb(233, 63, 202)">{{ preschooler.gender }}</td>
+                                    <td class="text-uppercase textShadow" style="color:#e93fca">{{ preschooler.gender }}</td>
                                     {% endif %}
                                     <td>{{ preschooler.birthday }}</td>
                                     {% if preschooler.age_measured == 'Undefined' %}
@@ -570,12 +570,12 @@
 
 <script>
     var t1 = $('#archive').DataTable({
-        dom: 'Bfrtip',
+        dom: 'Blfrtip',
         buttons: [
                 {
                     extend: 'excelHtml5',
                     text: 'Generate Excel ',
-                    title: 'List of Preschoolers in Barangay ' + '{{bhw.bhw_barangay}} | ' + '{{current_date}}',
+                    title: 'List of Archived Preschoolers in all Barangay | ' + '{{ user.first_name }} {{ user.last_name }} | ' + '{{current_date}}',
                 },
                 {
                     extend: 'pdfHtml5',
@@ -586,7 +586,35 @@
                     title: 'List of Archived Preschoolers in all Barangay | ' + '{{ user.first_name }} {{ user.last_name }} | ' + '{{current_date}}',
                     customize: function(doc){
 
-                        WFA = t2.column(8).data().toArray();
+                        gender = t1.column(5).data().toArray();
+                        console.log(gender)
+                        for (var i = 0; i < gender.length; i++){
+                            var val = (gender[i])
+                            if (val == 'Male'){
+                                doc.content[1].table.body[i + 1][5].color = '#1aabbb';
+                            }
+                            else {
+                                doc.content[1].table.body[i + 1][5].color = '#e93fca';
+                            }
+                        };
+
+
+                        vacstatus = t1.column(11).data().toArray();
+                        for (var i = 0; i < vacstatus.length; i++){
+                            var val = (vacstatus[i])
+                            if (val == 'Complete'){
+                                doc.content[1].table.body[i + 1][11].color = '#28a745';
+                            }
+                            else if (val == 'No Record'){
+                                doc.content[1].table.body[i + 1][11].color = '#dc3545';
+                            }
+                            else {
+                                doc.content[1].table.body[i + 1][11].color = '#ffc107';
+                            }
+                        };
+
+                        
+                        WFA = t1.column(8).data().toArray();
                         for (var i = 0; i < WFA.length; i++) {
                             var val = parseFloat(Number(WFA[i].replace(/[^0-9\.-]+/g,"")));
                             if (val == 0){
@@ -606,7 +634,7 @@
                             }
                         };
 
-                        HFA = t2.column(9).data().toArray();
+                        HFA = t1.column(9).data().toArray();
                         for (var i = 0; i < HFA.length; i++) {
                             var val = parseFloat(Number(HFA[i].replace(/[^0-9\.-]+/g,"")));
                             if (val == 0){
@@ -626,7 +654,7 @@
                             }
                         };
                         
-                        WHFA = t2.column(10).data().toArray();
+                        WHFA = t1.column(10).data().toArray();
                         for (var i = 0; i < WHFA.length; i++) {
                             var val = parseFloat(Number(WHFA[i].replace(/[^0-9\.-]+/g,"")));
                             if (val == 0){
@@ -672,12 +700,12 @@
 
 <script>
     var t2 = $('#adminPreschoolerList').DataTable({
-        dom: 'Bfrtip',
+        dom: 'Blfrtip',
         buttons: [
                 {
                     extend: 'excelHtml5',
                     text: 'Generate Excel ',
-                    title: 'List of Preschoolers in Barangay ' + '{{bhw.bhw_barangay}} | ' + '{{current_date}}',
+                    title: 'List of Preschoolers in all Barangay | ' + '{{ user.first_name }} {{ user.last_name }} | ' + '{{current_date}}',
                 },
                 {
                     extend: 'pdfHtml5',
@@ -687,6 +715,32 @@
                     text: 'Generate PDF ',
                     title: 'List of Preschoolers in all Barangay | ' + '{{ user.first_name }} {{ user.last_name }} | ' + '{{current_date}}',
                     customize: function(doc){
+
+                        gender = t2.column(5).data().toArray();
+                        console.log(gender)
+                        for (var i = 0; i < gender.length; i++){
+                            var val = (gender[i])
+                            if (val == 'Male'){
+                                doc.content[1].table.body[i + 1][5].color = '#1aabbb';
+                            }
+                            else {
+                                doc.content[1].table.body[i + 1][5].color = '#e93fca';
+                            }
+                        };
+                        
+                        vacstatus = t2.column(11).data().toArray();
+                        for (var i = 0; i < vacstatus.length; i++){
+                            var val = (vacstatus[i])
+                            if (val == 'Complete'){
+                                doc.content[1].table.body[i + 1][11].color = '#28a745';
+                            }
+                            else if (val == 'No Record'){
+                                doc.content[1].table.body[i + 1][11].color = '#dc3545';
+                            }
+                            else {
+                                doc.content[1].table.body[i + 1][11].color = '#ffc107';
+                            }
+                        };
 
                         WFA = t2.column(8).data().toArray();
                         for (var i = 0; i < WFA.length; i++) {
