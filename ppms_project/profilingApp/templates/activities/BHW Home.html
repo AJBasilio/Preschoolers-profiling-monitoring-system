@@ -121,6 +121,45 @@
                 <hr>
             </div>
         </div>
+        <div class="row d-flex align-items-stretch mb-3">
+            <div class="col-lg mb-2">
+                <div class="card shadow-sm bg-white rounded h-100">
+                    <div class="card-header">
+                        <h4 class="card-title">Number of Preschoolers</h4>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="row">
+                            <div class="col-md-6 d-flex align-items-center justify-content-center">
+                                <div class="d-block">
+                                    <p style="font-size: xx-large; " class="card-text fw-bold"><i class="fas fa-sm fa-child" style="color: #ffc107 ;"></i> {{ all_preschooler_count }}</p>
+                                    <p class="text-uppercase fw-bold">Registered preschoolers</p>
+                                </div>
+                                
+                            
+                            </div>
+                            <div class="col-md-6 d-flex justify-content-center align-items-center">
+                                <div class="d-block">
+                                    <p style="font-size: xx-large;" class="card-text fw-bold"><i class="fa fa-sm fa-archive" style="color: #d86a10 ;"></i>  {{ preschooler_60_above_count }}</p>
+                                    <p class="text-uppercase fw-bold">Archived Preschoolers (60 months and above old) </p>
+                                </div>
+                            </div>
+                           
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6 d-block">
+                                <p style="font-size: xx-large; " class="card-text fw-bold"><i class="fa fa-sm fa-check-circle" style="color: #2fbc44;"></i>  {{ preschooler_with_record_count }}</p>
+                                <p class="text-uppercase fw-bold">Preschoolers with records </p>
+                            </div>
+                            <div class="col-md-6 d-block">
+                                <p style="font-size: xx-large;" class="card-text fw-bold"><i class="fa fa-sm fa-times-circle" style="color: #d23114;" ></i>  {{ preschooler_without_record_count }}</p>
+                                <p class="text-uppercase fw-bold">Preschoolers with no records </p>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="mb-4">
             <div class="card-header">
                 <h4>Preschooler's Nutrition Summary Chart</h4>
