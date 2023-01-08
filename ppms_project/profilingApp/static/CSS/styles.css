@@ -91,6 +91,22 @@ div.dt-buttons{
 }
 
 /* GENERATE PDF BUTTON */
+
+.btn-group-vertical>.btn, .btn-group>.btn{
+  background-color: #188045 !important;
+  color: rgb(255, 255, 255);
+  border: 2px white solid;
+  border-radius: 10px;
+  max-width: 200px;
+}
+
+.btn-group-vertical>.btn, .btn-group>.btn:hover{
+  background-color: white !important;
+  color: #188045;
+  border: 2px #188045 solid;
+  transition: 0.3s;
+}
+
 .btn-group>.btn-group:not(:first-child)>.btn, .btn-group>.btn:nth-child(n+3), .btn-group>:not(.btn-check)+.btn:hover{
   background-color: white !important;
   color: #188045;
@@ -1326,7 +1342,7 @@ html {
     text-shadow: 1px 1px 0 #000;
   }
   .textShadow2{
-    text-shadow: 1px 1px 0 rgb(250, 250, 250);
+    text-shadow: 1px 1px 2px rgb(255, 255, 255);
   }
 
   /* Admin Archive Button Styling */

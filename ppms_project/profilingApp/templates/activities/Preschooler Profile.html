@@ -194,13 +194,13 @@
                                                     <h5 class="modal-title fw-bold" id="exampleModalLabel"><i class="fas fa-image" style="color:#188045"></i> Change Profile Picture</h5>
                                                 </div>
                                             </div>
-                                            <div class="bg-muted modal-body d-flex justify-content-center align-items-center text-capitalize">
+                                            <div class="bg-muted modal-body d-flex justify-content-center align-items-center text-capitalize" style="background: radial-gradient(closest-side, #f7f7f7, #eefbf3, #defbea);">
                                                 <form method="POST" enctype="multipart/form-data">
                                                     {% csrf_token %}
-                                                    <div class="md-form mb-3 d-flex justify-content-center align-items-center text-center gap-3 p-4">
+                                                    <div class="md-form mb-3 d-flex justify-content-center align-items-center text-center gap-3 p-4" >
                                                         <div class="row d-flex ">
                                                             <div class="d-flex justify-content-center align-items-center text-center flex-column">
-                                                                <h5 class="fw-bold text-success">Current Image</h5>
+                                                                <h5 class="fw-bold text-success textShadow2">Current Image</h5>
                                                                 {% if preschooler.gender == 'Male' %}
                                                                     {% if preschooler.ps_image %}
                                                                         <img class="rounded-circle hoverableImage2" src="/Media/{{ preschooler.ps_image }}" style="min-width: 85px; max-width: 200px;">
@@ -220,7 +220,7 @@
                                                                 </div>
                                                                 <hr style="color: #333333;">
                                                                 <div class="d-block justify-content-center align-items-center gap-3">
-                                                                    <h5 class="fw-bold text-success"> Change Image</h5>
+                                                                <h5 class="fw-bold text-success "> Change Image</h5>
                                                                     <input style="margin-left:100px;" type="file" name="ps_image" accept="image/*" id="id_ps_image">
                                                                     <h6 class="text-muted text-capitalize mt-3">the current image will be replaced by the chosen image</h6>
                                                                 </div>
