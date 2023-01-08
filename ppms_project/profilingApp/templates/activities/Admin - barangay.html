@@ -164,9 +164,9 @@
                                     <td class="text-center">{{ barangay.brgy_name }}</td>
                                     <td class="text-center">{{ barangay.brgy_phone }}</td>
                                     <td class="text-center">{{ barangay.brgy_address }}</td>
-                                    <td class="text-center">{{preschooler_barangay}}</td>
-                                    <td class="text-center"></td>
-                                    <td class="text-center"></td>
+                                    <td class="text-center">{{ barangay.enrolled_preschooler_count }}</td>
+                                    <td class="text-center">{{ barangay.parent_count }}</td>
+                                    <td class="text-center">{{ barangay.bhw_count }}</td>
                                 </tr>
                                 {% endfor %}
                             </tbody>

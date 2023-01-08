@@ -50,6 +50,22 @@ class Barangay(Model):
     def __str__(self) -> str:
         return f'{self.brgy_name}'
 
+    def enrolled_preschooler_count(self):
+        parent = Parent.objects.filter(barangay=self.id)
+        preschoolers_count = Preschooler.lt_60_objects.filter(parent__in=(parent)).count()
+
+        return preschoolers_count
+    
+    def parent_count(self):
+        parent_count = Parent.objects.filter(barangay=self.id).count()
+
+        return parent_count
+
+    def bhw_count(self):
+        bhw_count = BarangayHealthWorker.objects.filter(bhw_barangay=self.id).count()
+
+        return bhw_count
+
 class CustomUser(AbstractUser):
     USER_TYPE = [('Choose User Type', 'Choose User Type'),
                  ('Admin', 'Administrator'),
