@@ -529,13 +529,16 @@ def admin_historyLogs(request):
     if request.user.is_authenticated and request.user.user_type == 'Admin':
         
         bhw_history = BarangayHealthWorker.history.all()
+        current_date =  datetime.now()
+
 
         invalidated_status = BarangayHealthWorker.objects.filter(
             is_validated=False).count()
 
         context = {
                    'invalidated_count': invalidated_status,
-                   'validate_logs' : bhw_history
+                   'validate_logs' : bhw_history,
+                   'current_date': current_date,
                    }
     
         return render(request, 'activities/Admin - History Logs.html', context)
