@@ -719,15 +719,25 @@
                     pageSize: 'LEGAL',
                     download: 'open',
                     text: 'Generate PDF ',
+                    exportOptions: {stripNewlines: false},
                     title: 'List of Preschoolers in all Barangay | ' + '{{ user.first_name }} {{ user.last_name }} | ' + '{{current_date}}',
-                    messageTop: 'Number of Preschoolers: ' + '{{all_preschoolersListCount}}' + '                 '+
-                                'Number of Preschoolers With Records: ' + '{{preschooler_with_record_count}}' + '                 '+
-                                'Number of Preschoolers Without Records: ' + '{{preschooler_without_record_count}}' + '                 ',
+                    messageTop: 'Number of Preschoolers: ' + '{{all_preschoolersListCount}}' + '                                                                      '+
+                                'Number of Preschoolers With Records: ' + '{{preschooler_with_record_count}}' + '                                   '+
+                                'Number of Preschoolers Without Records: ' + '{{preschooler_without_record_count}}' + '                                   ' +
+                                'Number of Moderately Wasted Status: ' + '{{wasted}}' + '                                                 ' +
+                                'Number of Severly Wasted Status: ' + '{{severly}}' + '                                            ' +
+                                'Number of Overweight Status: ' + '{{overweight}}' + '                                                ' +
+                                'Number of Normal Status: ' + '{{normal}}' + '                                                                      ' +
+                                'Number of Obese Status: ' + '{{obese}}' + '                                                                                                                                                                                                   ' +
+                                'Number of Male Preschoolers: ' + '{{total_male}}' + '                                                               ' + 
+                                'Number of Female Preschoolers: ' + '{{total_Female}}',
                     customize: function(doc){
 
                         gender = t2.column(5).data().toArray();
                         for (var i = 0; i < gender.length; i++){
                             var val = (gender[i])
+                            console.log('{{total_male}}')
+                            
                             if (val == 'Male'){
                                 doc.content[2].table.body[i + 1][5].color = '#1aabbb';
                             }
@@ -816,7 +826,6 @@
                         doc.styles.tableHeader.fontSize = 12; //2, 3, 4, etc
                         doc.styles.tableHeader.alignment = 'left';
                         doc.content[2].table.widths = [ '2%', '10%',  '8%', '10%', '5%', '5%', '10%', '10%','10%','10%','10%','10%',];
-                        doc.content[1].alignment = 'center';
 
                     },
                 },

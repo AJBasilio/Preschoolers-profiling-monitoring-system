@@ -285,6 +285,11 @@ def admin_preschoolers(request):
         all_preschoolersList = Preschooler.lt_60_objects.all()
         all_preschoolersListCount = Preschooler.lt_60_objects.all().count
 
+        # ==== Total Male Preschoolers ======
+        total_male = Preschooler.lt_60_objects.filter(Q(gender='Male')).count
+        
+         # ==== Total Female Preschoolers ======
+        total_Female = Preschooler.lt_60_objects.filter(Q(gender='Female')).count
 
         # ==== Preschooler w/ out Records ====
         preschooler_without_record = Preschooler.lt_60_objects.filter(Q(height__isnull=True) | Q(weight__isnull=True)).count()
@@ -304,6 +309,8 @@ def admin_preschoolers(request):
                 'overweight' : overweight_count,
                 'obese' : obese_count,
                 'barangays' : barangays,
+                'total_male': total_male,
+                'total_Female': total_Female,
                 'all_preschoolersList': all_preschoolersList,
                 'all_preschooler_count' : all_preschoolers,
                 'all_preschoolersListCount':all_preschoolersListCount,
@@ -367,6 +374,12 @@ def admin_preschoolers_barangay(request, brgy):
         all_preschoolers = Preschooler.objects.filter(parent__in=(parents)).count
         all_preschoolersListCount = Preschooler.lt_60_objects.filter(parent__in=(parents)).count
 
+        # ==== Total Male Preschoolers ======
+        totalmale = preschoolers.filter(Q(gender='Male')).values
+        total_male = totalmale.count()
+         # ==== Total Male Preschoolers ======
+        total_Female = preschoolers.filter(Q(gender='Female')).count
+
 
         # ==== Preschooler w/ out Records ====
         preschooler_without_record = preschoolers.filter(Q(height__isnull=True) | Q(weight__isnull=True)).count()
@@ -390,6 +403,8 @@ def admin_preschoolers_barangay(request, brgy):
                 'obese' : obese_count,
                 'current_date': current_date,
                 'barangays' : barangays,
+                'total_male': total_male,
+                'total_Female': total_Female,
                 'all_preschooler_count' : all_preschoolers,
                 'all_preschoolersListCount': all_preschoolersListCount,
                 'preschooler_without_record_count' : preschooler_without_record,
