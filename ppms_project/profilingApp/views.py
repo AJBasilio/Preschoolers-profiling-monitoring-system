@@ -754,6 +754,8 @@ def immunization_schedule(request, pk):
     vaccines = Vaccine.objects.filter(vax_preschooler=preschooler)
     vax_list = list(vaccines.values_list('vax_name', flat=True))
     dose_list = vaccines.values_list('vax_dose', flat=True)
+    current_date =  datetime.now()
+
     
     vax_24hrs = vaccines.filter(vax_name__in=['BCG', 'Hepatitis B']).count()
     vax_6weeks = vaccines.filter(vax_name__in=['Oral Poliovirus Vaccine', 'Pentavalent Vaccine', 'Measles Containing Vaccines']).count()
@@ -856,7 +858,8 @@ def immunization_schedule(request, pk):
                'vax_6weeks' : vax_6weeks,
                'vax_10weeks' : vax_10weeks,
                'vax_14weeks' : vax_14weeks,
-               'vax_9months' : vax_9months
+               'vax_9months' : vax_9months,
+               'current_date': current_date,
                }
 
 

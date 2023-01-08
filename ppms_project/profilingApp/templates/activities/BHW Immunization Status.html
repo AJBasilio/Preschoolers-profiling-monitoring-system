@@ -1,6 +1,25 @@
-{% extends 'activities/BHW Home.html' %} <!-- header and footer of page linked from bhw home html file -->
 {% load static %} 
 {% block dashboard %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- table layout -->
+    <script src="{% static '/Javascript/js/jquery.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static '/CSS/styles.css' %}">
+    <link rel="stylesheet" href="{% static '/CSS/font-awesome/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static '/CSS/css/bootstrap.min.css' %}">
+    <script src="{% static '/Javascript/js/jquery.min.js' %}"></script>
+
+    <script src="{% static '/Javascript/js/Chart.min.js' %}" crossorigin="anonymous"></script>
+    <link rel="icon" href="{% static '/Media/Dasmalogo.png' %}" type="image/y-icon">
+    <link rel="stylesheet" href="{% static '/CSS/DataTables/datatables.min.css' %}">
+    <script src="{% static '/CSS/DataTables/datatables.js' %}"></script>
+    <link rel="stylesheet" href="{% static '/CSS/DataTables/Buttons-1.7.1/css/buttons.bootstrap5.css' %}">
+    <script src="{% static '/CSS/DataTables/Buttons-1.7.1/js/buttons.bootstrap5.js' %}"></script>
 
 <title>PPMS | Immunization Status</title>
 </head>
@@ -77,16 +96,8 @@
                     {% if loggedin == 'BHW' %}
                     <button style="background-color: #188045; color: white;" type="button" class="btn hoverableButton" data-bs-toggle="modal" data-bs-target="#guide" ><span class="fas fa-table"></span> Guide</button>
                     <button style="background-color: #188045; color: white;" type="button" class="btn hoverableButton" data-bs-toggle="modal" data-bs-target="#update" ><span class="far fa-calendar"></span> Update</button>
-                    <form method="POST" action="">
-                        {% csrf_token %}
-                        <button style="background-color: #188045; color: white;" name="PDF" type="submit" class="btn hoverableButton" ><span class="fa fa-file-pdf"></span> Print PDF</button>
-                    </form>
                     {% else %}
                         <button style="background-color: #188045; color: white;" type="button" class="btn hoverableButton" data-bs-toggle="modal" data-bs-target="#guide"><span class="fas fa-table"></span> Guide</button>
-                        <form method="POST" action="">
-                            {% csrf_token %}
-                            <button style="background-color: #188045; color: white;" name="PDF" type="submit" class="btn hoverableButton" ><span class="fa fa-file-pdf"></span> Print PDF</button>
-                        </form>
                     {% endif %}
                 </div>
             </div>
@@ -261,7 +272,7 @@
                 </div>
                 <div class="card shadow-lg p-3 bg-white rounded" >
                     <div class="table-responsive">
-                        <table class="table table-hover table-cell-border" id="table_validation">
+                        <table class="table table-hover table-cell-border" id="Immu_sched_rec">
                             <div class="" >
                                 <h5 style="font-size:20px; font-weight:bold; margin-right:10px; margin: 0;">Remaining Vaccine:</h5>
                                 {% if 'BCG' in vax_list and 'Hepatitis B' in vax_list and 'Oral Poliovirus Vaccine' in vax_list and 'Pentavalent Vaccine' in vax_list and 'Measles Containing Vaccines' in vax_list and 'Inactivated Polio Vaccine' in vax_list and 'Measles Mumps - Rubella' in vax_list %}
@@ -406,6 +417,20 @@
             </div>
         </div>
 </div>
+<!-- Footer -->
+<div class="footer text-muted">
+    <div class="container">
+        <div class="row text-center d-flex align-items-center">
+                <div class="border-top p-2 d-flex justify-content-center align-items-center">
+                    <p class="copyright"><small>
+                    Copyright ©<script>document.write(new Date().getFullYear());</script> All rights reserved <i class="icon-heart text-danger" aria-hidden="true"></i>
+                    </small>
+                    </p>
+                </div>
+        </div>
+    </div>
+</div>
+
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
@@ -481,6 +506,106 @@
     };
     
 </script>
+<script>
+    var t1 = $('#table_validation').DataTable({
+        dom: 'B',
+        buttons: [
+                {
+                    extend: 'pdfHtml5',
+                    orientation: 'portrait',
+                    pageSize: 'LEGAL',
+                    download: 'open',
+                    text: 'Generate PDF ',
+                    title: 'Immunization Status ' + '| ' + '{{current_date}}',
+                    messageTop: 'Preschooler Name: {{ preschooler.last_name }} {{ preschooler.first_name }}  {{ preschooler.middle_name }} {{ preschooler.suffix_name }}' + '{{preschooler_60monthsList}}' +
+                    '                                                                                                                                                      ' + 
+                    'Age: '+ '{{ preschooler.age_years }} Years Old ({{ preschooler.age_months }} months) ({{ preschooler.age_weeks }} weeks)',
+                    customize: function(doc){
+
+                        vacstatus = t1.column(3).data().toArray();
+                        for (var i = 0; i < vacstatus.length; i++){
+                            var val = (vacstatus[i])
+                            if (val == 'Complete'){
+                                doc.content[2].table.body[i + 1][3].color = '#28a745';
+                            }
+                            else if (val == 'No Record'){
+                                doc.content[2].table.body[i + 1][3].color = '#dc3545';
+                            }
+                            else {
+                                doc.content[2].table.body[i + 1][3].color = '#ffc107';
+                            }
+                        };
+
+                        doc.defaultStyle.fontSize = 12; //2, 3, 4,etc
+                        doc.styles.tableHeader.fontSize = 12; //2, 3, 4, etc
+                        doc.styles.tableHeader.alignment = 'center';
+                        doc.content[1].alignment = 'left';
+                        doc.content[2].alignment = 'center';
+                        doc.content[2].table.widths = [ '25%', '25%',  '25%', '25%'];
+                    }
+                },
+            ],
+        aoColumnDefs: [{
+        'bSortable': false,
+        'aTargets': ['nosort'],
+        'orderable': false,
+        'targets': [0, 1, 2, 3],
+        }],
+        order: [],
+        });
+</script>
+
+<script>
+    var t2 = $('#Immu_sched_rec').DataTable({
+        dom: 'B',
+        buttons: [
+                {
+                    extend: 'pdfHtml5',
+                    orientation: 'portrait',
+                    pageSize: 'LEGAL',
+                    download: 'open',
+                    text: 'Generate PDF ',
+                    title: 'Immunization Schedule Records ' + '| ' + '{{current_date}}',
+                    messageTop: 'Preschooler Name: {{ preschooler.last_name }} {{ preschooler.first_name }}  {{ preschooler.middle_name }} {{ preschooler.suffix_name }}' + '{{preschooler_60monthsList}}' +
+                    '                                                                                                                                                      ' + 
+                    'Age: '+ '{{ preschooler.age_years }} Years Old ({{ preschooler.age_months }} months) ({{ preschooler.age_weeks }} weeks)',
+                    customize: function(doc){
+
+                        vacstatus = t2.column(3).data().toArray();
+                        for (var i = 0; i < vacstatus.length; i++){
+                            var val = (vacstatus[i])
+                            if (val == 'Complete'){
+                                doc.content[2].table.body[i + 1][3].color = '#28a745';
+                            }
+                            else if (val == 'No Record'){
+                                doc.content[2].table.body[i + 1][3].color = '#dc3545';
+                            }
+                            else {
+                                doc.content[2].table.body[i + 1][3].color = '#ffc107';
+                            }
+                        };
+
+                        doc.defaultStyle.fontSize = 12; //2, 3, 4,etc
+                        doc.styles.tableHeader.fontSize = 12; //2, 3, 4, etc
+                        doc.styles.tableHeader.alignment = 'center';
+                        doc.content[1].alignment = 'left';
+                        doc.content[2].alignment = 'center';
+                        doc.content[2].table.widths = [ '20%', '20%', '20%',  '20%', '20%'];
+                    }
+                },
+            ],
+        aoColumnDefs: [{
+        'bSortable': false,
+        'aTargets': ['nosort'],
+        'orderable': false,
+        'targets': [0, 1, 2, 3, 4],
+        }],
+        order: [],
+        });
+</script>
+
+
+
 {% if messages %}
     {% for message in messages %}
         {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
