@@ -473,6 +473,12 @@ def admin_barangay(request):
         invalidated_status = BarangayHealthWorker.objects.filter(
             is_validated=False).count()
         barangays = Barangay.objects.all()
+        allbarangays = Barangay.objects.all().count()
+        allBHW = BarangayHealthWorker.objects.all().count()
+        allParent = Parent.objects.all().count()
+        allPreschoolers = Preschooler.lt_60_objects.all().count()
+        current_date =  datetime.now()
+
 
         form = AddBarangay()
         if request.method == 'POST':
@@ -492,6 +498,11 @@ def admin_barangay(request):
                     return redirect('admin_barangay')
 
         context = {'barangays' : barangays,
+                    'allbarangays': allbarangays,
+                    'allBHW': allBHW,
+                    'allParent': allParent,
+                    'allPreschoolers': allPreschoolers,
+                    'current_date': current_date,
                    'invalidated_count' : invalidated_status,
                    'form' : form}
     
