@@ -1,6 +1,26 @@
-{% extends 'activities/Admin Home.html' %} <!-- header and footer of page linked from admin home html file -->
 {% load static %}
 {% block dashboard %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- table layout -->
+    <script src="{% static '/Javascript/js/jquery.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static '/CSS/styles.css' %}">
+    <link rel="stylesheet" href="{% static '/CSS/font-awesome/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static '/CSS/css/bootstrap.min.css' %}">
+    <script src="{% static '/Javascript/js/jquery.min.js' %}"></script>
+
+    <script src="{% static '/Javascript/js/Chart.min.js' %}" crossorigin="anonymous"></script>
+    <link rel="icon" href="{% static '/Media/Dasmalogo.png' %}" type="image/y-icon">
+    <link rel="stylesheet" href="{% static '/CSS/DataTables/datatables.min.css' %}">
+    <script src="{% static '/CSS/DataTables/datatables.js' %}"></script>
+    <link rel="stylesheet" href="{% static '/CSS/DataTables/Buttons-1.7.1/css/buttons.bootstrap5.css' %}">
+    <script src="{% static '/CSS/DataTables/Buttons-1.7.1/js/buttons.bootstrap5.js' %}"></script>
+
+
 <title>PPMS | Barangay List</title>
 </head>
 <body>
@@ -208,11 +228,46 @@
         </div>
     </div>
 </div>
-    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+<!-- Footer -->
+<div class="footer text-muted">
+    <div class="container">
+        <div class="row text-center align-items-center">
+                <div class="border-top p-4">
+                    <p class="copyright"><small>
+                    Copyright ©<script>document.write(new Date().getFullYear());</script> All rights reserved <i class="icon-heart text-danger" aria-hidden="true"></i>
+                    </small>
+                    </p>
+                </div>
+        </div>
+    </div>
+
     <script>
         var t = $('#table_barangay').DataTable({
+            dom: 'Blfrtip',
             info: 'true',
+            buttons: [
+                {
+                    extend: 'pdfHtml5',
+                    orientation: 'portrait',
+                    pageSize: 'LEGAL',
+                    download: 'open',
+                    text: 'Generate PDF ',
+                    title: 'List of all Barangay | ' + '{{ user.first_name }} {{ user.last_name }} | ' + '{{current_date}}',
+                    messageTop: 'Number of Barangays: ' + '{{allbarangays}}' + '                                                              '+
+                                'Number of Enrolled Preschoolers: ' + '{{allPreschoolers}}' + '                                   '+
+                                'Number of Parent/Guardian: ' + '{{allParent}}' + '                                                     ' +
+                                'Number of BHW/BNS: ' + '{{allBHW}}' + '                                                 ',
+                    customize: function(doc){
+                        doc.defaultStyle.fontSize = 12; //2, 3, 4,etc
+                        doc.styles.tableHeader.fontSize = 12; //2, 3, 4, etc
+                        doc.styles.tableHeader.alignment = 'center';
+                        doc.content[1].alignment = 'left';
+                        doc.content[2].alignment = 'center';
+
+                        doc.content[2].table.widths = [ '10%', '15%',  '15%', '15%', '15%', '15%', '15%', ];
+                    }
+                },
+            ],
             pageLength : 10,
             aoColumnDefs: [{
                 'bSortable': false,
@@ -228,6 +283,9 @@
                 this.data(i++);
             });}).draw();
     </script>
+<script src="{% static '/Javascript/js/functions.js' %}"></script>
+<script src="{% static '/Javascript/js/bootstrap.bundle.min.js' %}"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
