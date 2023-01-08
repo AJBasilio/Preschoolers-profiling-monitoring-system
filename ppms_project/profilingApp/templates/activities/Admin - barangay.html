@@ -152,6 +152,9 @@
                                     <th scope="col" class="text-center">Barangay Name</th>
                                     <th scope="col" class="text-center">Phone Number</th>
                                     <th scope="col" class="text-center">Barangay Hall Address</th>
+                                    <th scope="col" class="text-center">Number of Enrolled Preschoolers</th>
+                                    <th scope="col" class="text-center">Number of Parent/Guardian</th>
+                                    <th scope="col" class="text-center">Number of BHW/BNS</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -159,6 +162,9 @@
                                 <tr>
                                     <td class="text-center"></td>
                                     <td class="text-center">{{ barangay.brgy_name }}</td>
+                                    <td class="text-center">{{ barangay.brgy_phone }}</td>
+                                    <td class="text-center">{{ barangay.brgy_address }}</td>
+                                    <td class="text-center">{{preschooler_barangay}}</td>
                                     <td class="text-center"></td>
                                     <td class="text-center"></td>
                                 </tr>
@@ -212,7 +218,7 @@
                 'bSortable': false,
                 'aTargets': ['nosort'],
                 'orderable': false,
-                'targets': [],
+                'targets': [0],
             }],
             order: [[1, 'asc']],
             });

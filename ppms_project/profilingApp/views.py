@@ -374,10 +374,10 @@ def admin_preschoolers_barangay(request, brgy):
         all_preschoolers = Preschooler.objects.filter(parent__in=(parents)).count
         all_preschoolersListCount = Preschooler.lt_60_objects.filter(parent__in=(parents)).count
 
-        # ==== Total Male Preschoolers ======
-        totalmale = preschoolers.filter(Q(gender='Male')).values
-        total_male = totalmale.count()
          # ==== Total Male Preschoolers ======
+        total_male = preschoolers.filter(Q(gender='Male')).count
+        
+         # ==== Total Female Preschoolers ======
         total_Female = preschoolers.filter(Q(gender='Female')).count
 
 
