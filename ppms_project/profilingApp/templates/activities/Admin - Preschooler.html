@@ -218,7 +218,7 @@
                             <table class="table table-hover table-cell-border" id="archive" >
                                 <thead>
                                     <tr style="text-align: center;">
-                                        <th scope="col">No.</th>
+                                        <th scope="col">No</th>
                                         <th scope="col">Last Name</th>
                                         <th scope="col">First Name</th>
                                         <th scope="col">Middle Name</th>
@@ -569,13 +569,28 @@
 </script>
 
 <script>
+    function getMessageTopT1(data = {}) {
+        return 'Number of Preschoolers: ' + data.total + '                                                                        '+
+        'Number of Preschoolers With Records: ' + data.withRecord + '                                   '+
+        'Number of Preschoolers Without Records: ' + data.withoutRecord + '                                   ' +
+        'Number of Complete Vaccine Record: ' + data.comp + '                                                    '+
+        'Number of Incomplete Vaccine Record: ' + data.inco + '                                  '+
+        'Number of No Vaccine Record: ' + data.no + '                                   ' +
+        'Number of Moderately Wasted Status: ' + data.wasted + '                                                   ' +
+        'Number of Severly Wasted Status: ' + data.severe + '                                            ' +
+        'Number of Overweight Status: ' + data.overweight + '                                                ' +
+        'Number of Normal Status: ' + data.normal + '                                                                         ' +
+        'Number of Obese Status: ' + data.obese + '                                                                                                                                                                                                   ' +
+        'Number of Male Preschoolers: ' + data.male + '                                                                 ' + 
+        'Number of Female Preschoolers: ' + data.female;
+    }
     var t1 = $('#archive').DataTable({
         dom: 'Blfrtip',
         buttons: [
                 {
                     extend: 'excelHtml5',
                     text: 'Generate Excel ',
-                    title: 'List of Archived Preschoolers in all Barangay | ' + '{{ user.first_name }} {{ user.last_name }} | ' + '{{current_date}}',
+                    title: 'List of Archived Preschoolers in Barangay '+ '{{ brgy }}' +' | {{ user.first_name }} {{ user.last_name }} | ' + '{{current_date}}',
                     autoFilter: true,
 
                 },
@@ -585,106 +600,144 @@
                     pageSize: 'LEGAL',
                     download: 'open',
                     text: 'Generate PDF ',
-                    title: 'List of Archived Preschoolers in all Barangay | ' + '{{ user.first_name }} {{ user.last_name }} | ' + '{{current_date}}',
-                    messageTop: 'Number of Archived Preschoolers: ' + '{{preschooler_60_above_count}}',
-
+                    title: 'List of Archived Preschoolers in Barangay '+ '{{ brgy }}' +' | {{ user.first_name }} {{ user.last_name }} | ' + '{{current_date}}',
+                    messageTop: getMessageTopT1(),    
                     customize: function(doc){
-
-                        gender = t1.column(5).data().toArray();
-                        console.log(gender)
-                        for (var i = 0; i < gender.length; i++){
-                            var val = (gender[i])
-                            if (val == 'Male'){
-                                doc.content[2].table.body[i + 1][5].color = '#1aabbb';
-                            }
-                            else {
-                                doc.content[2].table.body[i + 1][5].color = '#e93fca';
-                            }
+                        var result = {
+                            total: 0,
+                            withRecord: 0,
+                            withoutRecord: 0,
+                            wasted: 0,
+                            severe: 0,
+                            overweight: 0,
+                            normal: 0,
+                            obese: 0,
+                            male: 0,
+                            female: 0,
+                            inco: 0,
+                            comp: 0,
+                            no: 0,
                         };
 
+                        var tableLength = doc.content[2].table.body.length;
+                        result.total = tableLength - 1;
 
-                        vacstatus = t1.column(11).data().toArray();
-                        for (var i = 0; i < vacstatus.length; i++){
-                            var val = (vacstatus[i])
-                            if (val == 'Complete'){
-                                doc.content[2].table.body[i + 1][11].color = '#28a745';
-                            }
-                            else if (val == 'No Record'){
-                                doc.content[2].table.body[i + 1][11].color = '#dc3545';
-                            }
-                            else {
-                                doc.content[2].table.body[i + 1][11].color = '#ffc107';
-                            }
+                        for (var i = 0; i < tableLength; i++){
+                            try {
+                                var val = doc.content[2].table.body[i+1][5].text;
+                                if (val == 'Male'){
+                                    doc.content[2].table.body[i+1][5].color = '#1aabbb';
+                                    result.male++;
+                                }
+                                else {
+                                    doc.content[2].table.body[i+1][5].color = '#e93fca';
+                                    result.female++;
+                                }
+                            } catch(ee) { }
                         };
 
-                        
-                        WFA = t1.column(8).data().toArray();
-                        for (var i = 0; i < WFA.length; i++) {
-                            var val = parseFloat(Number(WFA[i].replace(/[^0-9\.-]+/g,"")));
-                            if (val == 0){
-                                doc.content[2].table.body[i + 1][8].fillColor = '#d3d3d3';
-                            }
-                            else if (val > 2.0) {
-                                doc.content[2].table.body[i + 1][8].fillColor = '#f26221';
-                            }
-                            else if (val >= -2.0 && val <= 2.0 ) {
-                                doc.content[2].table.body[i + 1][8].fillColor = '#00a54f';
-                            }
-                            else if (val >= -3.0 && val < -2.0 ) {
-                                doc.content[2].table.body[i + 1][8].fillColor = '#fff102';
-                            }
-                            else {
-                                doc.content[2].table.body[i + 1][8].fillColor = '#EE1D23';
-                            }
+                        for (var i = 0; i < tableLength; i++){
+                            try {
+                                var val = doc.content[2].table.body[i+1][11].text;
+                                if (val == 'Complete'){
+                                    doc.content[2].table.body[i+1][11].color = '#28a745';
+                                    result.comp++;
+                                }
+                                else if (val == 'No Record'){
+                                    doc.content[2].table.body[i+1][11].color = '#dc3545';
+                                    result.no++;
+                                }
+                                else {
+                                    doc.content[2].table.body[i+1][11].color = '#ffc107';
+                                    result.inco++;
+                                }
+                            } catch(ee) { }
                         };
 
-                        HFA = t1.column(9).data().toArray();
-                        for (var i = 0; i < HFA.length; i++) {
-                            var val = parseFloat(Number(HFA[i].replace(/[^0-9\.-]+/g,"")));
-                            if (val == 0){
-                                doc.content[2].table.body[i + 1][9].fillColor = '#d3d3d3';
-                            }
-                            else if (val > 2.0) {
-                                doc.content[2].table.body[i + 1][9].fillColor = '#00a54f';
-                            }
-                            else if (val  >= -2.0 && val <= 2.0 ) {
-                                doc.content[2].table.body[i + 1][9].fillColor = '#00a54f';
-                            }
-                            else if (val >= -3.0 && val < -2.0 ) {
-                                doc.content[2].table.body[i + 1][9].fillColor = '#fff102';
-                            }
-                            else {
-                                doc.content[2].table.body[i + 1][9].fillColor = '#EE1D23';
-                            }
+                        for (var i = 0; i < tableLength; i++){
+                            try {
+                                var val = doc.content[2].table.body[i + 1][8].text;
+                                var WFA = parseFloat(Number(val.replace(/[^0-9\.-]+/g,"")));
+                                if (WFA == 0){
+                                    doc.content[2].table.body[i + 1][8].fillColor = '#d3d3d3';
+                                }
+                                else if (WFA > 2.0) {
+                                    doc.content[2].table.body[i + 1][8].fillColor = '#f26221';
+                                }
+                                else if (WFA >= -2.0 && WFA <= 2.0 ) {
+                                    doc.content[2].table.body[i + 1][8].fillColor = '#00a54f';
+                                }
+                                else if (WFA >= -3.0 && WFA < -2.0 ) {
+                                    doc.content[2].table.body[i + 1][8].fillColor = '#fff102';
+                                }
+                                else {
+                                    doc.content[2].table.body[i + 1][8].fillColor = '#EE1D23';
+                                }
+                            } catch(ee) { }
                         };
-                        
-                        WHFA = t1.column(10).data().toArray();
-                        for (var i = 0; i < WHFA.length; i++) {
-                            var val = parseFloat(Number(WHFA[i].replace(/[^0-9\.-]+/g,"")));
-                            if (val == 0){
+
+                        for (var i = 0; i < tableLength; i++){
+                            try {
+                                var val = doc.content[2].table.body[i + 1][9].text;
+                                var HFA = parseFloat(Number(val.replace(/[^0-9\.-]+/g,"")));
+                                if (HFA == 0){
+                                    doc.content[2].table.body[i + 1][9].fillColor = '#d3d3d3';
+                                }
+                                else if (HFA > 2.0) {
+                                    doc.content[2].table.body[i + 1][9].fillColor = '#00a54f';
+                                }
+                                else if (HFA  >= -2.0 && HFA <= 2.0 ) {
+                                    doc.content[2].table.body[i + 1][9].fillColor = '#00a54f';
+                                }
+                                else if (HFA >= -3.0 && HFA < -2.0 ) {
+                                    doc.content[2].table.body[i + 1][9].fillColor = '#fff102';
+                                }
+                                else {
+                                    doc.content[2].table.body[i + 1][9].fillColor = '#EE1D23';
+                                }
+                            } catch(ee) { }
+                        };
+
+                        for (var i = 0; i < tableLength; i++){
+                            try {
+                                var val = doc.content[2].table.body[i + 1][10].text;
+                                var WHFA = parseFloat(Number(val.replace(/[^0-9\.-]+/g,"")));
+                                if (WHFA == 0){
                                     doc.content[2].table.body[i + 1][10].fillColor = '#d3d3d3';
+                                    result.withoutRecord++;
                                 }
-                                else if (val > 3.0) {
+                                else if (WHFA > 3.0) {
                                     doc.content[2].table.body[i + 1][10].fillColor = '#f26221';
+                                    result.withRecord++;
+                                    result.obese++;
                                 }
-                                else if (val > 2.0 && val <= 3.0 ) {
+                                else if (WHFA > 2.0 && WHFA <= 3.0 ) {
                                     doc.content[2].table.body[i + 1][10].fillColor = '#f26221';
+                                    result.withRecord++;
+                                    result.overweight++;
                                 }
-                                else if (val >= -2.0 && val <= 2.0 ) {
+                                else if (WHFA >= -2.0 && WHFA <= 2.0 ) {
                                     doc.content[2].table.body[i + 1][10].fillColor = '#00A54F';
+                                    result.withRecord++;
+                                    result.normal++;
                                 }
-                                else if (val >= -3.0 && val < -2.0 ) {
+                                else if (WHFA >= -3.0 && WHFA < -2.0 ) {
                                     doc.content[2].table.body[i + 1][10].fillColor = '#FFF102';
+                                    result.withRecord++;
+                                    result.wasted++;
                                 }
                                 else {
                                     doc.content[2].table.body[i + 1][10].fillColor = '#EE1D23';
+                                    result.withRecord++;
+                                    result.severe++;
                                 }
+                            } catch(ee) { }
                         };
                         doc.defaultStyle.fontSize = 12; //2, 3, 4,etc
                         doc.styles.tableHeader.fontSize = 12; //2, 3, 4, etc
                         doc.styles.tableHeader.alignment = 'left';
-                        doc.content[1].alignment = 'center';
                         doc.content[2].table.widths = [ '2%', '10%',  '8%', '10%', '5%', '5%', '10%', '10%','10%','10%','10%','10%',];
+                        doc.content[1].text = getMessageTopT1(result);
                     }
                 },
             ],
@@ -702,15 +755,29 @@
             this.data(i++);
         });}).draw();
 </script>
-
 <script>
+    function getMessageTopT2(data = {}) {
+        return 'Number of Preschoolers: ' + data.total + '                                                                        '+
+        'Number of Preschoolers With Records: ' + data.withRecord + '                                   '+
+        'Number of Preschoolers Without Records: ' + data.withoutRecord + '                                   ' +
+        'Number of Complete Vaccine Record: ' + data.comp + '                                                    '+
+        'Number of Incomplete Vaccine Record: ' + data.inco + '                                  '+
+        'Number of No Vaccine Record: ' + data.no + '                                   ' +
+        'Number of Moderately Wasted Status: ' + data.wasted + '                                                   ' +
+        'Number of Severly Wasted Status: ' + data.severe + '                                            ' +
+        'Number of Overweight Status: ' + data.overweight + '                                                ' +
+        'Number of Normal Status: ' + data.normal + '                                                                         ' +
+        'Number of Obese Status: ' + data.obese + '                                                                                                                                                                                                   ' +
+        'Number of Male Preschoolers: ' + data.male + '                                                                 ' + 
+        'Number of Female Preschoolers: ' + data.female;
+    }
     var t2 = $('#adminPreschoolerList').DataTable({
         dom: 'Blfrtip',
         buttons: [
                 {
                     extend: 'excelHtml5',
                     text: 'Generate Excel ',
-                    title: 'List of Preschoolers in all Barangay | ' + '{{ user.first_name }} {{ user.last_name }} | ' + '{{current_date}}',
+                    title: 'List of Preschoolers in Barangay ' +'{{ brgy }}'+ ' | {{ user.first_name }} {{ user.last_name }} | ' + '{{current_date}}',
                     autoFilter: true,
                 },
                 {
@@ -719,115 +786,145 @@
                     pageSize: 'LEGAL',
                     download: 'open',
                     text: 'Generate PDF ',
-                    exportOptions: {stripNewlines: false},
-                    title: 'List of Preschoolers in all Barangay | ' + '{{ user.first_name }} {{ user.last_name }} | ' + '{{current_date}}',
-                    messageTop: 'Number of Preschoolers: ' + '{{all_preschoolersListCount}}' + '                                                                      '+
-                                'Number of Preschoolers With Records: ' + '{{preschooler_with_record_count}}' + '                                   '+
-                                'Number of Preschoolers Without Records: ' + '{{preschooler_without_record_count}}' + '                                   ' +
-                                'Number of Moderately Wasted Status: ' + '{{wasted}}' + '                                                 ' +
-                                'Number of Severly Wasted Status: ' + '{{severly}}' + '                                            ' +
-                                'Number of Overweight Status: ' + '{{overweight}}' + '                                                ' +
-                                'Number of Normal Status: ' + '{{normal}}' + '                                                                      ' +
-                                'Number of Obese Status: ' + '{{obese}}' + '                                                                                                                                                                                                   ' +
-                                'Number of Male Preschoolers: ' + '{{total_male}}' + '                                                               ' + 
-                                'Number of Female Preschoolers: ' + '{{total_Female}}',
+                    title: 'List of Preschoolers in Barangay ' +'{{ brgy }}'+ ' | {{ user.first_name }} {{ user.last_name }} | ' + '{{current_date}}',
+                    messageTop: getMessageTopT2(),    
                     customize: function(doc){
-
-                        gender = t2.column(5).data().toArray();
-                        for (var i = 0; i < gender.length; i++){
-                            var val = (gender[i])
-                            console.log('{{total_male}}')
-                            
-                            if (val == 'Male'){
-                                doc.content[2].table.body[i + 1][5].color = '#1aabbb';
-                            }
-                            else {
-                                doc.content[2].table.body[i + 1][5].color = '#e93fca';
-                            }
-                        };
-                        
-                        vacstatus = t2.column(11).data().toArray();
-                        for (var i = 0; i < vacstatus.length; i++){
-                            var val = (vacstatus[i])
-                            if (val == 'Complete'){
-                                doc.content[2].table.body[i + 1][11].color = '#28a745';
-                            }
-                            else if (val == 'No Record'){
-                                doc.content[2].table.body[i + 1][11].color = '#dc3545';
-                            }
-                            else {
-                                doc.content[2].table.body[i + 1][11].color = '#ffc107';
-                            }
+                        var result = {
+                            total: 0,
+                            withRecord: 0,
+                            withoutRecord: 0,
+                            wasted: 0,
+                            severe: 0,
+                            overweight: 0,
+                            normal: 0,
+                            obese: 0,
+                            male: 0,
+                            female: 0,
+                            inco: 0,
+                            comp: 0,
+                            no: 0,
                         };
 
-                        WFA = t2.column(8).data().toArray();
-                        for (var i = 0; i < WFA.length; i++) {
-                            var val = parseFloat(Number(WFA[i].replace(/[^0-9\.-]+/g,"")));
-                            if (val == 0){
-                                doc.content[2].table.body[i + 1][8].fillColor = '#d3d3d3';
-                            }
-                            else if (val > 2.0) {
-                                doc.content[2].table.body[i + 1][8].fillColor = '#f26221';
-                            }
-                            else if (val >= -2.0 && val <= 2.0 ) {
-                                doc.content[2].table.body[i + 1][8].fillColor = '#00a54f';
-                            }
-                            else if (val >= -3.0 && val < -2.0 ) {
-                                doc.content[2].table.body[i + 1][8].fillColor = '#fff102';
-                            }
-                            else {
-                                doc.content[2].table.body[i + 1][8].fillColor = '#EE1D23';
-                            }
+                        var tableLength = doc.content[2].table.body.length;
+                        result.total = tableLength - 1;
+
+                        for (var i = 0; i < tableLength; i++){
+                            try {
+                                var val = doc.content[2].table.body[i+1][5].text;
+                                if (val == 'Male'){
+                                    doc.content[2].table.body[i+1][5].color = '#1aabbb';
+                                    result.male++;
+                                }
+                                else {
+                                    doc.content[2].table.body[i+1][5].color = '#e93fca';
+                                    result.female++;
+                                }
+                            } catch(ee) { }
                         };
 
-                        HFA = t2.column(9).data().toArray();
-                        for (var i = 0; i < HFA.length; i++) {
-                            var val = parseFloat(Number(HFA[i].replace(/[^0-9\.-]+/g,"")));
-                            if (val == 0){
-                                doc.content[2].table.body[i + 1][9].fillColor = '#d3d3d3';
-                            }
-                            else if (val > 2.0) {
-                                doc.content[2].table.body[i + 1][9].fillColor = '#00a54f';
-                            }
-                            else if (val  >= -2.0 && val <= 2.0 ) {
-                                doc.content[2].table.body[i + 1][9].fillColor = '#00a54f';
-                            }
-                            else if (val >= -3.0 && val < -2.0 ) {
-                                doc.content[2].table.body[i + 1][9].fillColor = '#fff102';
-                            }
-                            else {
-                                doc.content[2].table.body[i + 1][9].fillColor = '#EE1D23';
-                            }
+                        for (var i = 0; i < tableLength; i++){
+                            try {
+                                var val = doc.content[2].table.body[i+1][11].text;
+                                if (val == 'Complete'){
+                                    doc.content[2].table.body[i+1][11].color = '#28a745';
+                                    result.comp++;
+                                }
+                                else if (val == 'No Record'){
+                                    doc.content[2].table.body[i+1][11].color = '#dc3545';
+                                    result.no++;
+                                }
+                                else {
+                                    doc.content[2].table.body[i+1][11].color = '#ffc107';
+                                    result.inco++;
+                                }
+                            } catch(ee) { }
                         };
-                        
-                        WHFA = t2.column(10).data().toArray();
-                        for (var i = 0; i < WHFA.length; i++) {
-                            var val = parseFloat(Number(WHFA[i].replace(/[^0-9\.-]+/g,"")));
-                            if (val == 0){
+
+                        for (var i = 0; i < tableLength; i++){
+                            try {
+                                var val = doc.content[2].table.body[i + 1][8].text;
+                                var WFA = parseFloat(Number(val.replace(/[^0-9\.-]+/g,"")));
+                                if (WFA == 0){
+                                    doc.content[2].table.body[i + 1][8].fillColor = '#d3d3d3';
+                                }
+                                else if (WFA > 2.0) {
+                                    doc.content[2].table.body[i + 1][8].fillColor = '#f26221';
+                                }
+                                else if (WFA >= -2.0 && WFA <= 2.0 ) {
+                                    doc.content[2].table.body[i + 1][8].fillColor = '#00a54f';
+                                }
+                                else if (WFA >= -3.0 && WFA < -2.0 ) {
+                                    doc.content[2].table.body[i + 1][8].fillColor = '#fff102';
+                                }
+                                else {
+                                    doc.content[2].table.body[i + 1][8].fillColor = '#EE1D23';
+                                }
+                            } catch(ee) { }
+                        };
+
+                        for (var i = 0; i < tableLength; i++){
+                            try {
+                                var val = doc.content[2].table.body[i + 1][9].text;
+                                var HFA = parseFloat(Number(val.replace(/[^0-9\.-]+/g,"")));
+                                if (HFA == 0){
+                                    doc.content[2].table.body[i + 1][9].fillColor = '#d3d3d3';
+                                }
+                                else if (HFA > 2.0) {
+                                    doc.content[2].table.body[i + 1][9].fillColor = '#00a54f';
+                                }
+                                else if (HFA  >= -2.0 && HFA <= 2.0 ) {
+                                    doc.content[2].table.body[i + 1][9].fillColor = '#00a54f';
+                                }
+                                else if (HFA >= -3.0 && HFA < -2.0 ) {
+                                    doc.content[2].table.body[i + 1][9].fillColor = '#fff102';
+                                }
+                                else {
+                                    doc.content[2].table.body[i + 1][9].fillColor = '#EE1D23';
+                                }
+                            } catch(ee) { }
+                        };
+
+                        for (var i = 0; i < tableLength; i++){
+                            try {
+                                var val = doc.content[2].table.body[i + 1][10].text;
+                                var WHFA = parseFloat(Number(val.replace(/[^0-9\.-]+/g,"")));
+                                if (WHFA == 0){
                                     doc.content[2].table.body[i + 1][10].fillColor = '#d3d3d3';
+                                    result.withoutRecord++;
                                 }
-                                else if (val > 3.0) {
+                                else if (WHFA > 3.0) {
                                     doc.content[2].table.body[i + 1][10].fillColor = '#f26221';
+                                    result.withRecord++;
+                                    result.obese++;
                                 }
-                                else if (val > 2.0 && val <= 3.0 ) {
+                                else if (WHFA > 2.0 && WHFA <= 3.0 ) {
                                     doc.content[2].table.body[i + 1][10].fillColor = '#f26221';
+                                    result.withRecord++;
+                                    result.overweight++;
                                 }
-                                else if (val >= -2.0 && val <= 2.0 ) {
+                                else if (WHFA >= -2.0 && WHFA <= 2.0 ) {
                                     doc.content[2].table.body[i + 1][10].fillColor = '#00A54F';
+                                    result.withRecord++;
+                                    result.normal++;
                                 }
-                                else if (val >= -3.0 && val < -2.0 ) {
+                                else if (WHFA >= -3.0 && WHFA < -2.0 ) {
                                     doc.content[2].table.body[i + 1][10].fillColor = '#FFF102';
+                                    result.withRecord++;
+                                    result.wasted++;
                                 }
                                 else {
                                     doc.content[2].table.body[i + 1][10].fillColor = '#EE1D23';
+                                    result.withRecord++;
+                                    result.severe++;
                                 }
+                            } catch(ee) { }
                         };
                         doc.defaultStyle.fontSize = 12; //2, 3, 4,etc
                         doc.styles.tableHeader.fontSize = 12; //2, 3, 4, etc
                         doc.styles.tableHeader.alignment = 'left';
                         doc.content[2].table.widths = [ '2%', '10%',  '8%', '10%', '5%', '5%', '10%', '10%','10%','10%','10%','10%',];
-
-                    },
+                        doc.content[1].text = getMessageTopT2(result);
+                    }
                 },
             ],
         aoColumnDefs: [{

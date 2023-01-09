@@ -524,19 +524,20 @@
                     '                                                                                                                                                      ' + 
                     'Age: '+ '{{ preschooler.age_years }} Years Old ({{ preschooler.age_months }} months) ({{ preschooler.age_weeks }} weeks)',
                     customize: function(doc){
-
-                        vacstatus = t1.column(3).data().toArray();
-                        for (var i = 0; i < vacstatus.length; i++){
-                            var val = (vacstatus[i])
-                            if (val == 'Complete'){
-                                doc.content[2].table.body[i + 1][3].color = '#28a745';
-                            }
-                            else if (val == 'No Record'){
-                                doc.content[2].table.body[i + 1][3].color = '#dc3545';
-                            }
-                            else {
-                                doc.content[2].table.body[i + 1][3].color = '#ffc107';
-                            }
+                        var tableLength = doc.content[2].table.body.length;
+                        for (var i = 0; i < tableLength; i++){
+                            try {
+                                var val = doc.content[2].table.body[i+1][3].text;
+                                if (val == 'Complete'){
+                                    doc.content[2].table.body[i+1][3].color = '#28a745';
+                                }
+                                else if (val == 'No Record'){
+                                    doc.content[2].table.body[i+1][3].color = '#dc3545';
+                                }
+                                else {
+                                    doc.content[2].table.body[i+1][3].color = '#ffc107';
+                                }
+                            } catch(ee) { }
                         };
 
                         doc.defaultStyle.fontSize = 12; //2, 3, 4,etc
@@ -573,21 +574,6 @@
                     '                                                                                                                                                      ' + 
                     'Age: '+ '{{ preschooler.age_years }} Years Old ({{ preschooler.age_months }} months) ({{ preschooler.age_weeks }} weeks)',
                     customize: function(doc){
-
-                        vacstatus = t2.column(3).data().toArray();
-                        for (var i = 0; i < vacstatus.length; i++){
-                            var val = (vacstatus[i])
-                            if (val == 'Complete'){
-                                doc.content[2].table.body[i + 1][3].color = '#28a745';
-                            }
-                            else if (val == 'No Record'){
-                                doc.content[2].table.body[i + 1][3].color = '#dc3545';
-                            }
-                            else {
-                                doc.content[2].table.body[i + 1][3].color = '#ffc107';
-                            }
-                        };
-
                         doc.defaultStyle.fontSize = 12; //2, 3, 4,etc
                         doc.styles.tableHeader.fontSize = 12; //2, 3, 4, etc
                         doc.styles.tableHeader.alignment = 'center';

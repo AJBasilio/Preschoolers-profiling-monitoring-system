@@ -227,15 +227,17 @@
                     title: 'System Validation Logs | ' + '{{ user.first_name }} {{ user.last_name }} | ' + '{{current_date}}',
                     customize: function(doc){
 
-                        action = t2.column(1).data().toArray();
-                        for (var i = 0; i < action.length; i++){
-                            var val = (action[i])
-                            if (val == 'Validate'){
-                                doc.content[1].table.body[i + 1][1].color = '#28a745';
-                            }
-                            else {
-                                doc.content[1].table.body[i + 1][1].color = '#dc3545';
-                            }
+                        var tableLength = doc.content[1].table.body.length;
+                        for (var i = 0; i < tableLength; i++){
+                            try {
+                                var val = doc.content[1].table.body[i+1][1].text;
+                                if (val == 'Validate'){
+                                    doc.content[1].table.body[i+1][1].color = '#28a745';
+                                }
+                                else {
+                                    doc.content[1].table.body[i+1][1].color = '#dc3545';
+                                }
+                            } catch(ee) { }
                         };
                         doc.defaultStyle.fontSize = 12; //2, 3, 4,etc
                         doc.styles.tableHeader.fontSize = 12; //2, 3, 4, etc
