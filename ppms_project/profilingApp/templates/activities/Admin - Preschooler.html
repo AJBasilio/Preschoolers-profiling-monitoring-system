@@ -729,6 +729,20 @@
                     title: 'List of Archived Preschoolers in Barangay '+ '{{ brgy }}' +' | {{ user.first_name }} {{ user.last_name }} | ' + '{{current_date}}',
                     messageTop: getMessageTopT1(),    
                     customize: function(doc){
+                        doc.styles.tableHeader = {
+                            bold: true,
+                            fontSize: 10,
+                            alignment: 'center'
+                        }
+                        
+
+                        var objLayout = {};
+                            objLayout['hLineWidth'] = function(i) { return .8; };
+                            objLayout['vLineWidth'] = function(i) { return .5; };
+                            objLayout['hLineColor'] = function(i) { return '#000000'; };
+                            objLayout['vLineColor'] = function(i) { return '#000000'; };
+                        doc.content[2].layout = objLayout;
+
                         var result = {
                             total: 0,
                             withRecord: 0,
@@ -861,7 +875,7 @@
                         };
                         doc.defaultStyle.fontSize = 12; //2, 3, 4,etc
                         doc.styles.tableHeader.fontSize = 12; //2, 3, 4, etc
-                        doc.styles.tableHeader.alignment = 'left';
+                        doc.styles.tableHeader.fillColor = '#eef9eb';
                         doc.content[2].table.widths = [ '2%', '10%',  '8%', '10%', '5%', '5%', '10%', '10%','10%','10%','10%','10%',];
                         doc.content[1].text = getMessageTopT1(result);
                     }
@@ -915,6 +929,20 @@
                     title: 'List of Preschoolers in Barangay ' +'{{ brgy }}'+ ' | {{ user.first_name }} {{ user.last_name }} | ' + '{{current_date}}',
                     messageTop: getMessageTopT2(),    
                     customize: function(doc){
+                        doc.styles.tableHeader = {
+                            bold: true,
+                            fontSize: 10,
+                            alignment: 'center'
+                        }
+                        
+
+                        var objLayout = {};
+                            objLayout['hLineWidth'] = function(i) { return .8; };
+                            objLayout['vLineWidth'] = function(i) { return .5; };
+                            objLayout['hLineColor'] = function(i) { return '#000000'; };
+                            objLayout['vLineColor'] = function(i) { return '#000000'; };
+                        doc.content[2].layout = objLayout;
+
                         var result = {
                             total: 0,
                             withRecord: 0,
@@ -1047,7 +1075,7 @@
                         };
                         doc.defaultStyle.fontSize = 12; //2, 3, 4,etc
                         doc.styles.tableHeader.fontSize = 12; //2, 3, 4, etc
-                        doc.styles.tableHeader.alignment = 'left';
+                        doc.styles.tableHeader.fillColor = '#eef9eb';
                         doc.content[2].table.widths = [ '2%', '10%',  '8%', '10%', '5%', '5%', '10%', '10%','10%','10%','10%','10%',];
                         doc.content[1].text = getMessageTopT2(result);
                     }

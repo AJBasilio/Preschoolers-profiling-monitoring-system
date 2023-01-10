@@ -754,6 +754,21 @@
                     '                                                                                                                                                      ' + 
                     'Age: '+ '{{ preschooler.age_years }} Years Old ({{ preschooler.age_months }} months) ({{ preschooler.age_weeks }} weeks)',
                     customize: function(doc){
+
+                        doc.styles.tableHeader = {
+                            bold: true,
+                            fontSize: 10,
+                            alignment: 'center'
+                        }
+                        
+
+                        var objLayout = {};
+                            objLayout['hLineWidth'] = function(i) { return .8; };
+                            objLayout['vLineWidth'] = function(i) { return .5; };
+                            objLayout['hLineColor'] = function(i) { return '#000000'; };
+                            objLayout['vLineColor'] = function(i) { return '#000000'; };
+                        doc.content[2].layout = objLayout;
+
                         var tableLength = doc.content[2].table.body.length;
                         for (var i = 0; i < tableLength; i++){
                             try {
@@ -770,9 +785,10 @@
                             } catch(ee) { }
                         };
 
-                        doc.defaultStyle.fontSize = 12; //2, 3, 4,etc
-                        doc.styles.tableHeader.fontSize = 12; //2, 3, 4, etc
+                        doc.defaultStyle.fontSize = 10; //2, 3, 4,etc
+                        doc.styles.tableHeader.fontSize = 10; //2, 3, 4, etc
                         doc.styles.tableHeader.alignment = 'center';
+                        doc.styles.tableHeader.fillColor = '#eef9eb';
                         doc.content[1].alignment = 'left';
                         doc.content[2].alignment = 'center';
                         doc.content[2].table.widths = [ '25%', '25%',  '25%', '25%'];
@@ -804,9 +820,24 @@
                     '                                                                                                                                                      ' + 
                     'Age: '+ '{{ preschooler.age_years }} Years Old ({{ preschooler.age_months }} months) ({{ preschooler.age_weeks }} weeks)',
                     customize: function(doc){
-                        doc.defaultStyle.fontSize = 12; //2, 3, 4,etc
-                        doc.styles.tableHeader.fontSize = 12; //2, 3, 4, etc
+                        doc.styles.tableHeader = {
+                            bold: true,
+                            fontSize: 10,
+                            alignment: 'center'
+                        }
+                        
+
+                        var objLayout = {};
+                            objLayout['hLineWidth'] = function(i) { return .8; };
+                            objLayout['vLineWidth'] = function(i) { return .5; };
+                            objLayout['hLineColor'] = function(i) { return '#000000'; };
+                            objLayout['vLineColor'] = function(i) { return '#000000'; };
+                        doc.content[2].layout = objLayout;
+
+                        doc.defaultStyle.fontSize = 10; //2, 3, 4,etc
+                        doc.styles.tableHeader.fontSize = 10; //2, 3, 4, etc
                         doc.styles.tableHeader.alignment = 'center';
+                        doc.styles.tableHeader.fillColor = '#eef9eb';
                         doc.content[1].alignment = 'left';
                         doc.content[2].alignment = 'center';
                         doc.content[2].table.widths = [ '20%', '20%', '20%',  '20%', '20%'];

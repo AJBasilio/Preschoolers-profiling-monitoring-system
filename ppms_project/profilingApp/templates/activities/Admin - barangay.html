@@ -384,9 +384,22 @@
                                 'Number of Parent/Guardian: ' + '{{allParent}}' + '                                                     ' +
                                 'Number of BHW/BNS: ' + '{{allBHW}}' + '                                                 ',
                     customize: function(doc){
-                        doc.defaultStyle.fontSize = 12; //2, 3, 4,etc
-                        doc.styles.tableHeader.fontSize = 12; //2, 3, 4, etc
+                        doc.styles.tableHeader = {
+                            bold: true,
+                            fontSize: 10,
+                            alignment: 'center'
+                        }
+
+                        var objLayout = {};
+                            objLayout['hLineWidth'] = function(i) { return .8; };
+                            objLayout['vLineWidth'] = function(i) { return .5; };
+                            objLayout['hLineColor'] = function(i) { return '#000000'; };
+                            objLayout['vLineColor'] = function(i) { return '#000000'; };
+                        doc.content[2].layout = objLayout;
+                        
+                        doc.defaultStyle.fontSize = 10; //2, 3, 4,etc
                         doc.styles.tableHeader.alignment = 'center';
+                        doc.styles.tableHeader.fillColor = '#eef9eb';
                         doc.content[1].alignment = 'left';
                         doc.content[2].alignment = 'center';
 
