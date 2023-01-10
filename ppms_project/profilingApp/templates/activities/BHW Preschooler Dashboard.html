@@ -231,9 +231,8 @@
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
                 <div class="modal-header d-flex align-items-center justify-content-between">
-                    <div>
-                        <h5 class="modal-title fw-bold" id="exampleModalLabel"> <i class="fa fa-archive" style="color:#188045"></i> Preschooler Archive</h5>
-                    </div>
+                    <h5 class="modal-title fw-bold" id="exampleModalLabel"> <i class="fa fa-archive" style="color:#188045"></i> Preschooler Archive</h5>
+                    <button type="button" class="btn hoverableButtonRed" style="background-color: #EF3A25; color:white; border-radius: 5px;" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
                 </div>
                 <div class="modal-body p-0">
                     <div class="table-responsive " style="margin:30px;">
@@ -346,9 +345,8 @@
 <!-- USER MANUAL / HELP-->
 <input type="checkbox" id="helpCheckBox">
 <label class="help-container"  for="helpCheckBox" >
-    <label class="button helpIconButton hoverableButton" for="helpCheckBox" data-toggle="tooltip" data-bs-placement="left" data-bs-offset="0,7"
-    title="Help">
-    <i class="fa-solid fas fa-question"></i>
+    <label class="button helpIconButton hoverableButton" for="helpCheckBox">
+    <h5 class="text-white fw-bold textShadow rotateText">HELP</h5>
     </label>
     <ul class="helpOptions">
         <li>
@@ -364,7 +362,10 @@
             <span class="btn-label hoverableButton" data-bs-toggle="modal" data-bs-target="#bhwQ4">How can I Export Nutritional Status?</span>
         </li>
         <li>
-            <span class="btn-label hoverableButton" data-bs-toggle="modal" data-bs-target="#bhwQ5">How can I change Password?</span>
+            <span class="btn-label hoverableButton" data-bs-toggle="modal" data-bs-target="#bhwQ5">How can I Filter Data on Tables/Exports?</span>
+        </li>
+        <li>
+            <span class="btn-label hoverableButton" data-bs-toggle="modal" data-bs-target="#bhwQ6">How can I change Password?</span>
         </li>
     </ul>
 </label>
@@ -376,8 +377,10 @@
 <div class="modal fade" id="bhwQ1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered modal-xl">
     <div class="modal-content">
-        <div class="modal-header text-center d-flex justify-content-start">
-            <img class="navbar-icon" style="margin-right:10px;" src="{% static '/Media/avatar.png' %}"><h5 class="modal-title" id="exampleModalLabel"> PPMS | User Assistance</h5>
+        <div class="modal-header text-center d-flex justify-content-between">
+            <div class="d-flex justify-content-center align-items-center"><img class="navbar-icon" style="margin-right:10px;" src="{% static '/Media/avatar.png' %}"><h5 class="modal-title" id="exampleModalLabel"> PPMS | User Assistance</h5>
+            </div>
+            <button type="button" class="btn hoverableButtonRed" style="background-color: #EF3A25; color: white; border-radius: 5px;" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
         </div>
         <div class="modal-body" style="padding:2% 10% 2% 10%;">
             <div>
@@ -396,8 +399,10 @@
 <div class="modal fade" id="bhwQ2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered modal-xl">
     <div class="modal-content">
-        <div class="modal-header text-center d-flex justify-content-start">
-            <img class="navbar-icon" style="margin-right:10px;" src="{% static '/Media/avatar.png' %}"><h5 class="modal-title" id="exampleModalLabel"> PPMS | User Assistance</h5>
+        <div class="modal-header text-center d-flex justify-content-between">
+            <div class="d-flex justify-content-center align-items-center"><img class="navbar-icon" style="margin-right:10px;" src="{% static '/Media/avatar.png' %}"><h5 class="modal-title" id="exampleModalLabel"> PPMS | User Assistance</h5>
+            </div>
+            <button type="button" class="btn hoverableButtonRed" style="background-color: #EF3A25; color: white; border-radius: 5px;" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
         </div>
         <div class="modal-body" style="padding:2% 10% 2% 10%;">
             <div>
@@ -415,8 +420,10 @@
 <div class="modal fade" id="bhwQ3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered modal-xl">
     <div class="modal-content">
-        <div class="modal-header text-center d-flex justify-content-start">
-            <img class="navbar-icon" style="margin-right:10px;" src="{% static '/Media/avatar.png' %}"><h5 class="modal-title" id="exampleModalLabel"> PPMS | User Assistance</h5>
+        <div class="modal-header text-center d-flex justify-content-between">
+            <div class="d-flex justify-content-center align-items-center"><img class="navbar-icon" style="margin-right:10px;" src="{% static '/Media/avatar.png' %}"><h5 class="modal-title" id="exampleModalLabel"> PPMS | User Assistance</h5>
+            </div>
+            <button type="button" class="btn hoverableButtonRed" style="background-color: #EF3A25; color: white; border-radius: 5px;" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
         </div>
         <div class="modal-body" style="padding:2% 10% 2% 10%;">
             <div>
@@ -434,8 +441,10 @@
 <div class="modal fade" id="bhwQ4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered modal-xl">
     <div class="modal-content">
-        <div class="modal-header text-center d-flex justify-content-start">
-            <img class="navbar-icon" style="margin-right:10px;" src="{% static '/Media/avatar.png' %}"><h5 class="modal-title" id="exampleModalLabel"> PPMS | User Assistance</h5>
+        <div class="modal-header text-center d-flex justify-content-between">
+            <div class="d-flex justify-content-center align-items-center"><img class="navbar-icon" style="margin-right:10px;" src="{% static '/Media/avatar.png' %}"><h5 class="modal-title" id="exampleModalLabel"> PPMS | User Assistance</h5>
+            </div>
+            <button type="button" class="btn hoverableButtonRed" style="background-color: #EF3A25; color: white; border-radius: 5px;" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
         </div>
         <div class="modal-body" style="padding:2% 10% 2% 10%;">
             <div>
@@ -454,8 +463,32 @@
 <div class="modal fade" id="bhwQ5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
-            <div class="modal-header text-center d-flex justify-content-start">
-                <img class="navbar-icon" style="margin-right:10px;" src="{% static '/Media/avatar.png' %}"><h5 class="modal-title" id="exampleModalLabel"> PPMS | User Assistance</h5>
+            <div class="modal-header text-center d-flex justify-content-between">
+                <div class="d-flex justify-content-center align-items-center"><img class="navbar-icon" style="margin-right:10px;" src="{% static '/Media/avatar.png' %}"><h5 class="modal-title" id="exampleModalLabel"> PPMS | User Assistance</h5>
+                </div>
+                <button type="button" class="btn hoverableButtonRed" style="background-color: #EF3A25; color: white; border-radius: 5px;" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body" style="padding:2% 10% 2% 10%;">
+                <div>
+                    <img class="img-fluid" alt="Responsive image" src="{% static '/Media/userManual/filterTable.png' %}">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" style="background-color: #EF3A25; color: white;" data-bs-dismiss="modal" aria-label="Close"> Close</button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- Q6 MODAL -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -->
+
+<div class="modal fade" id="bhwQ6" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header text-center d-flex justify-content-between">
+                <div class="d-flex justify-content-center align-items-center"><img class="navbar-icon" style="margin-right:10px;" src="{% static '/Media/avatar.png' %}"><h5 class="modal-title" id="exampleModalLabel"> PPMS | User Assistance</h5>
+                </div>
+                <button type="button" class="btn hoverableButtonRed" style="background-color: #EF3A25; color: white; border-radius: 5px;" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
             </div>
             <div class="modal-body" style="padding:2% 10% 2% 10%;">
                 <div>
@@ -686,8 +719,8 @@
 </script>
 <script>
     function getMessageTopT2(data = {}) {
-        return 'Number of Preschoolers: ' + data.total + '                                                                        '+
-        'Number of Preschoolers With Records: ' + data.withRecord + '                                   '+
+        return 'Number of Preschoolers: ' + data.total + '                                                                           '+
+        'Number of Preschoolers With Records: ' + data.withRecord + '                                  '+
         'Number of Preschoolers Without Records: ' + data.withoutRecord + '                                   ' +
         'Number of Complete Vaccine Record: ' + data.comp + '                                                    '+
         'Number of Incomplete Vaccine Record: ' + data.inco + '                                  '+
