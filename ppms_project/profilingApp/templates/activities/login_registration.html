@@ -19,6 +19,7 @@
     <script src="{% static '/Javascript/functions.js' %}"></script>
     <link rel="stylesheet" href="{% static '/CSS/css/fstdropdown.css' %}">
     <link rel="icon" href="{% static '/Media/Dasmalogo.png' %}" type="image/y-icon">
+    
     <title>Preschoolers Profiling and Monitoring System</title>
 
     <!-- Remove Phone num Spinner -->
@@ -35,6 +36,17 @@
     </style>
     
 </head>
+
+
+
+<!-- Tooltip Script -->
+<script>
+    $(function () {
+       $('[data-toggle="tooltip"]').tooltip()})
+       $('[data-toggle="tooltip"]').on('shown.bs.tooltip', function () {
+       $('.tooltip').addClass('animated fade');
+   })
+ </script>
 
 <body style="background: radial-gradient(100vw, white, #1880455e);">
     <!-- Header -->
@@ -73,7 +85,7 @@
                                 <input type="checkbox" onclick="showPassword()">Show Password
                         </div>
                         <div class="form-group">
-                            <button type="submit">Log In</button>
+                            <button class="hoverableButton" type="submit">Log In</button>
                         </div>
                         <hr>
                         <div>
@@ -177,6 +189,7 @@
         <br><br><br><br><br>
         <!-- Spacing -->
     </div>
+    
      <!-- USER MANUAL / HELP-->
  <input type="checkbox" id="helpCheckBox">
  <label class="help-container"  for="helpCheckBox" >
@@ -265,7 +278,7 @@
 </body>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="{% static '/Javascript/testscript.js' %}"></script>
-
+<script src="{% static '/Javascript/js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static '/Javascript/js/jquery-3.2.1.slim.min.js' %}"></script>
 <script src="{% static '/Javascript/js/popper.min.js' %}"></script>
 <script src="{% static '/Javascript/js/bootstrap.min.js' %}"></script>
