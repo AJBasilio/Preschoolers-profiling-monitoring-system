@@ -402,10 +402,10 @@
                                 {% for preschooler in all_preschoolersList %}
                                 <tr style="text-align: center;">
                                     <td></td>
-                                    <td>{{ preschooler.last_name }}</td>
-                                    <td>{{ preschooler.first_name }}</td>
-                                    <td>{{ preschooler.middle_name }}</td>
-                                    <td>{{ preschooler.suffix_name }}</td>
+                                    <td class="text-capitalize">{{ preschooler.last_name }}</td>
+                                    <td class="text-capitalize">{{ preschooler.first_name }}</td>
+                                    <td class="text-capitalize">{{ preschooler.middle_name }}</td>
+                                    <td class="text-capitalize">{{ preschooler.suffix_name }}</td>
                                     {% if preschooler.gender == 'Male' %}
                                     <td class="text-uppercase textShadow" style="color:#1aabbb">{{ preschooler.gender }}</td>
                                     {% else %}
