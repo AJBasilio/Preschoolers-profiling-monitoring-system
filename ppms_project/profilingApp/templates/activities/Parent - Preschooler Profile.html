@@ -266,23 +266,23 @@
                                     </div>
                                     {% if preschooler.wfa is None%}
                                         <div class="card-body p-3">
-                                            <p class="card-text h5" >{{ preschooler.wfa }}</p>
+                                            <p class="card-text textShadow h5" >{{ preschooler.wfa }}</p>
                                         </div>
                                     {% elif preschooler.wfa > 2.0 %}
                                         <div class="card-body p-3">
-                                            <p class="card-text h5" style="color: rgb(242, 98, 33);">Overweight ({{ preschooler.wfa }})</p>
+                                            <p class="card-text textShadow h5" style="color: rgb(242, 98, 33);">Overweight ({{ preschooler.wfa }})</p>
                                         </div>
                                     {% elif preschooler.wfa >= -2.0 and preschooler.wfa <= 2.0 %}
                                         <div class="card-body p-3">
-                                            <p class="card-text h5" style="color: rgb(0, 165, 79);">Normal ({{ preschooler.wfa }})</p>
+                                            <p class="card-text textShadow h5" style="color: rgb(0, 165, 79);">Normal ({{ preschooler.wfa }})</p>
                                         </div>
                                     {% elif preschooler.wfa >= -3.0 and preschooler.wfa < -2.0 %}
                                         <div class="card-body p-3">
-                                            <p class="card-text h5" style="color: rgb(255, 241, 2);">Wasted ({{ preschooler.wfa }})</p>
+                                            <p class="card-text textShadow h5" style="color: rgb(255, 241, 2);">Wasted ({{ preschooler.wfa }})</p>
                                         </div>
                                     {% else %}
                                         <div class="card-body p-3">
-                                            <p class="card-text h5" style="color: rgb(238, 29, 35);">Severely Wasted ({{ preschooler.wfa }})</p>
+                                            <p class="card-text textShadow h5" style="color: rgb(238, 29, 35);">Severely Wasted ({{ preschooler.wfa }})</p>
                                         </div>
                                     {% endif %}
                                     <div class="card-footer text-center text-muted ">
@@ -300,23 +300,23 @@
                                     
                                     {% if preschooler.hfa is None %}
                                         <div class="card-body p-3">
-                                            <p class="card-text  h5">{{ preschooler.hfa }}</p>
+                                            <p class="card-text textShadow  h5">{{ preschooler.hfa }}</p>
                                         </div>
                                     {% elif preschooler.hfa > 2.0 %}
                                         <div class="card-body p-3">
-                                            <p class="card-text h5" style="color: rgb(0, 165, 79);">Tall ({{ preschooler.hfa }})</p>
+                                            <p class="card-text textShadow h5" style="color: rgb(0, 165, 79);">Tall ({{ preschooler.hfa }})</p>
                                         </div>
                                     {% elif preschooler.hfa >= -2.0 and preschooler.hfa <= 2.0 %}
                                         <div class="card-body p-3">
-                                            <p class="card-text h5" style="color: rgb(0, 165, 79);">Normal ({{ preschooler.hfa }})</p>
+                                            <p class="card-text textShadow h5" style="color: rgb(0, 165, 79);">Normal ({{ preschooler.hfa }})</p>
                                         </div>
                                     {% elif preschooler.hfa >= -3.0 and preschooler.hfa < -2.0 %}
                                         <div class="card-body p-3">
-                                            <p class="card-text h5" style="color: rgb(255, 241, 2);">Stunted ({{ preschooler.hfa }})</p>
+                                            <p class="card-text textShadow h5" style="color: rgb(255, 241, 2);">Stunted ({{ preschooler.hfa }})</p>
                                         </div>
                                     {% else %}
                                         <div class="card-body p-3">
-                                            <p class="card-text h5" style="color: rgb(238, 29, 35);">Severely Stunted ({{ preschooler.hfa }})</p>
+                                            <p class="card-text textShadow h5" style="color: rgb(238, 29, 35);">Severely Stunted ({{ preschooler.hfa }})</p>
                                         </div>
                                     {% endif %}
                                     <div class="card-footer text-center text-muted ">
@@ -332,27 +332,27 @@
                                     </div>
                                     {% if preschooler.whfa is None %}
                                         <div class="card-body p-3">
-                                            <p class="card-text h5" >{{ preschooler.whfa }}</p>
+                                            <p class="card-text textShadow h5" >{{ preschooler.whfa }}</p>
                                         </div>
                                     {% elif preschooler.whfa > 3.0 %}
                                     <div class="card-body p-3">
-                                        <p class="card-text h5" style="color: rgb(242, 98, 33);"> Obese ({{ preschooler.whfa }})</p>
+                                        <p class="card-text textShadow h5" style="color: rgb(242, 98, 33);"> Obese ({{ preschooler.whfa }})</p>
                                     </div>
                                     {% elif preschooler.whfa > 2.0 and preschooler.whfa <= 3.0 %}
                                         <div class="card-body p-3">
-                                            <p class="card-text  h5" style="color: rgb(242, 98, 33);">Overweight ({{ preschooler.whfa }})</p>
+                                            <p class="card-text textShadow  h5" style="color: rgb(242, 98, 33);">Overweight ({{ preschooler.whfa }})</p>
                                         </div>
                                     {% elif preschooler.whfa >= -2.0 and preschooler.whfa <= 2.0 %}
                                         <div class="card-body p-3">
-                                            <p class="card-text  h5" style="color: rgb(0, 165, 79);">Normal ({{ preschooler.whfa }})</p>
+                                            <p class="card-text textShadow  h5" style="color: rgb(0, 165, 79);">Normal ({{ preschooler.whfa }})</p>
                                         </div>
                                     {% elif preschooler.whfa >= -3.0 and preschooler.whfa < -2.0 %}
                                         <div class="card-body p-3">
-                                            <p class="card-text  h5" style="color: rgb(255, 241, 2);">Moderately Wasted ({{ preschooler.whfa }})</p>
+                                            <p class="card-text textShadow  h5" style="color: rgb(255, 241, 2);">Moderately Wasted ({{ preschooler.whfa }})</p>
                                         </div>
                                     {% else %}
                                         <div class="card-body p-3">
-                                            <p class="card-text  h5" style="color: rgb(238, 29, 35);">Severely Wasted ({{ preschooler.whfa }})</p>
+                                            <p class="card-text textShadow  h5" style="color: rgb(238, 29, 35);">Severely Wasted ({{ preschooler.whfa }})</p>
                                         </div>
                                     {% endif %}
                                     <div class="card-footer text-center text-muted ">
@@ -369,23 +369,23 @@
                                     </div>
                                     {% if preschooler.bmifa is None %}
                                         <div class="card-body p-3">
-                                            <p class="card-text  h5" >{{ preschooler.bmifa }}</p>
+                                            <p class="card-text textShadow  h5" >{{ preschooler.bmifa }}</p>
                                         </div>
                                     {% elif preschooler.bmifa > 2.0 %}
                                         <div class="card-body p-3">
-                                            <p class="card-text  h5" style="color: rgb(242, 98, 33);">  Overweight/Obese ({{ preschooler.bmifa }})</p>
+                                            <p class="card-text textShadow  h5" style="color: rgb(242, 98, 33);">  Overweight/Obese ({{ preschooler.bmifa }})</p>
                                         </div>
                                     {% elif preschooler.bmifa >= -2.0 and preschooler.bmifa <= 2.0 %}
                                         <div class="card-body p-3">
-                                            <p class="card-text  h5" style="color: rgb(0, 165, 79);"> Normal ({{ preschooler.bmifa }})</p>
+                                            <p class="card-text textShadow  h5" style="color: rgb(0, 165, 79);"> Normal ({{ preschooler.bmifa }})</p>
                                         </div>
                                     {% elif preschooler.bmifa >= -3.0 and preschooler.bmifa < -2.0 %}
                                         <div class="card-body p-3">
-                                            <p class="card-text  h5" style="color: rgb(255, 241, 2);">Moderately Wasted ({{ preschooler.bmifa }})</p>
+                                            <p class="card-text textShadow  h5" style="color: rgb(255, 241, 2);">Moderately Wasted ({{ preschooler.bmifa }})</p>
                                         </div>
                                     {% else %}
                                         <div class="card-body p-3">
-                                            <p class="card-text  h5" style="color: rgb(238, 29, 35);">Severely Wasted ({{ preschooler.bmifa }})</p>
+                                            <p class="card-text textShadow  h5" style="color: rgb(238, 29, 35);">Severely Wasted ({{ preschooler.bmifa }})</p>
                                         </div>
                                     {% endif %}
                                     <div class="card-footer text-center text-muted ">
@@ -400,8 +400,12 @@
                             <div class="modal fade" id="modalWFA" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-xl">
                                     <div class="modal-content">
-                                        <div class="modal-header text-center d-flex justify-content-start">
-                                            <img class="navbar-icon" style="margin-right:10px;" src="{% static '/Media/whoLogo.png' %}"><h5 class="modal-title" id="exampleModalLabel"> WHO Child Growth Standards</h5>
+                                        <div class="modal-header text-center d-flex justify-content-between">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <img class="navbar-icon" style="margin-right:10px;" src="{% static '/Media/whoLogo.png' %}"><h5 class="modal-title" id="exampleModalLabel"> WHO Child Growth Standards</h5>
+                                            </div>
+                                            <button type="button" class="btn hoverableButtonRed" style="background-color: #EF3A25; color: white; border-radius: 5px;" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+
                                         </div>
                                         <div class="modal-body p-0">
                                             <div>
@@ -447,8 +451,12 @@
                             <div class="modal fade" id="modalHFA" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-xl">
                                     <div class="modal-content">
-                                        <div class="modal-header text-center d-flex justify-content-start">
-                                            <img class="navbar-icon" style="margin-right:10px;" src="{% static '/Media/whoLogo.png' %}"><h5 class="modal-title" id="exampleModalLabel"> WHO Child Growth Standards</h5>
+                                        <div class="modal-header text-center d-flex justify-content-between">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <img class="navbar-icon" style="margin-right:10px;" src="{% static '/Media/whoLogo.png' %}"><h5 class="modal-title" id="exampleModalLabel"> WHO Child Growth Standards</h5>
+                                            </div>
+                                            <button type="button" class="btn hoverableButtonRed" style="background-color: #EF3A25; color: white; border-radius: 5px;" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+
                                         </div>
                                         <div class="modal-body p-0">
                                             <div>
@@ -494,8 +502,12 @@
                             <div class="modal fade" id="modalWHFA" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-xl">
                                     <div class="modal-content">
-                                        <div class="modal-header text-center d-flex justify-content-start">
-                                            <img class="navbar-icon" style="margin-right:10px;" src="{% static '/Media/whoLogo.png' %}"><h5 class="modal-title" id="exampleModalLabel"> WHO Child Growth Standards</h5>
+                                        <div class="modal-header text-center d-flex justify-content-between">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <img class="navbar-icon" style="margin-right:10px;" src="{% static '/Media/whoLogo.png' %}"><h5 class="modal-title" id="exampleModalLabel"> WHO Child Growth Standards</h5>
+                                            </div>
+                                            <button type="button" class="btn hoverableButtonRed" style="background-color: #EF3A25; color: white; border-radius: 5px;" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+
                                         </div>
                                         <div class="modal-body p-0">
                                             <div>
@@ -545,8 +557,12 @@
                             <div class="modal fade" id="modalBMI" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-xl">
                                     <div class="modal-content">
-                                        <div class="modal-header text-center d-flex justify-content-start">
-                                            <img class="navbar-icon" style="margin-right:10px;" src="{% static '/Media/whoLogo.png' %}"><h5 class="modal-title" id="exampleModalLabel"> WHO Child Growth Standards</h5>
+                                        <div class="modal-header text-center d-flex justify-content-between">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <img class="navbar-icon" style="margin-right:10px;" src="{% static '/Media/whoLogo.png' %}"><h5 class="modal-title" id="exampleModalLabel"> WHO Child Growth Standards</h5>
+                                            </div>
+                                            <button type="button" class="btn hoverableButtonRed" style="background-color: #EF3A25; color: white; border-radius: 5px;" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+
                                         </div>
                                         <div class="modal-body p-0">
                                             <div>
